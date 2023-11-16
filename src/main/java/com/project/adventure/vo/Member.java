@@ -16,4 +16,6 @@ public class Member {
 	private String maddress3;
 	private Date mrdate;
 	private int mlevel;
+	private int startRow;
+	private int endRow;
 }

@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var = "conPath" value = "${pageContext.request.contextPath }"/> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>World</title>
-<script src="script/jquery-3.6.4.js"></script>
-<script src="script/script.js"></script>
-<script src="script/event02.js"></script>  
-<script src="script/member.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI/t1f51i1aAJDJkP9MXA5fBd8xbp4dMRAHdF5pE="
+            crossorigin="anonymous"></script>
+<script src="${conPath }/script/script.js"></script>
+<script src="${conPath }/script/event02.js"></script>  
+<script src="${conPath }/script/member.js"></script>
 <link href="css/world.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -98,5 +101,6 @@
 				    </div>
 				</div>
 			</div>
-		</div>
+		</div>		
 	</header>
+</div>

@@ -1,5 +1,16 @@
 package com.project.adventure.repository;
 
-public interface MemberDao {
+import org.apache.ibatis.annotations.Mapper;
 
+import com.project.adventure.vo.Cart;
+import com.project.adventure.vo.Member;
+
+@Mapper
+public interface MemberDao {
+	public Member getMemberInfo(String mid);
+	public int joinMember(Member member);
+	public int modifyMember(Member member);
+	public int withDrawalMember(Member member);
+	public int getMemberCount();
+	public Cart cartList(Member member);
 }

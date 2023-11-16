@@ -18,4 +18,7 @@ public class Cart {
 	public int result;
 	public Date crdate;
 	public Date visitdate;
+	public int startRow;
+	public int endRow;
+	public String mid;
 }

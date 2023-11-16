@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.BannerDao">
+  	<resultMap type="Banner" id="BannerResult">
+		<result property="bno" column="bno"/>
+		<result property="btitle" column="btitle"/>
+		<result property="border" column="border"/>
+		<result property="usage" column="usage"/>
+		<result property="brdate" column="brdate"/>
+		<result property="bimg" column="bimg"/>			
+	</resultMap>  
+	<select id="bannerList" resultMap="BannerResult">
+		SELECT * FROM BANNER ORDER BY BRDATE DESC
+	</select>	
+</mapper>

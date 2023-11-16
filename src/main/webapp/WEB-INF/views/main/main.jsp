@@ -3,17 +3,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var = "conPath" value = "${pageContext.request.contextPath }"/>
-<script type=text/javaScript>
-    $(function(){
-    	var num=0;
-    	setInterval(function(){
-            	$('#imgs').animate({ left : num * -1355 },2000);
-            num++;
-        	if(num==Number('${size}'))num=0;
-        }, 4000);
-    });
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+integrity="sha256-oP6HI/t1f51i1aAJDJkP9MXA5fBd8xbp4dMRAHdF5pE="
+crossorigin="anonymous"></script>
+<script src="${conPath }/script/script.js"></script>
+<script src="${conPath }/script/event02.js"></script>  
+<script src="${conPath }/script/member.js"></script>		
+<script>
+$(document).ready(function(){
+	var num=0;
+	setInterval(function(){
+        	$('#imgs').animate({ left : num * -1350 },2000);
+        num++;
+    	if(num== 5){
+    		num=0;
+    	}
+    }, 4000);
+});
 </script>
-
 <style>
     @keyframes fadeInUp {
         0% {opacity: 0;transform: translate3d(0, 100%, 0);}
@@ -26,15 +38,15 @@
 	#mainback{ position: relative; animation: fadeInUp 7s;}
     .main_bottom{ position: relative; animation: fadeInUp 7s;}
 </style>
+</head>
 <body>
 <jsp:include page="header.jsp"/>
-
 <div id = "main_img">
 	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px;">
-		<div id ="imgs" style="position:absolute; width:11000px; text-align:left;">
-		<%-- 	<c:forEach items="${bannerList}" var="bannerVO">
-				<img src="images/banner/${bannerVO.image}" style="width:1350px; object-fit: fill; margin:0"> --%>
-		<%-- 	</c:forEach> --%>
+		<div id ="imgs" style="position:absolute; width:11000px;">
+			<c:forEach items="${bannerList}" var="banners">
+				<img src="${conPath }/adminImg/${banners.bimg}" style="width:1350px; object-fit: fill; margin:0;">
+		 	</c:forEach>
 		</div>
 	</div>
 </div>
