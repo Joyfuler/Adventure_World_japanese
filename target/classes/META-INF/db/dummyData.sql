@@ -1,0 +1,28 @@
+-- 1. Member Insertion
+INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
+    MADDRESS1, MADDRESS2, MADDRESS3)
+    VALUES
+    ('one', '1234', '김나리', '010-2525-3535', 'acc@ac.com',
+    '133-100', '서울시 성동구 성수동', '1번지 21호');
+
+INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
+    MADDRESS1, MADDRESS2, MADDRESS3)
+    VALUES
+    ('two', '1234', '김길동', '011-1313-2525', 'acc.ab.com',
+    '130-120', '서울시 송파구 잠실2동' , '리센츠 아파트 201동 505호');
+
+
+SELECT * FROM MEMBER;
+
+-- 2. CART INSERTION 
+
+INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,
+PRICE1,PRICE2,RESULT,MID)
+    VALUES (CART_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
+    '25000','18000',0, 'one');
+
+INSERT INTO CART( CID, p1, p2, TYPE, ATNAME1, ATNAME2, ATNAME3, PRICE1, PRICE2, RESULT, VISITDATE ,MID )
+    VALUES (CART_SEQ.NEXTVAL,1,1,1,'A','B','C',10000,5000,0,'2023-11-23','one');
+    
+    
+

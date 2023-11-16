@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.MemberDao">
+  	<resultMap type="Member" id="MemberResult">
+		<result property="mid" column="mid"/>
+		<result property="mpw" column="mpw"/>
+		<result property="mname" column="mname"/>
+		<result property="mphone" column="mphone"/>
+		<result property="memail" column="mmail"/>
+		<result property="maddress1" column="maddress1"/>		
+		<result property="maddress2" column="maddress2"/>
+		<result property="maddress3" column="maddress3"/>
+		<result property="mlevel" column="mlevel"/>
+	</resultMap>  
+	<select id="getMember" parameterType="String" resultMap="MemberResult">
+		SELECT * FROM MEMBER WHERE MID = #{mid}
+	</select>	
+	<insert id="joinMember" parameterType="Member">
+		INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
+    		MADDRESS1, MADDRESS2, MADDRESS3)
+    		VALUES
+    		(#{mid}, #{mpw}, #{mname}, #{mphone}, #{memail},
+    		#{maddress1}, #{maddress2}, #{maddress3})		
+	</insert>	
+	<update id="modifyMember" parameterType ="Member">
+		UPDATE MEMBER SET MPW = #{mpw}, 
+    		MNAME = #{mname},
+    		MPHONE = #{mphone},
+    		MEMAIL = #{memail},
+    		MADDRESS1 = #{maddress1},
+    		MADDRESS2 = #{maddress2},
+    		MADDRESS3 = #{maddress3},
+    		WHERE MID = #{mid}
+	</update>
+	
+	<update id="withDrawalMember" parameterType="String">
+		UPDATE MEMBER SET MLEVEL = '0' WHERE MID = #{mid}
+	</update>
+	
+	<select id="getMemberCount"  resultType="int">
+		SELECT COUNT(*) FROM MEMBER;
+	</select>	
+	<select id="cartList" parameterType="Member" resultMap="MemberResult" >
+		SELECT * FROM 
+    		(SELECT ROWNUM RN, A.* FROM
+    		(SELECT * FROM CART WHERE MID = #{mid} ORDER BY CRDATE DESC) A) 
+    		WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="findId" parameterType = "Member" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MNAME = #{mname} AND
+		MPHONE = #{mphone}	
+	</select>
+	<select id="findPw" parameterType="Member" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MID= #{mid}
+		AND MNAME = #{mname} AND MPHONE = #{mphone}		
+	</select>	
+	<update id="resetPw" parameterType="Member">
+		UPDATE MEMBER SET MPW = 
+		#{mpw} WHERE MID = #{mid}
+	</update>	
+
+	<select id="orderList" parameterType="Member" resultMap="MemberResult">
+ 		SELECT * FROM 
+    		(SELECT ROWNUM RN, A.* FROM
+    		(SELECT * FROM ORDER_LIST WHERE MID = #{mid} ORDER BY OCRDATE DESC) A) 
+    		WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+</mapper>
