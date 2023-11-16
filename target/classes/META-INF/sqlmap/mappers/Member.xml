@@ -15,7 +15,7 @@
 		<result property="maddress3" column="maddress3"/>
 		<result property="mlevel" column="mlevel"/>
 	</resultMap>  
-	<select id="getMember" parameterType="String" resultMap="MemberResult">
+	<select id="getMemberInfo" parameterType="String" resultMap="MemberResult">
 		SELECT * FROM MEMBER WHERE MID = #{mid}
 	</select>	
 	<insert id="joinMember" parameterType="Member">
@@ -36,7 +36,7 @@
     		WHERE MID = #{mid}
 	</update>
 	
-	<update id="withDrawalMember" parameterType="String">
+	<update id="withDrawalMember" parameterType="Member">
 		UPDATE MEMBER SET MLEVEL = '0' WHERE MID = #{mid}
 	</update>
 	
