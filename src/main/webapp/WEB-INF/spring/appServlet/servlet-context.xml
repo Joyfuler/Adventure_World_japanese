@@ -20,13 +20,19 @@
 	<resources mapping="/memberImg/**" location="/resources/" />
 	<resources mapping="/css/**" location="/resources/" />
 	<resources mapping="/script/**" location="/script/" />
+	<resources mapping="/images/**" location="/images/" />
+	<resources mapping="/js/**" location="/js/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+	<!-- 파일첨부 -->
+	<beans:bean id="multipartResolver"
+	  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
 	<context:component-scan base-package="com.project.adventure" />
 	
 	<!--  mybatis scan은 dao가 들어가는 패키지를 입력한다.  -->

@@ -10,7 +10,7 @@ public class Cart {
 	public int p1;
 	public int p2;
 	public int type;
-	public String atname;
+	public String atname1;
 	public String atname2;
 	public String atname3;
 	public int price1;
