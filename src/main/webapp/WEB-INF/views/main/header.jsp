@@ -59,8 +59,8 @@
 		</div>
 		<div id="sub_menu">
 			<div class="logo">
-				<a href="webmain">
-					<img src="images/mainlogo.jpg"/>
+				<a href="${conPath }/main.do">
+					<img src="${conPath }/images/adventureLogo.png" width="250px">
 				</a>
 			</div>
 			<div class="category">
@@ -79,7 +79,7 @@
 					</button>
 					<div class="dropdown-content">
 			        	<a href="reserve">예매</a>
-			        	<a href="event01">이달의 혜택</a>
+			        	<a href="${conPath }/event.do">이달의 혜택</a>
 					</div>
 				</div>
 				<div class="dropdown">

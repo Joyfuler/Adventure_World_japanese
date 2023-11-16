@@ -7,25 +7,24 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-integrity="sha256-oP6HI/t1f51i1aAJDJkP9MXA5fBd8xbp4dMRAHdF5pE="
-crossorigin="anonymous"></script>
+	<title>어드벤처 월드</title>
+<script src="script/jquery-3.6.4.js"></script>	
+<script src = "${conPath }/js/order.js"></script>
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
-<script src="${conPath }/script/member.js"></script>		
+<script src="${conPath }/script/member.js"></script>	
 <script>
 $(document).ready(function(){
 	var num=0;
 	setInterval(function(){
-        	$('#imgs').animate({ left : num * -1350 },2000);
+        	$('#imgs').animate({ left : num * -1425 },3000);
         num++;
-    	if(num== 5){
-    		num=0;
+    	if(num==Number('${size}')){
+    		num=0;    	
     	}
-    }, 4000);
+    }, 3000);
 });
-</script>
+</script>	
 <style>
     @keyframes fadeInUp {
         0% {opacity: 0;transform: translate3d(0, 100%, 0);}
@@ -43,88 +42,44 @@ $(document).ready(function(){
 <jsp:include page="header.jsp"/>
 <div id = "main_img">
 	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px;">
-		<div id ="imgs" style="position:absolute; width:11000px;">
+		<div id ="imgs" style="position:absolute; width:6750px; padding-left:150px;">
 			<c:forEach items="${bannerList}" var="banners">
 				<img src="${conPath }/adminImg/${banners.bimg}" style="width:1350px; object-fit: fill; margin:0;">
 		 	</c:forEach>
 		</div>
 	</div>
 </div>
-
-
 <div id="mainTodayArea" >
 	<a href="guide">
- 		<img src="images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;오늘의 파크 운영시간&nbsp;&nbsp;10:00 ~ 21:00
+ 		<img src="images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;오늘의 파크 운영시간 : &nbsp;&nbsp;오전 10시 ~ 오후 9시
 	</a>
-</div>
-
-					<!--  절취선  -->	
+</div>	
 <br>
-<div class="mainbox">                                         <!-- 제일 큰 상자 -->
-	<div class="mainCon mainCon1"><!-- 나에게 꼭 맞는 혜택 -->     <!-- 첫번째 상자  -->
+<div class="mainbox">
+	<div class="mainCon mainCon1">
 		<p class="mainTit"><span style="font-weight:bold">자신에게 맞는 혜택</span> 알아볼까요?</p><br>
-		<p class="mainTxt">현재 진행 중인 할인혜택을 알아보세요.</p>
-		 <!-- 두번째 상자 -->
-		<div class="boxArea">                               <!-- 세번째상자 -->
+		<p class="mainTxt">현재 진행 중인 할인혜택을 알아보세요!</p>		 
+		<div class="boxArea">                             
 			<div class="box-tr">
+				<c:forEach var="events" items="${eventList }" begin="0" end="3">
 				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/card.png" width="248" height="198"/></span>
-						<span class="price1">월드카드로 최대 10만원 캐시백 혜택 챙겨요! 40000원</span>		
+					<a href="${conPath }/event.do">
+						<span class="eventImg"><img src="${conPath }/images/${events.eimage }" width="248" height="198"/></span>
+						<span class="price1">${events.einfo }</span>		
 					</a>
 				</div>
-						
-				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/point.jpg" width="248" height="198"/></span>
-						<span class="price1">월드 최대 30% 할인 + 이용금액 100% 캐시백까지</span>
-					</a>
-				</div>
-
-				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/npay.jpg" width="248" height="198"/></span>
-						<span class="price1">가정의달은, 꼭 네이버페이로 39,900원</span>
-					</a>
-				</div>
-
-				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/family.jpg" width="248" height="198"/></span>
-						<span class="price1">패밀리 패키지(어른+어린이) 70,000원</span>
-					</a>
-				</div>
-			
+				</c:forEach>					
 			</div>
 				
 			<div class="box-tr">
+				<c:forEach var="events" items="${eventList }" begin="0" end="3">
 				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/friend.png" width="248" height="198"/></span>
-						<span class="price1">프랜드 패키지(어른+어른) 90,000원</span>
+					<a href="${conPath }/event.do">
+						<span class="eventImg"><img src="${conPath }/images/${events.eimage }" width="248" height="198"/></span>
+						<span class="price1">${events.einfo }</span>		
 					</a>
 				</div>
-
-				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/fastfast.jpg" width="248" height="198"/></span>
-						<span class="price1">패스트패스 100,000원</span>
-					</a>
-				</div>
-
-				<div class="box-td">
-					<a href="event01">
-				 		<span class="imggg"><img src="images/springspring.jpg" width="248" height="198"/></span>
-						<span class="price1">스프링데이 30,000원</span>			
-					</a>
-				</div>
-
-				<div class="box-td">
-					<a href="event01">
-						<span class="imggg"><img src="images/76419_59366_5741.jpg" width="248" height="198"/></span>
-						<span class="price1">교복 패키지 50,000원</span>
-					</a>
-				</div>
+				</c:forEach>					
 			</div>
 		</div>
      </div>

@@ -4,7 +4,7 @@ p{font-family:'IBM Plex Sans KR', sans-serif;}
 
 #paging{font-size:120%; font-weight:600; font-family:'IBM Plex Sans KR', sans-serif;}
 .clear { clear: both;  }
-#wrap { width: 1350px; height:100%;margin: 0 auto; background: white; min-height: 780px; }
+#wrap { width: 1350px; height:250px; margin: 0 auto; background: white;}
 
 a{ text-decoration-line: none; color: inherit;}
 
@@ -62,7 +62,7 @@ a{ text-decoration-line: none; color: inherit;}
 .boxArea{position:relative; width:1350px; height:600px;background-color:white;  display: inline-block; margin:0 auto;}
 .box-tr{position:relative; width:1350px; height:300px; background-color:white; text-align: center; display: inline-block; margin:0 auto; }
 .box-td{position:relative; width:240px;  height:300px; background-color:white; text-align: center; display: inline-block; margin:0 auto;}
-.imggg{position:relative; width:240px; height:200px;  background-color:white; text-align: center; display: inline-block; margin:0 auto;}
+.eventImg{position:relative; width:240px; height:200px;  background-color:white; text-align: center; display: inline-block; margin:0 auto;}
 .price1{position:relative; width:240px; height:100px;  background-color:white; text-align: center; display: inline-block; margin:0 auto;}
 
 /* main3 */
