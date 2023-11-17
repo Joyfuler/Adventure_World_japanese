@@ -9,9 +9,31 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+	const cartdelete = function () {
+	var cseq = document.getElementsByName('cseq');
+	var url = '${conPath}/delete.do?';
+	var cnt=0;
+	for(let i=0; i<cseq.length; i++){
+		if(cseq[i].checked){
+			var id = cseq[i].value;
+			url += 'id='+id+'&';
+		}
+	}
+	if(cnt){
+		alert(url);
+		location.href = url;
+	
+};
+</script>
+<link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
 <body>
-<form name="formm" method="post">
+<c:if test="${not empty deleteResult }">
+	<script>alert('${param.cid}번글 삭제 성공');</script>
+</c:if>
+<form action="${conPath }/cart/orderlist.do" name="formm" method="post">
+<input type = "text" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
@@ -42,6 +64,7 @@
 		                    <th scope="col" class="th-num">총액</th>
 		                    <th scope="col" class="th-num">처리 상태</th>
 		                    <th scope="col" class="th-date">선택</th>
+		                    <th scope="col" class="th-delete">삭제</th>
 		                </tr>
               	  </thead>
                		<tbody>
@@ -84,17 +107,21 @@
 	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
 	                	</c:choose>
 	                	</td>
+	                	<td>
+	                	<button onClick="location='${conPath }/cart/delete.do?cid=${dto.cid }'" class="dede" ><h3>삭제하기</h3></button>
+	                	<td>
 	                </tr>
-	          	</c:forEach>
                 
+	          	</c:forEach>
                 </tbody>
             </table>
-            <div class="mypage-btn-dede-wrap">
+            	<!-- <div class="mypage-btn-dede-wrap">
+            		<input type="button" onClick="cartdelete()" value="삭제하기">
 			    <div class="dede" style="float:right;">
-			    	<a href="#"onClick="go_cart_delete()"><h3>삭제하기</h3></a>
-			    </div>
+			    	
+			    </div> -->
+			    	<input type="submit" value="결제하기" class="dede" style="float:right;">
 			    <div class="dede" style="float:right;">
-			    	<a href="#"onClick="go_order()"><h3>결제하기</h3></a>
 		    	</div>
         	</div>
     	</div>

@@ -24,14 +24,14 @@
 			<div class="order_box_title">패스트패스 예매</div>
 			<div class="order_box_date">
 				<div class="order_box_date_text">방문일자/인원 선택</div>
-				<div class="order_box_date_select" onclick="showCalendar()">
+				<%-- <div class="order_box_date_select" onclick="showCalendar()">
 					<img src="${conPath }/images/ticket_images/calendar.png" style="width:40px; height:40px;">
-				</div>
+				</div> --%>
 				<!-- 달력 선택 날짜 표기 -->
 				<div id="calendarPopup" class="calendar-popup"></div>
-				<div class="order_box_date_date">
+				<!-- <div class="order_box_date_date">
 					<input type="text"  id="selectedDate" name="visitdate2" >
-				</div>
+				</div> -->
 			</div>
 			<!-- 수량 표시 -->
 			<div class="order_quantity">

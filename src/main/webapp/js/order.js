@@ -1,7 +1,3 @@
-	
-
-
-	
 function count_check(obj) {
 	var chkCnt = 0; // chkCnt 초기값 0 설정
 	var chkBox = document.getElementsByName("attraction"); //name값 불러옴	
@@ -117,14 +113,7 @@ function decrease(event, result) {
 
   var newValue = currentValue - 1;
   resultInput.value = newValue;
-}
-	
-	
-
-	
-	
-	// 달력 
-	
+}	
   var today = new Date();
   var year = today.getFullYear();
   var month = today.getMonth() + 1;
