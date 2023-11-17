@@ -84,7 +84,6 @@ $(document).ready(function(){
 		</div>
      </div>
 </div>
-
 <!--  main3  -->
 
 <div id="mainback">
