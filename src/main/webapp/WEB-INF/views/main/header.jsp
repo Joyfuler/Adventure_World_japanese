@@ -7,9 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>World</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-            integrity="sha256-oP6HI/t1f51i1aAJDJkP9MXA5fBd8xbp4dMRAHdF5pE="
-            crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
 <script src="${conPath }/script/member.js"></script>
@@ -25,8 +23,8 @@
 			<ul>
 				<c:choose>
 					<c:when test ="${empty member}">						
-						<li><a href="loginForm">login</a></li>
-						<li><a href="/contract">회원가입</a></li>
+						<li><a href="${conPath }/loginMember.do">login</a></li>
+						<li><a href="${conPath }/joinMember.do">회원가입</a></li>
 						<li><a href="/admin">관리자</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						
@@ -51,7 +49,7 @@
 							</div>
 						</div>
 						</li> 
-						<li><a href="logout">logout</a></li>
+						<li><a href="${conpath }/logout.do">logout</a></li>
 						<li><a href="editForm">정보수정</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>

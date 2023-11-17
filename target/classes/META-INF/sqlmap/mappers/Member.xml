@@ -15,6 +15,12 @@
 		<result property="maddress3" column="maddress3"/>
 		<result property="mlevel" column="mlevel"/>
 	</resultMap>  
+	<select id="midConfirm" parameterType= "String" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MID = #{mid}
+	</select>
+	<select id = "memailConfirm" parameterType= "String" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MEMAIL= #{memail}
+	</select>
 	<select id="getMemberInfo" parameterType="String" resultMap="MemberResult">
 		SELECT * FROM MEMBER WHERE MID = #{mid}
 	</select>	
