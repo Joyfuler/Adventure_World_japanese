@@ -8,10 +8,11 @@ DROP SEQUENCE BANNER_SEQ;
 DROP TABLE BANNER;
 DROP SEQUENCE EVENT_SEQ;
 DROP TABLE EVENT;
+DROP SEQUENCE PARADE_SEQ;
+DROP TABLE PARADE;
 
 
 -- 2. CREATE TABLE
-SELECT * FROM MEMBER;
 CREATE TABLE MEMBER
 (
 	MID VARCHAR2(20) NOT NULL PRIMARY KEY,
@@ -93,11 +94,22 @@ CREATE TABLE ATTRACTION(
     AIMAGE VARCHAR2 (255),
     HEADCOUNT NUMBER(4)
     );
+    
+CREATE SEQUENCE PARADE_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE PARADE(
+    PNO NUMBER(5) PRIMARY KEY,
+    PTITLE VARCHAR2 (100),
+    PINFO VARCHAR2 (1000),
+    PPLACE VARCHAR2 (300),
+    PPERIOD VARCHAR2 (300),
+    PCAUTION VARCHAR2 (1000),
+    PIMG VARCHAR2 (300)
+);
 
 -- 3. Member Query
 
 -- 1) 회원가입 joinMember
-INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
+    INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
     MADDRESS1, MADDRESS2, MADDRESS3)
     VALUES
     ('one', '1234', '김나리', '010-2525-3535', 'acc@ac.com',
@@ -131,13 +143,14 @@ UPDATE MEMBER SET MPW = '222',
     (SELECT * FROM ORDER_LIST WHERE MID = 'one' ORDER BY OCRDATE DESC) A) 
     WHERE RN BETWEEN 1 AND 2;
 
+
 -- 4. CART QUERY
 -- 장바구니 담기
+
 INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,
 PRICE1,PRICE2,RESULT)
     VALUES (CART_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
     '25000','18000',0);
-
 
 -- 5. ORDER QUERY
 -- 주문내역 담기
@@ -148,14 +161,12 @@ OPRICE1, OPRICE2, ORESULT, MID)
     VALUES (ORDER_LIST_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
 '25000','18000',0, 'two');
 
-
 -- 6. EVENT QUERY
 -- 이벤트 추가
 INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
     VALUES
     (EVENT_SEQ.NEXTVAL, '2023년 5월 1일 ~ 5월 31일','월드카드로 최대 10만원 캐시백 혜택 챙겨요! 40000원', '행사기간 동안 월드카드 1회 이상 이용 및 2023.6.15(월)까지 국내외 가맹점에서 일시불 및 할부 합산 10만원 이상 이용 시 8만원 캐시백,
 종합 자유이용권-어른: 40000원 청소년: 30000원 어린이: 28000원','card');
-
 
 -- 7. ATTRACTION QUERY
 -- 어트랙션 추가
@@ -164,4 +175,14 @@ VALUES
 (ATTRACTION_SEQ.NEXTVAL, '범퍼카' ,'화려한 조명과 신나는 음악 속에서 스릴만점의 자동차 경주가 펼쳐진다. 
 앞에서 쾅~ 뒤에서 쾅~ 어디서 달려들지 모르는 좌충우돌 범퍼카! 부딪칠수록 즐거움이 더욱 커집니다.',
 '125cm 이상 탑승가능', '65세 이하 탑승 가능', 'Y', 'N', '익사이팅', '어린이', 'car.jpg', 1);
+
+-- 8. PARADE QUERY
+-- 퍼레이드 추가
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '카니발 판타지 퍼레이드', '브라질의 삼바, 베니스의 가면, 카리브 축제가 한자리에 모였다!<br>
+		세계 유명 축제를 한 번에 즐길 수 있는 기회를 놓치지 마세요!','퍼레이드 길, 카니발 광장 (가이드맵 167)','11.17(금) ~ 12.18(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade1.jpg','paradeDetail1');
+
+
 

@@ -24,13 +24,14 @@
 		<div id ="top_menu">
 			<ul>
 				<c:choose>
-					<c:when test ="${empty member}">
+					<c:when test ="${empty member}">						
 						<li><a href="loginForm">login</a></li>
 						<li><a href="/contract">회원가입</a></li>
 						<li><a href="/admin">관리자</a></li>
+						<li><a href="${conPath }/main.do">HOME</a></li>
 						
 					</c:when>
-					<c:otherwise>
+					<c:otherwise>						
 						<li>
 						<div class="dropdown" style="width:100px; font-size:85%;">
 							<button class="dropbtn" 
@@ -52,7 +53,9 @@
 						</li> 
 						<li><a href="logout">logout</a></li>
 						<li><a href="editForm">정보수정</a></li>
+						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>
+						
 					</c:otherwise>
 				</c:choose>
 			</ul>

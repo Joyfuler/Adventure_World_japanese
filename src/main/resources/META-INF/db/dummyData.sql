@@ -62,7 +62,26 @@ INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
     (EVENT_SEQ.NEXTVAL, '~2024년 4월 30일','교복 패키지 50,000원', '교복 착용하면 즉시 할인!
 총 2인 종합이용권 가격 : 50000원. 구매 시 신분증 / 학생증 필요.','76419_59366_5741.jpg');
 
+INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
+    VALUES
+    (EVENT_SEQ.NEXTVAL, '~2024년 4월 30일','패밀리 패키지(어른+어린이) 70,000원', '	어른1명 + 어린이1명 종합이용권 총금액=70000만원
+	      	최대수량3개까지 가능.','family.jpg');
+            
+INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
+    VALUES
+    (EVENT_SEQ.NEXTVAL, '~ 2024년 5월30일', '프랜드 패키지(어른+어른) 90,000원', '어른1명 + 어른1명 종합이용권 총금액=90000만원
+      		/구매 시 신분증 확인 필요.','friend.png');            
+            
+INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
+    VALUES
+    (EVENT_SEQ.NEXTVAL, '~2023년 12월31일','패스트패스 100,000원','패스트패스 행사 기념 100,000원 가격 이벤트 1인1구매 가능<br>
+    		구매 시 신분증 확인 필요','fastfast.jpg');
 
+INSERT INTO EVENT (ENO, EPERIOD, EINFO, EINFO2, EIMAGE)
+    VALUES
+    (EVENT_SEQ.NEXTVAL, '~2024년 6월31일','스프링데이 30,000원','스프링 데이 기념 가격 이벤트 하루 선착순 30명까지 가능.
+      		1인1구매 가능. 구매 시 신분증 확인 필요.','springspring.jpg');   
+    
 -- 6. ATTRACTION INSERTION
 INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
 VALUES
@@ -131,4 +150,29 @@ VALUES
 스릴을 느껴보세요!','120cm 이상 탑승 가능', '65세 이하 탑승 가능','N','N','롤러코스터','스릴',
 'rollercoaster.jpg',28);
 
-
+-- 7. PARADE INSERTION
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+    VALUES (PARADE_SEQ.NEXTVAL, '레니의 대모험 ~드래곤 성을 찾아서~',
+    '평화롭던 이솝빌리지에 찾아온 어둠의 기운...
+	레니와 라라는 이솝빌리지를 위험에서 구하기 위해
+	드래곤 성을 찾아 떠나는데…!', '퍼레이드 길, 카니발 광장 (가이드맵 167)', '11.18 ~ 12.31',            
+	'※ 공연장 입장은 공연 시작 30분전부터 가능하며,
+	  공연 시작 이후에는 입장이 불가합니다.
+	※ 본 공연은 좌석이 지정되지 않는 자유석으로 운영됩니다.
+	※ 현장 상황에 따라 공연이 취소되거나 축소 운영될 수 있으며,
+	 공연 일정이 변경될 수 있습니다.
+	※ 현장 운영 상황에 따라 현장줄서기로 전환될 수 있습니다.','parade2.jpg','paradeDetail2.jpg');           
+            
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION, PIMG, PIMG2)
+    VALUES (PARADE_SEQ.NEXTVAL,'문라이트 퍼레이드','밤을 화려하게 장식해 줄 빛의 축제!<br>
+			반짝이는 빛과 신나는 음악이 만드는 환상의 퍼레이드!','퍼레이드 길, 카니발 광장 (가이드맵 167)','11.17(금) ~','※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
+			※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade3.jpg','paradeDetail3.jpg');
+            
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG, PIMG2)
+    VALUES (PARADE_SEQ.NEXTVAL, '타임 오디세이', '어디에서도 경험해 보지 못한 황홀한 빛의 세계!
+			감동적 스토리와 환상적인 음악,
+			그리고 밤하늘을 장식할 화려한 불꽃쇼로
+			여러분을 초대합니다!','포시즌스 가든 (가이드맵 165)','11.17(금) ~','※현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
+			※ 이용 정보-운영 시간에서 공연시간 확인이 가능합니다.','parade4.jpg','paradeDetail4');
+            
+            

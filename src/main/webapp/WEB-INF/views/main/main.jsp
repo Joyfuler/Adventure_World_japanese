@@ -19,7 +19,7 @@ $(document).ready(function(){
 	setInterval(function(){
         	$('#imgs').animate({ left : num * -1425 },3000);
         num++;
-    	if(num==Number('${size}')){
+    	if(num==(Number('${bannerList.size()}') -1)){
     		num=0;    	
     	}
     }, 3000);
@@ -72,7 +72,7 @@ $(document).ready(function(){
 			</div>
 				
 			<div class="box-tr">
-				<c:forEach var="events" items="${eventList }" begin="0" end="3">
+				<c:forEach var="events" items="${eventList }" begin="4" end="7">
 				<div class="box-td">
 					<a href="${conPath }/event.do">
 						<span class="eventImg"><img src="${conPath }/images/${events.eimage }" width="248" height="198"/></span>
@@ -87,66 +87,51 @@ $(document).ready(function(){
 <!--  main3  -->
 
 <div id="mainback">
-	<div id="maintitle">재미있고 즐거운&nbsp;<span style="font-weight:bold;">다양한 어트랙션!</span></div>
+	<div id="maintitle">재미있고 즐거운&nbsp;<span style="font-weight:bold;">다양한 어트랙션!</span>
+	</div>
 	<div class="tag">
 		<ul>
-			<li>아이와 함께</li>
-			<li>야외에서 신나게</li>
-			<li>실내에서 쾌적하게</li>
+			<li>아이와 함께 </li>
+			<li>야외에서 신나게 </li>
+			<li>실내에서 쾌적하게!</li>
 		</ul>
 	</div>
 	<h2 style="font-size:30px; text-align:center; line-height:80px;">인기 어트랙션</h2>
 	<div id="mainimg">
-		<%--<c:forEach var="AttractionVO" items="${bestList}" begin="0" end="2">
-		 	<a href="attractionDetail?aseq=${AttractionVO.aseq}">
-				<div id="att_list">
-					<img src="images/attraction_images/${AttractionVO.image}"/>
-					<h3 style="font-weight:400">${AttractionVO.atname}</h3>
-				</div>
-			</a>
-		</c:forEach> --%>
+		<c:forEach var="best_attraction" items="${bestList}" begin="0" end="5">
+		 		<div id="att_list">
+		 			<a href="${conPath }/attractionDetail.do?aid=${best_attraction.aid}">				
+					<img src="images/attraction_images/${best_attraction.aimage}"/>
+					<h3 style="font-weight:400">${best_attraction.aname}</h3>
+					</a>
+				</div>						
+		</c:forEach>
 	</div>
 	<div class="tag">
 	<ul>
-		<li><a href='attractionForm'>더 많은 어트랙션 보기</a></li>
-		<li><a href='guide'>운휴 정보 보러 가기</a></li>
+		<li><a href="${conPath }/attractionList.do">더 많은 어트랙션 보기</a></li>
+		<li><a href='${conPath }/stopDayInfo.do'>운휴 정보 보러 가기</a></li>
 	</ul>
 </div>
 </div>
-
-<!--  절취선  -->
 <div class="main_bottom">
 	<div id="line">
-		<h1>What's New</h1>
+		<h1>진행중인 퍼레이드</h1>
 	</div>  
-	<h3>꿈과 환상의 나라로 어서오세요!</h3>
-	<div id="main_view_">              
-		<div id="parade">
-		   <a href="parade">
+	<h3>꿈과 환상의 세계로 어서오세요!</h3>
+	<div id="main_view_">     
+		<c:forEach var="parades" items="${paradeList }">         
+		<div id="parade">		   
 		        <div class="scale">
-		        	<img src="images/parade1.jpg" width="250" height="170" >
+		        <a href="parade">
+		        	<img src="${conPath }/images/${parades.pimg}" width="250" height="170" >
+		        </a>	
 		        </div>
-		        <div class="title">카니발 판타지 퍼레이드</div>
-		    </a>
-		</div>       
-		<div id="parade">
-		   <a href="parade">
-		        <div class="scale"><img src="images/parade2.jpg" width="250" height="170" ></div>
-		        <div class="title">레니의 대모험~<br>드래곤 성을 찾아서~</div>
-		    </a>
-		</div>       
-		<div id="parade">
-		   <a href="parade">
-		        <div class="scale"><img src="images/parade3.jpg" width="250" height="170" ></div>
-		        <div class="title">문라이트 퍼레이드</div>
-		    </a>
-		</div>       
-		<div id="parade">
-		   <a href="parade">
-		        <div class="scale"><img src="images/parade4.jpg" width="250" height="170" ></div>
-		        <div class="title">타임 오디세이</div>
-		    </a>
-		</div> 
+		        <div class="title">
+		        	${parades.ptitle }
+		        </div>		    		    
+		</div>  
+		</c:forEach> 
 	</div>      
 </div>
 <jsp:include page="footer.jsp"/>

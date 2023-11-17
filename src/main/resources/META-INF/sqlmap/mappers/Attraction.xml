@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.AttractionDao">
+  	<resultMap type="Attraction" id="AttractionResult">
+  		<result property="aid" column="aid"/>
+		<result property="aname" column="aname"/>			
+		<result property="acontent" column="acontent"/>
+		<result property="height" column="height"/>
+		<result property="age" column="age"/>		
+		<result property="best" column="best"/>
+		<result property="stopDay" column="stopday"/>
+		<result property="tag1" column="tag1"/>
+		<result property="tag2" column="tag2"/>
+		<result property="aimage" column="aimage"/>
+		<result property="headCount" column="headcount"/>		
+	</resultMap>
+	<select id="bestAttractionList" resultMap="AttractionResult">
+		SELECT * FROM ATTRACTION WHERE BEST = 'Y'
+		ORDER BY AID DESC
+	</select>
+</mapper>

@@ -11,7 +11,8 @@
 			<typeAlias type="com.project.adventure.vo.Banner" alias="Banner"/>
 			<typeAlias type="com.project.adventure.vo.Cart" alias="Cart"/>
 			<typeAlias type="com.project.adventure.vo.Event" alias="Event"/>
-			
+			<typeAlias type="com.project.adventure.vo.Attraction" alias="Attraction"/>
+			<typeAlias type="com.project.adventure.vo.Parade" alias="Parade"/>
 			<!-- 이하 dto 추가한 패키지를 alias 넣어서 추가 -->			
 		</typeAliases>
 		<mappers>
@@ -19,6 +20,8 @@
 			<mapper resource="META-INF/sqlmap/mappers/Banner.xml"/>
 			<mapper resource="META-INF/sqlmap/mappers/Cart.xml"/>
 			<mapper resource="META-INF/sqlmap/mappers/Event.xml"/>
+			<mapper resource="META-INF/sqlmap/mappers/Attraction.xml"/>
+			<mapper resource="META-INF/sqlmap/mappers/Parade.xml"/>				
 			<!-- 이하 맡은 쿼리가 든 xml 경로를 추가 -->			
 		</mappers>
 	</configuration>
