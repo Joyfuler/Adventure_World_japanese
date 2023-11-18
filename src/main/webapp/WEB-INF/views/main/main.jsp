@@ -39,6 +39,16 @@ $(document).ready(function(){
 </style>
 </head>
 <body>
+<c:if test = "${not empty param.loginResult }">
+	<script>
+		alert('${param.loginResult}');
+	</script>
+</c:if>	
+<c:if test = "${not empty logoutResult }">
+	<script>
+		alert('${logoutResult}');
+	</script>
+</c:if>
 <jsp:include page="header.jsp"/>
 <div id = "main_img">
 	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px;">

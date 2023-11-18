@@ -16,6 +16,7 @@ const autoHyphen = (target) => {
 </script> 
 <script>
 	$(document).ready(function(){
+		/* 아이디 중복확인 */
 		$('input.mid').keyup(function(){
 			var mid = $(this).val();
 			let pattern = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -25,7 +26,7 @@ const autoHyphen = (target) => {
 				$('span#idConfirmResult').text('id는 영문/숫자로만 입력해주세요');
 			} else {
 				$.ajax({
-					url: '${conPath}/midConfirm.do',
+					url: '${conPath}/member/midConfirm.do',
 					type: 'post',
 					data: {mid : mid},
 					dataType : 'html',
@@ -54,7 +55,7 @@ const autoHyphen = (target) => {
 				$('#pwChkResult').text('비밀번호가 일치합니다.');
 			}
 		});
-		
+		/* 이메일 중복확인 */
 		$('.memail').keyup(function(){
 			var memail = $(this).val();
 			var patternEmail = "^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
@@ -62,7 +63,7 @@ const autoHyphen = (target) => {
 				$('span#emailChkResult').text('메일 주소 형식이 맞지 않습니다.');				
 			} else {				
 					$.ajax({
-						url : '${conPath}/memailConfirm.do',
+						url : '${conPath}/member/memailConfirm.do',
 						type : 'post',
 						data: {memail : memail},
 						dataType : 'html',
@@ -75,9 +76,51 @@ const autoHyphen = (target) => {
 						},
 					});
 				}			
-		});			
-	});	
+		});
+		
+		/* 이메일 본인인증 (작동안함)*/
+		$('#mail-Check-Btn').click(function(){
+			var memail = $('.memail').val();
+			var checkInput = $('.mail-check-Input');
+			
+			$.ajax({
+				type : 'get',
+				url : '${conPath}/member/mailCheck.do',
+				data: {memail : memail},
+				success: function(data){
+					checkInput.attr('disabled', false);
+					code = data;
+					alert('이메일로 인증번호를 발송했습니다.');
+					checkInput.val(code);
+				},
+				error : function(error){
+					console.error ('에러 발생 - ajax' + error);
+				}
+			});
+		});
+	});		
 </script>	
+<script>
+function submitChk(){
+	var idConfirmResult = $('span#idConfirmResult').text().trim();	
+	var pwChkResult = $('#pwChkResult').text().trim();	
+	var memailChkResult = $('span#emailChkResult').text().trim();
+	var mname = $('.mname').val();
+	if (idConfirmResult != '사용 가능한 아이디입니다'){
+		alert('아이디 중복체크를 해 주세요');
+		return false;	
+	} else if (pwChkResult != '비밀번호가 일치합니다.'){
+		alert('비밀번호 형식을 체크하세요');
+		return false;
+	} else if (memailChkResult != '사용 가능한 이메일입니다'){
+		alert('메일 형식을 체크하세요.');
+		return false;
+	} else if (mname == ''){
+		alert('이름은 필수 입력사항입니다.');
+		return false;
+	}
+}
+</script>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -87,24 +130,33 @@ const autoHyphen = (target) => {
 	<form method="post" name="joinForm" >		
 		<div class="basic_box">
 			<div class="basic_box_text">
-				<label>아이디</label><br>
+				<label>아이디</label><span style = color:red;>*</span><br>
 				<input type="text" name="mid" class="mid dup">			    
 			    <br><span id = "idConfirmResult" style = "color:red;"> &nbsp; &nbsp; &nbsp; </span><br><br>
-			    <label>비밀번호</label><br><input type="password" name="mpw" class="dup mpw"><br>
-			    <label>비밀번호 확인</label><br><input type="password" name="mpwChk" class="dup mpwChk"><br>
+			    <label>비밀번호</label><span style = color:red;>*</span><br>
+			    <input type="password" name="mpw" class="dup mpw"><br>
+			    <label>비밀번호 확인</label><span style = color:red;>*</span><br>
+			    <input type="password" name="mpwChk" class="dup mpwChk"><br>
 			    <span id = "pwChkResult" style = "color:red;"></span><br><br>
-			    <label>이름</label><br><input type="text" name="name" class="dup"><br>
-			    <label>휴대폰 번호</label><br><input type="text" name="phone" class="dup" maxlength="13" 
+			    <label>이름</label><span style = color:red;>*</span><br>
+			    <input type="text" name="mname" class="dup mname"><br>
+			    <label>휴대폰 번호</label><br><input type="text" name="mphone" class="dup" maxlength="13" 
 										oninput="autoHyphen(this)"><br>			    
-			    <label>우편번호</label><br><input type="text" class="dup"  id="sample6_postcode"   name="zip_num"  style="width:390px; " readonly>      
+			    <label>우편번호</label><br><input type="text" class="dup" id="sample6_postcode" name="maddress1"  style="width:390px; " readonly>      
 			    <input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center; font-family:'IBM Plex Sans KR', sans-serif;"><br>
 				<label>주소</label><br>
-						<input type="text" class="dup"  id="sample6_address"  size="50" name="address1"  value="${dto.address1}" readonly><br><br>
+						<input type="text" class="dup"  id="sample6_address" name = "maddress2"  size="50" name="address2"  value="${dto.address1}" readonly><br><br>
 				<label>상세주소(직접입력)</label><br>
-						<input type="text"  class="dup" id="sample6_detailAddress"  name="address2"   value="${dto.address2}" size="50"><br>
-						<input type="hidden"  class="dup" id="sample6_extraAddress"  name="address3"   value="${dto.address3}" readonly><br>
-				<label>이메일</label><br><input type="text" name="memail" class="memail dup"><br>
-				<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span><br><br>
+						<input type="text"  class="dup" id="sample6_detailAddress"  name="maddress3"   value="${dto.address2}" size="50"><br>
+						<input type="hidden"  class="dup" id="sample6_extraAddress" value="${dto.address3}" readonly><br>
+				<label>이메일</label><span style = color:red;>*</span><br>
+				<input type="text" name="memail" class="memail dup" style = "width:430px;">
+				<input type="button" id = "mail-Check-Btn" value="이메일인증" style="width:100px; float:right;"><br>
+				<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span><br>
+					<div class="mail-check-box">
+						<input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+					</div>
+				<br>
 			</div>
 		</div>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>		
@@ -146,16 +198,17 @@ const autoHyphen = (target) => {
 		<br><br><br>
 		<br><br><br>
 		<br><br><br>
+		<br><br><br>
 		<div class="join_buttons">
-			<div class="join_buttons_text">
-		    	<input type="button" value="회원가입" class="join_submit" onclick="go_save()"> 
-		    	<input type="reset" value="취소" class="join_cancel">
-		    	<input type="button" value="돌아가기" class="join_submit" onclick="location.href='/'">
+			<div class="join_buttons_text">		    	
+		    	<input type="submit" value="회원가입" class="join_submit" style = "margin-left: 100px;" onclick = "return submitChk()">		    	
+		    	<input type="button" value="돌아가기" class="join_submit" onclick="history.back()">
 		    </div>
 		</div>
 	</form>
 </div>
 </article>
+<br><br><br>
 <br><br><br>
 <br><br><br>
 <br><br><br>

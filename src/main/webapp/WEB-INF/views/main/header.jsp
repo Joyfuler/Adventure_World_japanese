@@ -11,7 +11,7 @@
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
 <script src="${conPath }/script/member.js"></script>
-<link href="css/world.css" rel="stylesheet">
+<link href="${conPath }/css/world.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,8 +23,8 @@
 			<ul>
 				<c:choose>
 					<c:when test ="${empty member}">						
-						<li><a href="${conPath }/loginMember.do">login</a></li>
-						<li><a href="${conPath }/joinMember.do">회원가입</a></li>
+						<li><a href="${conPath }/member/loginMember.do">login</a></li>
+						<li><a href="${conPath }/member/joinMember.do">회원가입</a></li>
 						<li><a href="/admin">관리자</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						
@@ -44,13 +44,13 @@
 								font-size:80%;  color:gray; ">마이페이지</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
-								<a href="cartList?first=y">장바구니</a>
+								<a href="cart/list.do">장바구니</a>
 								<a href="orderList?first=y">주문내역</a>
 							</div>
 						</div>
 						</li> 
-						<li><a href="${conpath }/logout.do">logout</a></li>
-						<li><a href="editForm">정보수정</a></li>
+						<li><a href="${conPath }/member/logout.do">logout</a></li>
+						<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>
 						
@@ -79,7 +79,7 @@
 						<span>예매하기</span>
 					</button>
 					<div class="dropdown-content">
-			        	<a href="reserve">예매</a>
+			        	<a href="${conPath }/cart/reserve.do">예매</a>
 			        	<a href="${conPath }/event.do">이달의 혜택</a>
 					</div>
 				</div>

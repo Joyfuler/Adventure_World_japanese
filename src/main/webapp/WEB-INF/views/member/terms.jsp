@@ -160,7 +160,7 @@
 </textarea>
 			</div>
 			<div class="text3">
-				<form action = "${conPath }/join.do">
+				<form action = "${conPath }/member/join.do">
 				<input type="radio" name="agree">약관에 동의합니다&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="agree" class = "disAgree" checked= "checked">동의하지 않습니다
 			</div>

@@ -1,28 +1,4 @@
 
-
-function loginCheck(){
-	if(document.loginFrm.id.value==""){
-		alert("아이디는 필수 입력사항 입니다");
-		document.loginFrm.id.focus();
-		return false;
-	}else if(document.loginFrm.pwd.value==""){
-		alert("비밀번호 필수 입력사항 입니다");
-		document.loginFrm.pwd.focus();
-		return false;
-	}else{
-		document.loginFrm.action = "login";
-		document.loginFrm.submit();
-		return true;
-	}
-}
-
-function go_contract(){
-	document.loginFrm.action = "/contract";
-	document.loginFrm.submit();
-}
-
-
-
 function go_save(){
 	if(document.joinForm.id.value==""){
 		alert("아이디는 필수 입력사항 입니다");

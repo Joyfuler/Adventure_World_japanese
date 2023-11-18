@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var = "conPath" value = "${pageContext.request.contextPath }"/> 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>World</title>
+</head>
+<body>    
 <footer>
 <div id="footer">
 	<div class="container">
@@ -17,30 +26,29 @@
 		</div>
 		<div class="bottom">
 			<div class="lotteon-banner" style="top:55px">
-				<a href=""><img src="images/img_hotel.jpg" /></a>
+				<a href=""><img src="${conPath }/images/img_hotel.jpg" /></a>
 			</div>
 			<div class="left" style="text-align:left" >
-				<p class="flogo"><img src="images/mainlogo.jpg" width=130px ></p>
+				<p class="flogo"><img src="${conPath }/images/adventureLogo.png" width=130px></p>
 				<div>
-					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 서대문구 신촌로 141 위고인빌딩 1층  롯데월드 | 대표자 : 이젠</span></p>
-					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;사업자등록번호 : 219-85-00014 | 통신판매업신고번호 : 송파 제5513호 | 전화 : 1661-2000</span></p>
-					<p class="copyright">&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT 2023 LOTTEWORLD. ALL RIGHTS RESERVED.</p>
+					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 서대문구 신촌로 141 위고인빌딩 201호 강의실 | 대표자 : 이소영 </span></p>
+					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;사업자등록번호 : 219-85-00014 | 통신판매업신고번호 : 신촌 제5513호 | 전화 : 1661-2000</span></p>
+					<p class="copyright">&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT 2023 EZEN AC. ALL RIGHTS RESERVED.</p>
 				</div>
 			</div>
 			<div class="isms">
-				<img src="images/footer_footer.png"/>
+				<img src="${conPath }/images/footer_footer.png"/>
 			</div>
 			<div class="sns" style="top:5px">
-				<a href=""><img src="images/facebook.png"/></a>
-				<a href=""><img src="images/instar.png"/></a>
-				<a href=""><img src="images/youtube.png"/></a>
+				<a href=""><img src="${conPath }/images/facebook.png"/></a>
+				<a href=""><img src="${conPath }/images/instar.png"/></a>
+				<a href=""><img src="${conPath }/images/youtube.png"/></a>
 			</div>
 		</div>
 		<br><br><br>
 	</div>
 </div>
 </footer>
-</div>
 </body>
 </html>
 
