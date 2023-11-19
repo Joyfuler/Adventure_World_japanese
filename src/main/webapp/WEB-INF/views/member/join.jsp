@@ -131,28 +131,49 @@ function submitChk(){
 		<div class="basic_box">
 			<div class="basic_box_text">
 				<label>아이디</label><span style = color:red;>*</span><br>
-				<input type="text" name="mid" class="mid dup">			    
-			    <br><span id = "idConfirmResult" style = "color:red;"> &nbsp; &nbsp; &nbsp; </span><br><br>
-			    <label>비밀번호</label><span style = color:red;>*</span><br>
-			    <input type="password" name="mpw" class="dup mpw"><br>
-			    <label>비밀번호 확인</label><span style = color:red;>*</span><br>
-			    <input type="password" name="mpwChk" class="dup mpwChk"><br>
-			    <span id = "pwChkResult" style = "color:red;"></span><br><br>
-			    <label>이름</label><span style = color:red;>*</span><br>
-			    <input type="text" name="mname" class="dup mname"><br>
-			    <label>휴대폰 번호</label><br><input type="text" name="mphone" class="dup" maxlength="13" 
-										oninput="autoHyphen(this)"><br>			    
-			    <label>우편번호</label><br><input type="text" class="dup" id="sample6_postcode" name="maddress1"  style="width:390px; " readonly>      
-			    <input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center; font-family:'IBM Plex Sans KR', sans-serif;"><br>
-				<label>주소</label><br>
-						<input type="text" class="dup"  id="sample6_address" name = "maddress2"  size="50" name="address2"  value="${dto.address1}" readonly><br><br>
-				<label>상세주소(직접입력)</label><br>
-						<input type="text"  class="dup" id="sample6_detailAddress"  name="maddress3"   value="${dto.address2}" size="50"><br>
-						<input type="hidden"  class="dup" id="sample6_extraAddress" value="${dto.address3}" readonly><br>
-				<label>이메일</label><span style = color:red;>*</span><br>
-				<input type="text" name="memail" class="memail dup" style = "width:430px;">
-				<input type="button" id = "mail-Check-Btn" value="이메일인증" style="width:100px; float:right;"><br>
-				<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span><br>
+					<input type="text" name="mid" class="mid dup">			    
+			    	<br>
+			    	<span id = "idConfirmResult" style = "color:red;"> &nbsp; &nbsp; &nbsp; </span>
+			    	<br><br>
+			    <label>비밀번호</label><span style = color:red;>*</span>
+			    	<br>
+			    	<input type="password" name="mpw" class="dup mpw">
+				    <br>
+			    <label>비밀번호 확인</label><span style = color:red;>*</span>
+				    <br>
+			    	<input type="password" name="mpwChk" class="dup mpwChk">
+				    <br>
+			    	<span id = "pwChkResult" style = "color:red;"></span>
+				    <br><br>
+			    <label>이름</label><span style = color:red;>*</span>
+			    	<br>
+			    	<input type="text" name="mname" class="dup mname">
+			    	<br>
+			    <label>휴대폰 번호</label>
+			    	<br>
+			    	<input type="text" name="mphone" class="dup" maxlength="13" 
+					oninput="autoHyphen(this)">
+					<br>			    
+			    <label>우편번호</label>
+			    	<br>
+			    	<input type="text" class="dup" id="sample6_postcode" name="maddress1"  style="width:390px;" readonly= "readonly">      
+			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center; font-family:'IBM Plex Sans KR', sans-serif;">
+			   		<br>
+				<label>주소</label>
+					<br>
+					<input type="text" class="dup"  id="sample6_address" name = "maddress2"  size="50" name="address2"  value="${dto.address1}" readonly = "readonly">
+					<br><br>
+				<label>상세주소(직접입력)</label>
+					<br>
+					<input type="text"  class="dup" id="sample6_detailAddress"  name="maddress3"   value="${dto.address2}" size="50">
+					<br>
+					<input type="hidden"  class="dup" id="sample6_extraAddress" value="${dto.address3}" readonly>
+					<br>
+				<label>이메일</label><span style = color:red;>*</span>
+				<br>
+					<input type="text" name="memail" class="memail dup" style = "width:430px;">
+					<input type="button" id = "mail-Check-Btn" value="이메일인증" style="width:100px; float:right;"><br>
+					<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span><br>
 					<div class="mail-check-box">
 						<input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
 					</div>

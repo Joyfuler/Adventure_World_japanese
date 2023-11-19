@@ -81,6 +81,25 @@ public class MemberController {
 		model.addAttribute("logoutResult", "로그아웃 되었습니다.");		
 		return "forward:../main.do";
 	}
+		
+	@RequestMapping(value = "findId", method = RequestMethod.GET)
+	public String findId() {
+		return "member/findId";
+	}
 	
+	@RequestMapping(value = "findId", method = RequestMethod.POST)
+	public String findId(Member member, Model model) {
+		model.addAttribute("findResult", memberService.findId(member));
+		return "member/findId";
+	}
 	
+	@RequestMapping(value = "findPw", method = RequestMethod.GET)
+	public String findPw() {
+		return "member/findPw";
+	}
+	
+	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	public String findPw(Member member, Model model) {
+		return "member/findPw";
+	}
 }

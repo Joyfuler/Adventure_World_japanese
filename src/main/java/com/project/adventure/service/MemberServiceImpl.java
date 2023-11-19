@@ -92,4 +92,20 @@ public class MemberServiceImpl implements MemberService {
 		}		
 		return msg;
 	}
-}
+
+	@Override
+	public String findId(Member member) {
+		String msg = "";
+		Member findMember = new Member();
+		findMember.setMname(member.getMname());
+		findMember.setMphone(member.getMphone());
+		Member findResult = memberDao.findId(findMember);
+		if (findResult != null) {
+			msg = "찾으신 아이디는 [" + findResult.getMid() + "] 입니다.";
+		} else {
+			msg = "해당하는 정보와 일치하는 회원이 없습니다.";
+		}		
+		return msg;		
+		}
+	}
+

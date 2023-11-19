@@ -29,10 +29,10 @@ a{ text-decoration-line: none; color: inherit;}
 
 #sub_menu{position:relative; width:1350px; height:120px; margin:0 auto; padding:20px 20px 0 20px; border-bottom:1px solid lightgray; font-family:'IBM Plex Sans KR', sans-serif;}
 .logo {position:relative; width:207px; height:100%; margin:0 auto; float:left;}
-.category {position:relative; width:1100px; height:100%; float:left; padding:0 50px; font-family:'IBM Plex Sans KR', sans-serif;}
+.category {position:relative; width:1100px; height:100%; float:left; padding:0 50px; font-family:'IBM Plex Sans KR', sans-serif; color: #212529;}
 
 .dropdown {position:relative; width:200px; display:inline-block;}
-.dropbtn {width:100%; font-weight:500; padding:30px; padding-bottom:30px; text-align:center; cursor:pointer; font-family:'IBM Plex Sans KR', sans-serif;
+.dropbtn {background-color: width:100%; font-weight:500; padding:30px; padding-bottom:30px; text-align:center; cursor:pointer; font-family:'IBM Plex Sans KR', sans-serif;
 	font-size:23px; border:none; background-color:white;}
 .dropbtn:hover {color:#5c10e6;}
 /*display:none;*/
@@ -393,22 +393,14 @@ section .notice {padding:  0; font-family:'IBM Plex Sans KR', sans-serif;}
 
   
   /*findid*/
-  .findfind{width:100%; height:400x; margin: 0 auto; position:relative;}
-  .id_found{width:100%; height:300px;margin: 0 auto; position:relative;}
+  #find_div{width:100%; height:400x; margin: 0 auto; position:relative;}
+  .find_border{width:100%; height:300px;margin: 0 auto; position:relative;}
   .find-id{margin:20px 0 0 110px;position:relative;}
-  .abcd{width:200px;height:60px;position:relative;margin:30px 0 0 170px;}
-  .abcde{width:200px;height:60px;position:relative;margin:30px 0 0 190px;}
-  
- 
-  
-  
- .founf .button{height: 30px;width: 100px;border:1px solid #6317ed; font-weight:bold;
-		position:relative;padding: 0 0 3px 6px;background:rgb(111, 35, 249);border-radius: 28px; box-shadow: 3px 3px 2px #ccc; font-size: 20px; background-repeat: repeat-x; 
-		background-position: center center;	color:#fff;margin: 30px 0 0 220px;}
-
-  .founff .button{height: 30px;width: 100px;border:1px solid #6317ed; font-weight:bold;float:left;
-		position:relative;padding: 0 0 3px 6px;background:rgb(111, 35, 249);border-radius: 28px; box-shadow: 3px 3px 2px #ccc; font-size: 20px; background-repeat: repeat-x; 
-		background-position: center center;	color:#fff;margin: 30px 0 0 220px;}
+  .findId_title{width:200px;height:60px;position:relative;margin:30px 0 0 170px;}
+  .findId-button {text-align: center;}
+  .findId-button .button{height: 30px;width: 80px; font-weight:bold; float: left;
+		padding: 0 0 3px 6px;background:rgb(111, 35, 249);border-radius: 28px; box-shadow: 3px 3px 2px #ccc; font-size: 20px; 
+		background-position: center center;	color:#fff;margin: 30px 0 0 166px;}
 .founfd .button{height: 30px;width: 100px;border:1px solid #6317ed; font-weight:bold;float:left;
 		position:relative;padding: 0 0 3px 6px;background:rgb(111, 35, 249);border-radius: 28px; box-shadow: 3px 3px 2px #ccc; font-size: 20px; background-repeat: repeat-x; 
 		background-position: center center;	color:#fff;margin: 30px 0 0 180px;}

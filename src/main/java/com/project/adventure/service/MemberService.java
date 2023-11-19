@@ -12,4 +12,5 @@ public interface MemberService {
 	public void mailSend(String setFrom, String toMail, String title, String content);
 	public int joinMember(Member member, HttpSession session);
 	public String loginCheck(String mid, String mpw, HttpSession session);
+	public String findId(Member member);
 }

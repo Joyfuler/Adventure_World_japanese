@@ -55,9 +55,9 @@
     		(SELECT * FROM CART WHERE MID = #{mid} ORDER BY CRDATE DESC) A) 
     		WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<select id="findId" parameterType = "Member" resultType="int">
-		SELECT COUNT(*) FROM MEMBER WHERE MNAME = #{mname} AND
-		MPHONE = #{mphone}	
+	<select id="findId" parameterType = "Member" resultMap="MemberResult">
+		SELECT * FROM MEMBER WHERE MNAME = #{mname} AND
+		MPHONE = #{mphone} AND ROWNUM &lt;=1 ORDER BY MID DESC
 	</select>
 	<select id="findPw" parameterType="Member" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE MID= #{mid}

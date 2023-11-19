@@ -14,5 +14,6 @@ public interface MemberDao {
 	public int modifyMember(Member member);
 	public int withDrawalMember(Member member);
 	public int getMemberCount();
+	public Member findId(Member member);
 	public Cart cartList(Member member);
 }

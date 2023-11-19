@@ -79,8 +79,7 @@ $(document).ready(function(){
 					</a>
 				</div>
 				</c:forEach>					
-			</div>
-				
+			</div>				
 			<div class="box-tr">
 				<c:forEach var="events" items="${eventList }" begin="4" end="7">
 				<div class="box-td">
@@ -111,16 +110,20 @@ $(document).ready(function(){
 		<c:forEach var="best_attraction" items="${bestList}" begin="0" end="5">
 		 		<div id="att_list">
 		 			<a href="${conPath }/attractionDetail.do?aid=${best_attraction.aid}">				
-					<img src="images/attraction_images/${best_attraction.aimage}"/>
-					<h3 style="font-weight:400">${best_attraction.aname}</h3>
+						<img src="images/attraction_images/${best_attraction.aimage}"/>
+						<h3 style="font-weight:400">${best_attraction.aname}</h3>
 					</a>
 				</div>						
 		</c:forEach>
 	</div>
 	<div class="tag">
 	<ul>
-		<li><a href="${conPath }/attractionList.do">더 많은 어트랙션 보기</a></li>
-		<li><a href='${conPath }/stopDayInfo.do'>운휴 정보 보러 가기</a></li>
+		<li>
+			<a href="${conPath }/attractionList.do">더 많은 어트랙션 보기</a>
+		</li>
+		<li>
+			<a href='${conPath }/stopDayInfo.do'>운휴 정보 보러 가기</a>
+		</li>
 	</ul>
 </div>
 </div>
@@ -132,14 +135,14 @@ $(document).ready(function(){
 	<div id="main_view_">     
 		<c:forEach var="parades" items="${paradeList }">         
 		<div id="parade">		   
-		        <div class="scale">
+		    <div class="scale">
 		        <a href="parade">
 		        	<img src="${conPath }/images/${parades.pimg}" width="250" height="170" >
 		        </a>	
-		        </div>
-		        <div class="title">
+		    </div>
+		    <div class="title">
 		        	${parades.ptitle }
-		        </div>		    		    
+		    </div>		    		    
 		</div>  
 		</c:forEach> 
 	</div>      

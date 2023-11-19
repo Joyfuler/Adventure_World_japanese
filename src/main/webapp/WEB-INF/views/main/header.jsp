@@ -26,22 +26,17 @@
 						<li><a href="${conPath }/member/loginMember.do">login</a></li>
 						<li><a href="${conPath }/member/joinMember.do">회원가입</a></li>
 						<li><a href="/admin">관리자</a></li>
-						<li><a href="${conPath }/main.do">HOME</a></li>
-						
+						<li><a href="${conPath }/main.do">HOME</a></li>						
 					</c:when>
 					<c:otherwise>						
 						<li>
 						<div class="dropdown" style="width:100px; font-size:85%;">
-							<button class="dropbtn" 
-									style=" width:100px;
+							<button class="dropbtn" style=" width:100px;
 											padding:0 0 5px 0; 
 											float:right;
-											background:#f7f7f7;
-											"> 
-								<span style="display:block; height:15px;  
-								font-family:'IBM Plex Sans KR', sans-serif;
-								padding: 0 ;
-								font-size:80%;  color:gray; ">마이페이지</span>
+											background:#f7f7f7;"> 
+								<span style="display:block; height:15px; font-family:'IBM Plex Sans KR', sans-serif;
+								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
 								<a href="cart/list.do">장바구니</a>
@@ -76,7 +71,7 @@
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>예매하기</span>
+						<span>예매 / 이벤트</span>
 					</button>
 					<div class="dropdown-content">
 			        	<a href="${conPath }/cart/reserve.do">예매</a>
@@ -94,7 +89,7 @@
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>소통서비스</span>
+						<span>커뮤니티</span>
 				    </button>
 				    <div class="dropdown-content">
 						<a href="notice?first=y">공지사항</a>

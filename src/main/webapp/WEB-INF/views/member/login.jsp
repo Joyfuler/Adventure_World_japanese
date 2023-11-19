@@ -36,7 +36,8 @@
 <body>  
 <div id=logina>
    <div class="login">
-   <div class="join_title">로그인 페이지</div>
+   <div class="join_title">어드벤처 월드 로그인
+   					</div>
    </div>
    <h2 style="color:gray; font-weight:400">회원아이디와 비밀번호로 로그인 하세요.</h2>
    <br><br>
@@ -51,8 +52,8 @@
    </div>
    <div class="menu1">
       <ul>
-          <li onclick="location.href='${conPath}/member/findId.do'"  style="cursor:pointer;">아이디 찾기 |</li>
-          <li onclick="location.href='${conPath}/member/findPw.do'" style="cursor:pointer;">&nbsp;비밀번호 찾기 |</li>
+          <li onclick="window.open('${conPath}/member/findId.do', '_blank', 'width=500, height=450');" style="cursor:pointer;">아이디 찾기 |</li>          
+          <li onclick="window.open('${conPath}/member/findPw.do', '_blank', 'width=500, height=450');" style="cursor:pointer;">&nbsp;비밀번호 찾기 |</li>
           <li onclick="location.href='${conPath}/member/joinMember.do'" style="cursor:pointer;">&nbsp;회원가입</li>
       </ul>
    </div>  
@@ -60,8 +61,8 @@
       <input type="submit" value="로그인" class="submit" onclick="return loginCheck()">      
       <br>	  
    </div>
-   <div id=content> 회원정보와 관련된 문의사항이 있으시면 고객만족센터에 연락하세요.<br>
-   고객만족센터 : 1899-8900
+   <div id=content> 회원정보와 관련된 문의사항이 있으시면 고객센터에 연락하세요.<br>
+   고객만족센터 : 1588 - 1119
    </div>
    </form>
 </div>
