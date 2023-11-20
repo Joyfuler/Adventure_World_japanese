@@ -81,16 +81,15 @@ const autoHyphen = (target) => {
 		/* 이메일 본인인증 (작동안함)*/
 		$('#mail-Check-Btn').click(function(){
 			var memail = $('.memail').val();
-			var checkInput = $('.mail-check-Input');
-			
+			var checkInput = $('.mail-check-Input');			
 			$.ajax({
 				type : 'get',
 				url : '${conPath}/member/mailCheck.do',
 				data: {memail : memail},
 				success: function(data){
-					checkInput.attr('disabled', false);
-					code = data;
+					checkInput.attr('disabled', false);					
 					alert('이메일로 인증번호를 발송했습니다.');
+					code = data;
 					checkInput.val(code);
 				},
 				error : function(error){

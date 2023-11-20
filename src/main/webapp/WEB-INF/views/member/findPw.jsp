@@ -8,7 +8,7 @@
 <script src="script/member.js"></script>
 <link href="css/world.css" rel="stylesheet">
 <style>
-input {
+input[type="text"] {
   width: 230px;
   height: 32px;
   font-size: 10px;
@@ -22,23 +22,27 @@ input {
 </style>
 </head>
 <body>
-<div class="findfind">
-<div class="id_found">
-   <h2 class="abcde">비밀번호 찾기</h2>
-   <h5 style="text-align:center;margin-right:7px;">신원확인 후 재설정이 가능합니다</h5>
-   <form method="post" name="formm" >
+<div id="find_div">
+	<div class="find_border">
+   <h2 class="findId_title">비밀번호 찾기</h2>
+   <h5 style="text-align:center;margin-right:7px;">회원가입시 입력한 회원정보를 입력해주세요. </h5>
+   <form action= "${conPath }/member/findPw.do" method = "post" >
       <input type="hidden" name="command" value="selectPwd" />
       <table class="find-id">
          <tr>
-
-         <th>아이디&nbsp;&nbsp;&nbsp;&nbsp;</th><td><input type="text" name="id" class="input-text"  value="${Lmember.id}" maxlength="30" /></td>
-
+         	<th>
+         		아이디&nbsp;&nbsp;&nbsp;&nbsp;</th>
+         	<td>
+         		<input type="text" name="mid" class="input-text" maxlength="20" placeholder = "이름입력"/>
+       		</td>
          </tr>
-          </table>
-          <table class="find-id">
-         <tr>
-
-         <th>&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><td><input type="text" name="name" class="input-text" maxlength="30" /></td>
+      </table>
+      <table class="find-id">
+      	<tr>
+            <th>
+            	&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <td>
+            	<input type="text" name="name" class="input-text" maxlength="30" /></td>
 
          </tr>
            </table>

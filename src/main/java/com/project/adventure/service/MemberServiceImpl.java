@@ -50,6 +50,7 @@ public class MemberServiceImpl implements MemberService {
 				+ "<br><br>해당 인증번호를 인증번호 확인란에 입력해 주세요." + "<br><br>감사합니다.";
 
 		mailSend(setFrom, toMail, title, content);
+		System.out.println("인증코드는: " + authNumber);
 		return Integer.toString(authNumber);
 	}
 
