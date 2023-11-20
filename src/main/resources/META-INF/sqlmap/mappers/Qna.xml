@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="com.project.adventure.repository.QnaDao">
+	<resultMap type="Qna" id="QnaResult">
+		<result property="qno" column="qno"/>
+		<result property="qtitle" column="qtitle"/>
+		<result property="qcontent" column="qcontent"/>
+		<result property="qpw" column="qpw"/>
+		<result property="isreply" column="isreply"/>
+		<result property="qrdate" column="qrdate"/>		
+		<result property="qgroup" column="qgroup"/>
+		<result property="qstep" column="qstep"/>
+		<result property="qindent" column="qindent"/>
+		<result property="mid" column="mid"/>
+	</resultMap>  
+	<!-- 책이름 가나다순으로 startRow~endRow번째 까지 -->
+	<select id="QnaList" parameterType="Qna" resultMap="QnaResult">
+		<if test="schWord=='' or schWord==null">
+		SELECT * FROM
+    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QNO DESC)A)
+   		 WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schWord!='' and schWord!=null">
+		SELECT * FROM
+   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QNO DESC)A)
+   		 WHERE RN BETWEEN #{startRow} AND #{endRow}
+    	</if>
+	</select>
+	<select id ="getQna" parameterType="int" resultType="Qna">
+		SELECT * FROM QNA WHERE QNO = #{qno}
+	</select>
+	<insert id="insertQna" parameterType="Qna" >
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{mid})
+	</insert>
+	<update id="qnaPreReplyStep" parameterType="Qna">
+		<![CDATA[
+			UPDATE QNA SET QSTEP = QSTEP+1 WHERE QGROUP = #{qgroup} AND QSTEP > #{qstep}
+		]]>
+	</update>
+	<insert id="qnaPreReply" parameterType="Qna">
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, #{qgroup}, ${qstep}+1, #{qindent}+1,#{mid})
+	</insert>
+	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
+		<if test="schWord=='' or schWord==null">
+			select count(*) from QNA
+		</if>
+		<if test="schWord!='' and schWord!=null">
+			select count(*) from  QNA where QTITLE like '%'||#{schWord}||'%'
+    	</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

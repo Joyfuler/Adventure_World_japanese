@@ -29,7 +29,7 @@
 	</select>
 	<insert id="registerCart" parameterType="Cart" >
 		INSERT INTO CART( CID, p1, p2, TYPE, ATNAME1, ATNAME2, ATNAME3, PRICE1, PRICE2, RESULT, VISITDATE ,MID )
-    values(cart_seq.NEXTVAL,#{cid},#{p1},#{p2},#{type},#{atname1},#{atname2},#{atname3},#{price1},#{price2},#{result},#{visitdate},#{mid})
+    values(cart_seq.NEXTVAL,#{p1},#{p2},#{type},#{atname1},#{atname2},#{atname3},#{price1},#{price2},#{result},#{visitdate},#{mid})
 	</insert>
 	<update id="modifyBCart" parameterType="Cart">
 		UPDATE CART SET  
@@ -47,6 +47,6 @@
 		       WHERE CID=#{cid}
 	</update>
 	<delete id="deleteCart" parameterType="int">
-			DELETE FROM CART WHERE CID=#{cid}
+    DELETE FROM CART WHERE CID =#{cid}
 	</delete>
 </mapper>

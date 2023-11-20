@@ -11,7 +11,7 @@
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
 <script src="${conPath }/script/member.js"></script>
-<link href="css/world.css" rel="stylesheet">
+<link href="${conPath }/css/world.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">

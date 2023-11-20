@@ -9,9 +9,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script>
+	function cartdelete () {
+	var cseq = document.getElementsByName('cseq');
+	var url = '${conPath}/cart/delete.do?';
+	var cnt=0;
+	for(let i=0; i<cseq.length; i++){
+		if(cseq[i].checked){
+			var cid = cseq[i].value;
+			url += 'cid='+cid+'&';
+			cnt++; 
+		}
+	}
+	if (cnt) {  // cnt 값이 0이 아닐 때 실행
+        location.href = url;
+    } else {
+        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+    }
+};
+</script>
+<link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
 <body>
-<form name="formm" method="post">
+<c:if test="${not empty deleteResult }">
+	<script>alert('삭제 성공');</script>
+</c:if>
+<jsp:include page="../main/header.jsp"/>
+<form action="${conPath }/cart/orderlist.do" name="formm" method="post">
+<input type = "hidden" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
@@ -52,7 +77,7 @@
 	                     <td>
                           <c:choose>
                              <c:when test = "${dto.type==0}">
-                                자유이용권
+                                자유이용권 
                              </c:when>
                              <c:otherwise>
                                 패스트패스   
@@ -84,18 +109,19 @@
 	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
 	                	</c:choose>
 	                	</td>
+<%-- 	                	<td>
+	                	<input type="button" onclick="location.href='${conPath }/cart/delete.do?cid=${dto.cid }'" value = "삭제하기">
+	                	<td> --%>
 	                </tr>
-	          	</c:forEach>
                 
+	          	</c:forEach>
                 </tbody>
             </table>
-            <div class="mypage-btn-dede-wrap">
-			    <div class="dede" style="float:right;">
-			    	<a href="#"onClick="go_cart_delete()"><h3>삭제하기</h3></a>
-			    </div>
-			    <div class="dede" style="float:right;">
-			    	<a href="#"onClick="go_order()"><h3>결제하기</h3></a>
-		    	</div>
+            	 <div class="mypage-btn-dede-wrap">
+            		<input type="button" onclick="cartdelete()" value="삭제하기" class="dede" style="float:right;">
+			  
+			    	<input type="submit" value="결제하기" class="dede" style="float:right;">
+			   
         	</div>
     	</div>
     </div>

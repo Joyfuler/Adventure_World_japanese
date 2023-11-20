@@ -10,5 +10,5 @@ public interface CartService {
 	public Cart getDetailCart(int cid);
 	public int registerCart(Cart cart);
 	public int modifyBCart(Cart cart);
-	public int deleteCart(int cid);
+	public int deleteCart(int[] cid);
 }

@@ -1,7 +1,4 @@
-	
 
-
-	
 function count_check(obj) {
 	var chkCnt = 0; // chkCnt 초기값 0 설정
 	var chkBox = document.getElementsByName("attraction"); //name값 불러옴	
@@ -17,42 +14,8 @@ function count_check(obj) {
 	}
 	return chkCnt;
 }
-
-function go_cart(num){
-	if(document.getElementById("selectedDate").value==""){
-		alert("방문 일자를 선택해주세요");
-		return;
-		}
-	var chkCnt = count_check();
-	var today = new Date(); // 현재 날짜와 시간을 가지는 Date 객체 생성
-	var todayDate = today.toISOString().slice(0, 10); // yyyy-MM-dd 형식의 문자열로 변환
-	var dateString = document.getElementById("selectedDate").value; // 비교할 날짜 문자열
-	var date = new Date(dateString); // 문자열을 Date 객체로 변환
-	var selectedDate = date.toISOString().slice(0, 10);
-	
-	if (todayDate > selectedDate) {
-	    alert("방문 일자를 확인해주세요");
-		return;
-		}
-	if(document.formm.p1.value==0&&document.formm.p2.value==0){
-		alert("인원을 선택해주세요");
-		return;
-	  	}
-	 if(num==1){
-		if (chkCnt < 3){
-			alert("놀이기구 3개를 선택해주세요");
-			return ;
-		}
-		else{
-		document.formm.action ="/passTicketInsert?kind="+ num ;
-		document.formm.submit();
-		} 			
-	}
-	else {
-		document.formm.action ="passTicketInsert?kind=" + num ;
-		document.formm.submit();
-	}
-}
+/*
+*/
 
 
 function toggleAnswer(answerId) {

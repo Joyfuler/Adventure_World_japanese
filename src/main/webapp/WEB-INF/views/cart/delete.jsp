@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="cart/reserve.do"/>
+<h1>${deleteResult } </h1>
 </body>
 </html>
