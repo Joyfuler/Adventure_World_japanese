@@ -31,7 +31,7 @@
 			<div class="left" style="text-align:left" >
 				<p class="flogo"><img src="${conPath }/images/adventureLogo.png" width=130px></p>
 				<div>
-					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 서대문구 신촌로 141 위고인빌딩 201호 강의실 | 대표자 : 이소영 </span></p>
+					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 서대문구 신촌로 141 위고인빌딩 202호 강의실 | 대표자 : 이소영 </span></p>
 					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;사업자등록번호 : 219-85-00014 | 통신판매업신고번호 : 신촌 제5513호 | 전화 : 1661-2000</span></p>
 					<p class="copyright">&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT 2023 EZEN AC. ALL RIGHTS RESERVED.</p>
 				</div>
