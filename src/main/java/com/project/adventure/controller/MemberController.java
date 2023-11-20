@@ -60,7 +60,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "login")
 	public String login(String mid, String mpw, HttpSession session, Model model, String next) {
 		String msg = memberService.loginCheck(mid, mpw, session);
 		if (msg.equals("로그인 되었습니다.")) {

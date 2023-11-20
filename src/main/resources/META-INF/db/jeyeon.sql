@@ -50,6 +50,30 @@ INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NRDATE, WID)
     VALUES(NOTICE_SEQ.NEXTVAL, '내일은 주말이에요', 'ㅎㅎ', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NRDATE, WID)
     VALUES(NOTICE_SEQ.NEXTVAL, '추워요', 'ㅠㅠ', SYSDATE , 'admin');
-    
+
+-- worker dao
+
+-- 비번찾기 id=getWpw
+SELECT WPW FROM WORKER WHERE WID='admin';
+
+-- 이름찾기 id=getWname
+SELECT WNAME FROM WORKER WHERE WID='admin';
+
+-- 워커 카운트 id=getAllCount
+SELECT COUNT(*) FROM WORKER;
+
+-- NOTICE DAO
+
+-- 공지사항 리스트
+SELECT * FROM NOTICE WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC;
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* 
+        FROM(SELECT * FROM NOTICE
+            WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC) A)
+        WHERE RN BETWEEN 1 AND 4;
+        
+-- 공지번호로 가져오기 id=listNotice
+SELECT * FROM NOTICE WHERE NID=2;
+
 
     

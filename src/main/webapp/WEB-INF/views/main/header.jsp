@@ -25,7 +25,7 @@
 					<c:when test ="${empty member}">						
 						<li><a href="${conPath }/member/loginMember.do">login</a></li>
 						<li><a href="${conPath }/member/joinMember.do">회원가입</a></li>
-						<li><a href="/admin">관리자</a></li>
+						<li><a href="${conPath }/worker/workerLoginForm.do">관리자</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>						
 					</c:when>
 					<c:otherwise>						

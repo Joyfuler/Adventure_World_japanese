@@ -2,3 +2,24 @@
 
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.adventure.repository.WorkerDao">
+	<resultMap type="Worker" id="WorkerResult">
+		<result property="wid" column="wid"/>
+		<result property="wpw" column="wpw"/>
+		<result property="wname" column="wname"/>
+		<result property="wphone" column="wphone"/>
+	</resultMap>
+	<select id="getWpw" parameterType="String" resultType="String">
+		SELECT WPW FROM WORKER WHERE WID=#{wid}
+	</select>
+	<select id="getName" parameterType="String" resultType="String">
+		SELECT WNAME FROM WORKER WHERE WID=#{wid}
+	</select>
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*) FROM WORKER
+	</select>
+	<select id="loginCheck" parameterType="Worker" resultMap="WorkerResult">
+		SELECT * FROM WORKER WHERE WID=#{wid} AND WPW = #{wpw}
+	</select>
+</mapper>

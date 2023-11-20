@@ -1,17 +1,4 @@
-function adminloginCheck(){  //관리자 로그인시 아이디 비번 입력 확인
-	
-	if(document.frm.id.value==""){
-		   	alert("아이디를 입력하세요.");
-		  	return false;
-		}else if(document.frm.pwd.value==""){
-		  	alert("비밀번호를 입력하세요.");
-		   	return false;
-		}else{
-	document.frm.action = "adminlogin";
-	document.frm.submit();
-			return true;
-		}  
-}
+
 
 function go_manage(comm){
 	var url =  comm;   // 검색어로 검색한 결과의 1페이지로 이동
