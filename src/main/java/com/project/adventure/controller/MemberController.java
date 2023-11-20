@@ -43,13 +43,12 @@ public class MemberController {
 	}
 	
 	// 작동안됨
-	@RequestMapping(value = "mailCheck", method = RequestMethod.GET)
-	@ResponseBody
+	@RequestMapping(value = "mailCheck", method = RequestMethod.GET)	
 	public String mailCheck(String memail, Model model) {
 		System.out.println("이메일 인증 요청 :" + memail);
 		String authNumber = memberService.joinEmail(memail);
 		model.addAttribute("authNumber", authNumber);
-		return "member/join";
+		return "member/authNumber";
 	}
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
