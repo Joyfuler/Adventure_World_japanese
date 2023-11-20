@@ -12,7 +12,8 @@
 .submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 </style>
-<form name="frm" method="post">
+<jsp:include page="../main/header.jsp"/>
+<form action="${conPath }/qna/qnaList.do" name="frm" method="post">
 <section class="notice">
   <div class="page-title">
         <div class="container">
@@ -26,9 +27,9 @@
              
                     <div class="search-wrap">
                         <label for="search" class="blind">QnA 내용 검색</label>
-                        <input id="search" type="search" name="key" placeholder="검색어를 입력해주세요." value="${key}">
-                        <button type="submit" class="btn btn-dark" onClick="go_search('qnaList')">검색</button>
-                     <button type="submit" class="btn btn-darkkk" value="전체보기" onClick="go_total('qnaList')">전체보기</button> 
+                        <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}">
+                        <input type="submit" class="btn btn-dark" value="검색"></button>
+                     <button class="btn btn-darkkk" value="전체보기" onclick="history.back(-1)">전체보기</button> 
                     </div>
   
             </div>
@@ -49,23 +50,23 @@
                 </thead>
                
 <!-- <a href="qnaView?lqseq=${qnaVO.lqseq}">${qnaVO.title}</a> -->
-		<c:forEach items="${qnaList}"  var="qnaVO">
-			<tr ><td> ${qnaVO.lqseq}</td>    
+		<c:forEach items="${qnaList}"  var="qna">
+			<tr ><td> ${qna.qno}</td>    
 	    		<td>
 	    			<c:choose>
-						<c:when test="${qnaVO.passcheck == 'Y'}">
-							<a href="#" onClick="passCheck('${qnaVO.lqseq}')">${qnaVO.title}</a>
+						<c:when test="${qna.isreply=='Y'}">
+							<a href="#" onClick="location.href='${conPath }/qna/checkPass.do?qno=${qna.qpw}&pageNum=${paging.currentPage}&schWord=${param.schWord}'" >${qna.qtitle}</a>
 								&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
-							<a href="qnaView?lqseq=${qnaVO.lqseq}">${qnaVO.title}</a>
+							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}${qna.qpw}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
 						</c:otherwise>
 					</c:choose>
 	    		</td>      
-	       		<td><fmt:formatDate value="${qnaVO.indate}" type="date"/></td>
+	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
 	       		<td><c:choose>
-					<c:when test="${qnaVO.rep=='N'}"> no </c:when>
-					<c:when test="${qnaVO.rep=='Y'}"> yes </c:when>
+					<c:when test="${qna.isreply=='N'}"> no </c:when>
+					<c:when test="${qna.isreply=='Y'}"> yes </c:when>
 				</c:choose></td>    
 	   		</tr>
 	  	</c:forEach>
@@ -76,11 +77,22 @@
 
 </section>
 </form>
-
-	<jsp:include page="${conPaht }/paging/page.jsp">
-		<jsp:param name="command" value="qnaList" />
-	</jsp:include>
-
+	<div>
+			<c:if test="${paging.startPage>paging.blockSize}">
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schItem=${param.schItem}&schWord=${param.schWord}">이전</a> ]
+			</c:if>	
+			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+				<c:if test="${paging.currentPage==i }"> 
+					<b>[ ${i } ]</b> 
+				</c:if>
+				<c:if test="${paging.currentPage != i }">
+					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schItem=${param.schItem}&schWord=${param.schWord}">${i }</a> ]
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.endPage<paging.pageCnt }">
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schItem=${param.schItem}&schWord=${param.schWord}">다음</a> ]
+			</c:if>
+		</div>
 
 <div  class="clear"></div><br>
 

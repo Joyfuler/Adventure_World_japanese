@@ -3,25 +3,54 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-
+<script
+  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+  crossorigin="anonymous"></script>
 <link href="${conPath }/css/order.css" rel="stylesheet">  
 <script src="${conPath }/js/order.js"></script>
+<script>
+function go_cart(num){
+	var chkCnt = count_check();
+	var today = new Date(); // 현재 날짜와 시간을 가지는 Date 객체 생성
+	var todayDate = today.toISOString().slice(0, 10); // yyyy-MM-dd 형식의 문자열로 변환
+	var dateString = $('#selectedDate').val(); // 비교할 날짜 문자열
+	var date = new Date(dateString); // 문자열을 Date 객체로 변환
+	if(dateString =='' || dateString == null){
+		alert("방문 일자를 선택해주세요");
+		return false;
+	}		
+	else if (todayDate > selectedDate) {
+	    alert("방문 일자는 오늘 이후로 선택해주세요.");
+		return false;
+	} else if($('input[name="p1"]').val() ==0 && $('input[name="p2"]').val() ==0){
+		alert("인원을 선택해주세요");
+		return false;
+	} else if(num==1){
+		if ($('#atname1').val() == ''){
+			alert("놀이기구 3개를 선택해주세요");
+			return false;
+		}
+	}
+}
+</script>
 <style>
 	.container {position:relative; width:900px;} 
 </style>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <jsp:include page="../main/header.jsp"/>
 <article>
 <form action="${conPath }/cart/passTicket.do" method="post" >
-	<input type="text" name ="type" value="${param.type }">
+	<input type="hidden" name ="type" value="${param.type }">
+	<input type="hidden" name ="mid" value="${param.mid }">
+	
 	<div class="order_box2">
 		<div id="calendar"  class="calendar">
-			<input type="text" id="calendar" name="visitdate">
+			<input type="hidden" id="calendar" name="visitdate2">
 		</div>
 		<div class="order_box_select2">
-			<div class="order_box_title">자유이용권 예매</div>
+			<div class="order_box_title">패스트패스 예매</div>
 			<div class="order_box_date">
 				<div class="order_box_date_text">방문일자/인원 선택</div>
 				<div class="order_box_date_select" onclick="showCalendar()">
@@ -30,7 +59,7 @@
 				<!-- 달력 선택 날짜 표기 -->
 				<div id="calendarPopup" class="calendar-popup"></div>
 				<div class="order_box_date_date">
-					<input type="text"  id="selectedDate" name="visitdate2" value="">
+					<input type="text" class = "selectedDate" id="selectedDate" name="visitdate">
 				</div>
 			</div>
 			<!-- 수량 표시 -->
@@ -59,8 +88,13 @@
 					<button onclick="increaseNumber(event, 'result2')" class="order_quantity_count_button">+</button>
 				</div>	
 			</div>
+			<!--  어트랙션 선택 -->
+			<!-- 	<div class="order_box_date_text">어트렉션 선택</div>
+			<div class="check_wrapp">
+							<input type="text" name="atname1" id ="atname1">
+			</div> -->
 			<div id="reserve_buttons" class="order_box_button">
-	        	<input type="submit" value="장바구니" class="purpleButton"> 
+	        	<input type="submit" value="장바구니" class="purpleButton" onclick="return go_cart(0)">
 	       	</div>
 			<div id="board-list">
 		        <div class="container">

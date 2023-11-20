@@ -10,30 +10,33 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
-	const cartdelete = function () {
+	function cartdelete () {
 	var cseq = document.getElementsByName('cseq');
-	var url = '${conPath}/delete.do?';
+	var url = '${conPath}/cart/delete.do?';
 	var cnt=0;
 	for(let i=0; i<cseq.length; i++){
 		if(cseq[i].checked){
-			var id = cseq[i].value;
-			url += 'id='+id+'&';
+			var cid = cseq[i].value;
+			url += 'cid='+cid+'&';
+			cnt++; 
 		}
 	}
-	if(cnt){
-		alert(url);
-		location.href = url;
-	
+	if (cnt) {  // cnt 값이 0이 아닐 때 실행
+        location.href = url;
+    } else {
+        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+    }
 };
 </script>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
 <body>
 <c:if test="${not empty deleteResult }">
-	<script>alert('${param.cid}번글 삭제 성공');</script>
+	<script>alert('삭제 성공');</script>
 </c:if>
+<jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/cart/orderlist.do" name="formm" method="post">
-<input type = "text" name="" value="${member.mid}"> 
+<input type = "hidden" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
@@ -64,7 +67,6 @@
 		                    <th scope="col" class="th-num">총액</th>
 		                    <th scope="col" class="th-num">처리 상태</th>
 		                    <th scope="col" class="th-date">선택</th>
-		                    <th scope="col" class="th-delete">삭제</th>
 		                </tr>
               	  </thead>
                		<tbody>
@@ -75,7 +77,7 @@
 	                     <td>
                           <c:choose>
                              <c:when test = "${dto.type==0}">
-                                자유이용권
+                                자유이용권 
                              </c:when>
                              <c:otherwise>
                                 패스트패스   
@@ -107,22 +109,19 @@
 	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
 	                	</c:choose>
 	                	</td>
-	                	<td>
-	                	<button onClick="location='${conPath }/cart/delete.do?cid=${dto.cid }'" class="dede" ><h3>삭제하기</h3></button>
-	                	<td>
+<%-- 	                	<td>
+	                	<input type="button" onclick="location.href='${conPath }/cart/delete.do?cid=${dto.cid }'" value = "삭제하기">
+	                	<td> --%>
 	                </tr>
                 
 	          	</c:forEach>
                 </tbody>
             </table>
-            	<!-- <div class="mypage-btn-dede-wrap">
-            		<input type="button" onClick="cartdelete()" value="삭제하기">
-			    <div class="dede" style="float:right;">
-			    	
-			    </div> -->
+            	 <div class="mypage-btn-dede-wrap">
+            		<input type="button" onclick="cartdelete()" value="삭제하기" class="dede" style="float:right;">
+			  
 			    	<input type="submit" value="결제하기" class="dede" style="float:right;">
-			    <div class="dede" style="float:right;">
-		    	</div>
+			   
         	</div>
     	</div>
     </div>

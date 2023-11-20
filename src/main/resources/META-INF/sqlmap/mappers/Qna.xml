@@ -19,13 +19,13 @@
 	<select id="QnaList" parameterType="Qna" resultMap="QnaResult">
 		<if test="schWord=='' or schWord==null">
 		SELECT * FROM
-   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QNO DESC)A)
-   		 WHERE RN BETWEEN #{startRow} AND {endRow}
+    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QNO DESC)A)
+   		 WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
-		<if test="schWord!='' or schWord!=null">
+		<if test="schWord!='' and schWord!=null">
 		SELECT * FROM
-   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{qtitle}||'%' ORDER BY QNO DESC)A)
-   		 WHERE RN BETWEEN #{startRow} AND {endRow}
+   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QNO DESC)A)
+   		 WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</if>
 	</select>
 	<select id ="getQna" parameterType="int" resultType="Qna">
@@ -48,8 +48,8 @@
 		<if test="schWord=='' or schWord==null">
 			select count(*) from QNA
 		</if>
-		<if test="schWord!='' or schWord!=null">
-			select count(*) from  QNA where QTITLE like '%'||#[qtitle]||'%'
+		<if test="schWord!='' and schWord!=null">
+			select count(*) from  QNA where QTITLE like '%'||#{schWord}||'%'
     	</if>
 	</select>
 </mapper>

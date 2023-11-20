@@ -21,8 +21,9 @@
 						청소년 45,000원<br>
 						어린이 30,000원<br>
 					</p>
+					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
-						onclick="location.href='${conPath}/cart/passTicket.do?type=0'">
+						onclick="location.href='${conPath}/cart/passTicket.do?type=0&mid=one'">
 				</div>
 			</div>
 			<div class="order_box_text">
@@ -33,8 +34,9 @@
 						청소년 90,000원<br>
 						어린이 70,000원<br>
 					</p>
+					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
-						onclick="location.href='${conPath}/cart/fastTicket.do?type=1' ">
+						onclick="location.href='${conPath}/cart/fastTicket.do?type=1&mid=one' ">
 				</div>
 			</div>
 		</div>

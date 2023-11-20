@@ -28,6 +28,22 @@ private CartDao cartDao;
 
 	@Override
 	public int registerCart(Cart cart) {	
+		switch (cart.type) {
+	    case 0:
+
+	    	cart.setPrice1(cart.p1 * 53000);
+	    	cart.setPrice2(cart.p2 * 30000);
+	    	cart.setType(0);
+	        break;
+	    case 1:
+
+	    	cart.setPrice1(cart.p1 * 110000);
+	    	cart.setPrice2(cart.p2 * 70000);
+	    	cart.setType(1);
+	        break;
+		}
+		
+		
 		return cartDao.registerCart(cart);
 	}
 
@@ -37,8 +53,12 @@ private CartDao cartDao;
 	}
 
 	@Override
-	public int deleteCart(int cid) {
-		return cartDao.deleteCart(cid);
+	public int deleteCart(int[] cid) {
+		int result = 0;
+		for(int id : cid) {
+			result += cartDao.deleteCart(id);
+		}
+		return result;
 	}
 
 }

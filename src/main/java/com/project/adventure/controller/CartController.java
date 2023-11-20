@@ -48,7 +48,5 @@ public class CartController {
 		model.addAttribute("deleteResult", cartService.deleteCart(cid));
 		return "forward:list.do";
 	}
-		
-	
-	
 }
+	

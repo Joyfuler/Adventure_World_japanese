@@ -20,7 +20,7 @@
 <div align="center">
 	<h1 style="font-family:'IBM Plex Sans KR', sans-serif;">비밀번호 확인</h1>
 	<form action ="qnaCheckPass" method="post" name="frm">
-		<input type="hidden" name="lqseq" value="${param.lqseq}">		
+		<input type="hidden" name="qno" value="${param.qno}">		
 		<table style="width:80%">
 				<tr>	
 					<th style="font-family:'IBM Plex Sans KR', sans-serif;">열람 비밀번호</th>
