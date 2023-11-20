@@ -14,5 +14,6 @@ public interface MemberService {
 	public String loginCheck(String mid, String mpw, HttpSession session);
 	public String findId(Member member);
 	public String findPw(Member member);
-	public int modifyMember(Member member);
+	public int modifyMember(Member member, HttpSession session);
+	public int withDrawalMember(String mid, HttpSession session);
 }

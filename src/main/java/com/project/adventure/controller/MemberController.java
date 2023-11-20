@@ -107,8 +107,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "modify", method = RequestMethod.POST)
-	public String modify(Member member, Model model) {
-		model.addAttribute("modifyResult", memberService.modifyMember(member));
+	public String modify(Member member, Model model, HttpSession session) {
+		model.addAttribute("modifyResult", memberService.modifyMember(member, session));				
+		return "forward:../main.do";
+	}
+	
+	@RequestMapping(value = "withdrawal", method = RequestMethod.GET)
+	public String withdrawal(Model model, String mid, HttpSession session) {
+		model.addAttribute("withdrawalResult", memberService.withDrawalMember(mid, session));
 		return "forward:../main.do";
 	}
 	

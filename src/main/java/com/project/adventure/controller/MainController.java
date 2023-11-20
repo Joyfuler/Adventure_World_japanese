@@ -23,7 +23,7 @@ public class MainController {
 	@Autowired
 	public ParadeService paradeService;
 	
-	@RequestMapping(value = "main", method = RequestMethod.GET)
+	@RequestMapping(value = "main", method = {RequestMethod.GET, RequestMethod.POST })
 	public String main (Model model) {
 		model.addAttribute("bannerList", bannerService.bannerList()); 
 		model.addAttribute("eventList", eventService.eventList());

@@ -12,7 +12,7 @@ public interface MemberDao {
 	public int memailConfirm(String emamil);
 	public int joinMember(Member member);
 	public int modifyMember(Member member);
-	public int withDrawalMember(Member member);
+	public int withDrawalMember(String mid);
 	public int getMemberCount();
 	public Member findId(Member member);
 	public Member findPw(Member member);

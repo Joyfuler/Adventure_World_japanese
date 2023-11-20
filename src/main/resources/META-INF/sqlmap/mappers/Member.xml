@@ -42,8 +42,8 @@
     		WHERE MID = #{mid}
 	</update>
 	
-	<update id="withDrawalMember" parameterType="Member">
-		UPDATE MEMBER SET MLEVEL = '0' WHERE MID = #{mid}
+	<update id="withDrawalMember" parameterType="String">
+		UPDATE MEMBER SET MLEVEL = 0 WHERE MID = #{mid}
 	</update>
 	
 	<select id="getMemberCount"  resultType="int">

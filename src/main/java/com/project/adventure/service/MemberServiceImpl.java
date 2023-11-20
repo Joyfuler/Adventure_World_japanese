@@ -88,6 +88,8 @@ public class MemberServiceImpl implements MemberService {
 			msg = "유효하지 않은 아이디입니다.";
 		} else if (!loginMember.getMpw().equals(mpw)) {
 			msg = "비밀번호가 서로 다릅니다.";
+		} else if (loginMember.getMlevel() == 0) {
+			msg = "이미 탈퇴한 회원입니다. 다른 아이디로 회원가입 / 로그인을 진행해 주세요.";
 		} else {
 			msg = "로그인 되었습니다.";
 			session.setAttribute("member", loginMember);
@@ -127,7 +129,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int modifyMember(Member member) {
-		return memberDao.modifyMember(member);		
+	public int modifyMember(Member member, HttpSession session) {
+		int result = memberDao.modifyMember(member);
+		if (result ==1) {
+			Member modifyMember = memberDao.getMemberInfo(member.getMid());
+			session.setAttribute("member", modifyMember);
+		}
+		return memberDao.modifyMember(member);
+		
+	}
+
+	@Override
+	public int withDrawalMember(String mid, HttpSession session) {
+		session.invalidate();
+		return memberDao.withDrawalMember(mid);
+		
 	}
 }

@@ -7,8 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>어드벤처 월드</title>
-<script src="script/jquery-3.6.4.js"></script>	
+	<title>어드벤처 월드</title>	
 <script src = "${conPath }/js/order.js"></script>
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
@@ -49,6 +48,17 @@ $(document).ready(function(){
 		alert('${logoutResult}');
 	</script>
 </c:if>
+<c:if test = "${not empty modifyResult }">
+	<script>
+		alert('${modifyResult eq 1 ? "회원정보 수정이 완료되었습니다." : "회원정보 수정 실패"}');
+	</script>
+</c:if>	
+<c:if test = "${not empty withdrawalResult }">
+	<script>
+		alert('${withdrawalResult eq 1 ? "회원 탈퇴가 완료되었습니다. 이용해 주셔서 감사합니다." : "회원 탈퇴 실패"}');
+	</script>
+</c:if>	
+
 <jsp:include page="header.jsp"/>
 <div id = "main_img">
 	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px;">
@@ -61,7 +71,7 @@ $(document).ready(function(){
 </div>
 <div id="mainTodayArea" >
 	<a href="guide">
- 		<img src="images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;오늘의 파크 운영시간 : &nbsp;&nbsp;오전 10시 ~ 오후 9시
+ 		<img src="${conPath }/images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;오늘의 파크 운영시간 : &nbsp;&nbsp;오전 10시 ~ 오후 9시
 	</a>
 </div>	
 <br>
@@ -110,7 +120,7 @@ $(document).ready(function(){
 		<c:forEach var="best_attraction" items="${bestList}" begin="0" end="5">
 		 		<div id="att_list">
 		 			<a href="${conPath }/attractionDetail.do?aid=${best_attraction.aid}">				
-						<img src="images/attraction_images/${best_attraction.aimage}"/>
+						<img src="${conPath }/images/attraction_images/${best_attraction.aimage}"/>
 						<h3 style="font-weight:400">${best_attraction.aname}</h3>
 					</a>
 				</div>						

@@ -29,6 +29,14 @@
 				$('.dbmpwChkMsg').text('비밀번호가 일치합니다.');
 			}
 		});
+		
+		$('.withdrawal_button').click(function(){
+			var answer = confirm('정말로 탈퇴하시겠습니까? 탈퇴한 회원은 동일한 아이디로 가입할 수 없습니다.');
+			if (answer){				
+				location.href='${conPath}/member/withdrawal.do?mid=${member.mid }';
+			}
+		})
+		
 	});			
 </script>
 <script>
@@ -59,7 +67,7 @@
 <div class="join3">
 	<div class="join_title">회원정보 수정</div>
 	<form action = "${conPath }/member/modify.do" method="post" name="joinForm">
-		<input type = "text" name = "dbmpw" class = "dbmpw" value = "${member.mpw }"> 
+		<input type = "hidden" name = "dbmpw" class = "dbmpw" value = "${member.mpw }"> 
 		<div class="basic_box">
 			<div class="basic_box_text">
 				<label>아이디(변경불가)</label>
@@ -96,7 +104,7 @@
 					<br>				
 				<label>이메일(변경불가)</label>
 					<br>
-					<input type="text" name="memail" class="dup" value = "${member.memail }" disabled = "disabled">
+					<input type="text" name="memail" class="dup" value = "${member.memail }" readonly = "readonly">
 					<br>
 			</div>
 		</div>
@@ -142,12 +150,12 @@
 			<div class="join_buttons_text">
 			    <input type="submit" value="정보수정" class="join_submit" onclick="return modifyChk()"> 
 			    <input type="reset" value="취소" class="join_cancel">
-			    <input type="button" value="회원탈퇴" class="join_cancel" onclick="location.href='${conPath}/member/withdrawal.do?mid=${member.mid }'">
+			    <input type="button" value="회원탈퇴" class="withdrawal_button">
 			</div>
 		</div>
 	</form>
 </div>
 </article>
 <br><br><br>
-
+<jsp:include page="../main/footer.jsp"/>
 </body>

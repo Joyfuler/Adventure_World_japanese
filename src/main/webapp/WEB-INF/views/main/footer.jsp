@@ -16,12 +16,12 @@
 		<div class="top">	
 			<div class="links">
 				<br>	
-				<a href="">월드 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="" >개인정보처리방침</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="">이메일무단수집거부</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="" >인재채용</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="">사이트맵</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">월드 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">개인정보처리방침</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">이메일무단수집거부</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">인재채용</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">사이트맵</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 		</div>
 		<div class="bottom">
@@ -40,9 +40,9 @@
 				<img src="${conPath }/images/footer_footer.png"/>
 			</div>
 			<div class="sns" style="top:5px">
-				<a href=""><img src="${conPath }/images/facebook.png"/></a>
-				<a href=""><img src="${conPath }/images/instar.png"/></a>
-				<a href=""><img src="${conPath }/images/youtube.png"/></a>
+				<a href="https://facebook.com"><img src="${conPath }/images/facebook.png"/></a>
+				<a href="https://www.instagram.com"><img src="${conPath }/images/instar.png"/></a>
+				<a href="https://www.youtube.com"><img src="${conPath }/images/youtube.png"/></a>
 			</div>
 		</div>
 		<br><br><br>
