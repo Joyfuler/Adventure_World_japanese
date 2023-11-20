@@ -2,13 +2,14 @@ package com.project.adventure.service;
 
 import java.util.Random;
 
-import javax.mail.MessagingException;
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.project.adventure.repository.MemberDao;
@@ -19,7 +20,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao memberDao;
-	private JavaMailSenderImpl mailSender;
+	@Autowired
+	private JavaMailSender mailSender;	
 	private int authNumber;
 
 	@Override
@@ -46,7 +48,7 @@ public class MemberServiceImpl implements MemberService {
 		String setFrom = "triojang36@gmail.com";
 		String toMail = memail;
 		String title = "Adventure World 회원가입 인증메일입니다.";
-		String content = "Adventure World 홈페이지를 방문해주셔서 감사합니다." + "<br><br>인증 번호는 " + authNumber + "입니다."
+		String content = "Adventure World 홈페이지를 방문해주셔서 감사합니다." + "<br><br>인증 번호는  <span style = \"color:red;\">" + authNumber + "</span> 입니다."
 				+ "<br><br>해당 인증번호를 인증번호 확인란에 입력해 주세요." + "<br><br>감사합니다.";
 
 		mailSend(setFrom, toMail, title, content);
@@ -55,19 +57,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void mailSend(String setFrom, String toMail, String title, String content) {
-		MimeMessage message = mailSender.createMimeMessage();
-		try {
-			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-			helper.setFrom(setFrom);
-			helper.setTo(toMail);
-			helper.setSubject(title);
-			helper.setText(content, true);
-			mailSender.send(message);
-		} catch (MessagingException e) {
-			System.out.println(e.getMessage());
-		}
-
+	public void mailSend(final String setFrom, final String toMail, final String title, final String content) {
+		MimeMessagePreparator message = new MimeMessagePreparator() {			
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(toMail));
+				mimeMessage.setFrom(new InternetAddress(setFrom));
+				mimeMessage.setSubject(title);
+				mimeMessage.setText(content, "utf-8", "html");				
+			}
+		};
+		mailSender.send(message);
+		System.out.println(toMail + "에게 인증메일 전송완료");
 	}
 
 	@Override
@@ -108,5 +109,25 @@ public class MemberServiceImpl implements MemberService {
 		}		
 		return msg;		
 		}
+
+	@Override
+	public String findPw(Member member) {
+		String msg = "";
+		Member findPwMember = new Member();
+		findPwMember.setMid(member.getMid());
+		findPwMember.setMname(member.getMname());
+		findPwMember.setMphone(member.getMphone());
+		Member findResult = memberDao.findPw(findPwMember);
+		if (findResult != null) {
+			msg = member.getMname() + "님이 찾으신 아이디의 비밀번호는 [" + findResult.getMpw() + "]입니다.";
+		} else {
+			msg = member.getMname() + "님이 요청하신 정보의 아이디가 없습니다.";		
+		}		
+		return msg;
 	}
 
+	@Override
+	public int modifyMember(Member member) {
+		return memberDao.modifyMember(member);		
+	}
+}

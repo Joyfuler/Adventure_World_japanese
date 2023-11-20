@@ -9,7 +9,7 @@
 		<result property="mpw" column="mpw"/>
 		<result property="mname" column="mname"/>
 		<result property="mphone" column="mphone"/>
-		<result property="memail" column="mmail"/>
+		<result property="memail" column="memail"/>
 		<result property="maddress1" column="maddress1"/>		
 		<result property="maddress2" column="maddress2"/>
 		<result property="maddress3" column="maddress3"/>
@@ -38,7 +38,7 @@
     		MEMAIL = #{memail},
     		MADDRESS1 = #{maddress1},
     		MADDRESS2 = #{maddress2},
-    		MADDRESS3 = #{maddress3},
+    		MADDRESS3 = #{maddress3}
     		WHERE MID = #{mid}
 	</update>
 	
@@ -59,8 +59,8 @@
 		SELECT * FROM MEMBER WHERE MNAME = #{mname} AND
 		MPHONE = #{mphone} AND ROWNUM &lt;=1 ORDER BY MID DESC
 	</select>
-	<select id="findPw" parameterType="Member" resultType="int">
-		SELECT COUNT(*) FROM MEMBER WHERE MID= #{mid}
+	<select id="findPw" parameterType="Member" resultMap="MemberResult">
+		SELECT * FROM MEMBER WHERE MID= #{mid}
 		AND MNAME = #{mname} AND MPHONE = #{mphone}		
 	</select>	
 	<update id="resetPw" parameterType="Member">

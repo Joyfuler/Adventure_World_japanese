@@ -78,24 +78,36 @@ const autoHyphen = (target) => {
 				}			
 		});
 		
-		/* 이메일 본인인증 (작동안함)*/
+		/* 이메일 본인인증 */
 		$('#mail-Check-Btn').click(function(){
 			var memail = $('.memail').val();
-			var checkInput = $('.mail-check-Input');			
+			var checkInput = $('.mail-check-Input');
+			var authCodeCompare = $('.authCodeCompare');
 			$.ajax({
 				type : 'get',
 				url : '${conPath}/member/mailCheck.do',
 				data: {memail : memail},
 				success: function(data){
-					checkInput.attr('disabled', false);					
-					alert('이메일로 인증번호를 발송했습니다.');
-					code = data;
-					checkInput.val(code);
+					var textData = $(data).text().trim();
+					checkInput.prop('disabled', false);					
+					alert('이메일로 인증번호를 발송했습니다.');												
+					authCodeCompare.val(textData);
 				},
-				error : function(error){
-					console.error ('에러 발생 - ajax' + error);
+				error : function(error){					
+					console.error('에러 발생 - ajax' + error);
 				}
-			});
+			});			
+		});
+		
+		$('.mail-check-Input').keyup(function(){
+			var checkInput = $('.mail-check-Input');
+			var authCodeCompare = $('.authCodeCompare');
+			if (checkInput.val() == '' || checkInput.val() != authCodeCompare.val()){
+				$('.emailAuthResult').text('전송된 인증번호와 입력한 인증번호가 서로 다릅니다.');
+			} else {
+				$('.emailAuthResult').css('color','#212529');
+				$('.emailAuthResult').text('인증번호가 일치합니다.');
+			}
 		});
 	});		
 </script>	
@@ -104,7 +116,9 @@ function submitChk(){
 	var idConfirmResult = $('span#idConfirmResult').text().trim();	
 	var pwChkResult = $('#pwChkResult').text().trim();	
 	var memailChkResult = $('span#emailChkResult').text().trim();
+	var emailAuthResult = $('.emailAuthResult').text().trim();
 	var mname = $('.mname').val();
+	var mphone = $('.mphone').val();
 	if (idConfirmResult != '사용 가능한 아이디입니다'){
 		alert('아이디 중복체크를 해 주세요');
 		return false;	
@@ -117,16 +131,27 @@ function submitChk(){
 	} else if (mname == ''){
 		alert('이름은 필수 입력사항입니다.');
 		return false;
+	} else if (mphone == ''){
+		alert('휴대폰번호는 필수 입력사항입니다.');
+		return false;			
+	} else if (emailAuthResult != '인증번호가 일치합니다.'){
+		alert('메일로 전송한 인증코드를 다시 확인해주세요.');
+		return false;
 	}
 }
 </script>
 </head>
+<c:if test = "${not empty member }">
+	<script>
+		location.href='${conPath}/main.do';
+	</script>
+</c:if>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="join3">
 	<div class="join_title">회원가입</div>
-	<form method="post" name="joinForm" >		
+	<form method="post" name="joinForm" action = "${conPath }/member/join.do">		
 		<div class="basic_box">
 			<div class="basic_box_text">
 				<label>아이디</label><span style = color:red;>*</span><br>
@@ -148,9 +173,9 @@ function submitChk(){
 			    	<br>
 			    	<input type="text" name="mname" class="dup mname">
 			    	<br>
-			    <label>휴대폰 번호</label>
+			    <label>휴대폰 번호</label><span style = color:red;>*</span>
 			    	<br>
-			    	<input type="text" name="mphone" class="dup" maxlength="13" 
+			    	<input type="text" name="mphone" class="dup mphone" maxlength="13" 
 					oninput="autoHyphen(this)">
 					<br>			    
 			    <label>우편번호</label>
@@ -172,9 +197,13 @@ function submitChk(){
 				<br>
 					<input type="text" name="memail" class="memail dup" style = "width:430px;">
 					<input type="button" id = "mail-Check-Btn" value="이메일인증" style="width:100px; float:right;"><br>
-					<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span><br>
+					<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span>					
 					<div class="mail-check-box">
-						<input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+						<input class="form-control mail-check-Input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+						<br>
+						<span class = "emailAuthResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span>
+						<br>
+						<input type = "hidden" class = "authCodeCompare">
 					</div>
 				<br>
 			</div>

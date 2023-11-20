@@ -41,8 +41,6 @@ public class MemberController {
 		model.addAttribute("memailConfirmResult", memberService.memailConfirm(memail));
 		return "member/memailConfirm";
 	}
-	
-	// 작동안됨
 	@RequestMapping(value = "mailCheck", method = RequestMethod.GET)	
 	public String mailCheck(String memail, Model model) {
 		System.out.println("이메일 인증 요청 :" + memail);
@@ -54,10 +52,10 @@ public class MemberController {
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("memberDto") Member member, Model model, HttpSession session) {		
 		model.addAttribute("joinResult", memberService.joinMember(member, session));
-		return "forward:member/login.do";
+		return "forward:loginMember.do";
 	}
 	
-	@RequestMapping(value = "loginMember", method = RequestMethod.GET)
+	@RequestMapping(value = "loginMember", method = {RequestMethod.GET, RequestMethod.POST})
 	public String login() {
 		return "member/login";
 	}
@@ -93,12 +91,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "findPw", method = RequestMethod.GET)
-	public String findPw() {
+	public String findPw() {		
 		return "member/findPw";
 	}
 	
 	@RequestMapping(value = "findPw", method = RequestMethod.POST)
 	public String findPw(Member member, Model model) {
+		model.addAttribute("findPwResult", memberService.findPw(member));
 		return "member/findPw";
 	}
+	
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String modify() {
+		return "member/modifyMember";
+	}
+	
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modify(Member member, Model model) {
+		model.addAttribute("modifyResult", memberService.modifyMember(member));
+		return "forward:../main.do";
+	}
+	
 }

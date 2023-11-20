@@ -42,17 +42,13 @@ public class CartController {
 		model.addAttribute("fastTicketResult", cartService.registerCart(cart));				
 		return "forward:list.do";
 	}	
+	
 	@RequestMapping(value = "delete", method= {RequestMethod.GET ,RequestMethod.POST})
-	public String delete(int cid, Model model,int[] id) {
-		String msg = "";
-		for(int i : id) {
-			msg += i + "지움<br>";
-			System.out.println(i + "지움");
-		}
-		model.addAttribute("msg", msg);
+	public String delete(int[] cid, Model model ) {
 		model.addAttribute("deleteResult", cartService.deleteCart(cid));
-		return "cart/delete";
-	}	
+		return "forward:list.do";
+	}
+		
 	
 	
 }

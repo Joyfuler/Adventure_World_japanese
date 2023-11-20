@@ -25,7 +25,7 @@
 <jsp:include page="../main/header.jsp"/>
 <c:if test = "${not empty joinResult }">
 	<script>
-		alert('${joinResult}'); 
+		alert('${joinResult eq 1? "어드벤처 월드 가입을 환영합니다." : "가입실패"}'); 
 	</script>
 </c:if>
 <c:if test = "${not empty loginResult }">
