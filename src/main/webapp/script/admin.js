@@ -6,15 +6,6 @@ function go_manage(comm){
 	document.frm.submit();
 }
 
-function go_search(comm){
-	 if( document.frm.key.value == "" ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
-	 	return;
-	} 
-	var url = comm + "?page=1";  
-	document.frm.action = url;
-	document.frm.submit();	
-}
 
 function go_total(comm ){
 	document.frm.key.value = "";

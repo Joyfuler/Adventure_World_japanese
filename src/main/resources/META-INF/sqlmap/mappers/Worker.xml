@@ -19,7 +19,7 @@
 	<select id="getAllCount" resultType="int">
 		SELECT COUNT(*) FROM WORKER
 	</select>
-	<select id="loginCheck" parameterType="Worker" resultMap="WorkerResult">
+	<select id="loginCheck" parameterType="Worker" resultType="Worker">
 		SELECT * FROM WORKER WHERE WID=#{wid} AND WPW = #{wpw}
 	</select>
 </mapper>

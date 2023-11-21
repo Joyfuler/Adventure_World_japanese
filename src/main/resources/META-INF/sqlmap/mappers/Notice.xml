@@ -11,15 +11,30 @@
 		<result property="nrdate" column="nrdate"/>
 		<result property="wid" column="wid"/>
 	</resultMap>
-	<select id="getNotice" parameterType= "int" resultType="NoticeResult">
-		SELECT * FROM NOTICE WHERE NID=#{nid}
-	</select>
-	<select id="listNotice" parameterType= "Notice" resultType="NoticeResult">
+	<select id="noticeList" parameterType= "Notice" resultMap="NoticeResult">
 		SELECT * 
     FROM (SELECT ROWNUM RN, A.* 
         FROM(SELECT * FROM NOTICE
-            WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC) A)
+            WHERE UPPER(NTITLE) LIKE '%' || UPPER(#{schTitle}) || '%' ORDER BY NID DESC) A)
         WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
+	<select id="totCntNotice" resultType="int">
+		SELECT COUNT(*) FROM NOTICE WHERE UPPER(NTITLE) LIKE'%' || UPPER(#{schTitle}) || '%'
+	</select>
+	<select id="getDetailNotice" parameterType="int">
+		SELECT * FROM NOTICE WHERE NID=#{nid}
+	</select>
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NRDATE)
+    VALUES(NOTICE_SEQ.NEXTVAL, #{ntitle}, #{ncontent}, SYSDATE )
+	</insert >
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE NOTICE SET
+        NTITLE = #{ntitle},
+        NCONTENT = #{ncontent},
+        NRDATE = SYSDATE,
+    WHERE NID=#{nid}
+	</update>
+	
 	
 </mapper>

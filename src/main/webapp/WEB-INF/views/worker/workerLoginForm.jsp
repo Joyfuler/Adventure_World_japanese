@@ -26,7 +26,7 @@
 		<script>alert('${loginResult}');</script>
 	</c:if>
 <c:if test="${empty param.after }">
-		<c:set var="after" value="workerMain.do"/>
+		<c:set var="after" value="worker/workerMain.do"/>
 	</c:if>
 	<c:if test="${not empty param.after and not empty param.pageNum}">
 		<c:set var="after" value="${param.after }&pageNum=${param.pageNum }"/>
@@ -42,8 +42,9 @@
    </div>
    <h2 style="color:gray; font-weight:400">관리자 아이디와 비밀번호로 로그인 하세요.</h2>
    <br><br>
-   <input type="hidden" name="after" value="${after}">
+   
    <form action = "${conPath }/worker/workerLoginForm.do" method="post">
+   <input type="text" name="after" value="${after}">
    <!-- <input type="hidden" name="command" value="login">  action="world.do"-->
    <div id=input>
       <input name="wid" placeholder="&nbsp;아이디" size="40" type="text" style="width:500px ;background:white;"><br>

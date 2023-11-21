@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeDao noticeDao;
 	@Override
 	public List<Notice> noticeList(String pageNum, Notice notice) {
-		Paging paging = new Paging(noticeDao.totCntNotce(notice), pageNum, 10, 10);
+		Paging paging = new Paging(noticeDao.totCntNotice(notice), pageNum, 5, 5);
 		notice.setStartRow(paging.getStartRow());
 		notice.setEndRow(paging.getEndRow());
 		return noticeDao.noticeList(notice);
@@ -32,7 +32,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int totCntNotice(Notice notice) {
-		return noticeDao.totCntNotce(notice);
+		return noticeDao.totCntNotice(notice);
 	}
 
 	@Override
