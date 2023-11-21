@@ -98,7 +98,7 @@ UPDATE NOTICE SET
     WHERE NID=2;
 SELECT * FROM NOTICE;
     
-    
+   
 
 
     

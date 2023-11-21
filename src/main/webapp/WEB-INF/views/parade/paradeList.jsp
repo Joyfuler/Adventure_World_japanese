@@ -32,7 +32,7 @@
 		<img src="${conPath }/images/${parades.pimg2}">
 	</div>
 	<div class="prd"></div>
-	<div class="parade_box">
+	<div class="parade_box" style = "text-align: center;">
 		<h1 style="text-align:center; color: violet;">${parades.ptitle }</h1>
 		<br><hr><br>
 		<h3 style="text-align:center">${parades.pinfo } </h3>

@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="order_box_text">
-				<img src="images/ticket_images/reserve_imgs_pass.png"/>
+				<img src="${conPath }/images/ticket_images/reserve_imgs_pass.png"/>
 				<div class="order_box_text_content">★패스트패스★<br>
 					<p style="line-height:23px; font-size:16px;">
 						어른 110,000원<br>

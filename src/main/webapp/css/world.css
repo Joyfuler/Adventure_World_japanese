@@ -5,7 +5,7 @@ body{margin: 0 auto;}
 #paging{text-align: center;}
 #paging{font-size:120%; font-weight:600; font-family:'IBM Plex Sans KR', sans-serif;}
 .clear { clear: both;}
-#wrap { width: 1350px; height:250px; margin: 0 auto; background: white;}
+#wrap { width: 1350px; height:200px; margin: 0 auto; background: white;}
 
 a{ text-decoration-line: none; color: inherit;}
 
@@ -200,7 +200,7 @@ margin: 0 auto;   border-bottom: 2px solid #e1e1e1; font-size:150%;}
 
 
 
-.att_back{position:relative; width:1130px; height:auto; margin:0 auto; padding-top:60px;}
+.att_back{position:relative; width:1130px; height:auto; margin:0 auto;}
 
 #att_list{position:relative; width:250px; height:330px; float:left; margin:15px; text-align:center; 
 	border:1px solid lightgray; background-color:white; transition:0.2s;}

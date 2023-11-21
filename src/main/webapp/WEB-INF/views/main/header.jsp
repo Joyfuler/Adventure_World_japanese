@@ -39,7 +39,7 @@
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
 								<a href="cart/list.do">장바구니</a>
-								<a href="orderList?first=y">주문내역</a>
+								<a href="qna/qnaList.do">주문내역</a>
 							</div>
 						</div>
 						</li>
@@ -111,7 +111,7 @@
 				    </button>
 				    <div class="dropdown-content">
 						<a href="${conPath }/notice/list.do">공지사항</a>
-						<a href="qna?first=y">Q&amp;A</a>
+						<a href="${conPath }/qna/qnaList.do">Q&amp;A</a>
 				    </div>
 				</div>
 				<div class="dropdown">
