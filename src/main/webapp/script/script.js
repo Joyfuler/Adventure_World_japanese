@@ -82,9 +82,9 @@ function go_search(comm){
 	
 }
 
-function go_total(comm ){
+function go_total(comm){
 	document.frm.key.value = "";
-	document.frm.action = comm + "?page=1";
+	document.frm.action = comm + "?pageNum=1";
 	document.frm.submit();
 }
 
@@ -98,10 +98,10 @@ function passCheck( lqseq ){
 
 function enabled() {
 	if(document.qna.check.checked==true) {
-		document.qna.pass.disabled = false;
+		document.qna.qpw.disabled = false;
 	} else {
-		document.qna.pass.disabled = true;
-		document.qna.pass.value="";
+		document.qna.qpw.disabled = true;
+		document.qna.qpw.value="";
 	}
 }
 

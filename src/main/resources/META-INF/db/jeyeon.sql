@@ -64,16 +64,41 @@ SELECT COUNT(*) FROM WORKER;
 
 -- NOTICE DAO
 
--- 공지사항 리스트
+-- 공지사항 리스트 id=NoticeList
 SELECT * FROM NOTICE WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC;
 SELECT * 
     FROM (SELECT ROWNUM RN, A.* 
         FROM(SELECT * FROM NOTICE
-            WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC) A)
+            WHERE UPPER(NTITLE) LIKE '%' || UPPER('결') || '%' ORDER BY NID DESC) A)
         WHERE RN BETWEEN 1 AND 4;
-        
--- 공지번호로 가져오기 id=listNotice
+-- 전체 공지사항 리스트
+SELECT * FROM NOTICE ORDER BY NTITLE;
+SELECT ROWNUM RN, A.*
+    FROM (SELECT * FROM NOTICE ORDER BY NTITLE) A;
+SELECT *
+    FROM (SELECT ROWNUM RN, A.*
+        FROM (SELECT * FROM NOTICE ORDER BY NTITLE) A)
+    WHERE RN BETWEEN 1 AND 5;
+-- 전체 공시사항 리스트 id=totCntNotice
+SELECT COUNT(*) FROM NOTICE;
+-- 검색했을 때 공지사항 몇개인지
+SELECT COUNT(*) FROM NOTICE WHERE UPPER(NTITLE) LIKE'%' || UPPER('결') || '%';
+-- 공지번호로 가져오기 id=getDetailBook(dto가져오기 번호로)
 SELECT * FROM NOTICE WHERE NID=2;
+
+-- 공지insert id=insertNotice
+INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NRDATE, WID)
+    VALUES(NOTICE_SEQ.NEXTVAL, '결제가 안돼요', 'noImg.png', SYSDATE , 'admin');
+-- 공지수정 id=updateNotice
+UPDATE NOTICE SET
+        NTITLE = '공지수정',
+        NCONTENT = 'noImg.png',
+        NRDATE = SYSDATE,
+        WID = 'admin'
+    WHERE NID=2;
+SELECT * FROM NOTICE;
+    
+    
 
 
     

@@ -21,6 +21,5 @@ public class Qna {
 	private String schWord;
 	private int startRow;
 	private int endRow;	
-	//비밀번호 입력유무
-	//private int check;
+	private String qpwchk;
 }

@@ -32,8 +32,8 @@
 		SELECT * FROM QNA WHERE QNO = #{qno}
 	</select>
 	<insert id="insertQna" parameterType="Qna" >
-		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{mid})
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{qpwchk},#{mid})
 	</insert>
 	<update id="qnaPreReplyStep" parameterType="Qna">
 		<![CDATA[
@@ -41,8 +41,8 @@
 		]]>
 	</update>
 	<insert id="qnaPreReply" parameterType="Qna">
-		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, #{qgroup}, ${qstep}+1, #{qindent}+1,#{mid})
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, #{qgroup}, ${qstep}+1, #{qindent}+1,#{qpwchk},#{mid})
 	</insert>
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
 		<if test="schWord=='' or schWord==null">
