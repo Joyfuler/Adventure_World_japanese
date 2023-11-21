@@ -3,24 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-<link href="${conPath }/css/worldcss.css" rel="stylesheet">
+<link href="${conPath }/css/world.css" rel="stylesheet">
+<script>
+function qpwChk(qno){
+	var url = '${conPath}/qna/passCheck.do?qno=' + qno +'&pageNum=${paging.currentPage}&schWord=${param.schWord}';
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+    window.open(url,"qpwchk", opt);
+}
+</script>
+
 <style>
-   
+ 
 #buttons{text-align:center;}
-
-
 .submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 </style>
 <jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/qna/qnaList.do" name="frm" method="post">
 <section class="notice">
+	<c:if test="${not empty wirteResult }">
+		alert(${wirteResult });
+	</c:if>
   <div class="page-title">
         <div class="container">
             <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">QnA</h3>
         </div>
     </div>
-
     <div class="board-searchh">
         <div class="container">
             <div class="search-window">
@@ -28,8 +36,9 @@
                     <div class="search-wrap">
                         <label for="search" class="blind">QnA 내용 검색</label>
                         <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}">
-                        <input type="submit" class="btn btn-dark" value="검색"></button>
-                     <button class="btn btn-darkkk" value="전체보기" onclick="history.back(-1)">전체보기</button> 
+                        <input type="submit" class="btn btn-dark" value="검색" >
+                     	<input type="button" class="btn btn-darkkk" value="전체보기" onclick="location.href='${conPath}/qna/qnaList.do'">
+                     	<!--   <button type="submit" class="btn btn-darkkk" value="전체보기" onClick="go_list('qnaList.do')">전체보기</button>  -->
                     </div>
   
             </div>
@@ -48,18 +57,16 @@
                 </tr>
                 
                 </thead>
-               
-<!-- <a href="qnaView?lqseq=${qnaVO.lqseq}">${qnaVO.title}</a> -->
 		<c:forEach items="${qnaList}"  var="qna">
 			<tr ><td> ${qna.qno}</td>    
 	    		<td>
 	    			<c:choose>
-						<c:when test="${qna.isreply=='Y'}">
-							<a href="#" onClick="location.href='${conPath }/qna/checkPass.do?qno=${qna.qpw}&pageNum=${paging.currentPage}&schWord=${param.schWord}'" >${qna.qtitle}</a>
-								&nbsp;<img src="/images/key.png" style="width:20px;vertical-align: middle">
+						<c:when test="${qna.qpwchk=='Y'}">
+							 <span onClick="qpwChk(${qna.qno})">${qna.qtitle}</span> 
+								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
-							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}${qna.qpw}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
+							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
 						</c:otherwise>
 					</c:choose>
 	    		</td>      
@@ -77,20 +84,20 @@
 
 </section>
 </form>
-	<div>
+	<div id ="paging">
 			<c:if test="${paging.startPage>paging.blockSize}">
-				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schItem=${param.schItem}&schWord=${param.schWord}">이전</a> ]
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
 			</c:if>	
 			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 				<c:if test="${paging.currentPage==i }"> 
 					<b>[ ${i } ]</b> 
 				</c:if>
 				<c:if test="${paging.currentPage != i }">
-					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schItem=${param.schItem}&schWord=${param.schWord}">${i }</a> ]
+					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
 				</c:if>
 			</c:forEach>
 			<c:if test="${paging.endPage<paging.pageCnt }">
-				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schItem=${param.schItem}&schWord=${param.schWord}">다음</a> ]
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">다음</a> ]
 			</c:if>
 		</div>
 
@@ -99,9 +106,10 @@
 
 <div id="buttons">
    <input type="button"  value="등록하기"  class="submit" 
-      onClick="location.href='qnaWriteForm'"> 
+      onClick="location.href='${conPath}/qna/qnaWriteForm.do'"> 
    <input type="button"   value="취소"  class="cancel"    
-      onclick="location.href='qnaList'">  
+      onclick="location.href='${conPath}/qna/qnaList.do'">  
 </div>
 <div  class="clear"></div><br>
+<jsp:include page="../main/footer.jsp"/>
 

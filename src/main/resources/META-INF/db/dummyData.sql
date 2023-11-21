@@ -175,4 +175,3 @@ INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG, PIMG2)
 			여러분을 초대합니다!','포시즌스 가든 (가이드맵 165)','11.17(금) ~','※현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
 			※ 이용 정보-운영 시간에서 공연시간 확인이 가능합니다.','parade4.jpg','paradeDetail4');
             
-            
