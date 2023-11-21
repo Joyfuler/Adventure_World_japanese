@@ -6,19 +6,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>어드벤처 월드</title>	
+<meta charset="UTF-8">
+<title>어드벤처 월드</title>	
 <script src = "${conPath }/js/order.js"></script>
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
 <script src="${conPath }/script/member.js"></script>	
+<script
+  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+  crossorigin="anonymous"></script>
 <script>
 $(document).ready(function(){
 	var num=0;
 	setInterval(function(){
-        	$('#imgs').animate({ left : num * -1425 },3000);
+        	$('#imgs').animate({ left : num * -1355 },4000);
         num++;
-    	if(num==(Number('${bannerList.size()}') -1)){
+    	if(num==(Number('${bannerList.size()}'))){
     		num=0;    	
     	}
     }, 3000);
@@ -61,8 +65,8 @@ $(document).ready(function(){
 
 <jsp:include page="header.jsp"/>
 <div id = "main_img">
-	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px;">
-		<div id ="imgs" style="position:absolute; width:6750px; padding-left:150px;">
+	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px; margin: 0 auto;">
+		<div id ="imgs" style="position:absolute; width:6750px;">
 			<c:forEach items="${bannerList}" var="banners">
 				<img src="${conPath }/adminImg/${banners.bimg}" style="width:1350px; object-fit: fill; margin:0;">
 		 	</c:forEach>

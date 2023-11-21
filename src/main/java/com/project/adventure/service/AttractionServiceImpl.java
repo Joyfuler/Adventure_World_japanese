@@ -44,4 +44,9 @@ public class AttractionServiceImpl implements AttractionService {
 		return attractionDao.attractionDetail(aid);
 	}
 
+	@Override
+	public List<Attraction> stopDayAttractionList() {
+		return attractionDao.stopDayAttractionList();
+	}
+
 }

@@ -43,4 +43,10 @@ public class MainController {
 		model.addAttribute("paradeList", paradeService.paradeList());
 		return "parade/paradeList";
 	}
+	
+	@RequestMapping(value = "howCome", method = RequestMethod.GET)
+	public String howCome() {
+		return "notice/howCome";
+	}
+	
 }

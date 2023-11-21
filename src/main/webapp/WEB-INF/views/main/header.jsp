@@ -56,7 +56,7 @@
 		<div id="sub_menu">
 			<div class="logo">
 				<a href="${conPath }/main.do">
-					<img src="${conPath }/images/adventureLogo.png" width="250px">
+					<img src="${conPath }/images/adventureLogo.png" width="240px">
 				</a>
 			</div>
 			<div class="category">
@@ -95,6 +95,12 @@
 						<a href="notice?first=y">공지사항</a>
 						<a href="qna?first=y">Q&amp;A</a>
 				    </div>
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn" onclick = "location.href='${conPath}/review/reviewList.do'"> 
+						<span style = "font-size: 0.95em;">리뷰</span>
+					</button>
+					
 				</div>
 			</div>
 		</div>		

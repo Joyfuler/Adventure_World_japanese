@@ -47,4 +47,7 @@
 	<select id = "attractionDetail" parameterType="String" resultMap="AttractionResult">
 		SELECT * FROM ATTRACTION WHERE AID = #{aid}
 	</select>
+	<select id = "stopDayAttractionList" resultMap = "AttractionResult">
+		SELECT * FROM ATTRACTION WHERE STOPDAY = 'Y'
+	</select>
 </mapper>

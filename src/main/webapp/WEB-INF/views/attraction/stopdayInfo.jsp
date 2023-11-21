@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>운영 / 운휴 안내</title>	
+	<title>운영시간 / 운휴 안내</title>	
 <style>
     @keyframes fadeInUp {
         0% {opacity: 0;transform: translate3d(0, 100%, 0);}
@@ -18,44 +18,47 @@
    .operation_time_box{position:relative; animation:fadeInUp 2s;}
    .toto{ position: relative; animation: fadeInUp 4s;}
    #rest_box{ position: relative; animation: fadeInUp 4s;}
-   .holidayBox{position:relative; animation:fadeInUp 2s;}   
+   .holidayBox{position:relative; animation:fadeInUp 2s;} 
+   .operation_time_box{ position:relative; width:100%; height:200px; background-size : contain; 
+	background-image : url('${conPath}/images/timeVisual_bg_on.jpg'); margin: 0 auto; border-bottom: 2px solid #e1e1e1;
+ 	font-weight: bold; text-align: center; float:left; color:white;}  
 </style>	
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
 	<div class="operation_box">
 		<div class="operation_box_title">
-			<h2 style="text-align:center;">운영/운휴</h2>
+			<h2 style="text-align:center;">이번 주 운휴 어트랙션 시설 안내</h2>
 		</div>
 		<div class="operation_date_box">
 				<c:set var="now" value="<%=new java.util.Date() %>"></c:set>
-				<h2 style="text-align:center;">
+				<h5 style = "text-align:center;"> 오늘의 날짜</h5>
+				<h3 style="text-align:center;">
 					<fmt:formatDate value="${now}"></fmt:formatDate>
-				</h2>
-		</div>
-		
+				</h3>
+		</div>		
 		<div class="operation_time_box">
-			<div class="time_box_title">운영 시간</div>
-			<div class="time_box_time"> 10:00 ~ 22:00 </div>
+			<div class="time_box_title" style = "background-color: ">운영 시간</div>
+			<div class="time_box_time"> 오전 10시 ~ 밤 10시 </div>
 		</div>
 		
 		<br><br>
-		<h2 class="toto" style="font-size:30px; text-align:center; line-height:100px;">오늘의 운휴시설</h2> 
+		<h2 style="font-size:30px; text-align:center; line-height:100px;">이번 주 운휴시설</h2>
+		<h3 style = "text-align:center;">운휴 기간 : ${weekSchedule }</h3>		 
 		<div id="rest_box">
-			<c:forEach var="AttractionVO" items="${aseqList}">
-				<a href="attractionDetail?aseq=${AttractionVO.aseq}">
+			<c:forEach var="stopAttractions" items="${stopdayAttractionList}">
+				<a href="${conPath }/attraction/attractionDetail.do?aid=${stopAttractions.aid}">
 					<div id="att_list">
-						<img src="images/attraction_images/${AttractionVO.image}"/>
-						<h3 style="font-weight:400">${AttractionVO.atname}</h3>
+						<img src="${conPath }/images/attraction_images/${stopAttractions.aimage}"/>
+						<h3 style="font-weight:400">${stopAttractions.aname}</h3>
 					</div>
 				</a>
 			</c:forEach>
-		</div>
-	
-		<div class="holidayBox">
-      
-			<p>기상상태에 따라 (0℃ 이하 또는 30℃ 이상, 7~14㎧ 이상의 풍속, 0.2㎜ 이상의 비가 내리는 경우)<br>
-				매직아일랜드 일부 어트랙션 운행이 중단될 수 있습니다.</p>
+		</div>	
+		<div class="holidayBox">      
+			<p>※주의사항
+				기상상태에 따라 (0℃ 이하 또는 30℃ 이상, 7~14㎧ 이상의 풍속, 0.2㎜ 이상의 비가 내리는 경우)<br>
+				일부 어트랙션 운행이 일정에 관계없이 중단될 수 있습니다.</p>
 			<p>기상상태와 별개로 현장 상황에 따라 예고 없이 운휴하거나 중간 점검을 할 수 있습니다</p>
 		</div>
 		<br><br>
@@ -63,4 +66,3 @@
 <jsp:include page="../main/footer.jsp"/>	
 </body>
 </html>
-

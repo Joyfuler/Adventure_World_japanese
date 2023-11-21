@@ -42,6 +42,7 @@ public class AttractionController {
 	@RequestMapping(value = "stopdayInfo", method = RequestMethod.GET)
 	public String stopdayInfo(Model model) {
 		model.addAttribute("weekSchedule", WeekDayCalculator.getCurrentWeekSchedule());
+		model.addAttribute("stopdayAttractionList", attractionService.stopDayAttractionList());
 		return "attraction/stopdayInfo";
 	}
 	

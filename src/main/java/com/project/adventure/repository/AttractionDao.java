@@ -14,4 +14,5 @@ public interface AttractionDao {
 	public List<Attraction> tag2List();
 	public List<Attraction> searchAttractionList(Attraction attraction);
 	public Attraction attractionDetail(String aid);
+	public List<Attraction> stopDayAttractionList();
 }
