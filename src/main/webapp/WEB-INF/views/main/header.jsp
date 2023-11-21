@@ -83,13 +83,13 @@
 						<span>즐길거리</span>
 					</button>
 					<div class="dropdown-content">
-						<a href="/attractionForm">어트랙션</a>
-						<a href="/parade">퍼레이드</a>
+						<a href="${conPath }/attraction/attractionList.do">어트랙션</a>
+						<a href="${conPath }/paradeList.do">퍼레이드</a>
 					</div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>예매 / 이벤트</span>
+						<span style = "font-size: 0.95em;">예매 / 이벤트</span>
 					</button>
 					<div class="dropdown-content">
 			        	<a href="${conPath }/cart/reserve.do">예매</a>
@@ -101,8 +101,8 @@
 						<span>이용가이드</span>
 					</button>
 					<div class="dropdown-content">
-						<a href="guide">운영/운휴</a>
-						<a href="howCome">오시는 길</a>
+						<a href="${conPath }/attraction/stopdayInfo.do">운영/운휴</a>
+						<a href="${conPath }/howCome.do">오시는 길</a>
 					</div>
 				</div>
 				<div class="dropdown">

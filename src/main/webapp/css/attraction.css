@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#searchContainer{
+	margin: 0 auto;	
+	width: 800px;
+	height: 250px;
+	background-color: #5c10e6;
+	position: relative; 
+	align-items: center;	
+	font-size: 1.2em;
+	color: white;
+}
+
+.searchApply{
+	width:140px; 
+	height:30px; 
+	border-radius:20px; 
+	background-color: #5c10e6;
+	color: white;
+	border: 1px solid white;
+}
+
+.searchApply:hover{
+	color: yellow;
+	background-color: #7e32f8;
+}

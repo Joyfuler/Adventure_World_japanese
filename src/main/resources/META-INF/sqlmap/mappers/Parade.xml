@@ -12,6 +12,7 @@
 		<result property="pperiod" column="pperiod"/>
 		<result property="pcaution" column="pcaution"/>
 		<result property="pimg" column="pimg"/>		
+		<result property="pimg2" column="pimg2"/>
 	</resultMap>  
 	<select id="paradeList" resultMap="ParadeResult">
 		SELECT * FROM PARADE ORDER BY PNO DESC

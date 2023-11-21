@@ -36,6 +36,11 @@ public class MainController {
 	public String event(Model model) {
 		model.addAttribute("eventList", eventService.eventList());
 		return "notice/event";
-	}
+	}	
 	
+	@RequestMapping(value = "paradeList", method = RequestMethod.GET)
+	public String paradeList(Model model) {
+		model.addAttribute("paradeList", paradeService.paradeList());
+		return "parade/paradeList";
+	}
 }
