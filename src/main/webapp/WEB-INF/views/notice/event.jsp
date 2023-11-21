@@ -16,6 +16,7 @@
 	<div class="container">
 		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">이달의 혜택</h3>
 		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; text-align:center;">2023년 11월 현재 진행중인 이벤트를 확인하세요!</h3>
+		<h5 style = "text-align:center;"> 총  <span style = "color: red;">${eventList.size() }</span> 개의 이벤트 진행중 </h5>
 	</div>
 </div>
 <hr style="width:1100px; margin: 0 auto;"/>

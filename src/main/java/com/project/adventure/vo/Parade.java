@@ -11,4 +11,5 @@ public class Parade {
 	private String pperiod;
 	private String pcaution;
 	private String pimg;
+	private String pimg2;
 }

@@ -11,14 +11,40 @@
 		<result property="height" column="height"/>
 		<result property="age" column="age"/>		
 		<result property="best" column="best"/>
-		<result property="stopDay" column="stopday"/>
+		<result property="stopday" column="stopday"/>
 		<result property="tag1" column="tag1"/>
 		<result property="tag2" column="tag2"/>
 		<result property="aimage" column="aimage"/>
-		<result property="headCount" column="headcount"/>		
+		<result property="headcount" column="headcount"/>		
 	</resultMap>
 	<select id="bestAttractionList" resultMap="AttractionResult">
 		SELECT * FROM ATTRACTION WHERE BEST = 'Y'
 		ORDER BY AID DESC
+	</select>
+	<select id = "attractionList" resultMap="AttractionResult">
+		SELECT * FROM ATTRACTION ORDER BY AID DESC
+	</select>
+	<select id = "tag1List" resultMap= "AttractionResult">
+		SELECT DISTINCT TAG1 FROM ATTRACTION
+	</select>
+	<select id = "tag2List" resultMap = "AttractionResult">
+		SELECT DISTINCT TAG2 FROM ATTRACTION
+	</select>
+	<select id = "searchAttractionList" parameterType="Attraction" resultMap = "AttractionResult">	
+	<if test = "tag1!='' and tag2!=''">
+		SELECT * FROM ATTRACTION WHERE TAG1 = #{tag1} AND TAG2 = #{tag2} 
+	</if>	
+	<if test = "tag1=='' and tag2!=''">
+		SELECT * FROM ATTRACTION WHERE TAG2 = #{tag2}
+	</if>
+	<if test = "tag1!='' and tag2==''">
+		SELECT * FROM ATTRACTION WHERE TAG1 = #{tag1}
+	</if>
+	<if test = "tag1=='' and tag2==''">
+		SELECT * FROM ATTRACTION
+	</if>	
+	</select>
+	<select id = "attractionDetail" parameterType="String" resultMap="AttractionResult">
+		SELECT * FROM ATTRACTION WHERE AID = #{aid}
 	</select>
 </mapper>

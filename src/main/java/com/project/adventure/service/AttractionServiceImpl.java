@@ -19,4 +19,29 @@ public class AttractionServiceImpl implements AttractionService {
 
 	}
 
+	@Override
+	public List<Attraction> attractionList() {
+		return attractionDao.attractionList();
+	}
+
+	@Override
+	public List<Attraction> tag1List() {
+		return attractionDao.tag1List();
+	}
+
+	@Override
+	public List<Attraction> tag2List() {
+		return attractionDao.tag2List();
+	}
+
+	@Override
+	public List<Attraction> searchAttractionList(Attraction attraction) {		
+		return attractionDao.searchAttractionList(attraction);
+	}
+
+	@Override
+	public Attraction attractionDetail(String aid) {
+		return attractionDao.attractionDetail(aid);
+	}
+
 }
