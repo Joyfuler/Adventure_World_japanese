@@ -7,6 +7,6 @@ import com.project.adventure.vo.Worker;
 
 @Mapper
 public interface WorkerDao {
-	public Worker loginCheck(String wid, String wpw);
+	public Worker loginCheck(Worker worker);
 	public int workerCnt();
 }

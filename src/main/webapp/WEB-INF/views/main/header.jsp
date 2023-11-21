@@ -21,14 +21,13 @@
 	<header>
 		<div id ="top_menu">
 			<ul>
-				<c:choose>
-					<c:when test ="${empty member}">						
+				<c:if test ="${empty member and empty worker}">						
 						<li><a href="${conPath }/member/loginMember.do">login</a></li>
 						<li><a href="${conPath }/member/joinMember.do">회원가입</a></li>
 						<li><a href="${conPath }/worker/workerLoginForm.do">관리자</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>						
-					</c:when>
-					<c:otherwise>						
+				</c:if>
+				<c:if test = "${not empty member and empty worker}">						
 						<li>
 						<div class="dropdown" style="width:100px; font-size:85%;">
 							<button class="dropbtn" style=" width:100px;
@@ -43,15 +42,34 @@
 								<a href="orderList?first=y">주문내역</a>
 							</div>
 						</div>
-						</li> 
+						</li>
 						<li><a href="${conPath }/member/logout.do">logout</a></li>
 						<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>
-						
-					</c:otherwise>
-				</c:choose>
+				</c:if>
+				<c:if test = "${not empty worker and empty member}">						
+						<li>
+						<div class="dropdown" style="width:100px; font-size:85%;">
+							<button class="dropbtn" style=" width:100px;
+											padding:0 0 5px 0; 
+											float:right;
+											background:#f7f7f7;"> 
+								<span style="display:block; height:15px; font-family:'IBM Plex Sans KR', sans-serif;
+								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
+							</button>
+							<div class="dropdown-content" style="min-width:90px;">
+								<a href="cart/list.do">장바구니</a>
+								<a href="orderList?first=y">주문내역</a>
+							</div>
+						</div>
+						</li>
+						<li><a href="${conPath }/worker/logout.do">logout</a></li>
+						<li><a href="${conPath }/worker/workerMain.do">HOME</a></li>
+						<li>${worker.wname}(${worker.wid})</li>
+				</c:if>
 			</ul>
+			
 		</div>
 		<div id="sub_menu">
 			<div class="logo">
@@ -92,7 +110,7 @@
 						<span>커뮤니티</span>
 				    </button>
 				    <div class="dropdown-content">
-						<a href="notice?first=y">공지사항</a>
+						<a href="${conPath }/notice/list.do">공지사항</a>
 						<a href="qna?first=y">Q&amp;A</a>
 				    </div>
 				</div>

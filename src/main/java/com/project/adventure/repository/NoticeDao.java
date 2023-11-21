@@ -10,7 +10,7 @@ import com.project.adventure.vo.Notice;
 @Mapper
 public interface NoticeDao {
 	public List<Notice> noticeList(Notice notice);
-	public int totCntNotce(Notice notice);
+	public int totCntNotice(Notice notice);
 	public int insertNotice(Notice notice);
 	public int updateNotice(Notice notice);
 	public Notice getDetailNotice(int nid);
