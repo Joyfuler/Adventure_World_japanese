@@ -35,7 +35,7 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
       	<input type="button" value="어트랙션 관리" onclick="location.href='adminAttraction'" style="cursor:pointer">
    	</div>
     <div class="buttons">
-		<input type="button" value="공지사항 관리" onclick="location.href='adminNotice'" style="cursor:pointer">
+		<input type="button" value="공지사항 관리" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer">
 	</div>
     <div class="buttons">
 		<input type="button" value="회원 관리" onclick="location.href='adminMember'" style="cursor:pointer">

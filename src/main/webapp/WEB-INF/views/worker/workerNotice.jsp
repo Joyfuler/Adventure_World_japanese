@@ -47,7 +47,8 @@ function go_search(){
                         <label for="search" class="blind"> 공지사항검색</label>
                         <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
                         <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="${conPath }/notice/list.do"></button>  
+                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/worker/list.do'">
+                 		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/worker/insert.do'">   
                     </div>
                 
             </div>
@@ -68,7 +69,7 @@ function go_search(){
                 <c:forEach items="${notice}" var="notice">
 	                <tr>
 	                    <td>${notice.nid}</td>
-	                    <th><a href="${conPath }/notice/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
+	                    <th><a href="${conPath }/worker/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
 	                    <td><fmt:formatDate value="${notice.nrdate}" type="date"/></td>
 	                </tr>
 	          	</c:forEach>
@@ -80,18 +81,18 @@ function go_search(){
 </section>
 <div style="text-align: center; margin-top: 20px;">
 	<c:if test="${paging.startPage>paging.blockSize}">
-		[ <a href="${conPath }/notice/list.do?pageNum=${paging.startPage-1 }&schTitle=${param.schWord}">이전</a> ]
+		[ <a href="${conPath }/worker/list.do?pageNum=${paging.startPage-1 }&schTitle=${param.schWord}">이전</a> ]
 	</c:if>	
 	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 		<c:if test="${paging.currentPage==i }"> 
 			<b>[ ${i } ]</b> 
 		</c:if>
 		<c:if test="${paging.currentPage != i }">
-			[ <a href="${conPath }/notice/list.do?pageNum=${i }&schTitle=${param.schWord}">${i }</a> ]
+			[ <a href="${conPath }/worker/list.do?pageNum=${i }&schTitle=${param.schWord}">${i }</a> ]
 		</c:if>
 	</c:forEach>
 	<c:if test="${paging.endPage<paging.pageCnt }">
-		[ <a href="${conPath }/notice/list.do?pageNum=${paging.endPage+1 }&schTitle=${param.schWord}">다음</a> ]
+		[ <a href="${conPath }/worker/list.do?pageNum=${paging.endPage+1 }&schTitle=${param.schWord}">다음</a> ]
 	</c:if>
 </div>
 </form>

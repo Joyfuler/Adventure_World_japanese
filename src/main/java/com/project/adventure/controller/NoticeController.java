@@ -22,4 +22,9 @@ public class NoticeController {
 		model.addAttribute("paging", new Paging(noticeService.totCntNotice(notice), pageNum, 5, 5));
 		return "notice/notice";
 	}
+	@RequestMapping(value="detail", method=RequestMethod.GET)
+	public String detail(int nid, Model model) {
+		model.addAttribute("notice", noticeService.getDetailNotice(nid));
+		return "notice/noticeDetail";
+	}
 }

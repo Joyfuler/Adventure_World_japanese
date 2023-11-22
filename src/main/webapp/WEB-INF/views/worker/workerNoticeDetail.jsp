@@ -25,7 +25,9 @@
 	</div>
 	<div class="event09">
 		<div class="event10">
-	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/notice/list.do'">
+	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/worker/list.do'">
+	   		<input type="button" value="수 정" class="btn" onclick="location.href='${conPath }/worker/update.do?nid=${notice.nid }&pageNum=${param.pageNum }'">
+	   		<input type="button" value="삭 제" class="btn" onclick="location.href='${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }'">
 		</div>
 	</div>
 <jsp:include page="../main/footer.jsp"/>
