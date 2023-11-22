@@ -1,3 +1,6 @@
+/*
+함수이름 수정 11-22
+*/
 function count_check(obj) {
 	var chkCnt = 0; // chkCnt 초기값 0 설정
 	var chkBox = document.getElementsByName("attraction"); //name값 불러옴	
@@ -13,8 +16,6 @@ function count_check(obj) {
 	}
 	return chkCnt;
 }
-/*
-*/
 
 
 function toggleAnswer(answerId) {

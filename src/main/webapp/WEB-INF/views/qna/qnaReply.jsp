@@ -41,26 +41,16 @@
 				<tr>
 					<th>답변 내용</th>
 				<c:if test="${empty Qna.reply} ">
-					<td align="left" style="text-align:left;"><h2>답변없음</h2></td>
-				</c:if>
-				<c:if test="${not empty worker} ">	
-					<th>답변 내용</th>
-					<td align="left" style="text-align:left;font-size:115%;">
-						<textarea rows="8" cols="52" name="reply" ></textarea>
-					</td>
+					<td align="left" style="text-align:left;">답변없음</td>
 				</c:if>
 				</tr>				
 			</table>
 		</form>
 		<br>
 		<div class="buttons">
-			<input type="button"  value="목록보기" class="purpleBtn" style="border:none;"
-				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
-			<input type="button"  value="돌아가기"  class="purpleBtn" style="border:none;"
-				onclick="history.back()">
-			<c:if test="${not empty worker }">
-  				<input type="submit"  value="답변달기"  class="purpleBtn" style="border:none;">
-		    </c:if>
+			<input type="submit" value="글쓰기" class="purpleBtn" style="border:none;" > 
+			<input type="reset" value="취소" class="purpleBtn" style="border:none;"  
+				onclick="location.href='${conPath}/qna/qnaList.do'">
 		</div>
 		<br>
 	</div>

@@ -33,10 +33,20 @@ public class QnaController {
 		model.addAttribute("Qna", qnaService.getQna(qno));
 		return "qna/qnaView";
 	}
+	@RequestMapping(value = "qnaView", method = RequestMethod.POST )
+	public String qna_view(Model model,Qna qna) {
+		model.addAttribute("prerely",qnaService.qnaPreReply(qna));
+		model.addAttribute("reply",qnaService.insertQna(qna));
+		return "forward:qnaView.do";
+	}
 	@RequestMapping(value = "passCheck",method = RequestMethod.GET  )
-	public String passCheck( @RequestParam("qno") int qno,Model model) {
-		model.addAttribute("qno", qno);
-		return "qna/checkPass";
+	public String passCheck( @RequestParam("qno") int qno,Model model, @RequestParam("wid") String wid) {
+		if(wid != "") {
+			return "forward:qnaView.do";
+		}else {			
+			model.addAttribute("qno", qno);
+			return "qna/checkPass";
+		}
 	}
 	@RequestMapping(value="qnaCheckPass", method=RequestMethod.POST)
 	public String qnaCheckPass(int qno,@RequestParam("qpw") String qpw,Model model ) {
@@ -81,6 +91,11 @@ public class QnaController {
 	    		model.addAttribute("wirteResult",qnaService.insertQna(qna));
 		return "forward:qnaList.do";
 	}
+	/*
+	 * @RequestMapping(value = "qnaReply", method = RequestMethod.GET ) public
+	 * String qnaReply(Model model, int qno) { model.addAttribute("Qna",
+	 * qnaService.getQna(qno)); return "qna/qnaReply"; }
+	 */
 	
 	
 

@@ -6,7 +6,7 @@
 <link href="${conPath }/css/world.css" rel="stylesheet">
 <script>
 function qpwChk(qno){
-	var url = '${conPath}/qna/passCheck.do?qno=' + qno +'&pageNum=${paging.currentPage}&schWord=${param.schWord}';
+	var url = '${conPath}/qna/passCheck.do?qno=' + qno +'&pageNum=${paging.currentPage}&schWord=${param.schWord}&wid=${param.wid}';
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
     window.open(url,"qpwchk", opt);
 }
@@ -20,6 +20,7 @@ function qpwChk(qno){
 </style>
 <jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/qna/qnaList.do" name="frm" method="post">
+<input type="text" name = "wid" value="${param.wid }">
 <section class="notice">
 	<c:if test="${not empty wirteResult }">
 		alert(${wirteResult });
@@ -106,7 +107,7 @@ function qpwChk(qno){
 
 <div id="buttons">
    <input type="button"  value="등록하기"  class="submit" 
-      onClick="location.href='${conPath}/qna/qnaWriteForm.do'"> 
+      onClick="location.href='${conPath}/qna/qnaWriteForm.do?mid=one'"> 
    <input type="button"   value="취소"  class="cancel"    
       onclick="location.href='${conPath}/qna/qnaList.do'">  
 </div>
