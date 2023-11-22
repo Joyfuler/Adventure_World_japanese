@@ -110,15 +110,27 @@ const autoHyphen = (target) => {
 	<c:if test = "${empty member }">
 		<script>
 		alert('로그인 후 이용 가능합니다.');
-		location.href='${conPath}/main.do';
+		location.href='${conPath}/member/loginMember.do';
 		</script>
 	</c:if>		
+	<c:if test = '${not empty orderAddMsg }'>
+		<script>
+			alert('${orderAddMsg}');
+		</script>
+	</c:if>	
+	<c:if test = "${not empty orderList }">
+		<script>
+			alert('${orderList}');
+		</script>
+	</c:if>	
 	<div class="page-title" style="text-align: center; font-weight: bold;">
 		<div class="container"
 			style="background-color: #5c10e6; color: white;">
 			<h3	style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align: center;">이용권 결제 페이지</h3>
 		</div>
 		<br><br>
+		${orderList }
+		
 	</div>
 	<div class="accordion" id="accordionExample">
 		<div class="accordion-item">

@@ -14,7 +14,7 @@ public class Order {
 	private int op2;
 	private int otype;
 	private String oatname1;
-	private String oatename2;
+	private String oatname2;
 	private String oatname3;
 	private int oprice1;
 	private int oprice2;

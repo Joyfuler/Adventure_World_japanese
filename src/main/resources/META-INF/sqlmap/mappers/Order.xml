@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.OrderDao">
+  	<resultMap type="Order" id="OrderResult">		
+		<result property="oid" column="oid"/>
+		<result property="cid" column="cid"/>
+		<result property="mid" column="mid"/>
+		<result property="op1" column="op1"/>
+		<result property="op2" column="op2"/>
+		<result property="otype" column="otype"/>
+		<result property="oatname1" column="oatname1"/>		
+		<result property="oatname2" column="oatname2"/>
+		<result property="oatname3" column="oatname3"/>
+		<result property="oprice1" column="oprice1"/>
+		<result property="oprice2" column="oprice2"/>
+		<result property="oresult" column="oresult"/>
+		<result property="ocrdate" column="ocrdate"/>
+		<result property="ovisitdate" column="ovisitdate"/>
+	</resultMap>  
+	<insert id="cartToOrder" parameterType="Order">
+		INSERT INTO ORDER_LIST
+		(OID, CID, MID, OP1, OP2, OTYPE, OATNAME1, OATNAME2, OATNAME3, OPRICE1, OPRICE2, ORESULT, OCRDATE, OVISITDATE)
+    	VALUES (ORDER_LIST_SEQ.NEXTVAL,#{cid},#{mid},#{op1},
+    	#{op2},#{otype},#{oatname1},#{oatname2},#{oatname3},
+    	#{oprice1}, #{oprice2}, #{oresult}, SYSDATE, #{ovisitdate})
+	</insert>
+	<select id = "orderList" parameterType = "int[]" resultMap = "OrderResult">
+		SELECT * FROM ORDER_LIST WHERE CID IN
+		<foreach collection = "array" item = "cid" open = "(" separator = "," close= ")">
+			#{cid}
+		</foreach>
+	</select>
+</mapper>
