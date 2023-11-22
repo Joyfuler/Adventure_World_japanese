@@ -3,36 +3,69 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-<script
-  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-  crossorigin="anonymous"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <link href="${conPath }/css/order.css" rel="stylesheet">  
 <script src="${conPath }/js/order.js"></script>
+<style>
+.order_box2{margin-bottom: 110px;}
+.check_wrapp {position:relative; width:100%; height:300px; overflow:auto; padding:0 53px; font-weight:bold; font-size:14px; border-bottom:1px solid lightgray;}
+#att_list2{position:relative; width:140px; height:70px; float:left; margin:10px; text-align:center; 
+	border:1px solid lightgray; background-color:white; transition:0.2s;}
+#att_list2 img {position:relative; width:150px; height:150px; object-fit:cover;}
+#att_list2 h3 {width:px; height:50px; padding:5px; }
+#att_list2:hover{background-color:#5c10e6; box-shadow:3px 3px 15px gray; border:none; color:white;}
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 function go_cart(num){
-	var chkCnt = count_check();
+	var chkCnt = false;
+	var chkBox = document.getElementsByName("attraction"); //name값 불러옴
 	var today = new Date(); // 현재 날짜와 시간을 가지는 Date 객체 생성
 	var todayDate = today.toISOString().slice(0, 10); // yyyy-MM-dd 형식의 문자열로 변환
 	var dateString = $('#selectedDate').val(); // 비교할 날짜 문자열
 	var date = new Date(dateString); // 문자열을 Date 객체로 변환
+ 	for(var i=0;i<chkBox.length;i++){
+	        if(chkBox[i].checked == true) {
+	        	chkCnt = true;
+	            break;
+	        }
+	    }
+	    if(!chkCnt){
+	        alert("어트랙션을 한개 이상 선택해주세요.");
+	        return false;
+	    }
 	if(dateString =='' || dateString == null){
 		alert("방문 일자를 선택해주세요");
 		return false;
-	}		
-	else if (todayDate > selectedDate) {
+	}else if (todayDate > selectedDate) {
 	    alert("방문 일자는 오늘 이후로 선택해주세요.");
 		return false;
 	} else if($('input[name="p1"]').val() ==0 && $('input[name="p2"]').val() ==0){
 		alert("인원을 선택해주세요");
 		return false;
-	} else if(num==1){
-		if ($('#atname1').val() == ''){
-			alert("놀이기구 3개를 선택해주세요");
-			return false;
-		}
 	}
 }
+</script>
+<script >
+	$(document).ready(function(){
+		$('.check_btnbtn').click(function(){
+			let chkCnt = 0;// chkCnt 초기값 0 설정
+			var chkBox = $('input[name="attraction"]');
+			for ( var i = 0; i < chkBox.length; i++){
+				if (chkBox[i].checked){ // chkBox가 체크 됐을 경우
+					chkCnt++; // 1증가
+				}	
+			}
+			if (chkCnt > 3){ // 3개 
+				alert("3개까지만 선택 가능합니다."); // 경고문
+				$(this).prop('checked',false);
+			}
+		});
+	});
 </script>
 <style>
 	.container {position:relative; width:100%;} 
@@ -40,6 +73,8 @@ function go_cart(num){
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
 <jsp:include page="../main/header.jsp"/>
 <article>
 <form action="${conPath }/cart/fastTicket.do" method="post" >
@@ -91,7 +126,27 @@ function go_cart(num){
 			<!--  어트랙션 선택 -->
 				<div class="order_box_date_text">어트렉션 선택</div>
 			<div class="check_wrapp">
-							<input type="text" name="atname1" id ="atname1">
+			<!--이미지 있는 어트랙션  -->
+				<%-- <c:forEach var="attractions" items="${attractionList}">
+					<div id="att_list2">
+						<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">
+							<img src="${conPath }/images/attraction_images/${attractions.aimage}"/>
+							<h3>${attractions.aname}</h3>					
+							<input type="checkbox" value="${attractions.aname}" name="attraction" 
+								class="check_btnbtn" onclick="count_check(this);"/>						
+						</a>
+					</div>
+				</c:forEach> --%>
+				<!--이미지 없는 어트랙션  -->
+				<c:forEach var="attractions" items="${attractionList}">
+					<div id="att_list2">
+						<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">
+							<h3>${attractions.aname}</h3>					
+							<input type="checkbox" value="${attractions.aname}" name="attraction" 
+								class="check_btnbtn"/>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 			<div id="reserve_buttons" class="order_box_button">
 	       	<!-- 	<input type="button" value="구매하기" onClick="location.href='world.do?command=cartList'">  -->
@@ -139,3 +194,6 @@ function go_cart(num){
 	</div>
 </form>
 </article>
+<jsp:include page="../main/footer.jsp"/>
+</body>
+</html>

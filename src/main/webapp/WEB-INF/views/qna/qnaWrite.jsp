@@ -2,13 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 $(document).ready(function(){
 	$('form').submit(function(){
 		var qtitle = $('input[name="qtitle"]');
 		var qcontent = $('textarea[name="qcontent"]');
-		var checkbox = $('input[name="check"]');
+		let chkCnt = 0;// chkCnt 초기값 0 설정
+		var chkBox = $('input[name="check"]');
+		var qpw = $('input[name="qpw"]');
 		if(!qtitle.val()){
 			alert('제목을 입력하세요');
 			qtitle.focus();
@@ -17,10 +24,10 @@ $(document).ready(function(){
 			alert('문의 내용을 입력하세요');
 			qcontent.focus();
 			return false;
-		}else if(checkbox.checked){
-			if(!checkbox.val()){
+		}else if(chkBox.prop("checked")){
+			if(!qpw.val()){
 				alert("비밀번호를 입력해주세요");
-				document.qna.pass.focus();
+				qpw.focus();
 				return false;
 			}
 		}
@@ -46,6 +53,8 @@ inputTextarea.addEventListener('input', function (e) {
     console.log(inputTextarea.selectionEnd); // 커서의 끝 위치
 });
 </script>
+</head>
+<body>
  <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="qna">
@@ -56,7 +65,7 @@ inputTextarea.addEventListener('input', function (e) {
 
 		<form action="${conPath }/qna/qnaWrite.do" class="fix02" name="qna" method="post">
 			<input type="hidden" name="command" value="qnaWrite">
-
+			<input type="hidden" name="mid" value="${param.mid }">
 	    	<table class="fix03">
 	    		<tr>
 	    			<th>Secret mode</th>
@@ -99,3 +108,6 @@ inputTextarea.addEventListener('input', function (e) {
 	</div>
 </div>
 </article>
+ <jsp:include page="../main/footer.jsp"/>
+ </body>
+</html>
