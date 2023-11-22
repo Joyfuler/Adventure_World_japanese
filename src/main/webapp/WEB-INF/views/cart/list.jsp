@@ -35,7 +35,7 @@
 	<script>alert('삭제 성공');</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
-<form action="${conPath }/cart/orderlist.do" name="formm" method="post">
+<form action="${conPath }/order/orderList.do" method="get">
 <input type = "hidden" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
@@ -104,7 +104,7 @@
 	                	<td>
 	                	<c:choose>
                         	<c:when test='${dto.result == 0}'>
-	                			<input type="checkbox" name="cseq" value="${dto.cid}">
+	                			<input type="checkbox" name="cid" value="${dto.cid}">
 	                		</c:when>
 	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
 	                	</c:choose>
