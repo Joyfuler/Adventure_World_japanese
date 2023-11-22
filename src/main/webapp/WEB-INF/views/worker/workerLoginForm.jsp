@@ -44,7 +44,7 @@
    <br><br>
    
    <form action = "${conPath }/worker/workerLoginForm.do" method="post">
-   <input type="text" name="after" value="${after}">
+   <input type="hidden" name="after" value="${after}">
    <!-- <input type="hidden" name="command" value="login">  action="world.do"-->
    <div id=input>
       <input name="wid" placeholder="&nbsp;아이디" size="40" type="text" style="width:500px ;background:white;"><br>

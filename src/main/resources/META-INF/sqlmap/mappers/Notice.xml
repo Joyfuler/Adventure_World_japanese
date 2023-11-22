@@ -21,7 +21,7 @@
 	<select id="totCntNotice" resultType="int">
 		SELECT COUNT(*) FROM NOTICE WHERE UPPER(NTITLE) LIKE'%' || UPPER(#{schTitle}) || '%'
 	</select>
-	<select id="getDetailNotice" parameterType="int">
+	<select id="getDetailNotice" parameterType="int" resultType="Notice">
 		SELECT * FROM NOTICE WHERE NID=#{nid}
 	</select>
 	<insert id="insertNotice" parameterType="Notice">
