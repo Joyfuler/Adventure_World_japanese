@@ -212,11 +212,12 @@ const autoHyphen = (target) => {
 					<label>멤버십 포인트로 할인받기 </label>
 					<br><br>
 					<div class = "memberPoint">					
-					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em>P)</span>
+					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "1000">							
 					<input type="text" id="pointInput" name = "mpoint" disabled="disabled">
 					<input type="button" value = "포인트사용">
-					</div>	
+					<br><br>
+					</div>					
 		</div>
 	</div>
 	<!--  여기서부터 -->
@@ -256,10 +257,11 @@ const autoHyphen = (target) => {
 							· 카카오페이는 카카오톡에 개인 신용/체크 카드를 등록하여 간단하게 비밀번호 만으로 결제할 수 있는 모바일
 							결제 서비스 입니다. 등록 시 휴대폰과 카드 명의자가 동일해야 합니다.<br> · 무이자 할부 서비스
 							및 신용카드 전용쿠폰 서비스는 이용이 제한 됩니다.<br> · 카카오머니로 결제 시, 현금영수증
-							발급은 (주)카카오페이에서 발급 가능합니다.<br>
+							발급은 (주)카카오페이에서 발급 가능합니다.							
 						</div>
+						<br><br>
 					</div>
-					<div class="payWrap ">
+					<div class="payWrap">
 						<div class="amountWrap">
 							<div class="totalOrder">
 								<ul>

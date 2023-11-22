@@ -11,28 +11,58 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 	function cartdelete () {
-	var cseq = document.getElementsByName('cseq');
+	var checkboxes = document.getElementsByName('cid');
 	var url = '${conPath}/cart/delete.do?';
 	var cnt=0;
-	for(let i=0; i<cseq.length; i++){
-		if(cseq[i].checked){
-			var cid = cseq[i].value;
+	for(let i=0; i<checkboxes.length; i++){
+		if(checkboxes[i].checked){
+			var cid = checkboxes[i].value;
 			url += 'cid='+cid+'&';
 			cnt++; 
 		}
 	}
-	if (cnt) {  // cnt 값이 0이 아닐 때 실행
+	if (cnt > 0) {
         location.href = url;
     } else {
         alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
     }
 };
 </script>
+<script>
+	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
+	function submitChk(){
+		var checkboxes = document.getElementsByName('cid');
+		var cnt = 0;
+		
+		for (let i = 0; i < checkboxes.length; i++){
+			if (checkboxes[i].checked){
+				cnt++;
+			}
+		}
+		
+		if (cnt == 0){
+			alert('결제 시 적어도 1개 이상의 항목을 선택해 주세요.');
+			return false;
+		} else {		
+			return true;
+		}
+	}
+</script>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
 <body>
 <c:if test="${not empty deleteResult }">
 	<script>alert('삭제 성공');</script>
+</c:if>
+<c:if test = "${not empty passTicketResult }">
+	<script>
+		alert('${passTicketResult eq 1 ? "자유이용권이 장바구니에 추가되었습니다." : "장바구니 추가 실패"}');
+	</script>	
+</c:if>
+<c:if test = "${not empty fastTicketResult }">
+	<script>
+		alert('${fastTicketResult eq 1 ? "패스트티켓이 장바구니에 추가되었습니다." : "장바구니 추가 실패"}');
+	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/order/orderList.do" method="get">
@@ -120,7 +150,7 @@
             	 <div class="mypage-btn-dede-wrap">
             		<input type="button" onclick="cartdelete()" value="삭제하기" class="dede" style="float:right;">
 			  
-			    	<input type="submit" value="결제하기" class="dede" style="float:right;">
+			    	<input type="submit" value="결제하기" class="dede" style="float:right;" onclick = "return submitChk()">
 			   
         	</div>
     	</div>
