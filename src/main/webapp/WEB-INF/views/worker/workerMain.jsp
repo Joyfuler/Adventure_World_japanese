@@ -41,7 +41,7 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 		<input type="button" value="회원 관리" onclick="location.href='adminMember'" style="cursor:pointer">
    	</div>
 	<div class="buttons">
-      <input type="button" value="Q & A 관리" onclick="location.href='adminQna'" style="cursor:pointer">
+      <input type="button" value="Q & A 관리" onclick="location.href='${conPath}/qna/qnaList.do?wid=${worker.wid} '" style="cursor:pointer">
 	</div>
 	<div class="buttons">
 		<input type="button" value="배너 관리" onclick="location.href='adminBannerList'" style="cursor:pointer">
