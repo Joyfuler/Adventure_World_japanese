@@ -18,7 +18,7 @@ public class Paging {
 	
 	public Paging(int totCnt, String pageNum, int pageSize, int blockSize) {
 		this.totCnt = totCnt; // 매개변수로 온 totCnt를 생성자로 대입
-		if (pageNum != null) {
+		if (pageNum != null && !pageNum.equals("")) {
 			currentPage = Integer.parseInt(pageNum);
 		}		
 		this.pageSize = pageSize;

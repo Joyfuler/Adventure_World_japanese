@@ -58,7 +58,7 @@ inputTextarea.addEventListener('input', function (e) {
  <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="qna">
-	<div class="qnaimg" style="background-image:url('images/qnaaa.png');"></div>
+		<div class="qnaimg" style="background-image:url('${conPath}/images/qnaaa.png');"></div>
 	<div class="qnaBox">
 		<h2> 1:1 고객 게시판 </h2>
 		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
@@ -66,6 +66,12 @@ inputTextarea.addEventListener('input', function (e) {
 		<form action="${conPath }/qna/qnaWrite.do" class="fix02" name="qna" method="post">
 			<input type="hidden" name="command" value="qnaWrite">
 			<input type="hidden" name="mid" value="${param.mid }">
+			<c:if test="${empty member && empty worker }">
+			<script>
+				alert('로그인 후 문의글 작성이 가능합니다');
+				location.href = '${conPath}/member/login.do?after=qna/qnaWirte.do';
+			</script>
+			</c:if>
 	    	<table class="fix03">
 	    		<tr>
 	    			<th>Secret mode</th>

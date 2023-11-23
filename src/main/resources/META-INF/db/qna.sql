@@ -29,7 +29,7 @@ COMMIT;
 --ID  = getAllCount
 select count(*) from QNA;
 select count(*) from  QNA where QTITLE like '%'||'단'||'%';
-SELECT * FROM Qna;
+SELECT * FROM Qna where qtitle ='tdfs';
 --ID = listQna
 SELECT * FROM
     (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||'단'||'%' ORDER BY QNO DESC)A)
@@ -95,7 +95,7 @@ UPDATE QNA SET ISREPLY ='Y',
                 REPLY = '우천시10%할인됩니다',
                 QSTEP = QSTEP+1,
                 QINDENT = QINDENT+1
-                WHERE QNO = 5;
+                WHERE QNO = 19;
 
 
 
