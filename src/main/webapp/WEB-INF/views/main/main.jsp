@@ -127,11 +127,11 @@ $(document).ready(function(){
 	</div>
 	<h2 style="font-size:30px; text-align:center; line-height:80px;">인기 어트랙션</h2>
 	<div id="mainimg">
-		<c:forEach var="best_attraction" items="${bestList}" begin="0" end="5">
+		<c:forEach var="attractions" items="${bestList}" begin="0" end="5">
 		 		<div id="att_list">
-		 			<a href="${conPath }/attractionDetail.do?aid=${best_attraction.aid}">				
-						<img src="${conPath }/images/attraction_images/${best_attraction.aimage}"/>
-						<h3 style="font-weight:400">${best_attraction.aname}</h3>
+		 			<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid}">				
+						<img src="${conPath }/images/attraction_images/${attractions.aimage}"/>
+						<h3 style="font-weight:400">${attractions.aname}</h3>
 					</a>
 				</div>						
 		</c:forEach>

@@ -7,17 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.qnaimg{
+width: 700px;
+font-family: AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
+  -webkit-font-smoothing: antialiased;
+font-size: 16px;
+letter-spacing: -0.6px;
+-webkit-text-size-adjust: 100%;
+line-height: 1;
+margin: 0;
+padding: 42px 50px 35px;
+border: 1px solid #e4e4e4;
+background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
+color: #000;
+}
+</style>
 </head>
 <body>
 <article>
 <jsp:include page="../main/header.jsp"/>
 <div class="qna">
-<input type="text" value="${param.pageNum }"> 
-	<div class="qnaimg" style="background-image:url('images/qnaaa.png');"></div>
+	<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 	<div class="qnaBox">
 		<h2>QnA 게시판</h2>
 		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
 		<form class="fix02">
+		<input type="hidden" name ="pageNum" value="${param.pageNum }">
 	    	<table class="fix03">
 				<tr>
 					<th>제목</th>

@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 function go_reply(qno){
-	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'&wid=${worer.mid}&pageNum=${param.PageNum }';
+	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'&wid=${worer.mid}&pageNum=${param.pageNum }';
 	document.frm.submit();
 }
 </script>
@@ -21,8 +21,10 @@ function go_reply(qno){
 <%-- <form action="${conPath}/qna/adminqnqreply.do" method="post" > --%>
 <form name="frm" method="get">
 <input type="hidden" name="qno" value="${Qna.qno}">
+<input type="hidden" name = "wid" value="${worker.wid }">
+<input type="hidden" name = "pageNum" value="${param.pageNum }">
 <div class="qna">
-	<div class="qnaimg" style="background-image:url('images/qnaaa.png');"></div>
+	<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 	<div class="qnaBox">
 		<h2> QnA 게시판 </h2>
 		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
@@ -60,10 +62,10 @@ function go_reply(qno){
 			<c:choose>
 				<c:when test='${Qna.isreply=="N" }'>
 					<input type="button" style="padding :0;" class="purpleBtn" value="저장" onClick="go_reply(${Qna.qno})">
-					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.PageNum }'">
+					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum }'">
 				</c:when>
 				<c:otherwise>
-					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.PageNum }'">
+					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum }'">
 				</c:otherwise>
 			</c:choose>
 		</div>

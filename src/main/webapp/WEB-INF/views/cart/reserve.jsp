@@ -12,7 +12,6 @@
 	<div class="order_box">
 		<div class="order_box_select">
 			<div class="order_box_title">예매</div>
-			<button onclick="location.href='${conPath}/cart/list.do'">리스트</button>
 			<div class="order_box_text">
 				<img src="${conPath }/images/ticket_images/reserve_imgs_free.png"/>
 				<div class="order_box_text_content">★자유이용권★<br>

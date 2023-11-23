@@ -17,10 +17,12 @@ public class QnaServiceImpl implements QnaService {
 		Paging paging = new Paging(qnaDao.qnaTotCnt(qna), pageNum, 10, 10);
 		qna.setStartRow(paging.getStartRow());
 		qna.setEndRow(paging.getEndRow());
+		System.out.println("list 서비스 qna : " + qna);
 		return qnaDao.QnaList(qna) ;
 	}
 	@Override
 	public int qnaTotCnt(Qna qna) {
+		System.out.println("cnt 서비스 : " + qna);
 		return  qnaDao.qnaTotCnt(qna);
 	}
 

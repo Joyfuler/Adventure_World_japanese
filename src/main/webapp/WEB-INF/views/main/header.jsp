@@ -111,7 +111,7 @@
 				    </button>
 				    <div class="dropdown-content">
 						<a href="${conPath }/notice/list.do">공지사항</a>
-						<a href="${conPath }/qna/qnaList.do">Q&amp;A</a>
+						<a href="${conPath }/qna/qnamain.do">Q&amp;A</a>
 				    </div>
 				</div>
 				<div class="dropdown">

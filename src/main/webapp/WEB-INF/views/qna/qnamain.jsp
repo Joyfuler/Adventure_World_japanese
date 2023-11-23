@@ -3,12 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <style>
 .answer {display: none;}
 
 </style>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 function toggleAnswer(answerId) {
     var answer = document.getElementById(answerId);
@@ -27,8 +32,9 @@ function toggleAnswer(answerId) {
     }
 }
 </script>
-
-
+</head>
+<body>
+<jsp:include page="../main/header.jsp"/>
 <article>
 <div class="page-title" style="text-align:center;">
 	<div class="container">
@@ -36,12 +42,12 @@ function toggleAnswer(answerId) {
 	</div>
 </div>
 <div style="position: relative; text-align: center;">
-  <img src="images/qna_image.jpg" style="opacity: 0.5;">
+  <img src="${conPath }/images/qna_image.jpg" style="opacity: 0.5;">
   <div style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);">
     <p style="font-size: 24px; color: white;">
     <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; padding-top: 50px;"> 더 궁금하신 사항이 있으면 <br>이용문의를 이용하시기 바랍니다.</h3>
 	<div id="buttons" style="float:center">
-		<input type="button" value="이용문의" class="submit" onclick="location.href='qnaList?first=y'" 
+		<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'" 
 			style="display:inline-block; font-size: 18px; font-weight:400; font-family:'IBM Plex Sans KR', sans-serif; background: #CCFF99; 
 			border: 2px solid #fff; border-radius: 30px; padding: 14px 58px; margin-top: 40px;">
 	</div>
@@ -56,7 +62,7 @@ function toggleAnswer(answerId) {
 		</div>
 </div>
 <br>
-	<div id="qna_category_top_menu">	
+<!-- 	<div id="qna_category_top_menu">	
 		<a href="">전체</a>&nbsp;&nbsp;&nbsp;
 		<a href="">이용정보</a>&nbsp;&nbsp;&nbsp;
 		<a href="">우대정보/이벤트</a>&nbsp;&nbsp;&nbsp;
@@ -64,13 +70,13 @@ function toggleAnswer(answerId) {
 		<a href="">온라인예매</a>&nbsp;&nbsp;&nbsp;
 		<a href="">장애인 탑승예약제</a>&nbsp;&nbsp;&nbsp;
 		<a href="">기타</a>&nbsp;&nbsp;&nbsp;
-	</div>		
+	</div>		 -->
 </div><br><br>
 <div id="board-list">
         <div class="container">
             <table class="board-table" style="font-size:20px; width:960px; margin:0 auto;">  
                 <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer1')"> 매직패스 사전예매는 어떻게 하나요? </a></th>      
                 </tr>   
                 <tr id="answer1" class="answer">
@@ -88,7 +94,7 @@ function toggleAnswer(answerId) {
                 	</th>
            		</tr>
                 <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer2')"> 어드벤처를 나갔다가 다시 들어올 수 있나요? </a></th>             
                 </tr>
                 <tr id="answer2" class="answer">
@@ -100,7 +106,7 @@ function toggleAnswer(answerId) {
   ③ 의무실 방문 후 간호사 진단에 따라 외부 의료기관 방문하는 경우<br><br>
   ④ 파크 입장 후 매직패스 프리미엄 티켓 구매를 희망하시는 경우<br>
                   <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer3')"> 공연에 대해 궁금한 것은 어디에 물어보나요?</a></th>  
                 </tr>
                   <tr id="answer3" class="answer">
@@ -110,7 +116,7 @@ function toggleAnswer(answerId) {
 현재 롯데월드에서 진행중인 공연 정보가 궁금하시다면,<br><br>
 홈페이지 즐길거리-공연-금주의공연 메뉴를 통해서 자세한 공연의 정보와 공연 스케줄을 확인하실 수 있습니다.   <br>     	
                   <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer4')"> 어린이, 청소년이 어른티켓으로 이용할 수 있나요? </a></th>
               </tr> 
               <tr id="answer4" class="answer">
@@ -119,7 +125,7 @@ function toggleAnswer(answerId) {
 참고로, 만 36개월 미만인 유아손님의 경우 무료입장이 가능하니 참고부탁드립니다.<br>
 ※ 단, 유아용 어트랙션 탑승 시 베이비 티켓 구매 필요(0~12개월 미만의 경우 어트랙션 무료이용 가능)   
                 <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th>
                       <a href="#!" onclick="toggleAnswer('answer5')" >티켓의 QR코드를 캡쳐해서 이용 가능한가요?</a>                     
                     </th>                
@@ -130,7 +136,7 @@ function toggleAnswer(answerId) {
 다른 분께 티켓을 보내실 경우 마이티켓에서 보내고자 하는 티켓의 '선물하기' 버튼을 활용해 티켓을 전송해주시기 바랍니다.<br><br>
 '선물하기' 기능과 관련된 FAQ를 검색해주세요!<br>
                 <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer6')">홈페이지 로그인이 되지 않아요</a></th>                   
                 </tr>
                 <tr id="answer6" class="answer">
@@ -142,7 +148,7 @@ function toggleAnswer(answerId) {
     팝업 설정을 '허용'으로 변경해주시기 바랍니다.<br><br>
     ※확인 방법 : 인터넷 옵션 → 개인정보 → '팝업 차단 사용' 체크박스 해지<br>
                 <tr>
-                    <td><img src=images/Q.jpg style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
+                    <td><img src="${conPath }/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border:1px solid blue"></td>
                     <th><a href="#!" onclick="toggleAnswer('answer7')">롯데월드에서 사용가능한 상품권은 뭐가있나요?</a></th>                   
                 </tr>
                  <tr id="answer7" class="answer">
@@ -163,5 +169,7 @@ function toggleAnswer(answerId) {
 
 </article>
 <br><br><br>
-
+<jsp:include page="../main/footer.jsp"/>
+</body>
+</html>
     

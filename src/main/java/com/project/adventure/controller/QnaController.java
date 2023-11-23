@@ -23,8 +23,13 @@ import com.project.adventure.vo.Qna;
 public class QnaController {
 	@Autowired
 	private QnaService qnaService;
+	@RequestMapping(value = "qnamain", method = RequestMethod.GET )
+	public String qnaview() {
+		return "qna/qnamain";
+	}
 	@RequestMapping(value = "qnaList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String qnaList(String pageNum, Qna qna, Model model) {
+		System.out.println("컨트롤러 : " + qna);
 		model.addAttribute("qnaList", qnaService.QnaList(pageNum, qna));
 		model.addAttribute("paging", new Paging(qnaService.qnaTotCnt(qna), pageNum, 10, 10));
 		return "qna/qnaList";
@@ -57,13 +62,6 @@ public class QnaController {
 		}
 	@RequestMapping(value = "qnaWriteForm", method=RequestMethod.GET)
 	public String qnaWriteForm() {
-		/* jsp에서 로그인화면으로 
-		 * HttpSession session = request.getSession(); Member member= (Member)
-		 * session.getAttribute("loginUser"); 
-		 * if (member == null){ 
-		 * return "member/login";
-		 * }
-		 */
 		return "qna/qnaWrite";
 	}
 	@RequestMapping(value = "qnaWrite", method=RequestMethod.POST)
@@ -92,9 +90,10 @@ public class QnaController {
 		return "qna/adminQnaView";
 	}
 	@RequestMapping(value="adminqnqreply", method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminQnaRepSave (Qna qna, Model model ){		
+	public String adminQnaRepSave (Qna qna, Model model){		
 		model.addAttribute("replyResult",qnaService.qnaPreReply(qna));
-		return "forward:qnaView.do?qno=" + qna.getQno();
+		return "forward:qnaView.do";
+		//?qno=" + qna.getQno();
 	}
  
 	
