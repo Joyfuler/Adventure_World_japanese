@@ -39,34 +39,35 @@ public class NoticeServiceImpl implements NoticeService {
 	public int insertNotice(MultipartHttpServletRequest mRequest, Notice notice) {
 		String uploadPath = mRequest.getRealPath("noticeImg/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
-		String[] bimg = new String[2];
-		int i = 0;
-		while(params.hasNext()) {
+		String bimg = "";
+		//if (params.hasNext()) {
 			String param = params.next();
-			System.out.println(i + "번째 파라미터 이름: " + param);
+			System.out.println(" 파라미터 이름: " + param);
 			MultipartFile mFile = mRequest.getFile(param); //파라미터의 파일객체
-			bimg[i] = mFile.getOriginalFilename();//업로드한 파일명
-			System.out.println(bimg[i]==null? "널" : bimg[i].equals("")? "첨부안해서 빈스트링":"첨부한파일이름은" + bimg[i]);
+			bimg = mFile.getOriginalFilename();//업로드한 파일명
+			System.out.println(bimg==null? "널" : bimg.equals("")? "첨부안해서 빈스트링":"첨부한파일이름은" + bimg);
 			// 첨부여부
-			if(bimg[i]!=null && !bimg[i].equals("")) {
+			if(bimg!=null && !bimg.equals("")) {
 				//첨부함
-				if(new File(uploadPath + bimg[i]).exists()) {
+				if(new File(uploadPath + bimg).exists()) {
 					//첨부파일과 같은 이름의 파일이 서버에 존재: 현재밀리세컨 + 파일이름
-					bimg[i] = System.currentTimeMillis() + bimg[i];
+					bimg = System.currentTimeMillis() + bimg;
 				}//중복된 파일명 변경
 				try {
-					mFile.transferTo(new File(uploadPath + bimg[i]));// 서버에 파일저장
-					System.out.println("서버에 저장된 파일:" + uploadPath + bimg[i]);
-					System.out.println("복사될 파일: " + backupPath + bimg[i]);
-					boolean isUpload = filecopy(uploadPath + bimg[i], backupPath+bimg[i]);
+					mFile.transferTo(new File(uploadPath + bimg));// 서버에 파일저장
+					boolean isUpload = filecopy(uploadPath + bimg, backupPath+bimg);
+					if(isUpload) {
+						System.out.println("서버에 저장된 파일:" + uploadPath + bimg);
+						System.out.println("복사될 파일: " + backupPath + bimg + "이상 복사 성공");
+					}
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 				}
 			}//if
-			i++;
-		}//while
-		notice.setNcontent(bimg[0]);
-		notice.setNcontent(bimg[1]);
+			
+		//}//if
+		notice.setNcontent(bimg);
+		System.out.println("★ 넘어온 공지 사항  : " + notice);
 		return noticeDao.insertNotice(notice);
 	}
 
@@ -74,40 +75,45 @@ public class NoticeServiceImpl implements NoticeService {
 	public int updateNotice(MultipartHttpServletRequest mRequest, Notice notice) {
 		String uploadPath = mRequest.getRealPath("noticeImg/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
-		String[] bimg = new String[2];
-		int i = 0;
-		while(params.hasNext()) {
+		String bimg = "";
+		//if (params.hasNext()) {
 			String param = params.next();
-			System.out.println(i + "번째 파라미터 이름: " + param);
+			System.out.println(" 파라미터 이름: " + param);
 			MultipartFile mFile = mRequest.getFile(param); //파라미터의 파일객체
-			bimg[i] = mFile.getOriginalFilename();//업로드한 파일명
-			System.out.println(bimg[i]==null? "널" : bimg[i].equals("")? "첨부안해서 빈스트링":"첨부한파일이름은" + bimg[i]);
+			bimg = mFile.getOriginalFilename();//업로드한 파일명
+			System.out.println(bimg==null? "널" : bimg.equals("")? "첨부안해서 빈스트링":"첨부한파일이름은" + bimg);
 			// 첨부여부
-			if(bimg[i]!=null && !bimg[i].equals("")) {
+			if(bimg!=null && !bimg.equals("")) {
 				//첨부함
-				if(new File(uploadPath + bimg[i]).exists()) {
+				if(new File(uploadPath + bimg).exists()) {
 					//첨부파일과 같은 이름의 파일이 서버에 존재: 현재밀리세컨 + 파일이름
-					bimg[i] = System.currentTimeMillis() + bimg[i];
+					bimg = System.currentTimeMillis() + bimg;
 				}//중복된 파일명 변경
 				try {
-					mFile.transferTo(new File(uploadPath + bimg[i]));// 서버에 파일저장
-					System.out.println("서버에 저장된 파일:" + uploadPath + bimg[i]);
-					System.out.println("복사될 파일: " + backupPath + bimg[i]);
-					boolean isUpload = filecopy(uploadPath + bimg[i], backupPath+bimg[i]);
+					mFile.transferTo(new File(uploadPath + bimg));// 서버에 파일저장
+					boolean isUpload = filecopy(uploadPath + bimg, backupPath+bimg);
+					if(isUpload) {
+						System.out.println("서버에 저장된 파일:" + uploadPath + bimg);
+						System.out.println("복사될 파일: " + backupPath + bimg + "이상 복사 성공");
+					}
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 				}
 			}//if
-			i++;
-		}//while
-		notice.setNcontent(bimg[0]);
-		notice.setNcontent(bimg[1]);
+			
+		//}//if
+		notice.setNcontent(bimg);
+		System.out.println("★ 넘어온 공지 사항  : " + notice);
 		return noticeDao.updateNotice(notice);
 	}
 
 	@Override
 	public Notice getDetailNotice(int nid) {
 		return noticeDao.getDetailNotice(nid);
+	}
+	@Override
+	public int deleteNotice(int nid) {
+		return noticeDao.deleteNotice(nid);
 	}
 	private boolean filecopy(String serverFile, String backupFile) {//파일 복사가 될수도 있고 안될수도
 		boolean isCopy = false;
