@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.adventure.service.QnaService;
+import com.project.adventure.service.WorkerService;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Qna;
@@ -33,16 +34,10 @@ public class QnaController {
 		model.addAttribute("Qna", qnaService.getQna(qno));
 		return "qna/qnaView";
 	}
-	@RequestMapping(value = "qnaView", method = RequestMethod.POST )
-	public String qna_view(Model model,Qna qna) {
-		model.addAttribute("prerely",qnaService.qnaPreReply(qna));
-		model.addAttribute("reply",qnaService.insertQna(qna));
-		return "forward:qnaView.do";
-	}
 	@RequestMapping(value = "passCheck",method = RequestMethod.GET  )
 	public String passCheck( @RequestParam("qno") int qno,Model model, @RequestParam("wid") String wid) {
 		if(wid != "") {
-			return "forward:qnaView.do";
+			return "forward:adminQnaView.do";
 		}else {			
 			model.addAttribute("qno", qno);
 			return "qna/checkPass";
@@ -91,11 +86,17 @@ public class QnaController {
 	    		model.addAttribute("wirteResult",qnaService.insertQna(qna));
 		return "forward:qnaList.do";
 	}
-	/*
-	 * @RequestMapping(value = "qnaReply", method = RequestMethod.GET ) public
-	 * String qnaReply(Model model, int qno) { model.addAttribute("Qna",
-	 * qnaService.getQna(qno)); return "qna/qnaReply"; }
-	 */
+	@RequestMapping(value="adminQnaView", method =RequestMethod.GET)
+	public String adminqna_view (Model model, int qno){		
+		model.addAttribute("Qna", qnaService.getQna(qno));
+		return "qna/adminQnaView";
+	}
+	@RequestMapping(value="adminqnqreply", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminQnaRepSave (Qna qna, Model model ){		
+		model.addAttribute("replyResult",qnaService.qnaPreReply(qna));
+		return "forward:qnaView.do?qno=" + qna.getQno();
+	}
+ 
 	
 	
 

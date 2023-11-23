@@ -21,6 +21,8 @@ CREATE TABLE QNA(
 );
 INSERT INTO QNA (QNO,QTITLE,QCONTENT,QGROUP,QSTEP,QINDENT,MID) VALUES
 (QNA_SEQ.NEXTVAL,'단체관람 할인','동호회 단체관람 예정인데 할인 방법이있나요', QNA_SEQ.CURRVAL,0,0,'one');
+INSERT INTO QNA (QNO,QTITLE,QCONTENT,QGROUP,QSTEP,QINDENT,MID) VALUES
+(QNA_SEQ.NEXTVAL,'단체관람 할인','동호회 단체관람 예정인데 할인 방법이있나요', QNA_SEQ.CURRVAL,0,0,'one');
 SELECT * FROM QNA;
 
 COMMIT;
@@ -87,7 +89,13 @@ INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
 (QNA_SEQ.NEXTVAL,'단체관람 할인','동호회 단체관람 예정인데 할인 방법이있나요','123', QNA_SEQ.CURRVAL,0,0,'Y','one');
 commit;
 COMMIT;
-
+select * from ATTRACTION;
+select * from qna;
+UPDATE QNA SET ISREPLY ='Y',
+                REPLY = '우천시10%할인됩니다',
+                QSTEP = QSTEP+1,
+                QINDENT = QINDENT+1
+                WHERE QNO = 5;
 
 
 

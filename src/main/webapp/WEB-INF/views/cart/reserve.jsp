@@ -23,7 +23,7 @@
 					</p>
 					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
-						onclick="location.href='${conPath}/cart/passTicket.do?type=0&mid=one'">
+						onclick="location.href='${conPath}/cart/passTicket.do?type=0&mid=${member.mid }'">
 				</div>
 			</div>
 			<div class="order_box_text">
@@ -36,7 +36,7 @@
 					</p>
 					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
-						onclick="location.href='${conPath}/cart/fastTicket.do?type=1&mid=one' ">
+						onclick="location.href='${conPath}/cart/fastTicket.do?type=1&mid=${member.mid }' ">
 				</div>
 			</div>
 		</div>

@@ -38,7 +38,7 @@ public class CartController {
 	}
 	@RequestMapping(value = "passTicket", method=RequestMethod.POST)
 	public String register1(Cart cart, Model model) {
-		model.addAttribute("passTicketResult", cartService.registerCart(cart));				
+		model.addAttribute("passTicketResult", cartService.registerCart1(cart));				
 		return "forward:list.do";
 	}
 	@RequestMapping(value="fastTicket", method=RequestMethod.GET)
@@ -49,9 +49,9 @@ public class CartController {
 		return "cart/fastTicket";
 	}
 	@RequestMapping(value = "fastTicket", method=RequestMethod.POST)
-	public String register2(Cart cart, Model model, @RequestParam(value="qname", required=false) String aname) {
-		
-		model.addAttribute("fastTicketResult", cartService.registerCart(cart));				
+	public String register2(Cart cart, Model model,
+							String[] attraction) {
+		model.addAttribute("fastTicketResult", cartService.registerCart2(cart, attraction));				
 		return "forward:list.do";
 	}	
 	

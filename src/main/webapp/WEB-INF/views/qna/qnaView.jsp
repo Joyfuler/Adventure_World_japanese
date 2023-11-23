@@ -32,24 +32,10 @@
 					<th>질문내용</th>
 					<td align="left" style="text-align:left;">${Qna.qcontent}</td>
 				</tr>
-				<c:if test="${not empty Qna.reply} ">
 				<tr>
 					<th>답변 내용</th>
 					<td align="left" style="text-align:left;">${Qna.reply}</td>
-				</tr>				
-				</c:if>
-				<tr>
-					<th>답변 내용</th>
-				<c:if test="${empty Qna.reply} ">
-					<td align="left" style="text-align:left;"><h2>답변없음</h2></td>
-				</c:if>
-				<c:if test="${not empty worker} ">	
-					<th>답변 내용</th>
-					<td align="left" style="text-align:left;font-size:115%;">
-						<textarea rows="8" cols="52" name="reply" ></textarea>
-					</td>
-				</c:if>
-				</tr>				
+				</tr>						
 			</table>
 		</form>
 		<br>
