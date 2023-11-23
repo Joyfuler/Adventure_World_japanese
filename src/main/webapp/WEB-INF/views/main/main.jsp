@@ -62,6 +62,12 @@ $(document).ready(function(){
 		alert('${withdrawalResult eq 1 ? "회원 탈퇴가 완료되었습니다. 이용해 주셔서 감사합니다." : "회원 탈퇴 실패"}');
 	</script>
 </c:if>	
+<c:if test = "${not empty orderComplete }">
+	<script>
+		alert('${orderComplete}');
+	</script>
+</c:if>	
+
 
 <jsp:include page="header.jsp"/>
 <div id = "main_img">

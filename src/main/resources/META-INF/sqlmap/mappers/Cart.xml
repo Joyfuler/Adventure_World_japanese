@@ -18,8 +18,8 @@
 		<result property="visitdate" column="visitdate"/>
 		<result property="mid" column="mid"/>
 	</resultMap>
-	<select id="cartList" parameterType="Cart" resultMap="CartResult">
-		SELECT * FROM CART ORDER BY CRDATE
+	<select id="cartList" parameterType="String" resultMap="CartResult">
+		SELECT * FROM CART WHERE MID = #{mid} ORDER BY CRDATE
 	</select>
 	<select id="totCntCart" resultType="int">
 		SELECT COUNT(*) FROM CART
@@ -64,6 +64,39 @@
 			#{cid}
 		</foreach>
 	</update> 
-	
+	<select id = "getTicketAmountAndPrice" parameterType="int[]" resultType="Cart">
+	        SELECT
+            (SELECT SUM(p1) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 0) AS type0Adult,
+            (SELECT SUM(p2) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 0) AS type0Youth,
+            (SELECT SUM(price1) + SUM(price2) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 0) AS type0Sum,
+            (SELECT SUM(p1) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 1) AS type1Adult,
+            (SELECT SUM(p2) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 1) AS type1Youth,
+            (SELECT SUM(price1) + SUM(price2) FROM cart WHERE cid IN 
+                <foreach collection="array" item="cid" separator="," open="(" close=")">
+                    #{cid}
+                </foreach> 
+            AND type = 1) AS type1Sum
+        FROM dual
+	</select>
 	
 </mapper>

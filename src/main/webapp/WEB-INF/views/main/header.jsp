@@ -38,7 +38,7 @@
 								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
-								<a href="${conPath }/cart/list.do">장바구니</a>
+								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
 								<a href="${conPath }/order/orderList.do">주문내역</a>
 							</div>
 						</div>
@@ -59,7 +59,7 @@
 								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
-								<a href="${conPath }/cart/list.do">장바구니</a>
+								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
 								<a href="${conPath }/order/orderList.do">주문내역</a>
 							</div>
 						</div>

@@ -73,7 +73,7 @@ const autoHyphen = (target) => {
 				alert("입력한 포인트가 현재 포인트를 초과하였습니다.");
 				$(this).val(0);
 				updateMemberPoint();
-			} else if (isNaN(realPointValue) || isNaN(enteredValue)){
+			} else if (isNaN(realPointValue) || isNaN(enteredValue) || enteredValue <0) {
 				alert("포인트는 숫자로 입력해주세요.");
 				$(this).val(0);
 			} else {
@@ -82,11 +82,13 @@ const autoHyphen = (target) => {
 		});	
 		
 		$('.payForMemberPoint').click(function(){
-			
-		});
-		
-		
-	});		
+			var enteredValue = parseInt($('#pointInput').val()) || 0;
+			$('#disCountmemberPoint').text(enteredValue);
+			updateTotalOrderAmount();
+		});		
+	});
+	</script>
+	<script>
 	function updateMemberPoint(realPointValue){
 		var realPointValue = parseInt($('#realPoint').val()) || 0;
 		var enteredValue = parseInt($('#pointInput').val()) || 0;
@@ -99,7 +101,27 @@ const autoHyphen = (target) => {
 			$('#memberPoint').text(result);
 		}
 	}	
-</script>
+	</script>
+	<script>
+	function updateTotalOrderAmount(){
+		var payPreAmt = parseInt($('#payPreAmt').text()) || 0;
+		var disCountmemberPoint = parseInt($('#disCountmemberPoint').text()) || 0;
+		var newTotOrderAmt = payPreAmt - disCountmemberPoint;
+		$('#payPreAmt').text(newTotOrderAmt);
+		alert('총 금액에서 ' + disCountmemberPoint + '원 만큼 할인이 적용되었습니다.');	}		
+	</script>
+	<script>
+		function submitChk(){
+			var chk1 = $('#chkAgr1');
+			var chk2 = $('#chkAgr2');
+			if (!chk1.prop('checked') || !chk2.prop('checked')){
+				alert('필수 동의 약관 사항에 동의해주세요.');
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
 </head>
 <link href="${conPath }/css/order.css" rel="stylesheet">
 <link
@@ -170,7 +192,8 @@ const autoHyphen = (target) => {
 				</div>
 			</div>
 		</div>
-		<form action = "">
+		<form action = "${conPath }/order/orderComplete.do" method = "get">
+		<input type = "hidden" name = "mid" value = "${member.mid }">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="headingTwo">
 				<button class="accordion-button bg-light bg-gradient" type="button"
@@ -180,28 +203,28 @@ const autoHyphen = (target) => {
 		<div id="collapseTwo" class="accordion-collapse collapse show"
 		aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 			<div class="accordion-body">
-				<input type="checkbox" id="afterMid" name="mid" tabindex="1">
+				<input type="checkbox" id="afterMid" tabindex="1">
 				<label for="chkChgUsr">구매자 정보와 동일</label>
 		</div>
 		<div class="input_wrap_visitor">
 			&nbsp; &nbsp; <label>이름 &nbsp; <sup style = "color: red;">*</sup></label> 
-			<input type="hidden" id="visitUserName" name="mname" tabindex="2" value="${member.mname }" style="color: red;"> 
-			<input type="text" id="visitUserName_check" name="mname" tabindex="2"> 
+			<input type="hidden" id="visitUserName" name="oname" tabindex="2" value="${member.mname }" style="color: red;"> 
+			<input type="text" id="visitUserName_check" name="oname" tabindex="2"> 
 			<div class="input_wrap_visitor">
 				&nbsp; &nbsp; <label for="str_email01">이메일 <sup style = "color: red;">*</sup></label>				
-				<input type="hidden" id="visitUserEmail" name = "memail" value = '${member.memail }'
+				<input type="hidden" id="visitUserEmail" name = "omail" value = '${member.memail }'
 				placeholder="email 계정" tabindex="3"> 
-				<input type="text" id="visitUserEmail_check" name = "memail"
+				<input type="text" id="visitUserEmail_check" name = "omail"
 				tabindex="3">					
 			</div>
 			<div class="input_wrap_visitor">
 				<div class="cellPhone">
 				&nbsp; &nbsp; <label for="phone">휴대폰 <sup style = "color: red;">*</sup>
 					</label>
-					<input type="hidden" id = "visitUserPhone" name = "mphone" placeholder="휴대폰 번호를 입력하세요" tabindex="7"
+					<input type="hidden" id = "visitUserPhone" name = "ophone" placeholder="휴대폰 번호를 입력하세요" tabindex="7"
 						value = "${member.mphone }"> 
 					<input type="text" id="visitUserPhone_check"
-						placeholder = "전화번호 입력" tabindex="7" name = "mphone"
+						placeholder = "전화번호 입력" tabindex="7" name = "ophone"
 						oninput="autoHyphen(this)" maxlength="13s">
 				</div>
 			</div>	
@@ -230,7 +253,7 @@ const autoHyphen = (target) => {
 					<div class = "memberPoint">					
 					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "1000">							
-					<input type="text" id="pointInput" name = "mpoint" disabled="disabled">
+					<input type="text" id="pointInput" name = "ompoint" disabled="disabled">
 					<input type="button" value = "포인트사용" class = "payForMemberPoint">
 					<br><br>
 					</div>					
@@ -245,7 +268,7 @@ const autoHyphen = (target) => {
 				결제방식 선택
 			</button>
 		</h2>
-		<div id="collapseFour" class="accordion-collapse collapse"
+		<div id="collapseFour" class="accordion-collapse collapse show"
 			aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 			<br>						
 			<div class="itemTit" style = "padding-left: 10px;">
@@ -254,10 +277,10 @@ const autoHyphen = (target) => {
 			</div>			
 				<div class="pay-check-list" style = "padding-left: 10px;">
 					<p class="checks">
-						<input type="radio" name="payment" class="kakaopay" id="payment1" checked = "checked">
+						<input type="radio" name="payment" value="kakaopay" id="payment1" checked = "checked">
 							<label for="payment1">
 							<img src = "${conPath }/images/kakaopay.png" style = "height:25px;">카카오페이</label>					
-						&nbsp; &nbsp; <input type="radio" name="payment" class="naverPay" id="payment2">
+						&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment2">
 							<label for="payment2">
 							<img src = "${conPath }/images/naverpay.png" style = "height:25px;">네이버페이</label>
 					</p>
@@ -280,28 +303,25 @@ const autoHyphen = (target) => {
 					<div class="payWrap">
 					<strong>구매예정 내역</strong>
 						<div class="amountWrap">
-							<div class="totalOrder">
-							${orderList }
+							<div class="totalOrder">							
 							<c:forEach var="orders" items="orderList"></c:forEach>
-								<ul>
-									<li> 자유이용권 ( 어른 : ? 매 / 청소년 : ? 매)
-									<span class="price1"> 
-									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
-									<input type="hidden" name="ticketTotCnt" value="1">
-									<input type="hidden" name="ticketGoodsName"
-									value="어른">								
+								<ul>								
+									<c:if test = "${amountInfo.type0sum != 0 }">
+									<li> 자유이용권 ( 어른 : ${amountInfo.type0adult } 매 / 청소년 : ${amountInfo.type0youth } 매)
+									<span> 
+										합 계 ( ${amountInfo.type0sum })원			
 									</span>
 									</li>
-									<li> 패스트티켓  (어른 : ? 매 / 청소년 : ? 매)
-									<span class="price1"> 
-									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
-									<input type="hidden" name="ticketTotCnt" value="1">
-									<input type="hidden" name="ticketGoodsName"
-									value="어른">								
+									</c:if>
+									<c:if test = "${amountInfo.type1sum != 0 }">
+									<li> 패스트티켓  (어른 : ${amountInfo.type1adult } 매 / 청소년 : ${amountInfo.type1youth } 매)
+									<span> 
+										합 계 ( ${amountInfo.type1sum })원
 									</span>
 									</li>
+									</c:if>
 									<li class="total">총 주문금액 <span class="price">
-									<b id="totOrderAmt">25,000</b> 원
+									<b id="totOrderAmt">${amountInfo.type0sum + amountInfo.type1sum }</b> 원
 									</span>
 									</li>
 								</ul>
@@ -317,7 +337,8 @@ const autoHyphen = (target) => {
 							<div class="scheduledPay">
 								<div class="total">
 									결제예정금액 
-									<span class="price"> <b id="payPreAmt">25,000</b> 원</span>
+									<span class="price"> <b id="payPreAmt">
+									${amountInfo.type0sum + amountInfo.type1sum }</b> 원</span>
 								</div>
 							</div>
 						</div>				
@@ -340,7 +361,7 @@ const autoHyphen = (target) => {
 						</div>
 						<div class="group">
 							<input type="checkbox" name="chkAgr4" id="chkAgr4" tabindex="15">
-							<label for="chkAgr4">개인정보 제3자 제공 동의 <span
+							<label for="chkAgr3">개인정보 제3자 제공 동의 <span
 								id="hspanAgreePrivacyCmt" class="txtColorType03">(선택)</span></label>					
 						</div>
 					</div>

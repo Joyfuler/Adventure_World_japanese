@@ -21,4 +21,10 @@ public class Cart {
 	public int startRow;
 	public int endRow;
 	public String mid;
+	public int type0adult;
+	public int type0youth;
+	public int type0sum;
+	public int type1adult;
+	public int type1youth;
+	public int type1sum;
 }

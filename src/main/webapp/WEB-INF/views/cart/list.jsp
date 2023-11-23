@@ -65,13 +65,13 @@
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
-<form action="${conPath }/cart/orderList.do" method="get">
+<form action="${conPath }/order/orderForm.do" method="get">
 <input type = "hidden" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
 	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">장바구니</h3>
-	            <br><h1 style="font-size: 15px; text-align:center;">${message}</h1>
+	            <br><h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 장바구니 목록입니다</h1>
 	        </div>
 	    </div>  
 	     <div class="board-list">
@@ -100,6 +100,14 @@
 		                </tr>
               	  </thead>
                		<tbody>
+               	<c:if test = "${empty cartList }">
+               		<tr>
+               			<td colspan = "10">
+               		<strong> 장바구니에 추가한 목록이 없습니다.</strong>	
+               			</td>
+               		</tr>
+               	</c:if>
+               	<c:if test = "${not empty cartList }">		
 				<c:forEach var="dto" items="${cartList }">
 					 <tr>
 	                	<td><fmt:formatDate value="${dto.crdate}" type="date"/></td>
@@ -145,6 +153,7 @@
 	                </tr>
                 
 	          	</c:forEach>
+	          </c:if>	
                 </tbody>
             </table>
             	 <div class="mypage-btn-dede-wrap">

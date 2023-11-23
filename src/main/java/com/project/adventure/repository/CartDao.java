@@ -8,7 +8,7 @@ import com.project.adventure.vo.Cart;
 
 @Mapper
 public interface CartDao {
-	public List<Cart> cartList(Cart cart);
+	public List<Cart> cartList(String mid);
 	public int totCntCart(Cart cart);
 	public Cart getDetailCart(int cid);
 	public int registerCart1(Cart cart);
@@ -17,4 +17,5 @@ public interface CartDao {
 	public int deleteCart(int cid);	
 	public List<Cart> toOrderList(int[] cid);
 	public void updateResult(int[] cid);
+	public Cart getTicketAmountAndPrice(int[] cid);
 }

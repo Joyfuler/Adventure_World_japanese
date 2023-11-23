@@ -3,6 +3,8 @@ package com.project.adventure.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class CartServiceImpl implements CartService {
 @Autowired
 private CartDao cartDao;
 	@Override
-	public List<Cart> cartList(Cart cart) {
-		return cartDao.cartList(cart);
+	public List<Cart> cartList(String mid) {
+		return cartDao.cartList(mid);
 	}
 
 	@Override
@@ -95,7 +97,22 @@ private CartDao cartDao;
 	public void updateResult(int[] cid) {
 		cartDao.updateResult(cid);
 	}
+
+	@Override
+	public Cart getTicketAmountAndPrice(int[] cid) {
+		return cartDao.getTicketAmountAndPrice(cid);
+	}
+
+	@Override
+	public void cidsAdd(int[] cid, HttpSession session) {
+		ArrayList<Integer> cids = new ArrayList<Integer>();
+		for (int id : cid) {
+			cids.add(id);
+		}
+		session.setAttribute("cids", cids);
+	}
 	
 	
+
 	
 }

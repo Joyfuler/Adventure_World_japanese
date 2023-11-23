@@ -23,8 +23,8 @@ public class CartController {
 	@Autowired
 	private AttractionService attractionService;
 	@RequestMapping(value = "list",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(Cart cart, Model model) {
-		model.addAttribute("cartList",cartService.cartList(cart));
+	public String list(String mid, Model model) {
+		model.addAttribute("cartList",cartService.cartList(mid));
 		return "cart/list";
 	}
 	@RequestMapping(value="reserve", method=RequestMethod.GET)
@@ -59,13 +59,6 @@ public class CartController {
 	public String delete(int[] cid, Model model ) {
 		model.addAttribute("deleteResult", cartService.deleteCart(cid));
 		return "forward:list.do";
-	}
-	
-	@RequestMapping(value = "orderList", method = RequestMethod.GET)
-	public String orderList(int[] cid, Model model) {
-		model.addAttribute("orderList", cartService.toOrderList(cid));
-		return "order/orderList";
-		
-	}
+	}	
 }
 	

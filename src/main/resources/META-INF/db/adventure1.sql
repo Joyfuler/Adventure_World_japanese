@@ -10,8 +10,10 @@ DROP SEQUENCE EVENT_SEQ;
 DROP TABLE EVENT;
 DROP SEQUENCE PARADE_SEQ;
 DROP TABLE PARADE;
-SELECT * FROM MEMBER;
-SELECT * FROM CART;
+DROP TABLE ORDER_LIST;
+DROP SEQUENCE ORDER_SEQ;
+DROP TABLE ORDER_DETAIL;
+DROP SEQUENCE ORDER_DETAIL_SEQ;
 -- 2. CREATE TABLE
 CREATE TABLE MEMBER
 (
@@ -48,15 +50,27 @@ CREATE TABLE CART(
 );
 
 select A.*, (A.OP1 * A.OPRICE1 * OTYPE) AS FREE_TOTAL_ADULT,
-(A.OP2 * A.OPRICE2 * OTYPE
+(A.OP2 * A.OPRICE2 * OTYPE)
 from order_list A where cid in (3,4);
 
 SELECT * FROM CART;
 select * from member;
 
+
 CREATE SEQUENCE ORDER_LIST_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE ORDER_LIST(
-    OID NUMBER(10) PRIMARY KEY,
+    OID NUMBER(5) PRIMARY KEY,    
+    ONAME VARCHAR2(50) NOT NULL,
+    OMAIL VARCHAR2(50) NOT NULL,
+    OPHONE VARCHAR2(50) NOT NULL,
+    ODATE DATE DEFAULT SYSDATE,
+    OMPOINT NUMBER(10),
+    MID VARCHAR2 (20) REFERENCES MEMBER(MID)
+);
+select * from order_list;
+CREATE SEQUENCE ORDER_DETAIL_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE ORDER_DETAIL(
+    ODID NUMBER(10) PRIMARY KEY,
     OP1 NUMBER(10),
     OP2 NUMBER(10),
     OTYPE NUMBER(2),
@@ -68,11 +82,15 @@ CREATE TABLE ORDER_LIST(
     ORESULT NUMBER(1),
     OCRDATE DATE DEFAULT SYSDATE,
     OVISITDATE DATE DEFAULT SYSDATE,
-    MID VARCHAR2 (20) REFERENCES MEMBER (MID) NOT NULL,
-    CID NUMBER(10) REFERENCES CART (CID) NOT NULL
-    
+    OID NUMBER(5) REFERENCES ORDER_LIST (OID) NOT NULL     
 );
 SELECT * FROM ORDER_LIST;
+SELECT MAX(OID) FROM ORDER_LIST;
+SELECT * FROM ORDER_LIST;
+SELECT * FROM ORDER_DETAIL;
+
+select * from member;
+SELECT * FROM CART;
 CREATE SEQUENCE BANNER_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE BANNER(
     BNO NUMBER(5) PRIMARY KEY,
@@ -120,13 +138,12 @@ CREATE TABLE PARADE(
 -- 3. Member Query
 
 -- 1) 회원가입 joinMember
-select * from member;
     INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
     MADDRESS1, MADDRESS2, MADDRESS3)
     VALUES
     ('KIM', '1234', '김나리', '010-2525-3535', 'acc@ac.com',
     '133-100', '서울시 성동구 성수동', '1번지 21호');
-    commit;
+    
 -- 2) 회원정보수정 modifyMember
 UPDATE MEMBER SET MPW = '222', 
     MNAME = '김김김',
@@ -144,11 +161,10 @@ UPDATE MEMBER SET MPW = '222',
     UPDATE MEMBER SET MLEVEL = '0' WHERE MID = 'one';
 
 -- 5) 회원 장바구니 목록 cartList
-select * from cart;
     SELECT * FROM 
     (SELECT ROWNUM RN, A.* FROM
     (SELECT * FROM CART WHERE MID = 'one' ORDER BY CRDATE DESC) A) 
-    WHERE RN BETWEEN 50 AND 200;
+    WHERE RN BETWEEN 1 AND 2;
 
 -- 6) 회원 주문내역 orderList
     SELECT * FROM 
@@ -202,8 +218,10 @@ select * from cart where cid in (3,4,7) and type=0;
 select count(*) type0Cnt, sum(price1)+sum(price2) type0Sum from cart where cid in (3,4,7) and type=0;
 select count(*) type0Cnt, sum(price1)+sum(price2) type1Sum from cart where cid in (3,4,7) and type=1;
 select 
-    (select count(*) from cart where cid in (3,4,7) and type=0) type0Cnt,
+    (select sum(p1) from cart where cid in (3,4,7) and type =0) type0adult,
+    (select sum(p2) from cart where cid in (3,4,7) and type =0) type0youth,    
     (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=0) type0Sum,
-    (select count(*) from cart where cid in (3,4,7) and type=1) type1Cnt,
+    (select sum(p1) from cart where cid in (3,4,7) and type =1) type1adult,
+    (select sum(p2) from cart where cid in (3,4,7) and type =1) type1youth,    
     (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=1) type1Sum
     from dual;

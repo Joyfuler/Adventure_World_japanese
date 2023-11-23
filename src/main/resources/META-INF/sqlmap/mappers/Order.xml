@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.adventure.repository.OrderDao">
+	<insert id="ordersInfoInsert" parameterType="Order">
+		<![CDATA[
+    INSERT INTO ORDER_LIST (OID, ONAME, OMAIL, OPHONE, MID)
+    VALUES (TO_CHAR(SYSDATE, 'RRMMDD')||TRIM(TO_CHAR(ORDER_LIST_SEQ.NEXTVAL, '000')), 
+            #{oname}, #{omail}, #{ophone}, #{mid}
+		]]>
+	</insert>
+</mapper>
