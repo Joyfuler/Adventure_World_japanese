@@ -1,5 +1,6 @@
 package com.project.adventure.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.adventure.repository.CartDao;
 import com.project.adventure.vo.Cart;
+import com.project.adventure.vo.Order;
 @Service
 public class CartServiceImpl implements CartService {
 @Autowired
@@ -61,4 +63,16 @@ private CartDao cartDao;
 		return result;
 	}
 
+	@Override
+	public List<Cart> toOrderList(int[] cid) {		
+		return cartDao.toOrderList(cid);
+	}
+
+	@Override
+	public void updateResult(int[] cid) {
+		cartDao.updateResult(cid);
+	}
+	
+	
+	
 }

@@ -79,7 +79,13 @@ const autoHyphen = (target) => {
 			} else {
 				updateMemberPoint();
 			}			
-		});		
+		});	
+		
+		$('.payForMemberPoint').click(function(){
+			
+		});
+		
+		
 	});		
 	function updateMemberPoint(realPointValue){
 		var realPointValue = parseInt($('#realPoint').val()) || 0;
@@ -128,9 +134,7 @@ const autoHyphen = (target) => {
 			style="background-color: #5c10e6; color: white;">
 			<h3	style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align: center;">이용권 결제 페이지</h3>
 		</div>
-		<br><br>
-		${orderList }
-		
+		<br><br>		
 	</div>
 	<div class="accordion" id="accordionExample">
 		<div class="accordion-item">
@@ -227,7 +231,7 @@ const autoHyphen = (target) => {
 					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "1000">							
 					<input type="text" id="pointInput" name = "mpoint" disabled="disabled">
-					<input type="button" value = "포인트사용">
+					<input type="button" value = "포인트사용" class = "payForMemberPoint">
 					<br><br>
 					</div>					
 		</div>
@@ -274,10 +278,21 @@ const autoHyphen = (target) => {
 						<br><br>
 					</div>
 					<div class="payWrap">
+					<strong>구매예정 내역</strong>
 						<div class="amountWrap">
 							<div class="totalOrder">
+							${orderList }
+							<c:forEach var="orders" items="orderList"></c:forEach>
 								<ul>
-									<li>어른 X 1
+									<li> 자유이용권 ( 어른 : ? 매 / 청소년 : ? 매)
+									<span class="price1"> 
+									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
+									<input type="hidden" name="ticketTotCnt" value="1">
+									<input type="hidden" name="ticketGoodsName"
+									value="어른">								
+									</span>
+									</li>
+									<li> 패스트티켓  (어른 : ? 매 / 청소년 : ? 매)
 									<span class="price1"> 
 									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
 									<input type="hidden" name="ticketTotCnt" value="1">
@@ -293,8 +308,8 @@ const autoHyphen = (target) => {
 							</div>
 							<div class="totalDiscount">
 								<ul>									
-									<li id="discntDpPnt" style="display: none;">포인트사용
-									<span class="price"><b id="pntAmtDp">0</b> 원</span>
+									<li id="discntDpPnt">포인트사용
+									<span class="price"><b id="disCountmemberPoint">0</b> 원</span>
 									</li>									
 								
 								</ul>

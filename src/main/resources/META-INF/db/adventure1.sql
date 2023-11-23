@@ -10,10 +10,8 @@ DROP SEQUENCE EVENT_SEQ;
 DROP TABLE EVENT;
 DROP SEQUENCE PARADE_SEQ;
 DROP TABLE PARADE;
-DROP TABLE ORDER_LIST;
-DROP SEQUENCE ORDER_LIST_SEQ;
-
-
+SELECT * FROM MEMBER;
+SELECT * FROM CART;
 -- 2. CREATE TABLE
 CREATE TABLE MEMBER
 (
@@ -48,6 +46,13 @@ CREATE TABLE CART(
     MID VARCHAR2 (20)
     REFERENCES MEMBER(MID) NOT NULL
 );
+
+select A.*, (A.OP1 * A.OPRICE1 * OTYPE) AS FREE_TOTAL_ADULT,
+(A.OP2 * A.OPRICE2 * OTYPE
+from order_list A where cid in (3,4);
+
+SELECT * FROM CART;
+select * from member;
 
 CREATE SEQUENCE ORDER_LIST_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE ORDER_LIST(
@@ -191,4 +196,12 @@ VALUES (PARADE_SEQ.NEXTVAL, '카니발 판타지 퍼레이드', '브라질의 �
 		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade1.jpg','paradeDetail1');
 commit;
 
-
+select * from cart where cid in (3,4,7) and type=0;
+select count(*) type0Cnt, sum(price1)+sum(price2) type0Sum from cart where cid in (3,4,7) and type=0;
+select count(*) type0Cnt, sum(price1)+sum(price2) type1Sum from cart where cid in (3,4,7) and type=1;
+select 
+    (select count(*) from cart where cid in (3,4,7) and type=0) type0Cnt,
+    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=0) type0Sum,
+    (select count(*) from cart where cid in (3,4,7) and type=1) type1Cnt,
+    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=1) type1Sum
+    from dual;

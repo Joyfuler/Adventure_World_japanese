@@ -3,6 +3,7 @@ package com.project.adventure.service;
 import java.util.List;
 
 import com.project.adventure.vo.Cart;
+import com.project.adventure.vo.Order;
 
 public interface CartService {
 	public List<Cart> cartList(Cart cart);	
@@ -11,4 +12,6 @@ public interface CartService {
 	public int registerCart(Cart cart);
 	public int modifyBCart(Cart cart);
 	public int deleteCart(int[] cid);
+	public List<Cart> toOrderList(int[] cid);
+	public void updateResult(int[] cid);
 }

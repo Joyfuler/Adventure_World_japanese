@@ -65,7 +65,7 @@
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
-<form action="${conPath }/order/orderList.do" method="get">
+<form action="${conPath }/cart/orderList.do" method="get">
 <input type = "hidden" name="" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
@@ -80,7 +80,7 @@
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold;
 								color:#5c10e6;">
-						<li><a href='orderList'>주문내역 이동 </a></li>
+						<li><a href='${conPath }/cart/orderList'>주문내역 이동 </a></li>
 					</ul>
 					</nav>
 		    	</div>
