@@ -12,4 +12,5 @@ public interface NoticeService {
 	public int insertNotice(MultipartHttpServletRequest mRequest, Notice notice);
 	public int updateNotice(MultipartHttpServletRequest mRequest, Notice notice);
 	public Notice getDetailNotice(int nid);
+	public int deleteNotice(int nid);
 }

@@ -21,8 +21,12 @@
 		<div class="event06"><fmt:formatDate value="${notice.nrdate}" type="date"/></div>
 	</div>
 	<div class="event08">
-		<img src="images/notice_images/${notice.ncontent}" width="1150px"/>
+		<img src="${conPath }/noticeImg/${notice.ncontent}" width="1150px"/>
+		<div class="event-text">
+        	<h3 style="text-align: center;">${notice.ntext}</h3>
+    	</div>
 	</div>
+	
 	<div class="event09">
 		<div class="event10">
 	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/worker/list.do'">
@@ -30,6 +34,7 @@
 	   		<input type="button" value="삭 제" class="btn" onclick="location.href='${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }'">
 		</div>
 	</div>
+</div>
 <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

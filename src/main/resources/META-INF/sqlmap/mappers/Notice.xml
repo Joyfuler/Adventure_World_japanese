@@ -25,16 +25,20 @@
 		SELECT * FROM NOTICE WHERE NID=#{nid}
 	</select>
 	<insert id="insertNotice" parameterType="Notice">
-		INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NRDATE)
-    VALUES(NOTICE_SEQ.NEXTVAL, #{ntitle}, #{ncontent}, SYSDATE )
-	</insert >
+		INSERT INTO NOTICE (NID, NTITLE, NCONTENT,NTEXT, NRDATE)
+    VALUES(NOTICE_SEQ.NEXTVAL, #{ntitle}, #{ncontent},#{ntext}, SYSDATE )
+	</insert>
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE SET
         NTITLE = #{ntitle},
         NCONTENT = #{ncontent},
+        NTEXT = #{ntext},
         NRDATE = SYSDATE,
     WHERE NID=#{nid}
 	</update>
+	<delete id="deleteNotice" parameterType="int">
+		DELETE FROM NOTICE WHERE NID=#{nid}
+	</delete>
 	
 	
 </mapper>

@@ -10,6 +10,7 @@ public class Notice {
 	private int nid;
 	private String ntitle;
 	private String ncontent;
+	private String ntext;
 	private Timestamp nrdate;
 	private String wid;
 	// top-N구문에서 필요한 필드

@@ -49,41 +49,5 @@ public class WorkerController {
 		model.addAttribute("logoutResult", "로그아웃 되었습니다.");		
 		return "forward:../main.do";
 	}
-/************worker공지사항****************/
-	@RequestMapping(value="list" , method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(String pageNum, Notice notice, Model model) {
-		model.addAttribute("notice", noticeService.noticeList(pageNum, notice));
-		model.addAttribute("paging", new Paging(noticeService.totCntNotice(notice), pageNum, 5, 5));
-		return "worker/workerNotice";
-	}
-	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public String detail(int nid, Model model) {
-		model.addAttribute("notice", noticeService.getDetailNotice(nid));
-		return "worker/workerNoticeDetail";
-	}
-	@RequestMapping(value="insert", method=RequestMethod.GET)
-	public String insert() {
-		return "worker/workerNoticeInsert";
-	}
-	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public String insert(MultipartHttpServletRequest mRequest, Notice notice, Model model) {
-		model.addAttribute("insertResult", noticeService.insertNotice(mRequest, notice));
-		return "forward:list.do";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
