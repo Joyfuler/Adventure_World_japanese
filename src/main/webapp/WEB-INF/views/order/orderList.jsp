@@ -79,7 +79,13 @@ const autoHyphen = (target) => {
 			} else {
 				updateMemberPoint();
 			}			
-		});		
+		});	
+		
+		$('.payForMemberPoint').click(function(){
+			
+		});
+		
+		
 	});		
 	function updateMemberPoint(realPointValue){
 		var realPointValue = parseInt($('#realPoint').val()) || 0;
@@ -110,15 +116,25 @@ const autoHyphen = (target) => {
 	<c:if test = "${empty member }">
 		<script>
 		alert('로그인 후 이용 가능합니다.');
-		location.href='${conPath}/main.do';
+		location.href='${conPath}/member/loginMember.do';
 		</script>
 	</c:if>		
+	<c:if test = '${not empty orderAddMsg }'>
+		<script>
+			alert('${orderAddMsg}');
+		</script>
+	</c:if>	
+	<c:if test = "${not empty orderList }">
+		<script>
+			alert('${orderList}');
+		</script>
+	</c:if>	
 	<div class="page-title" style="text-align: center; font-weight: bold;">
 		<div class="container"
 			style="background-color: #5c10e6; color: white;">
 			<h3	style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align: center;">이용권 결제 페이지</h3>
 		</div>
-		<br><br>
+		<br><br>		
 	</div>
 	<div class="accordion" id="accordionExample">
 		<div class="accordion-item">
@@ -212,11 +228,12 @@ const autoHyphen = (target) => {
 					<label>멤버십 포인트로 할인받기 </label>
 					<br><br>
 					<div class = "memberPoint">					
-					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em>P)</span>
+					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "1000">							
 					<input type="text" id="pointInput" name = "mpoint" disabled="disabled">
-					<input type="button" value = "포인트사용">
-					</div>	
+					<input type="button" value = "포인트사용" class = "payForMemberPoint">
+					<br><br>
+					</div>					
 		</div>
 	</div>
 	<!--  여기서부터 -->
@@ -256,14 +273,26 @@ const autoHyphen = (target) => {
 							· 카카오페이는 카카오톡에 개인 신용/체크 카드를 등록하여 간단하게 비밀번호 만으로 결제할 수 있는 모바일
 							결제 서비스 입니다. 등록 시 휴대폰과 카드 명의자가 동일해야 합니다.<br> · 무이자 할부 서비스
 							및 신용카드 전용쿠폰 서비스는 이용이 제한 됩니다.<br> · 카카오머니로 결제 시, 현금영수증
-							발급은 (주)카카오페이에서 발급 가능합니다.<br>
+							발급은 (주)카카오페이에서 발급 가능합니다.							
 						</div>
+						<br><br>
 					</div>
-					<div class="payWrap ">
+					<div class="payWrap">
+					<strong>구매예정 내역</strong>
 						<div class="amountWrap">
 							<div class="totalOrder">
+							${orderList }
+							<c:forEach var="orders" items="orderList"></c:forEach>
 								<ul>
-									<li>어른 X 1
+									<li> 자유이용권 ( 어른 : ? 매 / 청소년 : ? 매)
+									<span class="price1"> 
+									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
+									<input type="hidden" name="ticketTotCnt" value="1">
+									<input type="hidden" name="ticketGoodsName"
+									value="어른">								
+									</span>
+									</li>
+									<li> 패스트티켓  (어른 : ? 매 / 청소년 : ? 매)
 									<span class="price1"> 
 									<input type="hidden" name="ticketTotPrice" value="25000.00000">									
 									<input type="hidden" name="ticketTotCnt" value="1">
@@ -279,8 +308,8 @@ const autoHyphen = (target) => {
 							</div>
 							<div class="totalDiscount">
 								<ul>									
-									<li id="discntDpPnt" style="display: none;">포인트사용
-									<span class="price"><b id="pntAmtDp">0</b> 원</span>
+									<li id="discntDpPnt">포인트사용
+									<span class="price"><b id="disCountmemberPoint">0</b> 원</span>
 									</li>									
 								
 								</ul>

@@ -51,6 +51,19 @@
 		       WHERE CID=#{cid}
 	</update>
 	<delete id="deleteCart" parameterType="int">
-    DELETE FROM CART WHERE CID =#{cid}
+    	DELETE FROM CART WHERE CID =#{cid}
 	</delete>
+	<select id = "toOrderList" parameterType = "int[]" resultMap = "CartResult">
+		SELECT * FROM CART WHERE CID IN
+			<foreach collection = "array" item = "cid" open= "(" separator="," close = ")">
+				#{cid}
+			</foreach>
+	</select>
+	<update id = "updateResult" parameterType = "int[]">
+		<foreach collection="array" item = "cid" open = "UPDATE CART SET RESULT =1 WHERE CID IN (" separator = "," close = ")">
+			#{cid}
+		</foreach>
+	</update> 
+	
+	
 </mapper>

@@ -17,8 +17,7 @@
 				<div class="order_box_text_content">★자유이용권★<br>
 					<p style="line-height:23px; font-size:16px;">
 						어른 53,000원<br>
-						청소년 45,000원<br>
-						어린이 30,000원<br>
+						청소년 45,000원<br>						
 					</p>
 					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
@@ -30,8 +29,7 @@
 				<div class="order_box_text_content">★패스트패스★<br>
 					<p style="line-height:23px; font-size:16px;">
 						어른 110,000원<br>
-						청소년 90,000원<br>
-						어린이 70,000원<br>
+						청소년 90,000원<br>						
 					</p>
 					<!-- mid 수정해야함 -->
 					<input type="button" value="예매하기" class="order_box_text_button" 
