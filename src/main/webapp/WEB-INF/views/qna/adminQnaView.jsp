@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 function go_reply(qno){
-	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'$wid=${worer.mid}';
+	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'&wid=${worer.mid}&pageNum=${param.PageNum }';
 	document.frm.submit();
 }
 </script>
@@ -60,10 +60,10 @@ function go_reply(qno){
 			<c:choose>
 				<c:when test='${Qna.isreply=="N" }'>
 					<input type="button" style="padding :0;" class="purpleBtn" value="저장" onClick="go_reply(${Qna.qno})">
-					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do'">
+					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.PageNum }'">
 				</c:when>
 				<c:otherwise>
-					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do'">
+					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.PageNum }'">
 				</c:otherwise>
 			</c:choose>
 		</div>
