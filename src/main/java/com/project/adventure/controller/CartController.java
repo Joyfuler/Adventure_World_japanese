@@ -60,5 +60,12 @@ public class CartController {
 		model.addAttribute("deleteResult", cartService.deleteCart(cid));
 		return "forward:list.do";
 	}
+	
+	@RequestMapping(value = "orderList", method = RequestMethod.GET)
+	public String orderList(int[] cid, Model model) {
+		model.addAttribute("orderList", cartService.toOrderList(cid));
+		return "order/orderList";
+		
+	}
 }
 	

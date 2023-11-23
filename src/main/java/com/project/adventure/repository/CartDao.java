@@ -14,5 +14,7 @@ public interface CartDao {
 	public int registerCart1(Cart cart);
 	public int registerCart2(Cart cart);
 	public int modifyBCart(Cart cart);
-	public int deleteCart(int cid);
+	public int deleteCart(int cid);	
+	public List<Cart> toOrderList(int[] cid);
+	public void updateResult(int[] cid);
 }
