@@ -12,6 +12,7 @@
 <article>
 <jsp:include page="../main/header.jsp"/>
 <div class="qna">
+<input type="text" value="${param.pageNum }"> 
 	<div class="qnaimg" style="background-image:url('images/qnaaa.png');"></div>
 	<div class="qnaBox">
 		<h2>QnA 게시판</h2>
@@ -44,9 +45,6 @@
 				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
 			<input type="button"  value="돌아가기"  class="purpleBtn" style="border:none;"
 				onclick="history.back()">
-			<c:if test="${not empty worker }">
-  				<input type="submit"  value="답변달기"  class="purpleBtn" style="border:none;">
-		    </c:if>
 		</div>
 		<br>
 	</div>

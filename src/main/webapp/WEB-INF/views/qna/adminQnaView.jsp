@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 function go_reply(qno){
-	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno;
+	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'$wid=${worer.mid}';
 	document.frm.submit();
 }
 </script>
