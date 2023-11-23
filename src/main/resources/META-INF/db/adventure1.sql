@@ -120,12 +120,13 @@ CREATE TABLE PARADE(
 -- 3. Member Query
 
 -- 1) 회원가입 joinMember
+select * from member;
     INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
     MADDRESS1, MADDRESS2, MADDRESS3)
     VALUES
     ('KIM', '1234', '김나리', '010-2525-3535', 'acc@ac.com',
     '133-100', '서울시 성동구 성수동', '1번지 21호');
-    
+    commit;
 -- 2) 회원정보수정 modifyMember
 UPDATE MEMBER SET MPW = '222', 
     MNAME = '김김김',
@@ -143,10 +144,11 @@ UPDATE MEMBER SET MPW = '222',
     UPDATE MEMBER SET MLEVEL = '0' WHERE MID = 'one';
 
 -- 5) 회원 장바구니 목록 cartList
+select * from cart;
     SELECT * FROM 
     (SELECT ROWNUM RN, A.* FROM
     (SELECT * FROM CART WHERE MID = 'one' ORDER BY CRDATE DESC) A) 
-    WHERE RN BETWEEN 1 AND 2;
+    WHERE RN BETWEEN 50 AND 200;
 
 -- 6) 회원 주문내역 orderList
     SELECT * FROM 

@@ -27,9 +27,9 @@ private CartDao cartDao;
 	public Cart getDetailCart(int cid) {
 		return cartDao.getDetailCart(cid);
 	}
-
+	
 	@Override
-	public int registerCart(Cart cart) {	
+	public int registerCart1(Cart cart) {	
 		switch (cart.type) {
 	    case 0:
 
@@ -44,9 +44,32 @@ private CartDao cartDao;
 	    	cart.setType(1);
 	        break;
 		}
-		
-		
-		return cartDao.registerCart(cart);
+		return cartDao.registerCart1(cart);
+	}
+	
+	@Override
+	public int registerCart2(Cart cart, String[] attracion) {	
+		switch (cart.type) {
+	    case 0:
+
+	    	cart.setPrice1(cart.p1 * 53000);
+	    	cart.setPrice2(cart.p2 * 30000);
+	    	cart.setType(0);
+	        break;
+	    case 1:
+
+	    	cart.setPrice1(cart.p1 * 110000);
+	    	cart.setPrice2(cart.p2 * 70000);
+	    	cart.setType(1);
+	        break;
+		}
+		int result = 0;
+		for(String aname : attracion) {
+			cart.setAtname1(attracion[0]);	
+			cart.setAtname2(attracion[1]);
+			cart.setAtname3(attracion[2]);
+		}
+		return cartDao.registerCart2(cart);
 	}
 
 	@Override

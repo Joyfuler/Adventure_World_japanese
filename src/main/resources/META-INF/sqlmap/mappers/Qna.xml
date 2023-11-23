@@ -40,10 +40,13 @@
 			UPDATE QNA SET QSTEP = QSTEP+1 WHERE QGROUP = #{qgroup} AND QSTEP > #{qstep}
 		]]>
 	</update>
-	<insert id="qnaPreReply" parameterType="Qna">
-		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, #{qgroup}, ${qstep}+1, #{qindent}+1,#{qpwchk},#{mid})
-	</insert>
+	<update id="qnaPreReply" parameterType="Qna">
+		UPDATE QNA SET ISREPLY ='Y',
+                REPLY = #{reply},
+                QSTEP = QSTEP+1,
+                QINDENT = QINDENT+1
+                WHERE QNO = #{qno}
+	</update>
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
 		<if test="schWord=='' or schWord==null">
 			select count(*) from QNA

@@ -10,8 +10,9 @@ import com.project.adventure.vo.Cart;
 public interface CartDao {
 	public List<Cart> cartList(Cart cart);
 	public int totCntCart(Cart cart);
-	public Cart getDetailCart(int cid);	
-	public int registerCart(Cart cart);
+	public Cart getDetailCart(int cid);
+	public int registerCart1(Cart cart);
+	public int registerCart2(Cart cart);
 	public int modifyBCart(Cart cart);
 	public int deleteCart(int cid);	
 	public List<Cart> toOrderList(int[] cid);

@@ -11,12 +11,12 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 	function cartdelete () {
-	var checkboxes = document.getElementsByName('cid');
+	var cid = document.getElementsByName('cid');
 	var url = '${conPath}/cart/delete.do?';
 	var cnt=0;
-	for(let i=0; i<checkboxes.length; i++){
-		if(checkboxes[i].checked){
-			var cid = checkboxes[i].value;
+	for(let i=0; i<cid.length; i++){
+		if(cid[i].checked){
+			var cid = cid[i].value;
 			url += 'cid='+cid+'&';
 			cnt++; 
 		}
