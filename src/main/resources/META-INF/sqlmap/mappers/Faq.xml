@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.adventure.repository.FaqDao">
+	<resultMap type="Faq" id="FaqResult">
+		<result property="fno" column="fno"/>
+		<result property="ftitle" column="ftitle"/>
+		<result property="fcontent" column="fcontent"/>
+	</resultMap>
+	<select id ="faqList" parameterType="Faq" resultMap="FaqResult">
+		SELECT * FROM FAQ ORDER BY FNO
+	</select>
+	<update id ="faqModify" parameterType="Faq">
+		UPDATE FAQ SET FTITLE = #{ftitle},
+               FCONTENT = #{fcontent}
+   		WHERE FNO = #{fno} 
+	</update>
+	<insert id="faqinsert" parameterType="Faq">
+		INSERT INTO FAQ(FNO, FTITLE, FCONTENT) VALUES (FAQ_SEQ.NEXTVAL, #{ftitle},#{fcontent})
+	</insert>
+</mapper>   

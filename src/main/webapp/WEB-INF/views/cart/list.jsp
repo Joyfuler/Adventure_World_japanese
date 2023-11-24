@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
-	function cartdelete () {
+	 function cartdelete () {
 	var cid = document.getElementsByName('cid');
 	var url = '${conPath}/cart/delete.do?';
 	var cnt=0;
@@ -26,8 +26,30 @@
     } else {
         alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
     }
-};
-</script>
+}; 
+</script> 
+<!-- <script>
+    function cartdelete() {
+        var cidElements = document.getElementsByName('cid');
+        var url = '${conPath}/cart/delete.do?';
+        var selectedCids = [];
+
+        for (let i = 0; i < cidElements.length; i++) {
+            if (cidElements[i].checked) {
+                var cidValue = cidElements[i].value;
+                selectedCids.push(cidValue);
+            }
+        }
+
+        if (selectedCids.length > 0) {
+            // Join the selectedCids array with '&' and append it to the URL
+            url += 'cid=' + selectedCids.join('&cid=') + '&';
+            location.href = url;
+        } else {
+            alert('선택된 항목이 없습니다.');
+        }
+    };
+</script> -->
 <script>
 	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
 	function submitChk(){

@@ -57,7 +57,8 @@ function qpwChk(qno){
                 </tr>
                 
                 </thead>
-		<c:forEach items="${qnaList}"  var="qna">
+      	<c:forEach items="${qnaList}"  var="qna">
+      <c:if test="${qna.qstep eq 0 }"> 
 			<tr ><td> ${qna.qno}</td>    
 	    		<td>
 	    		<c:if test="${ empty worker }">
@@ -65,10 +66,6 @@ function qpwChk(qno){
 						<c:when test="${qna.qpwchk=='Y'}" >
 							 <span onClick="qpwChk(${qna.qno})">${qna.qtitle}</span> 
 								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
-								<c:if test="${qna.isreply=='Y'}">
-								<br>
-								&nbsp;&nbsp;<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">						
-								</c:if>
 								
 						</c:when>
 						<c:otherwise>
@@ -96,11 +93,99 @@ function qpwChk(qno){
 					</c:when>
 				</c:choose></td>    
 	   		</tr>
+      </c:if>
+      <!-- 답변글 -->
+     <c:if test="${qna.qstep eq 1 and qna.qindent eq 1}">
+			<tr ><td> ${qna.qno}</td>    
+	    		<td>
+	    		<c:if test="${ empty worker }">
+	    			<c:choose>
+						<c:when test="${qna.qpwchk=='Y'}">
+							 <span onClick="qpwChk(${qna.qno})">
+									<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+									<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
+									${qna.qtitle}</span> 
+								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
+						</c:when>
+						<c:otherwise>
+							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
+								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+								<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
+								${qna.qtitle} </a>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+	    			<c:if test="${not empty worker }">
+	    				<c:choose>
+						<c:when test="${qna.qpwchk=='Y'}">
+							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
+								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+								<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
+								${qna.qtitle}</a>
+								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
+						</c:when>
+						<c:otherwise>
+							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
+							 └─${qna.qtitle}</a>
+						</c:otherwise>
+					</c:choose>
+	    			</c:if>
+	    			</td>
+	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
+	       		<td><c:choose>
+					<c:when test="${qna.isreply=='N'}"> no </c:when>
+					<c:when test="${qna.isreply=='Y'}"> yes 
+					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
+					</c:when>
+				</c:choose></td>    
+	   		</tr>
+			</c:if>
 	  	</c:forEach>
+    <%--   <!-- 답변글 유무 -->
+	<c:forEach items="${qnaList}"  var="qna">
+      <c:if test="${qna.qstep eq 1 and qna.qindent eq 1}">
+			<tr ><td> ${qna.qno}</td>    
+	    		<td>
+	    		<c:if test="${ empty worker }">
+	    			<c:choose>
+						<c:when test="${qna.qpwchk=='Y'}">
+							 <span onClick="qpwChk(${qna.qno})">
+									└─ ${qna.qtitle}</span> 
+								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
+						</c:when>
+						<c:otherwise>
+							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
+								└─${qna.qtitle}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+	    			<c:if test="${not empty worker }">
+	    				<c:choose>
+						<c:when test="${qna.qpwchk=='Y'}">
+							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
+							└─${qna.qtitle}</a>
+								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
+						</c:when>
+						<c:otherwise>
+							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
+							 └─${qna.qtitle}</a>
+						</c:otherwise>
+					</c:choose>
+	    			</c:if>
+	    			</td>
+	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
+	       		<td><c:choose>
+					<c:when test="${qna.isreply=='N'}"> no </c:when>
+					<c:when test="${qna.isreply=='Y'}"> yes 
+					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
+					</c:when>
+				</c:choose></td>    
+	   		</tr>
+			</c:if>
+	  	</c:forEach> --%>
             </table>
         </div>
     </div>
-
 </section>
 </form>
 	<div id ="paging">
