@@ -15,4 +15,5 @@ public class Order {
 	private String mid;
 	private int ompoint;
 	private String payment;
+	
 }

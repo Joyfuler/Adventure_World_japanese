@@ -10,46 +10,19 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
-	 function cartdelete () {
-	var cid = document.getElementsByName('cid');
-	var url = '${conPath}/cart/delete.do?';
-	var cnt=0;
-	for(let i=0; i<cid.length; i++){
-		if(cid[i].checked){
-			var cid = cid[i].value;
-			url += 'cid='+cid+'&';
-			cnt++; 
-		}
-	}
-	if (cnt > 0) {
-        location.href = url;
+	function cartDelete () {
+	var selectedCids= [];
+	$('input[name="cid"]:checked').each(function(){
+		selectedCids.push($(this).val());
+	});	
+	if (selectedCids.length >0){
+		var url = '${conPath}/cart/delete.do?mid=${member.mid}&cid='+selectedCids.join('&cid=');
+		location. href = url;	
     } else {
         alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
     }
-}; 
-</script> 
-<!-- <script>
-    function cartdelete() {
-        var cidElements = document.getElementsByName('cid');
-        var url = '${conPath}/cart/delete.do?';
-        var selectedCids = [];
-
-        for (let i = 0; i < cidElements.length; i++) {
-            if (cidElements[i].checked) {
-                var cidValue = cidElements[i].value;
-                selectedCids.push(cidValue);
-            }
-        }
-
-        if (selectedCids.length > 0) {
-            // Join the selectedCids array with '&' and append it to the URL
-            url += 'cid=' + selectedCids.join('&cid=') + '&';
-            location.href = url;
-        } else {
-            alert('선택된 항목이 없습니다.');
-        }
-    };
-</script> -->
+}
+</script>
 <script>
 	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
 	function submitChk(){
@@ -70,6 +43,15 @@
 		}
 	}
 </script>
+<script>
+	$(document).ready(function(){
+		$(".selectAll").click(function(){
+			$('input:checkbox').prop('checked', function(i,value){
+				return !value;
+			});
+		});
+	});
+</script>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
 <body>
@@ -86,9 +68,16 @@
 		alert('${fastTicketResult eq 1 ? "패스트티켓이 장바구니에 추가되었습니다." : "장바구니 추가 실패"}');
 	</script>
 </c:if>
+<c:if test = "${empty member }">
+	<script>
+		alert('세션이 만료되어 로그아웃 되었습니다. 다시 로그인해주세요.');
+		location.href='${conPath}/main.do';
+	</script>
+</c:if>	
+
 <jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/order/orderForm.do" method="get">
-<input type = "hidden" name="" value="${member.mid}"> 
+<input type = "hidden" name="mid" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
@@ -99,10 +88,13 @@
 	     <div class="board-list">
 	        <div class="container" style="width:1000px; ">
 		        <div class="mypage-btn-dede-wrap">
+		        	<input type = "button" value = "모두선택" class = "selectAll" style = "float: left; margin-top: 25px;">
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold;
 								color:#5c10e6;">
-						<li><a href='${conPath }/cart/orderList'>주문내역 이동 </a></li>
+						<li>
+							<input type = "button" onclick = "location.href='${conPath }/order/orderList.do?mid=${member.mid}'" value = "주문내역 이동">
+						</li>
 					</ul>
 					</nav>
 		    	</div>
@@ -166,29 +158,23 @@
                         	<c:when test='${dto.result == 0}'>
 	                			<input type="checkbox" name="cid" value="${dto.cid}">
 	                		</c:when>
-	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
+	                		<c:otherwise>-</c:otherwise>
 	                	</c:choose>
 	                	</td>
-<%-- 	                	<td>
-	                	<input type="button" onclick="location.href='${conPath }/cart/delete.do?cid=${dto.cid }'" value = "삭제하기">
-	                	<td> --%>
-	                </tr>
-                
+	                </tr>                
 	          	</c:forEach>
-	          </c:if>	
-                </tbody>
-            </table>
-            	 <div class="mypage-btn-dede-wrap">
-            		<input type="button" onclick="cartdelete()" value="삭제하기" class="dede" style="float:right;">
-			  
-			    	<input type="submit" value="결제하기" class="dede" style="float:right;" onclick = "return submitChk()">
-			   
+	          	</c:if>	
+             </tbody>
+         </table>
+           	 <div class="mypage-btn-dede-wrap">
+           		<input type="button" onclick="cartDelete()" value="삭제하기" class="dede" style="float:right;">
+		    	<input type="submit" value="결제하기" class="dede" style="float:right;" onclick = "return submitChk()">			   
         	</div>
     	</div>
     </div>
 </section>
 </form>
-<br>
-	
+<br>	
+<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

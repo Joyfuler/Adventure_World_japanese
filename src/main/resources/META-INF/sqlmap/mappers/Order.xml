@@ -5,9 +5,12 @@
 <mapper namespace="com.project.adventure.repository.OrderDao">
 	<insert id="ordersInfoInsert" parameterType="Order">
 		<![CDATA[
-    INSERT INTO ORDER_LIST (OID, ONAME, OMAIL, OPHONE, MID)
+    INSERT INTO ORDER_LIST (OID, ONAME, OMAIL, OPHONE, OMPOINT, PAYMENT, MID)
     VALUES (TO_CHAR(SYSDATE, 'RRMMDD')||TRIM(TO_CHAR(ORDER_LIST_SEQ.NEXTVAL, '000')), 
-            #{oname}, #{omail}, #{ophone}, #{mid}
+            #{oname}, #{omail}, #{ophone}, #{ompoint}, #{payment}, #{mid})
 		]]>
-	</insert>
+	</insert>	
+	<delete id = "deleteOrder" parameterType = "int">
+		DELETE FROM ORDER_LIST WHERE OID = #{oid}	
+	</delete>
 </mapper>

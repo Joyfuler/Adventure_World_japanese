@@ -102,6 +102,41 @@ SELECT * FROM NOTICE;
 -- 공지삭제 id=deleteNotice
 DELETE FROM NOTICE WHERE NID=1;
 COMMIT;
+
+-- worker Attraction
+-- 어트랙션 검색 id=attractionListP
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* 
+        FROM(SELECT * FROM ATTRACTION
+            WHERE UPPER(ANAME) LIKE '%' || UPPER('범') || '%' ORDER BY AID DESC) A)
+        WHERE RN BETWEEN 1 AND 4
+-- 어트랙션 insert id=insertAttraction
+INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
+VALUES
+(ATTRACTION_SEQ.NEXTVAL, '범퍼카' ,'화려한 조명과 신나는 음악 속에서 스릴만점의 자동차 경주가 펼쳐진다. 
+앞에서 쾅~ 뒤에서 쾅~ 어디서 달려들지 모르는 좌충우돌 범퍼카! 부딪칠수록 즐거움이 더욱 커집니다.',
+'125cm 이상 탑승가능', '65세 이하 탑승 가능', 'Y', 'N', '익사이팅', '어린이', 'car.jpg', 1);
+-- 어트랙션 update id=updateAttraction
+UPDATE ATTRACTION SET
+        ANAME = '왕밤빵카',
+        ACONTENT = '화려한 조명이 날 비추네',
+        HEIGHT = '180cm이상탑승가능',
+        AGE = '75세 이하 탑승가능',
+        BEST = 'N',
+        STOPDAY = 'Y',
+        TAG1 = '익사이팅',
+        TAG2 = '어른이',
+        AIMAGE = 'car.jpg',
+        HEADCOUNT = 2
+    WHERE AID = 2;
+-- 어트랙션 갯수 id=totCntAttraction
+SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER('범') || '%';
+-- 어트랙션 delete id=deleteAttraction
+DELETE FROM ATTRACTION WHERE AID=1;
+
+
+    
+
     
    
 

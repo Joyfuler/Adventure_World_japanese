@@ -60,9 +60,9 @@ const autoHyphen = (target) => {
 		
 		$('#pntChk').click(function(){
 			if ($(this).prop('checked')){
-				$('#pointInput').prop('disabled', false);
+				$('#pointInput').prop('readonly', false);
 			} else {
-				$('#pointInput').prop('disabled', true);
+				$('#pointInput').prop('readonly', true);
 			}
 		});
 		
@@ -146,11 +146,6 @@ const autoHyphen = (target) => {
 			alert('${orderAddMsg}');
 		</script>
 	</c:if>	
-	<c:if test = "${not empty orderList }">
-		<script>
-			alert('${orderList}');
-		</script>
-	</c:if>	
 	<div class="page-title" style="text-align: center; font-weight: bold;">
 		<div class="container"
 			style="background-color: #5c10e6; color: white;">
@@ -192,8 +187,8 @@ const autoHyphen = (target) => {
 				</div>
 			</div>
 		</div>
-		<form action = "${conPath }/order/orderComplete.do" method = "get">
-		<input type = "hidden" name = "mid" value = "${member.mid }">
+		<form action = "${conPath }/order/orderComplete.do" method = "post">
+		<input type = "hidden" name = "mid" value = "${member.mid }">		
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="headingTwo">
 				<button class="accordion-button bg-light bg-gradient" type="button"
@@ -251,9 +246,9 @@ const autoHyphen = (target) => {
 					<label>멤버십 포인트로 할인받기 </label>
 					<br><br>
 					<div class = "memberPoint">					
-					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">1000</em> P)</span>
-					<input type = "hidden" id = "realPoint" value = "1000">							
-					<input type="text" id="pointInput" name = "ompoint" disabled="disabled">
+					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">0</em> P)</span>
+					<input type = "hidden" id = "realPoint" value = "${member.mpoint }">							
+					<input type="text" id="pointInput" name = "ompoint" readonly="readonly" value = "0">
 					<input type="button" value = "포인트사용" class = "payForMemberPoint">
 					<br><br>
 					</div>					
@@ -304,7 +299,6 @@ const autoHyphen = (target) => {
 					<strong>구매예정 내역</strong>
 						<div class="amountWrap">
 							<div class="totalOrder">							
-							<c:forEach var="orders" items="orderList"></c:forEach>
 								<ul>								
 									<c:if test = "${amountInfo.type0sum != 0 }">
 									<li> 자유이용권 ( 어른 : ${amountInfo.type0adult } 매 / 청소년 : ${amountInfo.type0youth } 매)
@@ -336,13 +330,14 @@ const autoHyphen = (target) => {
 							</div>
 							<div class="scheduledPay">
 								<div class="total">
-									결제예정금액 
+									결제예정금액									
 									<span class="price"> <b id="payPreAmt">
 									${amountInfo.type0sum + amountInfo.type1sum }</b> 원</span>
 								</div>
 							</div>
 						</div>				
 				<div class="termsAgree">
+					<span style = "font-size: 12px; font-weight: bold;"> &nbsp; ※결제하신 금액의 10%만큼 멤버십 포인트가 적립됩니다.</span><br>				
 					<h3 class="tit">
 					약관 동의
 					</h3>

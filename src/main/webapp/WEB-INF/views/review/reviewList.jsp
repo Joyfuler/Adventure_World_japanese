@@ -17,11 +17,19 @@
 <div class="attractionForm">
 	<div class="page-title" style = "text-align: center; font-weight: bold;">	
 		<div class="container" style = "background-color: #5c10e6; color: white;">
-			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">Adventure World를 찾아주신 분들의 <br> 감사한 후기!</h3>		
-		</div>
-		<br><br>
+			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; text-align:center; margin-bottom: 5px;">어드벤처월드를 찾아주신 분들의 <br> 감사한 리뷰들입니다.</h3>		
+		</div>		
 	</div>
 	<br>	
+	<div style = "float:left;">
+		<select name = "category" style = "margin-left: 20px;">			
+			<option value = "highScore"> 평점 높은순 </option>
+			<option value = "lowScore"> 평점 낮은순</option>
+		</select>
+		&nbsp; &nbsp; <input type = "text" class = "searchWord" placeholder="리뷰검색"><input type = "submit" value = "검색"> 
+	<div style = "float: right;">
+		<button class = "writeReview">리뷰작성</button>
+	</div>
 	<div class="att_back">		
 		<div id="att_list">
 			<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">

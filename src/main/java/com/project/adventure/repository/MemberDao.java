@@ -17,4 +17,6 @@ public interface MemberDao {
 	public Member findId(Member member);
 	public Member findPw(Member member);
 	public Cart cartList(Member member);
+	public void minusMemberPoint(Member member);
+	public void plusMemberPoint(Member member);
 }

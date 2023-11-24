@@ -6,9 +6,25 @@
 	<insert id="orderDetailInsert" parameterType="Cart">
 		INSERT INTO ORDER_DETAIL (ODID, OP1, OP2, OTYPE, OATNAME1, OATNAME2, OATNAME3, OPRICE1, OPRICE2, ORESULT, OVISITDATE, OID)
 	    VALUES (ORDER_DETAIL_SEQ.NEXTVAL, #{p1}, #{p2}, #{type}, #{atname1}, #{atname2}, #{atname3}, #{price1}, #{price2}, #{result}, #{visitdate}, 
-	    (SELECT MAX(OID) FROM ORDER_LIST) 	    
+	    (SELECT MAX(OID) FROM ORDER_LIST)) 	    
 	</insert>
-	<select id="orderList" parameterType="String" resultType="Order_Detail">
-			SELECT O.*, OD.* FROM ORDER_LIST O, ORDER_DETAIL OD WHERE O.OID = OD.OID WHERE MID = #{mid}
+	<select id="orderList" parameterType="Order_Detail" resultType="Order_Detail">
+			SELECT *
+    			FROM (SELECT ROWNUM RN, A.* 
+            	FROM (SELECT O.*, OD.ODID, OD.OP1, OD.OP2, OD.OTYPE, 
+            	OD.OATNAME1, OD.OATNAME2, OD.OATNAME3, OD.OPRICE1, 
+            	OD.OPRICE2, OD.ORESULT, OD.OCRDATE, OD.OVISITDATE 
+                FROM ORDER_LIST O, ORDER_DETAIL OD 
+                WHERE O.OID = OD.OID AND MID = #{mid} ORDER BY O.OID DESC) A )
+    			WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
+	<select id = "priceTotal" parameterType = "int" resultType = "Order_Detail">
+			SELECT * FROM ORDER_DETAIL WHERE OID = #{oid}
+	</select>	
+	<select id = "totCnt" parameterType = "Order_Detail" resultType = "int">
+			SELECT COUNT(*) FROM ORDER_LIST, ORDER_DETAIL WHERE ORDER_LIST.OID = ORDER_DETAIL.OID AND MID = #{mid}
+	</select>
+	<delete id = "deleteOrder" parameterType="int">
+			DELETE FROM ORDER_DETAIL WHERE OID = #{oid}
+	</delete>
 </mapper>

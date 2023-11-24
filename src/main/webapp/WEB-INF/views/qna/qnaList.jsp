@@ -189,12 +189,12 @@ function qpwChk(qno){
 </section>
 </form>
 	<div id ="paging">
-			<c:if test="${paging.startPage>paging.blockSize}">
+			<c:if test="${paging.startPage > paging.blockSize}">
 				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
 			</c:if>	
 			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
-				<c:if test="${paging.currentPage==i }"> 
-					<b>[ ${i } ]</b> 
+				<c:if test="${paging.currentPage eq i }"> 
+					[<b style = "color:red;">${i }</b>] 
 				</c:if>
 				<c:if test="${paging.currentPage != i }">
 					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
