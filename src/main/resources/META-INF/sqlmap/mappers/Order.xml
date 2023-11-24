@@ -10,4 +10,7 @@
             #{oname}, #{omail}, #{ophone}, #{ompoint}, #{payment}, #{mid})
 		]]>
 	</insert>	
+	<delete id = "deleteOrder" parameterType = "int">
+		DELETE FROM ORDER_LIST WHERE OID = #{oid}	
+	</delete>
 </mapper>

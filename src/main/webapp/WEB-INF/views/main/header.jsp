@@ -39,7 +39,7 @@
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
 								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
-								<a href="${conPath }/order/orderList.do">주문내역</a>
+								<a href="${conPath }/order/orderList.do?mid=${member.mid }">주문내역</a>
 							</div>
 						</div>
 						</li>
@@ -60,7 +60,7 @@
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
 								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
-								<a href="${conPath }/order/orderList.do">주문내역</a>
+								<a href="${conPath }/order/orderList.do?mid=${member.mid}">주문내역</a>
 							</div>
 						</div>
 						</li>

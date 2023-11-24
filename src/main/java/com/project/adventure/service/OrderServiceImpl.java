@@ -12,6 +12,7 @@ import com.project.adventure.repository.CartDao;
 import com.project.adventure.repository.MemberDao;
 import com.project.adventure.repository.OrderDao;
 import com.project.adventure.repository.Order_DetailDao;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Cart;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order;
@@ -68,8 +69,26 @@ public class OrderServiceImpl implements OrderService {
 		return order_DetailDao.priceTotal(oid);
 	}
 	@Override
-	public List<Order_Detail> orderList(String mid) {
-		return order_DetailDao.orderList(mid);
+	public List<Order_Detail> orderList(Order_Detail order_Detail, String pageNum) {
+		Paging paging = new Paging(order_DetailDao.totCnt(order_Detail), pageNum, 5, 5);
+		order_Detail.setStartRow(paging.getStartRow());
+		order_Detail.setEndRow(paging.getEndRow());	
+		System.out.println("startRow : " + paging.getStartRow());
+		System.out.println("endRow : " + paging.getEndRow());
+		return order_DetailDao.orderList(order_Detail);
 
+	}
+	@Override
+	public int totCnt(Order_Detail order_Detail) {
+		return order_DetailDao.totCnt(order_Detail);
+	}
+	@Override
+	public int deleteOrder(int[] oid) {
+		int result = 0;
+		for(int id : oid) {			
+			result += order_DetailDao.deleteOrder(id);
+			orderDao.deleteOrder(id);
+		}
+		return result;
 	}
 }

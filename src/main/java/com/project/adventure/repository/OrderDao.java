@@ -7,4 +7,5 @@ import com.project.adventure.vo.Order;
 @Mapper
 public interface OrderDao {
 	public void ordersInfoInsert(Order order);
+	public void deleteOrder(int oid);
 }

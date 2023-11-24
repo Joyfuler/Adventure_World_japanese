@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.project.adventure.service.CartService;
 import com.project.adventure.service.MemberService;
 import com.project.adventure.service.OrderService;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order;
 import com.project.adventure.vo.Order_Detail;
@@ -38,12 +39,18 @@ public class OrderController {
 		memberService.minusMemberPoint(order);
 		orderService.orderDetail(order, session);		
 		model.addAttribute("orderComplete","결제가 완료되었습니다. 마이페이지 > 주문내역을 통해 확인하실 수 있습니다.");			
-		return "forward:/orderList.do";
+		return "forward:orderList.do";
+	}	
+	@RequestMapping(value = "orderList", method = {RequestMethod.GET, RequestMethod.POST})
+	public String orderList(Model model, Order_Detail order_Detail, String pageNum) {		
+		model.addAttribute("orderList", orderService.orderList(order_Detail, pageNum));
+		model.addAttribute("paging", new Paging(orderService.totCnt(order_Detail), pageNum, 5, 5));		
+		return "order/orderList";
 	}
 	
-	@RequestMapping(value = "orderList", method = RequestMethod.GET)
-	public String orderList(String mid, Model model) {
-		model.addAttribute("orderList", orderService.orderList(mid));
-		return "order/orderList";
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String orderDelete(Model model, int[] oid) {
+		model.addAttribute("deleteResult", orderService.deleteOrder(oid));
+		return "forward:orderList.do";
 	}
 }
