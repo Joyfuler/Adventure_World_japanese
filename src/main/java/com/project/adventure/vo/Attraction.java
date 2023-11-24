@@ -15,4 +15,9 @@ public class Attraction {
 	private String tag2;
 	private String aimage;
 	private String headcount;
+	// top-N구문에서 필요한 필드
+	private int startRow;
+	private int endRow;
+	//관리자페이지 검색
+	private String schTitle;
 }
