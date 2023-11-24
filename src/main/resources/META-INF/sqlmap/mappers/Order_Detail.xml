@@ -6,9 +6,12 @@
 	<insert id="orderDetailInsert" parameterType="Cart">
 		INSERT INTO ORDER_DETAIL (ODID, OP1, OP2, OTYPE, OATNAME1, OATNAME2, OATNAME3, OPRICE1, OPRICE2, ORESULT, OVISITDATE, OID)
 	    VALUES (ORDER_DETAIL_SEQ.NEXTVAL, #{p1}, #{p2}, #{type}, #{atname1}, #{atname2}, #{atname3}, #{price1}, #{price2}, #{result}, #{visitdate}, 
-	    (SELECT MAX(OID) FROM ORDER_LIST) 	    
+	    (SELECT MAX(OID) FROM ORDER_LIST)) 	    
 	</insert>
 	<select id="orderList" parameterType="String" resultType="Order_Detail">
-			SELECT O.*, OD.* FROM ORDER_LIST O, ORDER_DETAIL OD WHERE O.OID = OD.OID WHERE MID = #{mid}
+			SELECT O.*, OD.* FROM ORDER_LIST O, ORDER_DETAIL OD WHERE O.OID = OD.OID AND MID = #{mid}
 	</select>
+	<select id = "priceTotal" parameterType = "int" resultType = "Order_Detail">
+			SELECT * FROM ORDER_DETAIL WHERE OID = #{oid}
+	</select>	
 </mapper>

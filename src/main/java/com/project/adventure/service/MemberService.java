@@ -3,6 +3,7 @@ package com.project.adventure.service;
 import javax.servlet.http.HttpSession;
 
 import com.project.adventure.vo.Member;
+import com.project.adventure.vo.Order;
 
 public interface MemberService {
 	public int midConfirm(String mid);
@@ -16,4 +17,6 @@ public interface MemberService {
 	public String findPw(Member member);
 	public int modifyMember(Member member, HttpSession session);
 	public int withDrawalMember(String mid, HttpSession session);
+	public void minusMemberPoint(Order order);
+	public void plusMemberPoint(Member member);
 }

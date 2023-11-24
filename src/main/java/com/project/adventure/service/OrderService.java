@@ -11,5 +11,7 @@ import com.project.adventure.vo.Order_Detail;
 public interface OrderService {
 	public void orderDetail (Order order, HttpSession session);
 	public List<Order_Detail> orderList(HttpSession session);
+	public List<Order_Detail> orderList(String mid);
+	public int priceTotal(int oid);
 	
 }

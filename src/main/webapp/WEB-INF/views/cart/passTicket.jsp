@@ -50,7 +50,7 @@ function go_cart(num){
 			<input type="hidden" id="calendar" name="visitdate2">
 		</div>
 		<div class="order_box_select2">
-			<div class="order_box_title">패스트패스 예매</div>
+			<div class="order_box_title">자유이용권 예매</div>
 			<div class="order_box_date">
 				<div class="order_box_date_text">방문일자/인원 선택</div>
 				<div class="order_box_date_select" onclick="showCalendar()">

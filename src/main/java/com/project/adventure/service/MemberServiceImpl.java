@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.adventure.repository.MemberDao;
 import com.project.adventure.vo.Member;
+import com.project.adventure.vo.Order;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -143,6 +144,21 @@ public class MemberServiceImpl implements MemberService {
 	public int withDrawalMember(String mid, HttpSession session) {
 		session.invalidate();
 		return memberDao.withDrawalMember(mid);
+		
+	}
+
+	@Override
+	public void minusMemberPoint(Order order) {		
+		// 멤버 포인트 사용한 것만큼 감소시켜 주어야함. memberService 추가
+		Member member = new Member();
+		member.setMid(order.getMid());
+		member.setMpoint(order.getOmpoint()); 
+		memberDao.minusMemberPoint(member);
+	}
+
+	@Override
+	public void plusMemberPoint(Member member) {
+		memberDao.plusMemberPoint(member);
 		
 	}
 }

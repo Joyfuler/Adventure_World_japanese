@@ -11,4 +11,5 @@ import com.project.adventure.vo.Order_Detail;
 public interface Order_DetailDao {
 	public int orderDetailInsert(Cart cart);
 	public List<Order_Detail> orderList(String mid);
+	public int priceTotal(int oid);
 }

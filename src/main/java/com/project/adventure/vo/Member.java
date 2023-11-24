@@ -18,4 +18,5 @@ public class Member {
 	private int mlevel;
 	private int startRow;
 	private int endRow;
+	private int mpoint;
 }

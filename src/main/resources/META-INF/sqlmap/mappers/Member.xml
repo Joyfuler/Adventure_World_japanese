@@ -14,6 +14,7 @@
 		<result property="maddress2" column="maddress2"/>
 		<result property="maddress3" column="maddress3"/>
 		<result property="mlevel" column="mlevel"/>
+		<result property="mpoint" column="mpoint"/>
 	</resultMap>  
 	<select id="midConfirm" parameterType= "String" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE MID = #{mid}
@@ -74,4 +75,10 @@
     		(SELECT * FROM ORDER_LIST WHERE MID = #{mid} ORDER BY OCRDATE DESC) A) 
     		WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
+	<update id = "minusMemberPoint" parameterType="Member">
+		UPDATE MEMBER SET MPOINT = MPOINT - #{mpoint} WHERE MID = #{mid}
+	</update>
+	<update id = "plusMemberPoint" parameterType="Member">
+		UPDATE MEMBER SET MPOINT = MPOINT + #{mpoint} WHERE MID = #{mid}
+	</update>
 </mapper>

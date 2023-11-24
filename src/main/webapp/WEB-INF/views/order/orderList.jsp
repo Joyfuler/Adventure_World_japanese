@@ -7,87 +7,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script>
-	function cartdelete () {
-	var cid = document.getElementsByName('cid');
-	var url = '${conPath}/cart/delete.do?';
-	var cnt=0;
-	for(let i=0; i<cid.length; i++){
-		if(cid[i].checked){
-			var cid = cid[i].value;
-			url += 'cid='+cid+'&';
-			cnt++; 
-		}
-	}
-	if (cnt > 0) {
-        location.href = url;
-    } else {
-        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
-    }
-};
-</script>
-<script>
-	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
-	function submitChk(){
-		var checkboxes = document.getElementsByName('cid');
-		var cnt = 0;
-		
-		for (let i = 0; i < checkboxes.length; i++){
-			if (checkboxes[i].checked){
-				cnt++;
-			}
-		}
-		
-		if (cnt == 0){
-			alert('결제 시 적어도 1개 이상의 항목을 선택해 주세요.');
-			return false;
-		} else {		
-			return true;
-		}
-	}
-</script>
-<script>
-	$(document).ready(function(){
-		$(".selectAll").click(function(){
-			$('input:checkbox').prop('checked', function(i,value){
-				return !value;
-			});
-		});
-	});
-</script>
+<title>주문내역</title>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 </head>
-<body>
-<c:if test="${not empty deleteResult }">
-	<script>alert('삭제 성공');</script>
-</c:if>
-<c:if test = "${not empty passTicketResult }">
-	<script>
-		alert('${passTicketResult eq 1 ? "자유이용권이 장바구니에 추가되었습니다." : "장바구니 추가 실패"}');
-	</script>	
-</c:if>
-<c:if test = "${not empty fastTicketResult }">
-	<script>
-		alert('${fastTicketResult eq 1 ? "패스트티켓이 장바구니에 추가되었습니다." : "장바구니 추가 실패"}');
-	</script>
-</c:if>
 <c:if test = "${empty member }">
 	<script>
 		alert('세션이 만료되어 로그아웃 되었습니다. 다시 로그인해주세요.');
 		location.href='${conPath}/main.do';
 	</script>
-</c:if>	
-
+</c:if>
+<body>
 <jsp:include page="../main/header.jsp"/>
-<form action="${conPath }/order/orderForm.do" method="get">
-<input type = "hidden" name="mid" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
-	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">장바구니</h3>
-	            <br><h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 장바구니 목록입니다</h1>
+	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">주문내역</h3>
+	            <br><h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 티켓 주문내역입니다.</h1>
 	        </div>
 	    </div>  
 	     <div class="board-list">
@@ -97,7 +33,7 @@
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold;
 								color:#5c10e6;">
-						<li><a href='${conPath }/order/orderList.do?mid=${member.mid}'>주문내역 이동 </a></li>
+						<li><a href='${conPath }/cart/List.do?mid=${member.mid}'>장바구니 이동 </a></li>
 					</ul>
 					</nav>
 		    	</div>
@@ -120,7 +56,7 @@
                	<c:if test = "${empty cartList }">
                		<tr>
                			<td colspan = "10">
-               		<strong> 장바구니에 추가한 목록이 없습니다.</strong>	
+               		<strong> 주문한 내역이 없습니다.</strong>	
                			</td>
                		</tr>
                	</c:if>
@@ -164,9 +100,6 @@
 	                		<c:otherwise><a href="#"onClick="go_orderList()">주문내역 확인</a></c:otherwise>
 	                	</c:choose>
 	                	</td>
-<%-- 	                	<td>
-	                	<input type="button" onclick="location.href='${conPath }/cart/delete.do?cid=${dto.cid }'" value = "삭제하기">
-	                	<td> --%>
 	                </tr>
                 
 	          	</c:forEach>
@@ -182,8 +115,9 @@
     	</div>
     </div>
 </section>
-</form>
-<br>	
+
+
+
 <jsp:include page="../main/footer.jsp" />
 </body>
 </html>
