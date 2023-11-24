@@ -24,6 +24,16 @@
 	<select id = "attractionList" resultMap="AttractionResult">
 		SELECT * FROM ATTRACTION ORDER BY AID DESC
 	</select>
+	<select id="attractionListP" parameterType="Attraction" resultMap="AttractionResult">
+		SELECT * 
+    FROM (SELECT ROWNUM RN, A.* 
+        FROM(SELECT * FROM ATTRACTION
+            WHERE UPPER(ANAME) LIKE '%' || UPPER(#{schTitle}) || '%' ORDER BY AID DESC) A)
+        WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="totCntAttraction" resultType="int">
+		SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER(#{aname}) || '%'
+	</select>
 	<select id = "tag1List" resultMap= "AttractionResult">
 		SELECT DISTINCT TAG1 FROM ATTRACTION
 	</select>
@@ -50,4 +60,27 @@
 	<select id = "stopDayAttractionList" resultMap = "AttractionResult">
 		SELECT * FROM ATTRACTION WHERE STOPDAY = 'Y'
 	</select>
+	<insert id="insertAttraction" parameterType="Attraction">
+		INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
+			VALUES
+			(ATTRACTION_SEQ.NEXTVAL, #{aname} ,#{acontent},
+			#{height}, #{age}, #{best}, #{stopday}, #{tag1}, #{tag2}, #{aimage}, #{headcount})
+	</insert>
+	<update id="updateAttraction" parameterType="Attraction">
+		UPDATE ATTRACTION SET
+        ANAME = #{aname},
+        ACONTENT = #{acontent},
+        HEIGHT = #{height},
+        AGE = #{age},
+        BEST = #{best},
+        STOPDAY = #{stopday},
+        TAG1 = #{tag1},
+        TAG2 = #{tag2},
+        AIMAGE = #{aimage},
+        HEADCOUNT = #{headcount}
+    WHERE AID = #{aid}
+	</update>
+	<delete id="deleteAttraction" parameterType="int">
+		DELETE FROM ATTRACTION WHERE AID=#{aid}
+	</delete>
 </mapper>
