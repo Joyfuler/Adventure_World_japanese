@@ -19,12 +19,12 @@
 	<select id="QnaList" parameterType="Qna" resultMap="QnaResult">
 		<if test="schWord=='' or schWord==null">
 		SELECT * FROM
-    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QNO DESC)A)
+    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QGROUP DESC)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
 		<if test="schWord!='' and schWord!=null">
 		SELECT * FROM
-   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QNO DESC)A)
+   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QGROUP DESC)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</if>
 	</select>
@@ -35,17 +35,29 @@
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
 			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{qpwchk},#{mid})
 	</insert>
-	<update id="qnaPreReplyStep" parameterType="Qna">
+	<!-- step조절 
+		<update id="qnaPreReplyStep" parameterType="Qna">
 		<![CDATA[
 			UPDATE QNA SET QSTEP = QSTEP+1 WHERE QGROUP = #{qgroup} AND QSTEP > #{qstep}
 		]]>
-	</update>
-	<update id="qnaPreReply" parameterType="Qna">
-		UPDATE QNA SET ISREPLY ='Y',
+	</update> -->
+	 <insert id="qnaPreRepstep" parameterType="Qna">
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,1,0,#{qpwchk},#{mid})
+	</insert> 
+	<update id="qnaPreReply" parameterType="Qna" >
+		UPDATE QNA SET
+				ISREPLY ='Y',
                 REPLY = #{reply},
-                QSTEP = QSTEP+1,
                 QINDENT = QINDENT+1
                 WHERE QNO = #{qno}
+	</update>
+	<update id="qnaPreRepstep2" parameterType="Qna" >
+		UPDATE QNA SET
+				ISREPLY ='Y',
+                REPLY = #{reply},
+                QINDENT = QINDENT+1
+                WHERE QNO = #{qno}-1
 	</update>
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
 		<if test="schWord=='' or schWord==null">

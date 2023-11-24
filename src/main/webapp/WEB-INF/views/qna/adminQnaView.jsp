@@ -23,6 +23,7 @@ function go_reply(qno){
 <input type="hidden" name="qno" value="${Qna.qno}">
 <input type="hidden" name = "wid" value="${worker.wid }">
 <input type="hidden" name = "pageNum" value="${param.pageNum }">
+<input type="hidden" name="mid" value="${Qna.mid}">
 <div class="qna">
 	<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 	<div class="qnaBox">

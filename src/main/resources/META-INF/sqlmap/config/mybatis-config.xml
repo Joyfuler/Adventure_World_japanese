@@ -18,6 +18,7 @@
 			<typeAlias type="com.project.adventure.vo.Notice" alias="Notice"/>
 			<typeAlias type="com.project.adventure.vo.Order" alias="Order"/>			
 			<typeAlias type="com.project.adventure.vo.Order_Detail" alias="Order_Detail"/>
+			<typeAlias type="com.project.adventure.vo.Faq" alias="Faq"/>
 			<!-- 이하 dto 추가한 패키지를 alias 넣어서 추가 -->			
 		</typeAliases>
 		<mappers>
@@ -32,6 +33,7 @@
 			<mapper resource="META-INF/sqlmap/mappers/Notice.xml"/>	
 			<mapper resource="META-INF/sqlmap/mappers/Order.xml"/>
 			<mapper resource="META-INF/sqlmap/mappers/Order_Detail.xml"/>
+			<mapper resource="META-INF/sqlmap/mappers/Faq.xml"/>
 			<!-- 이하 맡은 쿼리가 든 xml 경로를 추가 -->			
 		</mappers>
 	</configuration>

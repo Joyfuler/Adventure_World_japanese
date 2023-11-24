@@ -29,7 +29,6 @@ public class QnaController {
 	}
 	@RequestMapping(value = "qnaList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String qnaList(String pageNum, Qna qna, Model model) {
-		System.out.println("컨트롤러 : " + qna);
 		model.addAttribute("qnaList", qnaService.QnaList(pageNum, qna));
 		model.addAttribute("paging", new Paging(qnaService.qnaTotCnt(qna), pageNum, 10, 10));
 		return "qna/qnaList";
@@ -40,13 +39,9 @@ public class QnaController {
 		return "qna/qnaView";
 	}
 	@RequestMapping(value = "passCheck",method = RequestMethod.GET  )
-	public String passCheck( @RequestParam("qno") int qno,Model model, @RequestParam("wid") String wid) {
-		if(wid != "") {
-			return "forward:adminQnaView.do";
-		}else {			
+	public String passCheck( @RequestParam("qno") int qno,Model model) {	
 			model.addAttribute("qno", qno);
 			return "qna/checkPass";
-		}
 	}
 	@RequestMapping(value="qnaCheckPass", method=RequestMethod.POST)
 	public String qnaCheckPass(int qno,@RequestParam("qpw") String qpw,Model model ) {
@@ -93,7 +88,6 @@ public class QnaController {
 	public String adminQnaRepSave (Qna qna, Model model){		
 		model.addAttribute("replyResult",qnaService.qnaPreReply(qna));
 		return "forward:qnaView.do";
-		//?qno=" + qna.getQno();
 	}
  
 	
