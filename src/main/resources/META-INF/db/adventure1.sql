@@ -1,9 +1,10 @@
 -- 1. DROP TABLE
-DROP TABLE MEMBER;
 DROP SEQUENCE CART_SEQ;
 DROP TABLE CART;
+DROP SEQUENCE ORDER_DETAIL_SEQ;
+DROP TABLE ORDER_DETAIL;
 DROP SEQUENCE ORDER_SEQ;
-DROP TABLE ORDER;
+DROP TABLE ORDER_LIST;
 DROP SEQUENCE BANNER_SEQ;
 DROP TABLE BANNER;
 DROP SEQUENCE EVENT_SEQ;
@@ -14,7 +15,14 @@ DROP TABLE ORDER_LIST;
 DROP SEQUENCE ORDER_SEQ;
 DROP TABLE ORDER_DETAIL;
 DROP SEQUENCE ORDER_DETAIL_SEQ;
--- 2. CREATE TABLE
+DROP TABLE QNA;
+DROP TABLE NOTICE;
+DROP SEQUENCE NOTICE_SEQ;
+DROP TABLE FAQ;
+DROP TABLE WORKER;
+DROP TABLE MEMBER;
+
+-- 2. TABLE CREATION
 CREATE TABLE MEMBER
 (
 	MID VARCHAR2(20) NOT NULL PRIMARY KEY,
@@ -27,7 +35,7 @@ CREATE TABLE MEMBER
     MADDRESS3 VARCHAR2 (1000),
     MRDATE DATE DEFAULT SYSDATE,	
     MLEVEL VARCHAR2 (1) DEFAULT '1',
-    MPOINT NUMBER(9) DEFAULT 1000
+    MPOINT NUMBER(10) DEFAULT 1000
 );
 
 CREATE SEQUENCE CART_SEQ MAXVALUE 99999
@@ -48,14 +56,6 @@ CREATE TABLE CART(
     MID VARCHAR2 (20)
     REFERENCES MEMBER(MID) NOT NULL
 );
-
-select A.*, (A.OP1 * A.OPRICE1 * OTYPE) AS FREE_TOTAL_ADULT,
-(A.OP2 * A.OPRICE2 * OTYPE)
-from order_list A where cid in (3,4);
-
-SELECT * FROM CART;
-select * from member;
-
 
 CREATE SEQUENCE ORDER_LIST_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE ORDER_LIST(
@@ -83,15 +83,9 @@ CREATE TABLE ORDER_DETAIL(
     ORESULT NUMBER(1),
     OCRDATE DATE DEFAULT SYSDATE,
     OVISITDATE DATE DEFAULT SYSDATE,
-    OID NUMBER(5) REFERENCES ORDER_LIST (OID) NOT NULL     
+    OID NUMBER(20) REFERENCES ORDER_LIST (OID) NOT NULL     
 );
-SELECT * FROM ORDER_LIST;
-SELECT O.*, OD.* FROM ORDER_LIST O, ORDER_DETAIL OD WHERE O.OID = OD.OID AND MID ='trio';
-SELECT MAX(OID) FROM ORDER_LIST;
-SELECT * FROM ORDER_LIST;
-SELECT * FROM ORDER_DETAIL;
 
-select * from cart;
 CREATE SEQUENCE BANNER_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE BANNER(
     BNO NUMBER(5) PRIMARY KEY,
@@ -136,8 +130,48 @@ CREATE TABLE PARADE(
     PIMG VARCHAR2 (300)
 );
 
--- 3. Member Query
+CREATE TABLE WORKER(
+    WID VARCHAR2(20) PRIMARY KEY,
+    WPW VARCHAR2(20) NOT NULL,
+    WNAME VARCHAR2(20) NOT NULL,
+    WPHONE VARCHAR2(20)
+    );
 
+CREATE SEQUENCE NOTICE_SEQ NOCACHE NOCYCLE;
+CREATE TABLE NOTICE(
+    NID NUMBER(5) PRIMARY KEY,
+    NTITLE VARCHAR2(100),
+    NCONTENT VARCHAR2(1000),
+    NTEXT VARCHAR2(3000),
+    NRDATE DATE DEFAULT SYSDATE,
+    WID VARCHAR2(20) REFERENCES WORKER(WID)
+    );
+
+CREATE SEQUENCE QNA_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE QNA(
+    QNO NUMBER(5) NOT NULL PRIMARY KEY,
+    QTITLE VARCHAR2 (100),
+    QCONTENT VARCHAR2 (1000),
+    QPW VARCHAR2(500),
+    ISREPLY VARCHAR2(1) DEFAULT 'N',
+    REPLY VARCHAR2 (1000),
+    QRDATE DATE DEFAULT SYSDATE,
+    QGROUP NUMBER(5) NOT NULL,
+    QSTEP NUMBER(3),
+    QINDENT NUMBER(3),
+    Qpwchk varchar2(10) default 'N',
+      MID VARCHAR2 (20)
+    REFERENCES MEMBER(MID) NOT NULL
+    );
+    
+CREATE SEQUENCE FAQ_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE FAQ(
+    FNO NUMBER(5) NOT NULL PRIMARY KEY,
+    FTITLE VARCHAR2 (500),
+    FCONTENT VARCHAR2 (2000)
+);
+
+-- 3. Member Query
 -- 1) 회원가입 joinMember
     INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
     MADDRESS1, MADDRESS2, MADDRESS3)
@@ -173,7 +207,6 @@ UPDATE MEMBER SET MPW = '222',
     (SELECT * FROM ORDER_LIST WHERE MID = 'one' ORDER BY OCRDATE DESC) A) 
     WHERE RN BETWEEN 1 AND 2;
 
-
 -- 4. CART QUERY
 -- 장바구니 담기
 
@@ -181,6 +214,19 @@ INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,
 PRICE1,PRICE2,RESULT)
     VALUES (CART_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
     '25000','18000',0);
+    
+-- 특정 아이디의 장바구니를 체크한 것만큼 복수 출력
+SELECT * FROM CART WHERE CID IN (3,4,7) AND TYPE = 0;
+
+-- 장바구니 후 결제 시, 모든 티켓의 양과 금액을 출력
+select 
+    (select sum(p1) from cart where cid in (3,4,7) and type =0) type0adult,
+    (select sum(p2) from cart where cid in (3,4,7) and type =0) type0youth,    
+    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=0) type0Sum,
+    (select sum(p1) from cart where cid in (3,4,7) and type =1) type1adult,
+    (select sum(p2) from cart where cid in (3,4,7) and type =1) type1youth,    
+    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=1) type1Sum
+    from dual;
 
 -- 5. ORDER QUERY
 -- 주문내역 담기
@@ -206,6 +252,37 @@ VALUES
 앞에서 쾅~ 뒤에서 쾅~ 어디서 달려들지 모르는 좌충우돌 범퍼카! 부딪칠수록 즐거움이 더욱 커집니다.',
 '125cm 이상 탑승가능', '65세 이하 탑승 가능', 'Y', 'N', '익사이팅', '어린이', 'car.jpg', 1);
 
+-- worker Attraction
+-- 어트랙션 검색 id=attractionListP
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* 
+        FROM(SELECT * FROM ATTRACTION
+            WHERE UPPER(ANAME) LIKE '%' || UPPER('범') || '%' ORDER BY AID DESC) A)
+        WHERE RN BETWEEN 1 AND 4
+-- 어트랙션 insert id=insertAttraction
+INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
+VALUES
+(ATTRACTION_SEQ.NEXTVAL, '범퍼카' ,'화려한 조명과 신나는 음악 속에서 스릴만점의 자동차 경주가 펼쳐진다. 
+앞에서 쾅~ 뒤에서 쾅~ 어디서 달려들지 모르는 좌충우돌 범퍼카! 부딪칠수록 즐거움이 더욱 커집니다.',
+'125cm 이상 탑승가능', '65세 이하 탑승 가능', 'Y', 'N', '익사이팅', '어린이', 'car.jpg', 1);
+-- 어트랙션 update id=updateAttraction
+UPDATE ATTRACTION SET
+        ANAME = '왕밤빵카',
+        ACONTENT = '화려한 조명이 날 비추네',
+        HEIGHT = '180cm이상탑승가능',
+        AGE = '75세 이하 탑승가능',
+        BEST = 'N',
+        STOPDAY = 'Y',
+        TAG1 = '익사이팅',
+        TAG2 = '어른이',
+        AIMAGE = 'car.jpg',
+        HEADCOUNT = 2
+    WHERE AID = 2;
+-- 어트랙션 갯수 id=totCntAttraction
+SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER('범') || '%';
+-- 어트랙션 delete id=deleteAttraction
+DELETE FROM ATTRACTION WHERE AID=1;
+
 -- 8. PARADE QUERY
 -- 퍼레이드 추가
 INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
@@ -213,16 +290,93 @@ VALUES (PARADE_SEQ.NEXTVAL, '카니발 판타지 퍼레이드', '브라질의 �
 		세계 유명 축제를 한 번에 즐길 수 있는 기회를 놓치지 마세요!','퍼레이드 길, 카니발 광장 (가이드맵 167)','11.17(금) ~ 12.18(일)',
         '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
 		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade1.jpg','paradeDetail1');
-commit;
 
-select * from cart where cid in (3,4,7) and type=0;
-select count(*) type0Cnt, sum(price1)+sum(price2) type0Sum from cart where cid in (3,4,7) and type=0;
-select count(*) type0Cnt, sum(price1)+sum(price2) type1Sum from cart where cid in (3,4,7) and type=1;
-select 
-    (select sum(p1) from cart where cid in (3,4,7) and type =0) type0adult,
-    (select sum(p2) from cart where cid in (3,4,7) and type =0) type0youth,    
-    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=0) type0Sum,
-    (select sum(p1) from cart where cid in (3,4,7) and type =1) type1adult,
-    (select sum(p2) from cart where cid in (3,4,7) and type =1) type1youth,    
-    (select sum(price1)+sum(price2) from cart where cid in (3,4,7) and type=1) type1Sum
-    from dual;
+-- 9. ORDER QUERY
+-- 특정 아이디의 전체 주문내역 출력
+SELECT O.*, OD.* FROM ORDER_LIST O, 
+ORDER_DETAIL OD WHERE O.OID = OD.OID AND MID ='trio';
+
+-- 특정 아이디의 주문내역을 페이징 처리하여 최신 순으로 출력
+
+SELECT *
+    from (SELECT ROWNUM RN, A.* 
+            FROM (SELECT O.*, OD.ODID, OD.OP1, OD.OP2, OD.OTYPE, OD.OATNAME1, OD.OATNAME2, OD.OATNAME3, OD.OPRICE1, OD.OPRICE2, OD.ORESULT, OD.OCRDATE, OD.OVISITDATE 
+                FROM ORDER_LIST O, ORDER_DETAIL OD WHERE O.OID = OD.OID AND MID = 'trio' ORDER BY O.OID DESC) A )
+    WHERE RN BETWEEN 1 AND 5;
+    
+-- 10. WORKER QUERY
+-- 비번찾기 id=getWpw
+SELECT WPW FROM WORKER WHERE WID='admin';
+
+-- 이름찾기 id=getWname
+SELECT WNAME FROM WORKER WHERE WID='admin';
+
+-- 워커 카운트 id=getAllCount
+SELECT COUNT(*) FROM WORKER;
+
+
+-- 11. NOTICE QUERY
+-- 공지사항 리스트 id=NoticeList
+SELECT * FROM NOTICE WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC;
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* 
+        FROM(SELECT * FROM NOTICE
+            WHERE UPPER(NTITLE) LIKE '%' || UPPER('결') || '%' ORDER BY NID DESC) A)
+        WHERE RN BETWEEN 1 AND 4;
+-- 전체 공지사항 리스트
+SELECT * FROM NOTICE ORDER BY NTITLE;
+SELECT ROWNUM RN, A.*
+    FROM (SELECT * FROM NOTICE ORDER BY NTITLE) A;
+SELECT *
+    FROM (SELECT ROWNUM RN, A.*
+        FROM (SELECT * FROM NOTICE ORDER BY NTITLE) A)
+    WHERE RN BETWEEN 1 AND 5;
+-- 전체 공시사항 리스트 id=totCntNotice
+SELECT COUNT(*) FROM NOTICE;
+-- 검색했을 때 공지사항 몇개인지
+SELECT COUNT(*) FROM NOTICE WHERE UPPER(NTITLE) LIKE'%' || UPPER('결') || '%';
+-- 공지번호로 가져오기 id=getDetailBook(dto가져오기 번호로)
+SELECT * FROM NOTICE WHERE NID=2;
+
+-- 공지insert id=insertNotice
+INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
+    VALUES(NOTICE_SEQ.NEXTVAL, '결제가 안돼요', 'noImg.png','내용', SYSDATE , 'admin');
+-- 공지수정 id=updateNotice
+UPDATE NOTICE SET
+        NTITLE = '공지수정',
+        NCONTENT = 'noImg.png',
+        NTEXT = '내용',
+        NRDATE = SYSDATE,
+        WID = 'admin'
+    WHERE NID=2;
+SELECT * FROM NOTICE;
+-- 공지삭제 id=deleteNotice
+DELETE FROM NOTICE WHERE NID=1;
+
+-- 12. QNA QUERY
+
+--ID  = getAllCount
+select count(*) from QNA;
+select count(*) from  QNA where QTITLE like '%'||'단'||'%';
+SELECT * FROM Qna where qtitle ='tdfs';
+--ID = listQna
+SELECT * FROM
+    (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||'단'||'%' ORDER BY QNO DESC)A)
+    WHERE RN BETWEEN 1 AND 100;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QNO DESC)A)
+    WHERE RN BETWEEN 1 AND 30;
+--ID = getQna
+SELECT * FROM QNA WHERE QNO = 1;
+--ID = insertQna
+INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,qpwchk,MID) VALUES
+(QNA_SEQ.NEXTVAL,'단체관람 할인','동호회 단체관람 예정인데 할인 방법이있나요','123', QNA_SEQ.CURRVAL,0,0,'Y','one');
+
+commit;
+--id =QnaPreReplyStep
+UPDATE QNA SET QSTEP = QSTEP+1 WHERE QGROUP = 5 AND QSTEP > 0;
+--id =QnaPreReply
+--INSERT INTO QNA (QNO,QTITLE,QCONTENT,ISREPLY,REPLY,QGROUP,QSTEP,QINDENT,MID) VALUES
+--(QNA_SEQ.NEXTVAL,'단체관람 할인','동호회 단체관람 예정인데 할인 방법이있나요','Y','홈페이지 참조 부탁드려요',5,1,1,'one');
+commit;
+--UPDATE QNA SET HIT = BHIT+1 WHERE BID=#{bid};
