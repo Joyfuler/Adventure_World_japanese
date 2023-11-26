@@ -82,9 +82,17 @@ const autoHyphen = (target) => {
 		});	
 		
 		$('.payForMemberPoint').click(function(){
+			var payPreAmt = parseInt($('#payPreAmt').text()) || 0;
 			var enteredValue = parseInt($('#pointInput').val()) || 0;
+			if (payPreAmt < enteredValue){				
+				alert('결제 금액이 음수가 되지 않도록 포인트를 조정해주세요.');				
+				payPreAmt = parseInt($('#totOrderAmt').text()) || 0;
+				$('#payPreAmt').text(payPreAmt); 
+				$('#pointInput').val(0);				
+			} else {
 			$('#disCountmemberPoint').text(enteredValue);
 			updateTotalOrderAmount();
+			}
 		});		
 	});
 	</script>
@@ -111,7 +119,7 @@ const autoHyphen = (target) => {
 		alert('총 금액에서 ' + disCountmemberPoint + '원 만큼 할인이 적용되었습니다.');	}		
 	</script>
 	<script>
-		function submitChk(){
+		function submitChk(){			
 			var chk1 = $('#chkAgr1');
 			var chk2 = $('#chkAgr2');
 			if (!chk1.prop('checked') || !chk2.prop('checked')){
@@ -368,7 +376,7 @@ const autoHyphen = (target) => {
 					<button id = "naverPayBtn" class = "btn btn-primary bg-dark" onclick = "return submitChk()">
 						결제하기
 					</button>
-				</div>
+				</div>			
 			</div>								
 		</div>		
 	</div>	

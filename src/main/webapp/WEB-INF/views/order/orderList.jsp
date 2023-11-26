@@ -68,7 +68,7 @@ $(document).ready(function(){
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold; color:#5c10e6;">
 						<li>
-							<input type = "button" onclick = "location.href='${conPath }/cart/List.do?mid=${member.mid}'" value = "장바구니 이동 ">
+							<input type = "button" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
 						</li>
 					</ul>
 					</nav>
@@ -83,7 +83,7 @@ $(document).ready(function(){
 		                    <th scope="col" class="th-num">가격</th>
 		                    <th scope="col" class="th-date">어트랙션</th>
 		                    <th scope="col" class="th-num">방문일자</th>
-		                    <th scope="col" class="th-num">총액</th>
+		                    <th scope="col" class="th-num">총액<br>(포인트할인액)</th>
 		                    <th scope="col" class="th-num">처리 상태</th>
 		                    <th scope="col" class="th-date">선택</th>
 		                </tr>
@@ -147,7 +147,9 @@ $(document).ready(function(){
 	                    	${orderLists.ovisitdate} 
 	                    </td>
 	                	<td>	                		
-	                		<fmt:formatNumber type="currency" value="${orderLists.oprice1 + orderLists.oprice2}" />	                		
+	                		<fmt:formatNumber type="currency" value="${orderLists.oprice1 + orderLists.oprice2}" />
+	                		<br>
+	                		(<fmt:formatNumber type= "currency" value = "${orderLists.ompoint eq null? '0' : orderLists.ompoint}"/>)	                		
 	                	</td>
 	                	<td>
 	                		<c:if test = "${oid != orderLists.oid }">

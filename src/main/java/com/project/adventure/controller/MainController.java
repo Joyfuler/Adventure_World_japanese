@@ -1,10 +1,14 @@
 package com.project.adventure.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.adventure.service.AttractionService;
 import com.project.adventure.service.BannerService;
@@ -48,5 +52,11 @@ public class MainController {
 	public String howCome() {
 		return "notice/howCome";
 	}
+	
+	@RequestMapping(value = "fileupload", method = RequestMethod.POST)
+	public void boardImageUpload(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile) {
+		// reviewService.imageUpload(request, response, multiFile);
+	}
+	
 	
 }

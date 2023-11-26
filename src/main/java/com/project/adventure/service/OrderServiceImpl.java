@@ -72,9 +72,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order_Detail> orderList(Order_Detail order_Detail, String pageNum) {
 		Paging paging = new Paging(order_DetailDao.totCnt(order_Detail), pageNum, 5, 5);
 		order_Detail.setStartRow(paging.getStartRow());
-		order_Detail.setEndRow(paging.getEndRow());	
-		System.out.println("startRow : " + paging.getStartRow());
-		System.out.println("endRow : " + paging.getEndRow());
+		order_Detail.setEndRow(paging.getEndRow());
 		return order_DetailDao.orderList(order_Detail);
 
 	}

@@ -11,4 +11,16 @@ public class ReviewController {
 	public String reviewList() {
 		return "review/reviewList";
 	}
+	
+	@RequestMapping(value = "reviewWrite", method = RequestMethod.GET)
+	public String reviewWrite() {
+		return "review/reviewWrite";
+	}
+	
+	@RequestMapping(value = "reviewContent", method = RequestMethod.GET)
+	public String reviewContent() {
+		return "review/reviewContent";
+	}
+	
+	
 }
