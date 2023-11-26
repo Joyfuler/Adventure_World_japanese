@@ -34,8 +34,8 @@
 	</script>
 </c:if>	
 <!-- qnaWrite에서 로그인 안되서 온 경우 -->
-<c:if test="${not empty param.after and empty param.pageNum}"> 
-		<c:set var="after" value="${param.after }"/>
+<c:if test="${not empty param.next and empty param.pageNum}"> 
+		<c:set var="next" value="${param.next }"/>
 </c:if>
 <body>  
 <div id=logina>

@@ -59,7 +59,7 @@ public class QnaController {
 	public String qnaWriteForm() {
 		return "qna/qnaWrite";
 	}
-	@RequestMapping(value = "qnaWrite", method=RequestMethod.POST)
+	@RequestMapping(value ="qnaWrite", method=RequestMethod.POST)
 	public String qna_write(@ModelAttribute("dto") Qna qna,
 							Model model,
 							HttpServletRequest request,

@@ -69,7 +69,7 @@ inputTextarea.addEventListener('input', function (e) {
 			<c:if test="${empty member && empty worker }">
 			<script>
 				alert('로그인 후 문의글 작성이 가능합니다');
-				location.href = '${conPath}/member/login.do?after=qna/qnaWirte.do';
+				location.href = '${conPath}/member/login.do?next=qna/qnaWriteForm.do';
 			</script>
 			</c:if>
 	    	<table class="fix03">
