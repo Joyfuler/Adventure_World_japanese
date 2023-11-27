@@ -90,9 +90,9 @@
 		<a href="${conPath }/attraction/stopdayInfo.do" class="grayBtn">이번 달 운휴 달력 보러가기</a>
 	</p>
 	<div class="btnArea">
-		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">목록</a>
-		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">수정</a>
-		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">삭제</a>
+		<a href="${conPath }/workerAttraction/attractionListP.do" class="purpleBtn">목록</a>
+		<a href="${conPath }/workerAttraction/update.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">수정</a>
+		<a href="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">삭제</a>
 	</div>
 </div>
 

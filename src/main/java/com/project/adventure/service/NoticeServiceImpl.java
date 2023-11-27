@@ -76,6 +76,7 @@ public class NoticeServiceImpl implements NoticeService {
 		String uploadPath = mRequest.getRealPath("noticeImg/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
 		String bimg = "";
+		String bimage = notice.getNcontent();
 		//if (params.hasNext()) {
 			String param = params.next();
 			System.out.println(" 파라미터 이름: " + param);
@@ -100,8 +101,11 @@ public class NoticeServiceImpl implements NoticeService {
 					System.out.println(e.getMessage());
 				}
 			}//if
-			
-		//}//if
+			if (bimage.equals("")) {
+				bimage = null;
+			}else {
+				bimage = bimg;
+			}
 		notice.setNcontent(bimg);
 		System.out.println("★ 넘어온 공지 사항  : " + notice);
 		return noticeDao.updateNotice(notice);

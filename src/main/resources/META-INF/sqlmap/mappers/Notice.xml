@@ -31,7 +31,12 @@
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE SET
         NTITLE = #{ntitle},
-        NCONTENT = #{ncontent},
+        	<if test="bimage==null">
+        		NCONTENT = null,
+        	</if>
+        	<if test="bimage==null">
+        		NCONTENT = #{ncontent},
+        	</if>
         NTEXT = #{ntext},
         NRDATE = SYSDATE,
     WHERE NID=#{nid}
