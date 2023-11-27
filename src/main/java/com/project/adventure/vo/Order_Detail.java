@@ -25,7 +25,8 @@ public class Order_Detail {
 	private int oprice2;
 	private int oresult;
 	private Date ocrdate;
-	private Date ovisitdate;	
+	private Date ovisitdate;
+	private String review;
 	private int startRow;
 	private int endRow;	
 }

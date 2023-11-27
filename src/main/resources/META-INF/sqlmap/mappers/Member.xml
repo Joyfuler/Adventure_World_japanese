@@ -80,5 +80,5 @@
 	</update>
 	<update id = "plusMemberPoint" parameterType="Member">
 		UPDATE MEMBER SET MPOINT = MPOINT + #{mpoint} WHERE MID = #{mid}
-	</update>
+	</update>		
 </mapper>

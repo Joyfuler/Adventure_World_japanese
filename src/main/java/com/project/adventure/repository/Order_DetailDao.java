@@ -15,5 +15,7 @@ public interface Order_DetailDao {
 	public int priceTotal(int oid);
 	public int totCnt(Order_Detail order_Detail);
 	public int deleteOrder(int oid);
+	public List<Order_Detail> reviewSelect(String mid);
+	public void checkReviewOk(int odid);
 	
 }

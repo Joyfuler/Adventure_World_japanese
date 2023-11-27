@@ -18,12 +18,24 @@
                 WHERE O.OID = OD.OID AND MID = #{mid} ORDER BY O.OID DESC) A )
     			WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
+	<select id = "reviewSelect" parameterType = "String" resultType = "Order_Detail">
+				SELECT O.*, OD.ODID, OD.OP1, OD.OP2, OD.OTYPE, 
+            	OD.OATNAME1, OD.OATNAME2, OD.OATNAME3, OD.OPRICE1, 
+            	OD.OPRICE2, OD.ORESULT, OD.OCRDATE, OD.OVISITDATE, OD.REVIEW 
+                FROM ORDER_LIST O, ORDER_DETAIL OD 
+                WHERE O.OID = OD.OID AND MID = #{mid} ORDER BY O.OID DESC
+    			
+	</select>
 	<select id = "priceTotal" parameterType = "int" resultType = "Order_Detail">
 			SELECT * FROM ORDER_DETAIL WHERE OID = #{oid}
 	</select>	
 	<select id = "totCnt" parameterType = "Order_Detail" resultType = "int">
 			SELECT COUNT(*) FROM ORDER_LIST, ORDER_DETAIL WHERE ORDER_LIST.OID = ORDER_DETAIL.OID AND MID = #{mid}
 	</select>
+	<update id = "checkReviewOk" parameterType = "int">
+			UPDATE ORDER_DETAIL SET REVIEW = 'Y'
+			WHERE ODID = #{odid}
+	</update>
 	<delete id = "deleteOrder" parameterType="int">
 			DELETE FROM ORDER_DETAIL WHERE OID = #{oid}
 	</delete>

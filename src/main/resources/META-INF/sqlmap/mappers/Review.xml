@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.ReviewDao">
+	<resultMap type="Review" id="ReviewResult">
+		<result property="rid" column="rid"/>
+		<result property="rtitle" column="rtitle"/>
+		<result property="rcontent" column="rcontent"/>
+		<result property="rscore" column="rscore"/>
+		<result property="rphoto" column="rphoto"/>
+		<result property="rrdate" column="rrdate"/>
+		<result property="mid" column="mid"/>
+		<result property="otype" column="otype"/>
+		<result property="odid" column="r_odid"/>
+		<result property="mname" column="mname"/>
+		<result property="oatname1" column="oatname1"/>
+		<result property="oatname2" column="oatname2"/>
+		<result property="oatname3" column="oatname3"/>
+		<result property="ovisitdate" column="ovisitdate"/>
+		<result property="op1" column="op1"/>
+		<result property="op2" column="op2"/>	
+		<result property="reviewcount" column="reviewcount"/>
+		<result property="avg" column="avg"/>
+	</resultMap>
+	<select id="reviewList" parameterType="Review" resultMap="ReviewResult">
+		SELECT * FROM 
+			(SELECT ROWNUM RN, 
+			A.RID, A.RTITLE, A.RCONTENT, A.RSCORE, 
+			A.RPHOTO, A.RRDATE, A.MID, A.OTYPE, 
+			A.OATNAME1, A.R_ODID, A.MNAME, A.OATNAME2, A.OATNAME3, 
+			A.OVISITDATE
+				FROM (
+    				SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME
+	    			FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
+    				WHERE R.ODID = OD.ODID AND R.MID = M.MID    			
+    			<if test="sort == 'new' or sort == null and searchWord == null">
+    				ORDER BY R.RRDATE DESC
+    			</if>
+    			<if test="sort == 'highScore' and searchWord == null">
+    				ORDER BY R.RSCORE DESC
+    			</if>
+    			<if test = "sort == 'lowScore' and searchWord == null">
+    				ORDER BY R.RSCORE ASC
+    			</if>    			
+    			<if test="sort == 'new' or sort == null and searchWord != null">
+    				AND (RTITLE LIKE '%'||#{searchWord}||'%'
+    				OR RCONTENT LIKE '%'||#{searchWord}||'%')
+    				ORDER BY R.RRDATE DESC
+    			</if>
+    			<if test="sort == 'highScore' and searchWord != null">
+    				AND (RTITLE LIKE '%'||#{searchWord}||'%'
+    				OR RCONTENT LIKE '%'||#{searchWord}||'%')
+    				ORDER BY R.RSCORE DESC
+    			</if>
+    			<if test = "sort == 'lowScore' and searchWord != null">
+    				AND (RTITLE LIKE '%'||#{searchWord}||'%'
+    				OR RCONTENT LIKE '%'||#{searchWord}||'%')
+    				ORDER BY R.RSCORE ASC
+    			</if> 
+    			) A 
+    		) WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>	
+	<select id = "totCnt" parameterType="Review" resultType="int">
+		<if test = "searchWord == null">
+			SELECT COUNT(*) FROM REVIEW						
+		</if>
+		<if test = "searchWord != null">
+			SELECT COUNT(*) 
+			FROM REVIEW
+			WHERE RTITLE LIKE '%'||#{searchWord}||'%'
+			OR RCONTENT LIKE '%'||#{searchWord}||'%'
+		</if>
+	</select>
+	<select id = "getReviewContent" parameterType="int" resultMap="ReviewResult">
+		SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME
+    	FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
+    	WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = #{rid}
+	
+	</select>
+	<select id = "reviewInfo" resultMap = "ReviewResult">
+		SELECT 
+  			(SELECT COUNT(*) FROM REVIEW) REVIEWCOUNT,
+  			(SELECT NVL(AVG(RSCORE), 0) FROM REVIEW) AVG
+		FROM DUAL
+	</select>
+	<insert id = "writeReview" parameterType = "Review">
+		INSERT INTO REVIEW (RID, RTITLE, RCONTENT, RSCORE, RPHOTO, MID, ODID)
+		VALUES (REVIEW_SEQ.NEXTVAL, 
+		#{rtitle}, #{rcontent}, #{rscore}, #{rphoto}, #{mid}, #{odid})		
+	</insert>
+	
+</mapper>

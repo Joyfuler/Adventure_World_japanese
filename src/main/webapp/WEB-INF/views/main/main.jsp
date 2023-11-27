@@ -20,12 +20,12 @@
 $(document).ready(function(){
 	var num=0;
 	setInterval(function(){
-        	$('#imgs').animate({ left : num * -1355 },4000);
+        	$('#imgs').animate({ left : num * -1355 },2500);
         num++;
     	if(num==(Number('${bannerList.size()}'))){
     		num=0;    	
     	}
-    }, 3000);
+    }, 6000);
 });
 </script>	
 <style>

@@ -47,6 +47,7 @@
 						<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>
+						<li>point: ${member.mpoint }</li>
 				</c:if>
 				<c:if test = "${not empty worker and empty member}">						
 						<li>

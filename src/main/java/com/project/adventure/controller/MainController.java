@@ -14,6 +14,7 @@ import com.project.adventure.service.AttractionService;
 import com.project.adventure.service.BannerService;
 import com.project.adventure.service.EventService;
 import com.project.adventure.service.ParadeService;
+import com.project.adventure.service.ReviewService;
 
 
 @Controller
@@ -26,6 +27,8 @@ public class MainController {
 	public AttractionService attractionService;
 	@Autowired
 	public ParadeService paradeService;
+	@Autowired
+	public ReviewService reviewService;
 	
 	@RequestMapping(value = "main", method = {RequestMethod.GET, RequestMethod.POST })
 	public String main (Model model) {
@@ -55,7 +58,7 @@ public class MainController {
 	
 	@RequestMapping(value = "fileupload", method = RequestMethod.POST)
 	public void boardImageUpload(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile) {
-		// reviewService.imageUpload(request, response, multiFile);
+		reviewService.imageUpload(request, response, multiFile);
 	}
 	
 	

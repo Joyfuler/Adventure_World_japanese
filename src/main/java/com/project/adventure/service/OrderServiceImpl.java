@@ -89,4 +89,13 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return result;
 	}
+	@Override
+	public List<Order_Detail> reviewSelect(HttpSession session) {
+		String mid = null;
+		Member member = (Member)session.getAttribute("member");
+		if(member!=null) {
+			mid = member.getMid();
+		}
+		return order_DetailDao.reviewSelect(mid);
+	}
 }

@@ -58,7 +58,7 @@ $(document).ready(function(){
 	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">주문내역</h3>
 	            <br>
 	            <h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 티켓 주문내역입니다.</h1>	            
-	            <h5 style = "font-size: 10px;"> (최근 결제한 순으로 페이지당 5건씩 출력됩니다)</h5>
+	            <h5 style = "font-size: 10px; text-align: center;"> (최근 결제한 순으로 페이지당 5건씩 출력됩니다)</h5>
 	        </div>
 	    </div>  
 	     <div class="board-list">
