@@ -9,7 +9,7 @@ import com.project.adventure.vo.Cart;
 @Mapper
 public interface CartDao {
 	public List<Cart> cartList(String mid);
-	public int totCntCart(Cart cart);
+	public int totCntCart(String mid);
 	public Cart getDetailCart(int cid);
 	public int registerCart1(Cart cart);
 	public int registerCart2(Cart cart);

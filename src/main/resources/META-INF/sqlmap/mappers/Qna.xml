@@ -35,12 +35,6 @@
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
 			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{qpwchk},#{mid})
 	</insert>
-	<!-- step조절 
-		<update id="qnaPreReplyStep" parameterType="Qna">
-		<![CDATA[
-			UPDATE QNA SET QSTEP = QSTEP+1 WHERE QGROUP = #{qgroup} AND QSTEP > #{qstep}
-		]]>
-	</update> -->
 	 <insert id="qnaPreRepstep" parameterType="Qna">
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
 			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,1,0,#{qpwchk},#{mid})
@@ -67,6 +61,19 @@
 			select count(*) from  QNA where QTITLE like '%'||#{schWord}||'%'
     	</if>
 	</select>
+	<delete id="deleteQna" parameterType="int">
+    	DELETE FROM QNA WHERE QNO =#{QNO}
+	</delete>
+	<update id="modify" parameterType="Qna" >
+		UPDATE QNA SET
+                REPLY = #{reply}
+                WHERE QNO = #{qno}
+	</update>
+	<update id="qnaPreRepstep3" parameterType="Qna" >
+		UPDATE QNA SET
+                REPLY = #{reply}
+                WHERE QNO = #{qno}+1
+	</update>
 </mapper>
 
 

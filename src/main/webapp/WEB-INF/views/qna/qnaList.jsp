@@ -19,13 +19,13 @@ function qpwChk(qno){
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 </style>
 <jsp:include page="../main/header.jsp"/>
+<c:if test="${not empty wirteResult}">
+	alert('글작성 성공');
+</c:if>
 <form action="${conPath }/qna/qnaList.do" name="frm" method="post">
 <input type="hidden" name = "wid" value="${param.wid }">
 <input type="hidden" name = "pageNum" value="${param.pageNum }">
 <section class="notice">
-	<c:if test="${not empty wirteResult }">
-		alert(${wirteResult });
-	</c:if>
   <div class="page-title">
         <div class="container">
             <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">QnA</h3>
@@ -103,15 +103,15 @@ function qpwChk(qno){
 						<c:when test="${qna.qpwchk=='Y'}">
 							 <span onClick="qpwChk(${qna.qno})">
 									<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
-									<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
-									${qna.qtitle}</span> 
+									${qna.qtitle}
+									</span> 
 								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
 							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
 								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
-								<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
-								${qna.qtitle} </a>
+								${qna.qtitle} 
+								</a>
 						</c:otherwise>
 					</c:choose>
 				</c:if>
@@ -120,13 +120,15 @@ function qpwChk(qno){
 						<c:when test="${qna.qpwchk=='Y'}">
 							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
 								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
-								<img src="${conPath }/images/replyicon3.png" style="width:20px;vertical-align: middle">
-								${qna.qtitle}</a>
+								${qna.qtitle}
+								</a>
 								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
 							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-							 └─${qna.qtitle}</a>
+							<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+							 ${qna.qtitle}
+							 </a>
 						</c:otherwise>
 					</c:choose>
 	    			</c:if>
@@ -141,48 +143,7 @@ function qpwChk(qno){
 	   		</tr>
 			</c:if>
 	  	</c:forEach>
-    <%--   <!-- 답변글 유무 -->
-	<c:forEach items="${qnaList}"  var="qna">
-      <c:if test="${qna.qstep eq 1 and qna.qindent eq 1}">
-			<tr ><td> ${qna.qno}</td>    
-	    		<td>
-	    		<c:if test="${ empty worker }">
-	    			<c:choose>
-						<c:when test="${qna.qpwchk=='Y'}">
-							 <span onClick="qpwChk(${qna.qno})">
-									└─ ${qna.qtitle}</span> 
-								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
-						</c:when>
-						<c:otherwise>
-							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-								└─${qna.qtitle}</a>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
-	    			<c:if test="${not empty worker }">
-	    				<c:choose>
-						<c:when test="${qna.qpwchk=='Y'}">
-							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
-							└─${qna.qtitle}</a>
-								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
-						</c:when>
-						<c:otherwise>
-							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-							 └─${qna.qtitle}</a>
-						</c:otherwise>
-					</c:choose>
-	    			</c:if>
-	    			</td>
-	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
-	       		<td><c:choose>
-					<c:when test="${qna.isreply=='N'}"> no </c:when>
-					<c:when test="${qna.isreply=='Y'}"> yes 
-					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
-					</c:when>
-				</c:choose></td>    
-	   		</tr>
-			</c:if>
-	  	</c:forEach> --%>
+
             </table>
         </div>
     </div>

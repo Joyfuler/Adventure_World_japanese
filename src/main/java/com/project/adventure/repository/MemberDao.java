@@ -1,5 +1,8 @@
 package com.project.adventure.repository;
 
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project.adventure.vo.Cart;
@@ -19,4 +22,6 @@ public interface MemberDao {
 	public Cart cartList(Member member);
 	public void minusMemberPoint(Member member);
 	public void plusMemberPoint(Member member);
+	public List<Member> memberList(Member member);
+	public int workermodify(Member member);
 }

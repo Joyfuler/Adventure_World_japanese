@@ -1,5 +1,6 @@
 package com.project.adventure.service;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.mail.Message;
@@ -13,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 import com.project.adventure.repository.MemberDao;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order;
 
@@ -161,4 +163,25 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.plusMemberPoint(member);
 		
 	}
+
+	@Override
+	public int getMemberCount() {
+		return memberDao.getMemberCount();
+	}
+
+	@Override
+	public int workermodify(Member member, HttpSession session) {
+		session.invalidate();
+		return memberDao.workermodify(member);
+	}
+
+	@Override
+	public List<Member> memberList(String pageNum, Member member) {
+		Paging paging = new Paging(memberDao.getMemberCount(), pageNum, 10, 10);
+		member.setStartRow(paging.getStartRow());
+		member.setEndRow(paging.getEndRow());
+		return memberDao.memberList(member);
+	}
+
+	
 }

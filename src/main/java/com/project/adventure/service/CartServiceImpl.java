@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.adventure.repository.CartDao;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Cart;
 import com.project.adventure.vo.Order;
 @Service
@@ -16,13 +17,17 @@ public class CartServiceImpl implements CartService {
 @Autowired
 private CartDao cartDao;
 	@Override
-	public List<Cart> cartList(String mid) {
+	public List<Cart> cartList(String pageNum,String mid) {
+		Paging paging = new Paging(cartDao.totCntCart(mid),pageNum, 10, 10);
+		Cart cart = new Cart();
+		cart.setStartRow(paging.getStartRow());
+		cart.setEndRow(paging.getEndRow());
 		return cartDao.cartList(mid);
 	}
 
 	@Override
-	public int totCntCart(Cart cart) {
-		return cartDao.totCntCart(cart);
+	public int totCntCart(String mid) {
+		return cartDao.totCntCart(mid);
 	}
 
 	@Override

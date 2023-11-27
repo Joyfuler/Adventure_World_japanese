@@ -117,5 +117,4 @@ public class MemberController {
 		model.addAttribute("withdrawalResult", memberService.withDrawalMember(mid, session));
 		return "forward:../main.do";
 	}
-	
 }

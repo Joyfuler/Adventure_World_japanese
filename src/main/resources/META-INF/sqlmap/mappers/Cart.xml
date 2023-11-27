@@ -21,8 +21,8 @@
 	<select id="cartList" parameterType="String" resultMap="CartResult">
 		SELECT * FROM CART WHERE MID = #{mid} ORDER BY CRDATE
 	</select>
-	<select id="totCntCart" resultType="int">
-		SELECT COUNT(*) FROM CART
+	<select id="totCntCart" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CART WHERE MID = #{mid}
 	</select>
 	<select id="getDetailCart" parameterType="int" resultType="Cart">
 		SELECT * FROM CART WHERE CID=#{cid}

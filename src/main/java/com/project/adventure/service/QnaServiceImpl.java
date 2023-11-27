@@ -1,9 +1,20 @@
 package com.project.adventure.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.adventure.repository.QnaDao;
 import com.project.adventure.util.Paging;
@@ -40,5 +51,13 @@ public class QnaServiceImpl implements QnaService {
 		qnaDao.qnaPreRepstep2(qna);
 		return qnaDao.qnaPreReply(qna);
 	}
-
+	@Override
+	public int deleteQna(int qno) {
+		return qnaDao.deleteQna(qno);
+	}
+	@Override
+	public int modify(Qna qna) {
+		qnaDao.qnaPreRepstep3(qna);
+		return qnaDao.modify(qna);
+	}
 }
