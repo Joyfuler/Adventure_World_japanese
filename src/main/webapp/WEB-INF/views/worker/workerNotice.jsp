@@ -31,7 +31,7 @@ function go_search(){
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
-<form action="${conPath }/notice/list.do" method="post">
+<form action="${conPath }/worker/list.do" method="post">
 <section class="notice">
 <div class="page-title">
 	<div class="container">
@@ -69,7 +69,7 @@ function go_search(){
                 <c:forEach items="${notice}" var="notice">
 	                <tr>
 	                    <td>${notice.nid}</td>
-	                    <th><a href="${conPath }/worker/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
+	                    <th style="text-align: center;"><a href="${conPath }/worker/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
 	                    <td><fmt:formatDate value="${notice.nrdate}" type="date"/></td>
 	                </tr>
 	          	</c:forEach>

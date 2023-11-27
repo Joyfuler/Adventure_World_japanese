@@ -31,8 +31,8 @@
             WHERE UPPER(ANAME) LIKE '%' || UPPER(#{schTitle}) || '%' ORDER BY AID DESC) A)
         WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<select id="totCntAttraction" resultType="int">
-		SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER(#{aname}) || '%'
+	<select id="totCntAttraction" parameterType="Attraction" resultType="int">
+		SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER(#{schTitle}) || '%'
 	</select>
 	<select id = "tag1List" resultMap= "AttractionResult">
 		SELECT DISTINCT TAG1 FROM ATTRACTION
@@ -76,7 +76,12 @@
         STOPDAY = #{stopday},
         TAG1 = #{tag1},
         TAG2 = #{tag2},
-        AIMAGE = #{aimage},
+        	<if test="aimage==null">
+        		 AIMAGE = null,
+        	</if>
+        	<if test="aimage!=null and aimage!=''">
+        		 AIMAGE = #{aimage},
+        	</if>
         HEADCOUNT = #{headcount}
     WHERE AID = #{aid}
 	</update>

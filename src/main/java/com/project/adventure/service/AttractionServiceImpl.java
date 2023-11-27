@@ -72,7 +72,7 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 	@Override
 	public int insertAttraction(MultipartHttpServletRequest mRequest, Attraction attraction) {
-		String uploadPath = mRequest.getRealPath("attraction_images/");
+		String uploadPath = mRequest.getRealPath("/images/attraction_images/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
 		String aimg = "";
 		//if (params.hasNext()) {
@@ -105,9 +105,10 @@ public class AttractionServiceImpl implements AttractionService {
 
 	@Override
 	public int updateAttraction(MultipartHttpServletRequest mRequest, Attraction attraction) {
-		String uploadPath = mRequest.getRealPath("attraction_images/");
+		String uploadPath = mRequest.getRealPath("/images/attraction_images/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
 		String aimg = "";
+		String aimage = attraction.getAcontent();
 		//if (params.hasNext()) {
 			String param = params.next();
 			System.out.println(" 파라미터 이름: " + param);
@@ -132,7 +133,11 @@ public class AttractionServiceImpl implements AttractionService {
 					System.out.println(e.getMessage());
 				}
 			}//if
-		attraction.setAimage(aimg);
+		if (aimage.equals("")) {
+			aimage = null;
+		}else {
+			aimage = aimg;
+		}
 		return attractionDao.updateAttraction(attraction);
 	}
 

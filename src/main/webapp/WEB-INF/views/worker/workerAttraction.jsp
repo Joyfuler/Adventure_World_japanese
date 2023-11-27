@@ -29,9 +29,19 @@ function go_search(){
 }
 </script>
 <body>
+<c:if test = "${not empty deleteResult }">
+	<script>
+        var confirmDelete = confirm('정말 삭제하시겠습니까?');
+        if (confirmDelete) {
+            alert('${deleteResult}');
+        }
+    </script>
+</c:if>
+
+
 <jsp:include page="../main/header.jsp"/>
 <article>
-<form action="${conPath }/workerAttraction/attractionListP.do" method="post">
+<form action="${conPath }/workerAttraction/attractionListP.do" method="get">
 <section class="notice">
 <div class="page-title">
 	<div class="container">
@@ -63,14 +73,16 @@ function go_search(){
                     <th scope="col" class="th-num">번호</th>
                     <th scope="col" class="th-title">어트랙션 이름</th>
                     <th scope="col" class="th-date">운휴일</th>
+                    <th scope="col" class="th-att">어트랙션 수정</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${workerAttraction}" var="workerAttraction">
 	                <tr>
 	                    <td>${workerAttraction.aid}</td>
-	                    <th><a href="${conPath }/workerAttraction/attractionDetail.do?aid=${workerAttraction.aid}&pageNum=${paging.currentPage}">${workerAttraction.aname}</a></th>  <!-- &schTitle=${param.schTitle} -->
+	                    <th  style="text-align: center;"><a href="${conPath }/workerAttraction/attractionDetail.do?aid=${workerAttraction.aid}&pageNum=${paging.currentPage}">${workerAttraction.aname} </a></th>  <!-- &schTitle=${param.schTitle} -->
 	                    <td>${workerAttraction.stopday }</td>
+	                    <td><a href="${conPath }/workerAttraction/update.do?aid=${workerAttraction.aid}&pageNum=${paging.currentPage}">수정하기</a></td>
 	                </tr>
 	          	</c:forEach>
                 
@@ -81,18 +93,18 @@ function go_search(){
 </section>
 <div style="text-align: center; margin-top: 20px;">
 	<c:if test="${paging.startPage>paging.blockSize}">
-		[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${paging.startPage-1 }&schTitle=${param.schWord}">이전</a> ]
+		[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${paging.startPage-1 }&schTitle=${param.schTitle}">이전</a> ]
 	</c:if>	
 	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 		<c:if test="${paging.currentPage==i }"> 
 			<b>[ ${i } ]</b> 
 		</c:if>
 		<c:if test="${paging.currentPage != i }">
-			[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${i }&schTitle=${param.schWord}">${i }</a> ]
+			[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${i }&schTitle=${param.schTitle}">${i }</a> ]
 		</c:if>
 	</c:forEach>
 	<c:if test="${paging.endPage<paging.pageCnt }">
-		[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${paging.endPage+1 }&schTitle=${param.schWord}">다음</a> ]
+		[ <a href="${conPath }/workerAttraction/attractionListP.do?pageNum=${paging.endPage+1 }&schTitle=${param.schTitle}">다음</a> ]
 	</c:if>
 </div>
 </form>

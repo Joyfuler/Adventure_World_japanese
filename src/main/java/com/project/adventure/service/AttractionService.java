@@ -2,6 +2,7 @@ package com.project.adventure.service;
 
 import java.util.List;
 
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.adventure.vo.Attraction;

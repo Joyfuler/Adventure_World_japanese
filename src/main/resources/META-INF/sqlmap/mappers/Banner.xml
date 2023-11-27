@@ -13,6 +13,20 @@
 		<result property="bimg" column="bimg"/>			
 	</resultMap>  
 	<select id="bannerList" resultMap="BannerResult">
-		SELECT * FROM BANNER ORDER BY BRDATE DESC
-	</select>	
+		SELECT * FROM BANNER ORDER BY BORDER
+	</select>
+	<insert id="insertBanner" parameterType="Banner">
+		INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
+    VALUES (BANNER_SEQ.NEXTVAL, #{btitle}, #{border}, #{usage}, #{bimg})
+	</insert>
+	<update id="updateSeq" parameterType="Banner">
+		UPDATE BANNER SET
+        BORDER = #{border},
+        USAGE = #{usage},
+        BIMG = #{bimg}
+    WHERE BNO = #{bno}
+	</update>
+	<delete id="deleteBanner">
+		DELETE FROM BANNER WHERE BNO = #{bno}
+	</delete>
 </mapper>

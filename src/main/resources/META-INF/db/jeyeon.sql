@@ -109,7 +109,7 @@ SELECT *
     FROM (SELECT ROWNUM RN, A.* 
         FROM(SELECT * FROM ATTRACTION
             WHERE UPPER(ANAME) LIKE '%' || UPPER('범') || '%' ORDER BY AID DESC) A)
-        WHERE RN BETWEEN 1 AND 4
+        WHERE RN BETWEEN 1 AND 4;
 -- 어트랙션 insert id=insertAttraction
 INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
 VALUES
@@ -133,6 +133,25 @@ UPDATE ATTRACTION SET
 SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER('범') || '%';
 -- 어트랙션 delete id=deleteAttraction
 DELETE FROM ATTRACTION WHERE AID=1;
+SELECT * FROM MEMBER;
+
+
+-- workerBanner Dao
+
+-- 배너 리스트 id=bannerList
+SELECT * FROM BANNER ORDER BY BORDER;
+-- 새배너 만들기 id=insertBanner
+INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
+    VALUES (BANNER_SEQ.NEXTVAL, '제목1', '1', 'Y', 'mainimgs1.jpg');
+-- 배너 순서변경 id=updateSeq
+UPDATE BANNER SET
+        BORDER = '1',
+        USAGE = 'Y',
+        BIMG = 'mainimgs1.jpg'
+    WHERE BNO = '1';
+-- 배너 제거 id=deleteBanner
+DELETE FROM BANNER WHERE BNO = '1';
+
 
 
     

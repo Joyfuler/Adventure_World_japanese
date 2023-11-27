@@ -120,42 +120,56 @@
             border: none;
         }
     </style>
+<script>
+	$(document).ready(function() {
+		$('#attractionImage').change(function() {
+				// 첨부한 파일명을 input에 넣어줌
+				if (window.FileReader) {
+					var filename = $(this)[0].files[0].name; 
+				} else {
+					var filename = $(this).val().split('/').pop()
+							.split('\\').pop();
+				}
+				 $('.sbimage').children(':eq(1)').val(filename);
+		});
+	});
+</script>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
     <div class="findfindd">
         <div class="id_foundd">
-            <h1>어트랙션 추가</h1>
+            <h1>어트랙션 수정</h1>
             <br><hr><br>  
-            <form action="${conPath }/workerAttraction/insert.do" method="post" enctype="multipart/form-data">
+            <form action="${conPath }/workerAttraction/update.do" method="post"enctype="multipart/form-data">
                 <table class="baba">
                     <tr>
 			<th>어트랙션 이름</th>
-			<td><input type="text" name="aname" size="47"></td>
+			<td><input type="text" name="aname" size="47" value="${attraction.aname }"></td>
 		</tr>
 		<tr>
 			<th>어트랙션 설명</th>
-			<td><input type="text" name="acontent" size="47"></td>
+			<td><input type="text" name="acontent" size="47" value="${attraction.acontent}"></td>
 		</tr>
 		<tr>
 			<th>태그1</th>
-			<td><input type="text" name="tag1" size="47"></td>
+			<td><input type="text" name="tag1" size="47" value="${attraction.tag1 }"></td>
 		</tr>
 		<tr>
 			<th>태그2</th>
-			<td><input type="text" name="tag2" size="47"></td>
+			<td><input type="text" name="tag2" size="47" value="${attraction.tag2 }"></td>
 		</tr>
 		<tr>
 			<th>탑승인원(숫자)</th>
-			<td><input type="text" name="headcount" size="47"></td>
+			<td><input type="text" name="headcount" size="47" value="${attraction.headcount }"></td>
 		</tr>
 		<tr>
 			<th>제한사항1(키)</th>
-			<td><input type="text" name="height" size="47"></td>
+			<td><input type="text" name="height" size="47" value="${attraction.height }"></td>
 		</tr>
 		<tr>
 			<th>제한사항2(나이)</th> 
-			<td><input type="text" name="age" size="47"></td>
+			<td><input type="text" name="age" size="47" value="${attraction.age }"></td>
 		</tr>
 		<tr>
 			<th>베스트 어트랙션<br>(Y/N)</th>
@@ -174,15 +188,21 @@
                     <tr>
                         <th>어트랙션 이미지</th>
                         <td>
-                            <input type="hidden" name="image" id="image">
-                            <div id="filename"></div>
-                            <input type="file" name="attractionImage" id="attractionImage">
-                        </td>
+						    <div class="sbimage" style="width: 90%; overflow: hidden;">
+						        <label for="attractionImage" style="float: left; margin-right: 10px;">
+						            <img src="${conPath}/images/fileup.png" style="width: 50px; display: block;">
+						        </label>
+						        <input type="text" name="image" id="image" value="${attraction.aimage}" style="width: calc(100% - 80px); float: left;">
+						    </div>
+						    <div id="filename"></div>
+						    <input type="file" name="attractionImage" id="attractionImage" style="display: none;">
+						</td>
                     </tr>
                 </table>
                 <div class="update_buttons">
-                    <input type="submit" value="기구등록">
-                    <input type="button" value="목록으로" onclick="location.href='${conPath }/worker/list.do'">
+                    <input type="submit" value="기구수정">
+                    <input type="button" value="목록으로" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'">
+                    <input type="reset" value="재설정">
                 </div>
             </form>
         </div>
