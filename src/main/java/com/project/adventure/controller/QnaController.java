@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.adventure.service.QnaService;
@@ -33,7 +34,7 @@ public class QnaController {
 		model.addAttribute("paging", new Paging(qnaService.qnaTotCnt(qna), pageNum, 10, 10));
 		return "qna/qnaList";
 	}
-	@RequestMapping(value = "qnaView", method = RequestMethod.GET )
+	@RequestMapping(value = "qnaView", method =  {RequestMethod.GET, RequestMethod.POST})
 	public String qna_view(Model model, @RequestParam("qno") int qno) {
 		model.addAttribute("Qna", qnaService.getQna(qno));
 		return "qna/qnaView";
@@ -56,24 +57,19 @@ public class QnaController {
 			}	
 		}
 	@RequestMapping(value = "qnaWriteForm", method=RequestMethod.GET)
-	public String qnaWriteForm() {
+	public String qnaWrite() {
 		return "qna/qnaWrite";
 	}
-	@RequestMapping(value ="qnaWrite", method=RequestMethod.POST)
-	public String qna_write(@ModelAttribute("dto") Qna qna,
+	@RequestMapping(value ="qnaWrite", method= RequestMethod.POST)
+	public String qnaWrite(Qna qna,
 							Model model,
-							HttpServletRequest request,
-							@RequestParam(value="qpw", required=false) String qpw,
 							@RequestParam(value="check", required=false) String check) {
-		/*
-		 * HttpSession session = request.getSession(); Member member = new Member();
-		 */	
+		System.out.println("qna : " + qna);
 	    		if( check == null ) {
 	    			qna.setQpwchk( "N" );
 	    			qna.setQpw("");
 	    		}else {
 	    			qna.setQpwchk( "Y" );
-	    			qna.setQpw(qpw);
 	    		}
 	    		qna.setMid(qna.getMid());
 	    		model.addAttribute("wirteResult",qnaService.insertQna(qna));
@@ -84,12 +80,26 @@ public class QnaController {
 		model.addAttribute("Qna", qnaService.getQna(qno));
 		return "qna/adminQnaView";
 	}
-	@RequestMapping(value="adminqnqreply", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="adminqnqreply", method = RequestMethod.POST)
 	public String adminQnaRepSave (Qna qna, Model model){		
 		model.addAttribute("replyResult",qnaService.qnaPreReply(qna));
 		return "forward:qnaView.do";
 	}
- 
+	@RequestMapping(value = "qnadelete", method = RequestMethod.GET)
+	public String deleteQna(int qno, Model model ) {
+		model.addAttribute("deleteResult",qnaService.deleteQna(qno));
+		return "forward:qnaList.do";
+	}
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String modify(Model model,int qno) {
+		model.addAttribute("Qna", qnaService.getQna(qno));
+		return "qna/adminQnamodify";
+	}
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
+	public String modify(Model model, Qna qna) {
+		model.addAttribute("modify",qnaService.modify(qna));
+		return "forward:qnaView.do";
+	}
 	
 	
 

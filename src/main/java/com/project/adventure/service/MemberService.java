@@ -1,7 +1,10 @@
 package com.project.adventure.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order;
 
@@ -19,4 +22,7 @@ public interface MemberService {
 	public int withDrawalMember(String mid, HttpSession session);
 	public void minusMemberPoint(Order order);
 	public void plusMemberPoint(Member member);
+	public int getMemberCount();
+	public List<Member> memberList(String pageNum,Member member);
+	public int workermodify(Member member, HttpSession session);
 }

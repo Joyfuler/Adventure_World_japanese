@@ -19,4 +19,5 @@ public class Member {
 	private int startRow;
 	private int endRow;
 	private int mpoint;
+	private String schWord;
 }

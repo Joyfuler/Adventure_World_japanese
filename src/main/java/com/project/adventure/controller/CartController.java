@@ -1,4 +1,4 @@
-package com.project.adventure.controller;
+    package com.project.adventure.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.adventure.service.AttractionService;
 import com.project.adventure.service.CartService;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Attraction;
 import com.project.adventure.vo.Cart;
 
@@ -23,8 +24,9 @@ public class CartController {
 	@Autowired
 	private AttractionService attractionService;
 	@RequestMapping(value = "list",  method = {RequestMethod.GET, RequestMethod.POST})
-	public String list(String mid, Model model) {
-		model.addAttribute("cartList",cartService.cartList(mid));
+	public String list(String mid, Model model,String pageNum) {
+		model.addAttribute("cartList",cartService.cartList(pageNum, mid));
+		model.addAttribute("paging", new Paging(cartService.totCntCart(mid), pageNum, 10, 10));
 		return "cart/list";
 	}
 	@RequestMapping(value="reserve", method=RequestMethod.GET)

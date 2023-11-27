@@ -48,7 +48,7 @@
 	</update>
 	
 	<select id="getMemberCount"  resultType="int">
-		SELECT COUNT(*) FROM MEMBER;
+		SELECT COUNT(*) FROM MEMBER
 	</select>	
 	<select id="cartList" parameterType="Member" resultMap="MemberResult" >
 		SELECT * FROM 
@@ -80,5 +80,16 @@
 	</update>
 	<update id = "plusMemberPoint" parameterType="Member">
 		UPDATE MEMBER SET MPOINT = MPOINT + #{mpoint} WHERE MID = #{mid}
-	</update>		
+	</update>
+	<select id = "memberList" parameterType="Member" resultMap="MemberResult">
+		<if test="schWord=='' or schWord==null">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER ORDER BY MRDATE DESC)A) WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="schWord!='' and schWord!=null">
+		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER WHERE MID LIKE '%'||#{schWord}||'%' ORDER BY MRDATE DESC)A) WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+	</select>
+	<!-- <update id="workermodify" parameterType="Member">
+		UPDATE MEMBER SET MLEVEL = #{mlevel} WHERE MID = #{mid}
+	</update> -->
 </mapper>

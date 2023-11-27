@@ -166,6 +166,23 @@
 	          	</c:if>	
              </tbody>
          </table>
+             <div id ="paging">
+			<c:if test="${paging.startPage > paging.blockSize}">
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
+			</c:if>	
+			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+				<c:if test="${paging.currentPage eq i }"> 
+					[<b style = "color:red;">${i }</b>] 
+				</c:if>
+				<c:if test="${paging.currentPage != i }">
+					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
+				</c:if>
+			</c:forEach>
+			<c:if test="${paging.endPage<paging.pageCnt }">
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">다음</a> ]
+			</c:if>
+		</div>
+             
            	 <div class="mypage-btn-dede-wrap">
            		<input type="button" onclick="cartDelete()" value="삭제하기" class="dede" style="float:right;">
 		    	<input type="submit" value="결제하기" class="dede" style="float:right;" onclick = "return submitChk()">			   

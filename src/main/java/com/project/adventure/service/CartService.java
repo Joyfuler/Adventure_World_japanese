@@ -8,8 +8,8 @@ import com.project.adventure.vo.Cart;
 import com.project.adventure.vo.Order;
 
 public interface CartService {
-	public List<Cart> cartList(String mid);	
-	public int totCntCart(Cart cart);
+	public List<Cart> cartList(String pageNum,String mid);	
+	public int totCntCart(String mid);
 	public Cart getDetailCart(int cid);
 	public int registerCart1(Cart cart);
 	public int registerCart2(Cart cart, String[] attracion);	
