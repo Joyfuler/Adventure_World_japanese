@@ -22,6 +22,7 @@
 		<result property="op2" column="op2"/>	
 		<result property="reviewcount" column="reviewcount"/>
 		<result property="avg" column="avg"/>
+		<result property="commentcnt" column= "commentcnt"/>
 	</resultMap>
 	<select id="reviewList" parameterType="Review" resultMap="ReviewResult">
 		SELECT * FROM 
@@ -34,7 +35,7 @@
     				SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME
 	    			FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
     				WHERE R.ODID = OD.ODID AND R.MID = M.MID    			
-    			<if test="sort == 'new' or sort == null and searchWord == null">
+    			<if test="(sort == 'new' or sort == null) and searchWord == null">
     				ORDER BY R.RRDATE DESC
     			</if>
     			<if test="sort == 'highScore' and searchWord == null">
@@ -43,7 +44,7 @@
     			<if test = "sort == 'lowScore' and searchWord == null">
     				ORDER BY R.RSCORE ASC
     			</if>    			
-    			<if test="sort == 'new' or sort == null and searchWord != null">
+    			<if test="(sort == 'new' or sort == null) and searchWord != null">
     				AND (RTITLE LIKE '%'||#{searchWord}||'%'
     				OR RCONTENT LIKE '%'||#{searchWord}||'%')
     				ORDER BY R.RRDATE DESC
@@ -73,7 +74,8 @@
 		</if>
 	</select>
 	<select id = "getReviewContent" parameterType="int" resultMap="ReviewResult">
-		SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME
+		SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME,
+		(SELECT COUNT(*) FROM REVIEW_COMMENT WHERE RID=R.RID) COMMENTCNT
     	FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
     	WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = #{rid}
 	
@@ -89,5 +91,20 @@
 		VALUES (REVIEW_SEQ.NEXTVAL, 
 		#{rtitle}, #{rcontent}, #{rscore}, #{rphoto}, #{mid}, #{odid})		
 	</insert>
-	
+	<update id = "modifyReview" parameterType = "Review">
+		UPDATE REVIEW SET
+		RTITLE = #{rtitle},
+		RCONTENT = #{rcontent},
+		RSCORE = #{rscore},
+		<if test = "rphoto == null or rphoto== ''">
+			RPHOTO = null
+		</if>		
+		<if test = "rphoto != null and rphoto != ''">
+			RPHOTO = #{rphoto}
+		</if>	 
+		WHERE RID = #{rid}
+	</update>	
+	<delete id = "reviewDelete" parameterType = "int">
+		DELETE FROM REVIEW WHERE RID = #{rid}
+	</delete>	
 </mapper>

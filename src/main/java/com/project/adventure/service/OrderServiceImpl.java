@@ -12,11 +12,13 @@ import com.project.adventure.repository.CartDao;
 import com.project.adventure.repository.MemberDao;
 import com.project.adventure.repository.OrderDao;
 import com.project.adventure.repository.Order_DetailDao;
+import com.project.adventure.repository.ReviewDao;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Cart;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order;
 import com.project.adventure.vo.Order_Detail;
+import com.project.adventure.vo.Review;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -29,6 +31,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderDao orderDao;
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private ReviewDao reviewDao;
 	@Override
 	public void orderDetail(Order order, HttpSession session) {
 		// order_list 테이블추가
@@ -97,5 +101,11 @@ public class OrderServiceImpl implements OrderService {
 			mid = member.getMid();
 		}
 		return order_DetailDao.reviewSelect(mid);
+	}
+	@Override
+	public Order_Detail selectedTicketInfo(int rid) {
+		Review selectedReview = reviewDao.getReviewContent(rid);
+		int odid = selectedReview.getOdid();
+		return order_DetailDao.selectedTicketInfo(odid);
 	}
 }

@@ -9,6 +9,7 @@ public class Review {
 	private String rid;
 	private String rtitle;
 	private String rcontent;
+	private String rcontentImgFileName;
 	private int rscore;
 	private String rphoto;
 	private Date rrdate;
@@ -28,4 +29,5 @@ public class Review {
 	private int reviewcount;
 	private double avg;
 	private String searchWord;
+	private int commentcnt;
 }

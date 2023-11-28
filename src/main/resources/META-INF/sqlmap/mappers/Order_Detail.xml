@@ -32,6 +32,9 @@
 	<select id = "totCnt" parameterType = "Order_Detail" resultType = "int">
 			SELECT COUNT(*) FROM ORDER_LIST, ORDER_DETAIL WHERE ORDER_LIST.OID = ORDER_DETAIL.OID AND MID = #{mid}
 	</select>
+	<select id = "selectedTicketInfo" parameterType = "int" resultType = "Order_Detail">
+			SELECT * FROM ORDER_DETAIL WHERE ODID = #{odid}
+	</select>
 	<update id = "checkReviewOk" parameterType = "int">
 			UPDATE ORDER_DETAIL SET REVIEW = 'Y'
 			WHERE ODID = #{odid}

@@ -12,5 +12,7 @@ public interface ReviewDao {
 	public int writeReview(Review review);
 	public int totCnt(Review review);
 	public Review getReviewContent(int rid);
-	public Review reviewInfo();	
+	public Review reviewInfo();
+	public int reviewDelete(int rid);
+	public int modifyReview(Review review);
 }

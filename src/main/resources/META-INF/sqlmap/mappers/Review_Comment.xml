@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.Review_CommentDao">
+	<resultMap type="Review_Comment" id="Review_CommentResult">
+		<result property="rcid" column="rcid"/>		
+		<result property="rccontent" column="rccontent"/>		
+		<result property="rcrdate" column="rcrdate"/>
+		<result property="rcgroup" column="rcgroup"/>
+		<result property="rcstep" column="rcstep"/>
+		<result property="rcindent" column="rcindent"/>
+		<result property="rid" column="rid"/>		
+		<result property="mid" column="mid"/>	
+		<result property="mname" column="mname"/>	
+		<result property="cnt" column="cnt"/>
+		<result property="startRow" column="startRow"/>	
+		<result property="endRow" column="endRow"/>
+	</resultMap>
+	<select id="getReviewComments" parameterType="Review_Comment" resultMap="Review_CommentResult">
+		SELECT * 
+		FROM (SELECT ROWNUM RN, A.* 
+		FROM (SELECT RC.*, M.MNAME 
+		FROM REVIEW_COMMENT RC,	MEMBER M 
+		WHERE RC.MID = M.MID AND RID = #{rid}
+		ORDER BY RCRDATE DESC) A) 
+		WHERE RN BETWEEN #{startRow} AND {endRow}
+	</select>
+	<select id = "commentTotCnt" parameterType = "Review_Comment" resultType="int">
+		SELECT COUNT(*) 
+		FROM REVIEW_COMMENT
+		WHERE RID = #{rid}
+	</select>	
+</mapper>

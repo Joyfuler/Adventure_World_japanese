@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.adventure.vo.Order_Detail;
 import com.project.adventure.vo.Review;
+import com.project.adventure.vo.Review_Comment;
 
 public interface ReviewService {
 	public void imageUpload(HttpServletRequest request, 
@@ -21,5 +22,9 @@ public interface ReviewService {
 	public Review getReviewContent(int rid);
 	public Review reviewInfo();
 	public void reviewWrite(Review review, MultipartHttpServletRequest mRequest, Model model, String pointObtained);
-	
+	public int reviewDelete(int rid);
+	public void reviewModify(Review review, MultipartHttpServletRequest mRequest, Model model);
+	public List<Review_Comment> getReviewComments(int rid, String replyPageNum);
+	public int commentTotCnt(Review_Comment review_Comment);
+	public int commentWrite(Review_Comment review_Comment);	
 }

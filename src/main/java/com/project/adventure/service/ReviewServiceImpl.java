@@ -25,10 +25,11 @@ import com.google.gson.JsonObject;
 import com.project.adventure.repository.MemberDao;
 import com.project.adventure.repository.Order_DetailDao;
 import com.project.adventure.repository.ReviewDao;
+import com.project.adventure.repository.Review_CommentDao;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
-import com.project.adventure.vo.Order_Detail;
 import com.project.adventure.vo.Review;
+import com.project.adventure.vo.Review_Comment;
 @Service
 public class ReviewServiceImpl implements ReviewService {
 	@Autowired
@@ -37,6 +38,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private MemberDao memberDao;
 	@Autowired
 	private Order_DetailDao order_DetailDao;
+	@Autowired
+	private Review_CommentDao review_CommentDao;
 	private String backupPath = "C:\\Users\\user_20230926\\Desktop\\webpro\\source\\10_2ndTeamProject\\adventure\\src\\main\\webapp\\memberImg\\";	
 	
 	@Override
@@ -130,7 +133,20 @@ public class ReviewServiceImpl implements ReviewService {
 		Paging paging = new Paging(reviewDao.totCnt(review), pageNum, 8, 5);
 		review.setStartRow(paging.getStartRow());
 		review.setEndRow(paging.getEndRow());
-		return reviewDao.reviewList(review);
+		List<Review> reviewList = reviewDao.reviewList(review);
+		for(Review r : reviewList) {
+			String rcontent = r.getRcontent();
+			if(rcontent!=null) {
+				String compareStr ="/adventure/resources/memberImg/";
+				int preIdx = rcontent.indexOf(compareStr);
+				if(preIdx!=-1) {
+					int postIdx = rcontent.indexOf("\" style=");
+					String rcontentImgFileName = rcontent.substring(preIdx+compareStr.length(), postIdx);
+					r.setRcontentImgFileName(rcontentImgFileName);
+				}
+			}
+		}
+		return reviewList;
 	}
 
 	@Override
@@ -157,8 +173,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public void reviewWrite(Review review, MultipartHttpServletRequest mRequest, Model model, String pointObtained) {
 		String uploadPath = mRequest.getRealPath("memberImg/");		
 		Iterator<String> params = mRequest.getFileNames();
-		String rphoto = "";
-		System.out.println("이제 파일 첨부 처리");
+		String rphoto = "";		
 		if(params.hasNext()) {
 			String param = params.next();
 			MultipartFile mFile = mRequest.getFile(param);
@@ -175,11 +190,8 @@ public class ReviewServiceImpl implements ReviewService {
 					System.out.println(e.getMessage());
 				}		
 			}
-			review.setRphoto(rphoto);
-			System.out.println("서비스 review : " + review);
-			try {
-				int result = reviewDao.writeReview(review);
-				System.out.println(result==1? "후기 쓰기 성공":"후기 쓰기 실패");
+			review.setRphoto(rphoto);						
+				int result = reviewDao.writeReview(review);				
 				if (pointObtained.equals("N")) {
 					Member pointPlusMember = new Member();
 					pointPlusMember.setMpoint(1000);
@@ -187,14 +199,81 @@ public class ReviewServiceImpl implements ReviewService {
 					memberDao.plusMemberPoint(pointPlusMember);
 					order_DetailDao.checkReviewOk(review.getOdid());
 					System.out.println(pointPlusMember.getMid() + "포인트 1000 적립됨");
+				} else {
+					System.out.println("이미 해당 리뷰로 포인트를 획득했으므로, " + review.getMid() + "에 포인트 지급 없음");
 				}
-				model.addAttribute("successMsg", "리뷰 작성이 완료되었습니다.");
-			} catch (Exception e) {
-				System.out.println("리뷰 작성 실패");
-				model.addAttribute("failMsg", "리뷰 작성에 실패했습니다.");
+				model.addAttribute("successMsg", "리뷰 작성이 완료되었습니다.");	
 			}
 		}
+
+	@Override
+	public int reviewDelete(int rid) {
+		return reviewDao.reviewDelete(rid);
 	}
+
+	@Override
+	public void reviewModify(Review review, MultipartHttpServletRequest mRequest, Model model) {
+		String uploadPath = mRequest.getRealPath("memberImg/");
+		Iterator<String> params = mRequest.getFileNames();
+		String filename = "";
+		// 파일을 첨부한 경우 -> 같은 이름의 파일이 있다면 파일이름을 변경함.
+		if (params.hasNext()) {
+			String param = params.next();
+			MultipartFile mFile = mRequest.getFile(param);
+			filename = mFile.getOriginalFilename();
+			if (filename != null && !filename.equals("")) {
+				if (new File(uploadPath + filename).exists()) {
+					filename = System.currentTimeMillis() + "_" + filename;					
+				}				
+				try {
+					mFile.transferTo(new File(uploadPath + filename));
+					int result = filecopy(uploadPath + filename, backupPath + filename);
+					System.out.println(result ==1? "첨부파일 백업 성공" : "실패");
+					
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+			}
+		}
+		String rphoto = "";
+		if (review.getRphoto() == null || review.getRphoto().equals("")) {			
+			rphoto = null;
+		} else {
+			rphoto = filename;			
+		}
+			review.setRphoto(rphoto);
+		try {
+			int result = reviewDao.modifyReview(review);
+			if (result ==1) {
+				model.addAttribute("successMsg", "글 수정 완료");
+			} else {
+				model.addAttribute("failMsg", "글 수정 실패");
+			}
+		} catch (Exception e) {
+			model.addAttribute("failMsg", "글 수정 실패");
+		}		
+	}
+
+	@Override
+	public List<Review_Comment> getReviewComments(int rid, String replyPageNum) {
+		Paging paging = new Paging(review_CommentDao.commentTotCnt(rid), replyPageNum, 5, 5);
+		/*
+		 * Review_Comment comments = review_CommentDao.getReviewComments(rid);
+		 * comments.setStartRow(paging.getStartRow());
+		 * comments.setEndRow(paging.getEndRow()); List<Review> reviewList =
+		 * reviewDao.reviewList(review_Comment);
+		 */
+		
+		return review_CommentDao.getReviewComments(rid);
+	}
+
+	@Override
+	public int commentWrite(Review_Comment review_Comment) {
+		return review_CommentDao.commentWrite(review_Comment);
+	}
+
+	@Override
+	public int commentTotCnt(Review_Comment review_Comment) {
+		return 0;		
+	}	
 }
-
-

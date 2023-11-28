@@ -15,6 +15,7 @@ import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order_Detail;
 import com.project.adventure.vo.Review;
+import com.project.adventure.vo.Review_Comment;
 
 @Controller
 @RequestMapping("review")
@@ -40,16 +41,43 @@ public class ReviewController {
 		return "review/reviewWrite";
 	}
 	
-	@RequestMapping(value = "reviewContent", method = RequestMethod.GET)
-	public String reviewContent(Model model, int rid) {
+	@RequestMapping(value = "reviewContent", method = {RequestMethod.GET, RequestMethod.POST})
+	public String reviewContent(Model model, int rid, String replyPageNum) {
 		model.addAttribute("reviewContent", reviewService.getReviewContent(rid));
+		model.addAttribute("reviewComments", reviewService.getReviewComments(rid, replyPageNum));		
 		return "review/reviewContent";
 	}
 	
 	@RequestMapping(value = "reviewWrite", method = RequestMethod.POST)
-	public String reviewWrite(Model model, Review review, MultipartHttpServletRequest mRequest, String pointObtained) {
-		System.out.println("컨트롤러 review : " + review);
+	public String reviewWrite(Model model, Review review, MultipartHttpServletRequest mRequest, String pointObtained) {		
 		reviewService.reviewWrite(review, mRequest, model, pointObtained);
 		return "forward:reviewList.do";
-	}	
+	}
+	
+	@RequestMapping(value = "reviewModify", method = RequestMethod.GET)
+	public String reviewModify(Model model, int rid) {
+		model.addAttribute("originalInfo", reviewService.getReviewContent(rid));
+		model.addAttribute("originalTicket", orderService.selectedTicketInfo(rid));
+		return "review/reviewModify";
+	}
+	
+	@RequestMapping(value = "reviewModify", method = RequestMethod.POST)
+	public String reviewModify(Model model, Review review, MultipartHttpServletRequest mRequest) {
+		reviewService.reviewModify(review, mRequest, model);
+		return "forward:reviewContent.do";
+	}
+	
+	
+	@RequestMapping(value = "reviewDelete", method = RequestMethod.GET)
+	public String reviewDelete(Model model, int rid) {
+		model.addAttribute("deleteResult", reviewService.reviewDelete(rid));
+		return "forward:reviewList.do";
+	}
+	
+	@RequestMapping(value = "commentWrite", method = RequestMethod.GET)
+	public String commentWrite(Model model, Review_Comment review_Comment) {
+		model.addAttribute("commentWriteResult", reviewService.commentWrite(review_Comment));
+		return "forward:reviewContent.do";
+	}
+	
 }

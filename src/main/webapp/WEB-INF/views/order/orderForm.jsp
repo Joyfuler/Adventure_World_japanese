@@ -141,6 +141,7 @@ const autoHyphen = (target) => {
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
+	<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
 <body style="background-image: url('${conPath}/images/bg_pc_visual.png'); background-repeat: no-repeat;">
 	<jsp:include page="../main/header.jsp" />
 	<c:if test = "${empty member }">
@@ -372,8 +373,34 @@ const autoHyphen = (target) => {
 						<p class="dotStyle">필수 항목에 모두 동의하셔야 서비스를 이용하실 수 있습니다.</p>
 					</div>
 				</div>
-				<div class="btnArea">					
-					<button id = "naverPayBtn" class = "btn btn-primary bg-dark" onclick = "return submitChk()">
+				<div class="btnArea">			
+					<input type = "button" id = "naverPayBtn" value = "네이버페이결제" style = "display:none;">
+					<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>  
+<script>  
+     var oPay = Naver.Pay.create({
+          "mode" : "production", // development or production
+          "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
+      });
+
+    //직접 만든 네이버페이 결제 버튼에 click 이벤트를 할당하세요.
+    var elNaverPayBtn = document.getElementById("naverPayBtn");    
+    elNaverPayBtn.addEventListener("click", function() {
+    var price = $('#payPreAmt').text();
+    oPay.open({
+          "merchantUserKey": "store-c4cb05e3-222f-4fa8-b606-68337b01cfdd",
+          "merchantPayKey": "merchant_" + new Date().getTime(),
+          "productName": "Adventure World 결제 테스트",
+          "totalPayAmount": price,
+          "taxScopeAmount": price,
+          "taxExScopeAmount": "0",
+          "returnUrl": "${conPath }/order/orderComplete.do?cid=${param.cid}"
+        });
+   });
+</script>  
+</body>  
+					
+						
+					<button class = "btn btn-primary bg-dark" onclick = "return submitChk()">
 						결제하기
 					</button>
 				</div>			

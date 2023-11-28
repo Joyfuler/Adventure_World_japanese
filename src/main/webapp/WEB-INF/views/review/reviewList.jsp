@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix = "fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <c:set var = "conPath" value = "${pageContext.request.contextPath }"/>    
 <!DOCTYPE html>
 <html>
@@ -38,6 +40,16 @@
 </script>
 </head>
 <body>
+<c:if test = "${not empty deleteResult }">
+	<script>
+		alert('${deleteResult eq 1? "리뷰 삭제 완료" : "리뷰 삭제 실패"}');
+	</script>
+</c:if>
+<c:if test = "${not empty successMsg }">
+	<script>
+		alert('${successMsg}');
+	</script>
+</c:if>	
 <jsp:include page="../main/header.jsp"/>
 <div style="clear: both;"></div>
 <article>
@@ -49,7 +61,7 @@
 		</div>		
 	</div>
 	<br>
-	<form id = "sortForm" action = "${conPath }/review/reviewList.do" style = "margin-left: 200px;">
+	<form id = "sortForm" class = "searchForm" action = "${conPath }/review/reviewList.do" style = "margin-left: 200px;">
 	정렬방식	
 		<select name = "sort">	
 			<option value = "new"
@@ -69,13 +81,14 @@
 			</c:if>				
 			> 평점 낮은순 정렬</option>
 		</select>
+		&nbsp; &nbsp; <input type = "text" name = "searchWord" class = "searchWord" placeholder="제목·내용 검색" value="${param.searchWord }"><img src = "${conPath }/images/2866321.png" class = "searchIcon" style = "width: 20px; padding-top: 5px; margin-left: 5px;">
 		<c:if test = "${not empty member }">
 		<input type = "button" class = "writeReview" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
 		<c:if test = "${empty member }">
 		<input type = "button" class = "notLogin" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
-	</form>
+	</form><br>
 	<div class = "reviewInfo" style = "margin-left: 200px;">
 		<fmt:formatNumber value="${reviewInfo.avg}" pattern="#,##0.00" var="formattedAvg" />			
 		<h4>총 리뷰 수: <span style = "color: orange;">${reviewInfo.reviewcount }</span> 개 / 별점 평균: <img src = "${conPath}/images/point_star_on.png"><span style = "color:orange;">${formattedAvg }</span>점</h4>
@@ -83,8 +96,15 @@
 	<div class="att_back">		
 		<c:forEach var="reviews" items="${reviewList }">
 		<div id="att_list">
-			<a href="${conPath }/review/reviewContent.do?rid=${reviews.rid }&pageNum=${param.pageNum eq null? '1':param.pageNum}">
-				<img src="${conPath }/memberImg/${reviews.rphoto}" onerror="noImage(this)"/>
+			<a href="${conPath }/review/reviewContent.do?rid=${reviews.rid }&pageNum=${param.pageNum eq null? '1':param.pageNum}">				
+				<c:choose>
+                <c:when test="${not empty reviews.rphoto}">
+                    <img src="${conPath }/memberImg/${reviews.rphoto}" onerror="noImage(this)"/>
+                </c:when>
+                <c:otherwise>   
+	                <img src="${conPath }/resources/memberImg/${reviews.rcontentImgFileName}" onerror="noImage(this)"/>                                        	
+                </c:otherwise>
+            </c:choose>
 				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span>
 				<h6>${reviews.rrdate }</h6>
 				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? '자유이용권' : '패스트패스'}</span>									
@@ -95,24 +115,21 @@
 </article>
 <div class = "paging" style = "text-align: center; font-weight: bold;">
 		<c:if test="${paging.startPage > paging.blockSize}">
-			<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}">[이전]</a>
+			<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[이전]</a>
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage eq i }"> 
 				[<b style = "color: red;"> ${i } </b>] 
 			</c:if>
 			<c:if test="${paging.currentPage != i }">
-				<a href="${conPath }/review/reviewList.do?pageNum=${i }&sort=${param.sort eq null? 'new': param.sort}">[${i }]</a>
+				<a href="${conPath }/review/reviewList.do?pageNum=${i }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[${i }]</a>
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.pageCnt }">
-			<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}">[다음]</a>
+			<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[다음]</a>
 		</c:if>
 	</div>
-	<div style = "float: left; margin-left: 180px;">
-		<form action = "${conPath }/review/reviewList.do" class = "searchForm">		
-		&nbsp; &nbsp; <input type = "text" name = "searchWord" class = "searchWord" placeholder="제목·내용 검색"><img src = "${conPath }/images/2866321.png" class = "searchIcon" style = "width: 20px; padding-top: 5px;">
-		</form>					
+	<div style = "float: left; margin-left: 180px;">							
 	</div>	
 <br><br>
 <br><br>
