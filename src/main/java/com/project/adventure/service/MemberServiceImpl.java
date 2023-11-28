@@ -183,5 +183,20 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.memberList(member);
 	}
 
+	@Override
+	public int towithDrawalMember(String[] mid) {
+		int result = 0;
+		for(String id : mid) {
+			result += memberDao.towithDrawalMember(id);
+		}
+		if(result == mid.length) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
+	
+
 	
 }

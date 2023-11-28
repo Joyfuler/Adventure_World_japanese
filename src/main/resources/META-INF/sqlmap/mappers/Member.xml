@@ -48,7 +48,13 @@
 	</update>
 	
 	<select id="getMemberCount"  resultType="int">
-		SELECT COUNT(*) FROM MEMBER
+		<if test="schWord=='' or schWord==null">
+			SELECT COUNT(*) FROM MEMBER
+		</if>
+		<if test="schWord!='' and schWord!=null">
+			SELECT COUNT(*) FROM MEMBER WHERE MID LIKE '%'||#{schWord}||'%' 
+		</if>
+		
 	</select>	
 	<select id="cartList" parameterType="Member" resultMap="MemberResult" >
 		SELECT * FROM 
@@ -89,7 +95,10 @@
 		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER WHERE MID LIKE '%'||#{schWord}||'%' ORDER BY MRDATE DESC)A) WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
 	</select>
-	<!-- <update id="workermodify" parameterType="Member">
-		UPDATE MEMBER SET MLEVEL = #{mlevel} WHERE MID = #{mid}
-	</update> -->
+	<update id = "towithDrawalMember" parameterType = "String">
+			<!-- <foreach collection = "array" item = "mid" open ="UPDATE MEMBER SET MLEVEL =0 WHERE MID IN (" separator = "," close = ")">
+			#{mid}
+			</foreach> -->
+			UPDATE MEMBER SET MLEVEL =0 WHERE MID=#{mid}
+	</update>
 </mapper>

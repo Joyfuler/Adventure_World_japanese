@@ -14,8 +14,6 @@ public class Qna {
 	private String reply;
 	private Date qrdate;
 	private int qgroup;
-	private int qstep;
-	private int qindent;
 	private String mid;
 	//검색
 	private String schWord;

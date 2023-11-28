@@ -14,10 +14,7 @@ public interface QnaDao {
 	public int insertQna(Qna qna);
 	public int deleteQna(int qno);
 	public Qna getQna(int qno);
-	public void qnaPreRepstep(Qna qna);
-	public void qnaPreRepstep2(Qna qna);
-	public void qnaPreRepstep3(Qna qna);
-	public int qnaPreReply(Qna qna);
+	public int qnaReply(Qna qna);
 	public int modify(Qna qna);
 
 }

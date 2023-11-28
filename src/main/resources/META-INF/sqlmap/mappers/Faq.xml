@@ -11,6 +11,12 @@
 	<select id ="faqList" parameterType="Faq" resultMap="FaqResult">
 		SELECT * FROM FAQ ORDER BY FNO
 	</select>
+	<select id="getfaqInfo" parameterType="int" resultMap="FaqResult">
+		SELECT * FROM FAQ WHERE FNO = #{fno}
+	</select>
+	<delete id ="faqDelete" parameterType="int" >
+		DELETE FROM FAQ WHERE FNO = #{fno}
+	</delete>
 	<update id ="faqModify" parameterType="Faq">
 		UPDATE FAQ SET FTITLE = #{ftitle},
                FCONTENT = #{fcontent}

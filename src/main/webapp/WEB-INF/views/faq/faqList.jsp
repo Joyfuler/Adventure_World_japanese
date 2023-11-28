@@ -8,12 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${conPath }/css/world.css" rel="stylesheet">
 <style>
 .answer {display: none;}
-
+.submit{display:inline-block; font-size: 18px; font-weight:400; font-family:'IBM Plex Sans KR', sans-serif; background: #CCFF99; 
+			border: 2px solid #fff; border-radius: 30px; padding: 14px 58px; margin-top: 40px; cursor:pointer;}
 </style>
-
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 function Answer(answerId) {
     var answer = document.getElementById(answerId);
@@ -50,9 +50,10 @@ $(document).ready(function(){
     <p style="font-size: 24px; color: white;">
     <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; padding-top: 50px;"> 더 궁금하신 사항이 있으면 <br>이용문의를 이용하시기 바랍니다.</h3>
 	<div id="buttons" style="float:center">
-		<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'" 
-			style="display:inline-block; font-size: 18px; font-weight:400; font-family:'IBM Plex Sans KR', sans-serif; background: #CCFF99; 
-			border: 2px solid #fff; border-radius: 30px; padding: 14px 58px; margin-top: 40px; cursor:pointer;">
+		<c:if test="${not empty worker }">
+			<input type="button" value="추가" class="submit" onclick="location.href='${conPath}/faqInsert.do'" >
+		</c:if> 
+		<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'">
 	</div>
 
   </div>
@@ -73,7 +74,12 @@ $(document).ready(function(){
             <c:forEach items="${faqList }" var="faq">
                <tr>
 					<td><img src="${conPath}/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border: 1px solid blue;"></td>
-					<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}</span></th>
+					<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
+						<c:if test="${not empty worker }">
+							<button onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'">수정</button>
+							<button onclick="location.href='${conPath}/faqdelete.do?fno=${faq.fno}'">삭제</button>
+						</c:if>
+					</span></th>
 				</tr>
 				<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->
 					<td></td>
@@ -91,4 +97,3 @@ $(document).ready(function(){
 <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>
-    

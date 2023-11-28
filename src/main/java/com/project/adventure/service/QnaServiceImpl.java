@@ -37,7 +37,6 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override
 	public int insertQna(Qna qna) {
-		qnaDao.qnaPreRepstep(qna);
 		return qnaDao.insertQna(qna);
 	}
 
@@ -47,9 +46,8 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public int qnaPreReply(Qna qna) {
-		qnaDao.qnaPreRepstep2(qna);
-		return qnaDao.qnaPreReply(qna);
+	public int qnaReply(Qna qna) {
+		return qnaDao.qnaReply(qna);
 	}
 	@Override
 	public int deleteQna(int qno) {
@@ -57,7 +55,6 @@ public class QnaServiceImpl implements QnaService {
 	}
 	@Override
 	public int modify(Qna qna) {
-		qnaDao.qnaPreRepstep3(qna);
 		return qnaDao.modify(qna);
 	}
 }
