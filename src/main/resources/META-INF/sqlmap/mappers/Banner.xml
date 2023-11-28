@@ -19,13 +19,15 @@
 		INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
     VALUES (BANNER_SEQ.NEXTVAL, #{btitle}, #{border}, #{usage}, #{bimg})
 	</insert>
-	<update id="updateSeq" parameterType="Banner">
+	<update id="updateBanner" parameterType="Banner">
 		UPDATE BANNER SET
         BORDER = #{border},
-        USAGE = #{usage},
-        BIMG = #{bimg}
+        USAGE = #{usage}
     WHERE BNO = #{bno}
 	</update>
+	<select id="cntBanner" resultType="int">
+		SELECT COUNT(*) FROM BANNER
+	</select>
 	<delete id="deleteBanner">
 		DELETE FROM BANNER WHERE BNO = #{bno}
 	</delete>

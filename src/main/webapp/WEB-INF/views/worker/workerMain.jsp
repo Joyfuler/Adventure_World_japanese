@@ -47,7 +47,7 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 		<input type="button" value="FAQ 관리" onclick="location.href='${conPath}/faqList.do'" style="cursor:pointer">
 	</div>
 	<div class="buttons">
-		<input type="button" value="배너 관리" onclick="location.href='adminBannerList'" style="cursor:pointer">
+		<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do'" style="cursor:pointer">
 	</div>
 </form>
 </div>
