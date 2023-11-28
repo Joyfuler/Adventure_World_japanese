@@ -208,7 +208,7 @@ h1{
 	   		<!-- <div class="update_buttons"> -->
 	   			<input type="submit" value="공지등록" >
 				<input type="button" value="목록으로" onClick="location.href='${conPath }/worker/list.do'" >
-				<input type="RESET" value="재설정"  >
+				<input type="reset" value="재설정"  >
 			<!-- </div> -->
 	   		</td>
 	   	</tr>

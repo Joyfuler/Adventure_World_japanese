@@ -69,6 +69,11 @@ public class BannerServiceImpl implements BannerService {
 	public int deleteBanner(int bno) {
 		return bannerDao.deleteBanner(bno);
 	}
+	@Override
+	public int cntBanner(Banner banner) {
+		return bannerDao.cntBanner(banner);
+	}
+
 	private boolean filecopy(String serverFile, String backupFile) {//파일 복사가 될수도 있고 안될수도
 		boolean isCopy = false;
 		InputStream is = null;

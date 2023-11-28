@@ -51,13 +51,12 @@ public class WorkerAttractionController {
 	}
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public String updateForm(String aid, Model model) {
-		System.out.println("id : " + aid);
 		model.addAttribute("attraction", attractionService.attractionDetail(aid));
 		return "worker/workerAttractionUpdate";
 	}
 	@RequestMapping(value="update", method=RequestMethod.POST)
 	public String update(MultipartHttpServletRequest mRequest, @ModelAttribute("nDto") Attraction attraction, Model model, String pageNum) {
-		model.addAttribute("updateAttraction", attractionService.insertAttraction(mRequest, attraction));
+		model.addAttribute("updateAttraction", attractionService.updateAttraction(mRequest, attraction));
 		return "forward:attractionListP.do";
 	}
 	@RequestMapping(value="delete", method=RequestMethod.GET)
