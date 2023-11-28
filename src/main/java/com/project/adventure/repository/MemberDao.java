@@ -3,6 +3,8 @@ package com.project.adventure.repository;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.project.adventure.vo.Cart;
@@ -24,4 +26,5 @@ public interface MemberDao {
 	public void plusMemberPoint(Member member);
 	public List<Member> memberList(Member member);
 	public int workermodify(Member member);
+	public int towithDrawalMember(String mid);
 }

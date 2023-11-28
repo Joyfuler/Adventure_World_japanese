@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.adventure.service.MemberService;
+import com.project.adventure.service.MemberServiceImpl;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 
@@ -20,11 +21,12 @@ public class WorkerMemberController {
 	@RequestMapping(value = "memberList",method = RequestMethod.GET )
 	public String memberList(String pageNum, Model model,Member member ) {
 		model.addAttribute("memberList",memberService.memberList(pageNum, member));
+		model.addAttribute("paging", new Paging(memberService.getMemberCount(), pageNum, 10, 10));
 		return "worker/WorkerMemberList";
 	}
 	@RequestMapping(value = "workermodify", method = RequestMethod.GET)
-	public String workermodify(String mid,Model model,  HttpSession session) {
-		model.addAttribute("workermembermodify",memberService.withDrawalMember(mid, session));
+	public String workermodify(String[] mid, Model model) {
+		model.addAttribute("deleteResult", memberService.towithDrawalMember(mid));
 		return "forward:memberList.do";
 	}
 }

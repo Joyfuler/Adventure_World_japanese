@@ -1,34 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="css/admincss.css" rel="stylesheet">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="${conPath }/css/admincss.css" rel="stylesheet">
+
 <style>
-   #buttons{text-align:center;}
+.notice{height: auto;}
+#buttons{text-align:center;}
 .submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
 	$(document).ready(function() {
-		var schWord = $('input[name="schWord"]').val(); 
 		$('#schmid').on('click', function() {
+			var schWord = $('input[name="schWord"]').val();
 			location.href = '${conPath}/memberList.do?schWord='+schWord;
 		});	
 	});
 	
 </script>
-<!-- <script>
- function go_schmid() {
-	 var schWord = $('input[name="schWord"]').val();
-	 loction.href = '${conPath}/memberList.do?schWord='+schWord;
-}
-</script> -->
-<jsp:include page="../main/header.jsp"/>
+<script>
+	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
+	function submitChk(){
+		var checkboxes = document.getElementsByName('mid');
+		var cnt = 0;
+		
+		for (let i = 0; i < checkboxes.length; i++){
+			if (checkboxes[i].checked){
+				cnt++;
+			}
+		}
+		
+		if (cnt == 0){
+			alert('결제 시 적어도 1개 이상의 항목을 선택해 주세요.');
+			return false;
+		} else {		
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
 <form action="${conPath }/workermodify.do" method="get">
-<section class="notice">
-  <div class="page-titlee">
+<section class="notice" >
+<jsp:include page="../main/header.jsp"/>
+  <div class="page-titlee" style="margin-top:-100 " >
         <div class="containerr">
             <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 회원 리스트 </h3>
         </div>
@@ -38,7 +61,7 @@
         <div class="containerr">
             <div class="search-window">
                 
-                    <div class="search-wrap">
+                    <div class="search-wrap" >
                         <label for="search" class="blind"> 회원 이름 검색 </label>
                         <input id="search" type="search" name="schWord" placeholder="회원 이름을 입력해주세요." value="${param.schWord}">
                         <input type="button" id="schmid" class="btn btn-dark" value="검색"   >
@@ -49,7 +72,6 @@
             </div>
         </div>
     </div>
-   
     <div class="board-listt">
         <div class="containerr">
             <table class="board-tablee">
@@ -88,12 +110,30 @@
 
             </table>
             <div>
-            	<input type="submit" value="저장">
+            	<input type="submit" value="회원강등" class="btn btn-dark" onclick = "return submitChk()">
             </div>
         </div>
         <br>
 <br><br><br><br><br>
 </div>
+	<div id ="paging">
+		<c:if test="${paging.startPage>paging.blockSize}">
+			[ <a href="${conPath }/memberList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
+		</c:if>	
+		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+			<c:if test="${paging.currentPage==i }"> 
+				<b>[ ${i } ]</b> 
+			</c:if>
+			<c:if test="${paging.currentPage != i }">
+				[ <a href="${conPath }/memberList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
+			</c:if>
+		</c:forEach>
+		<c:if test="${paging.endPage<paging.pageCnt }">
+			[ <a href="${conPath }/memberList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">다음</a> ]
+		</c:if>
+	</div>
 </section>
 </form>
 <jsp:include page="../main/footer.jsp"/>
+</body>
+</html>

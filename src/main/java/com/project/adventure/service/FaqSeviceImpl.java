@@ -26,4 +26,14 @@ public class FaqSeviceImpl implements FaqService {
 		return faqDao.faqinsert(faq);
 	}
 
+	@Override
+	public int faqDelete(int fno) {
+		return faqDao.faqDelete(fno);
+	}
+
+	@Override
+	public Faq getfaqInfo(int fno) {
+		return faqDao.getfaqInfo(fno);
+	}
+
 }

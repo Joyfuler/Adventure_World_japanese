@@ -19,12 +19,12 @@
 	<select id="QnaList" parameterType="Qna" resultMap="QnaResult">
 		<if test="schWord=='' or schWord==null">
 		SELECT * FROM
-    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QGROUP DESC)A)
+    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QGROUP DESC, ISREPLY)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
 		<if test="schWord!='' and schWord!=null">
 		SELECT * FROM
-   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QGROUP DESC)A)
+   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QGROUP DESC, ISREPLY)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</if>
 	</select>
@@ -32,27 +32,13 @@
 		SELECT * FROM QNA WHERE QNO = #{qno}
 	</select>
 	<insert id="insertQna" parameterType="Qna" >
-		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,0,0,#{qpwchk},#{mid})
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QPWCHK,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,#{qpwchk},#{mid})
 	</insert>
-	 <insert id="qnaPreRepstep" parameterType="Qna">
-		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QSTEP,QINDENT,QPWCHK,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,1,0,#{qpwchk},#{mid})
+	 <insert id="qnaReply" parameterType="Qna">
+		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,ISREPLY,REPLY,QGROUP,QPWCHK,MID) VALUES
+			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw},'Y',#{reply},#{qgroup},#{qpwchk},#{mid})
 	</insert> 
-	<update id="qnaPreReply" parameterType="Qna" >
-		UPDATE QNA SET
-				ISREPLY ='Y',
-                REPLY = #{reply},
-                QINDENT = QINDENT+1
-                WHERE QNO = #{qno}
-	</update>
-	<update id="qnaPreRepstep2" parameterType="Qna" >
-		UPDATE QNA SET
-				ISREPLY ='Y',
-                REPLY = #{reply},
-                QINDENT = QINDENT+1
-                WHERE QNO = #{qno}-1
-	</update>
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
 		<if test="schWord=='' or schWord==null">
 			select count(*) from QNA
@@ -68,11 +54,6 @@
 		UPDATE QNA SET
                 REPLY = #{reply}
                 WHERE QNO = #{qno}
-	</update>
-	<update id="qnaPreRepstep3" parameterType="Qna" >
-		UPDATE QNA SET
-                REPLY = #{reply}
-                WHERE QNO = #{qno}+1
 	</update>
 </mapper>
 

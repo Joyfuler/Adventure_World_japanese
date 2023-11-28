@@ -25,4 +25,5 @@ public interface MemberService {
 	public int getMemberCount();
 	public List<Member> memberList(String pageNum,Member member);
 	public int workermodify(Member member, HttpSession session);
+	public int towithDrawalMember(String[] mid);
 }

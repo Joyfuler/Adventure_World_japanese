@@ -51,8 +51,10 @@ color: #000;
 					<td align="left" style="text-align:left;">${Qna.qcontent}</td>
 				</tr>
 				<tr>
-					<th>답변 내용</th>
+				<c:if test="${Qna. isreply =='Y' }">
+					<th>답변내용</th>
 					<td align="left" style="text-align:left;">${Qna.reply}</td>
+				</c:if>
 				</tr>						
 			</table>
 		</form>

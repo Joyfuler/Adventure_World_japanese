@@ -13,6 +13,6 @@ public interface QnaService {
 	public int insertQna(Qna qna);
 	public int deleteQna(int qno);
 	public Qna getQna(int qno);
-	public int qnaPreReply(Qna qna);
+	public int qnaReply(Qna qna);
 	public int modify(Qna qna);
 }

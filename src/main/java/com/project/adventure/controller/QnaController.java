@@ -82,8 +82,8 @@ public class QnaController {
 	}
 	@RequestMapping(value="adminqnqreply", method = RequestMethod.POST)
 	public String adminQnaRepSave (Qna qna, Model model){		
-		model.addAttribute("replyResult",qnaService.qnaPreReply(qna));
-		return "forward:qnaView.do";
+		model.addAttribute("replyResult",qnaService.qnaReply(qna));
+		return "forward:qnaList.do";
 	}
 	@RequestMapping(value = "qnadelete", method = RequestMethod.GET)
 	public String deleteQna(int qno, Model model ) {

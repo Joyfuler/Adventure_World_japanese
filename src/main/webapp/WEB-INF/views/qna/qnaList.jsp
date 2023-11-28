@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 <script>
 function qpwChk(qno){
@@ -13,15 +18,21 @@ function qpwChk(qno){
 </script>
 
 <style>
- 
+ .page-title{background-image: url("../images/themepark/theme5.png"); height: 300px; color: white;}
 #buttons{text-align:center;}
 .submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 </style>
-<jsp:include page="../main/header.jsp"/>
+</head>
+<body>
 <c:if test="${not empty wirteResult}">
 	alert('글작성 성공');
 </c:if>
+
+<c:if test="${not empty replyResult}">
+	alert('답변작성 성공');
+</c:if>
+<jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/qna/qnaList.do" name="frm" method="post">
 <input type="hidden" name = "wid" value="${param.wid }">
 <input type="hidden" name = "pageNum" value="${param.pageNum }">
@@ -36,9 +47,9 @@ function qpwChk(qno){
             <div class="search-window">
                     <div class="search-wrap">
                         <label for="search" class="blind">QnA 내용 검색</label>
-                        <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}">
-                        <input type="submit" class="btn btn-dark" value="검색" >
-                     	<input type="button" class="btn btn-darkkk" value="전체보기" onclick="location.href='${conPath}/qna/qnaList.do'">
+                        <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}" >
+                        <input type="submit" class="btn btn-dark" value="검색"  >
+                     	<input type="button" class="btn btn-darkkk" value="전체보기" onclick="location.href='${conPath}/qna/qnaList.do'" >
                      	<!--   <button type="submit" class="btn btn-darkkk" value="전체보기" onClick="go_list('qnaList.do')">전체보기</button>  -->
                     </div>
             </div>
@@ -58,7 +69,7 @@ function qpwChk(qno){
                 
                 </thead>
       	<c:forEach items="${qnaList}"  var="qna">
-      <c:if test="${qna.qstep eq 0 }"> 
+      <c:if test="${qna.isreply=='N' }"> 
 			<tr ><td> ${qna.qno}</td>    
 	    		<td>
 	    		<c:if test="${ empty worker }">
@@ -87,29 +98,28 @@ function qpwChk(qno){
 	    			</td>
 	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
 	       		<td><c:choose>
-					<c:when test="${qna.isreply=='N'}"> no </c:when>
 					<c:when test="${qna.isreply=='Y'}"> yes 
-					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
+					<img src="${conPath }/images/ic2.png" style="width:20px;vertical-align: middle">	
 					</c:when>
 				</c:choose></td>    
 	   		</tr>
       </c:if>
       <!-- 답변글 -->
-     <c:if test="${qna.qstep eq 1 and qna.qindent eq 1}">
+     <c:if test="${qna.isreply=='Y'}">
 			<tr ><td> ${qna.qno}</td>    
 	    		<td>
 	    		<c:if test="${ empty worker }">
 	    			<c:choose>
 						<c:when test="${qna.qpwchk=='Y'}">
 							 <span onClick="qpwChk(${qna.qno})">
-									<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+									<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 									${qna.qtitle}
 									</span> 
 								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
 							<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+								<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 								${qna.qtitle} 
 								</a>
 						</c:otherwise>
@@ -119,14 +129,14 @@ function qpwChk(qno){
 	    				<c:choose>
 						<c:when test="${qna.qpwchk=='Y'}">
 							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
-								<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+								<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 								${qna.qtitle}
 								</a>
 								&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 						</c:when>
 						<c:otherwise>
 							<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-							<img src="${conPath }/images/replyicon4.png" style="width:20px;vertical-align: middle">
+							<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 							 ${qna.qtitle}
 							 </a>
 						</c:otherwise>
@@ -135,9 +145,8 @@ function qpwChk(qno){
 	    			</td>
 	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
 	       		<td><c:choose>
-					<c:when test="${qna.isreply=='N'}"> no </c:when>
 					<c:when test="${qna.isreply=='Y'}"> yes 
-					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
+					<img src="${conPath }/images/ic2.png" style="width:20px;vertical-align: middle">	
 					</c:when>
 				</c:choose></td>    
 	   		</tr>
@@ -177,3 +186,5 @@ function qpwChk(qno){
 </div>
 <div  class="clear"></div><br>
 <jsp:include page="../main/footer.jsp"/>
+</body>
+</html>
