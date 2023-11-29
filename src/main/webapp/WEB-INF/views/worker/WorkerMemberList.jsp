@@ -22,9 +22,22 @@
 		$('#schmid').on('click', function() {
 			var schWord = $('input[name="schWord"]').val();
 			location.href = '${conPath}/memberList.do?schWord='+schWord;
-		});	
-	});
-	
+		});
+		
+		$('.restoreLevel').on('click',function(){
+			var checkedMids = [];
+			$('input[name="mid"]:checked').each(function(){
+				checkedMids.push($(this).val());
+			if (checkedMids.length == 0){
+				alert('등급을 조정할 회원이 선택되지 않았습니다.');	
+			} else {
+				var url = '${conPath}/workerRestoreLevel.do?mid='+checkedMids.join('&mid=');
+				location.href = url;
+			}
+			});
+		});
+		
+	});	
 </script>
 <script>
 	// submit시에 체크된 요소가 단 하나도 없다면 alert 출력 후 submit 이벤트 false로 리턴.
@@ -39,7 +52,7 @@
 		}
 		
 		if (cnt == 0){
-			alert('결제 시 적어도 1개 이상의 항목을 선택해 주세요.');
+			alert('적어도 1개 이상의 항목을 선택한 후 변경해주세요.');
 			return false;
 		} else {		
 			return true;
@@ -48,6 +61,16 @@
 </script>
 </head>
 <body>
+<c:if test = "${not empty deleteResult }">
+	<script>
+		alert('${deleteResult eq 1? "회원등급 강등 완료": "회원등급 강등 실패"}');
+	</script>
+</c:if>
+<c:if test = "${not empty adjustResult }">
+	<script>
+		alert('${adjustResult}명 일반 회원으로 조정됨');
+	</script>
+</c:if>
 <form action="${conPath }/workermodify.do" method="get">
 <section class="notice" >
 <jsp:include page="../main/header.jsp"/>
@@ -86,31 +109,46 @@
                     <th scope="col" class="th-phone">전화</th>
                     <th scope="col" class="th-mpoint">포인트</th>
                     <th scope="col" class="th-day">가입일</th>
-                </tr>
-                
+                </tr>                
                 </thead>
      		<c:forEach items="${memberList}" var="member">
-			<tr><td>${member.mid}
-			      		<c:if test="${member.mlevel == 0}">
-			        		<input type="checkbox" name="mid" value="${member.mid }" style="width: 10px; height: 10px;" checked="checked">
-				        </c:if>
-				        <c:if test="${member.mlevel == 1 }">
-				        	<input type="checkbox" name="mid" value="${member.mid }"  style="width: 10px; height: 10px;">
-				        </c:if>
-	    		</td>
-		    	<td><a style="color:blue;">
-		    	
-		    	${member.mname}</a></td>
-		    	<td>${member.memail}</td>
-		    	<td>${member.maddress1}</td><td>${member.maddress2}</td><td>${member.maddress3}</td>
-		    	<td>${member.mphone}</td>
-		    	<td>${member.mpoint}</td>
-		    	<td><fmt:formatDate value="${member.mrdate}"/></td></tr>
-	  </c:forEach>
-
+				<tr>
+					<td>					
+			        	<input type="checkbox" name="mid" value="${member.mid }" style="width: 10px; height: 10px;">		        	
+						<br>${member.mid}
+						<br><span style = "font-size: 0.8em;">(${member.mlevel eq 0? "탈퇴회원" : "일반회원" })</span>			      	
+	    			</td>
+		    		<td>
+		    			<a style="color:blue;">		    	
+		    			${member.mname}</a>
+		    		</td>
+		    		<td>
+		    			${member.memail}
+		    		</td>
+			    	<td>
+				    	${member.maddress1}
+				    </td>
+				    <td>
+				    	${member.maddress2}
+				    </td>
+				    <td>
+				    	${member.maddress3}
+				    </td>
+		    		<td>
+		    			${member.mphone}
+		    		</td>
+		    		<td>
+		    			${member.mpoint}
+		    		</td>
+			    	<td>
+				    	<fmt:formatDate value="${member.mrdate}"/>
+				    </td>
+				</tr>
+	  	</c:forEach>
             </table>
             <div>
             	<input type="submit" value="회원강등" class="btn btn-dark" onclick = "return submitChk()">
+            	<input type = "button" value = "일반회원 복원" class = "btn btn-dark restoreLevel" >
             </div>
         </div>
         <br>

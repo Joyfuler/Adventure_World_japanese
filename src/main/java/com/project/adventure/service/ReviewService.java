@@ -25,6 +25,12 @@ public interface ReviewService {
 	public int reviewDelete(int rid);
 	public void reviewModify(Review review, MultipartHttpServletRequest mRequest, Model model);
 	public List<Review_Comment> getReviewComments(int rid, String replyPageNum);
-	public int commentTotCnt(Review_Comment review_Comment);
-	public int commentWrite(Review_Comment review_Comment);	
+	public int commentTotCnt(int rid);
+	public int commentWrite(Review_Comment review_Comment);
+	public Review_Comment getOriginalCommentDto(int rcid);
+	public int reviewCommentReply(Review_Comment review_Comment);
+	public int commentDelete(int rcid);
+	public Review_Comment commentDetail(int rcid);
+	public int modifyComment(Review_Comment review_Comment);
+	public int workerDeleteReview(int[] rid);
 }

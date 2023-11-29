@@ -60,9 +60,9 @@ const autoHyphen = (target) => {
 		
 		$('#pntChk').click(function(){
 			if ($(this).prop('checked')){
-				$('#pointInput').prop('readonly', false);
+				$('#pointInput').prop('disabled', false);
 			} else {
-				$('#pointInput').prop('readonly', true);
+				$('#pointInput').prop('disabled', true);
 			}
 		});
 		
@@ -257,7 +257,7 @@ const autoHyphen = (target) => {
 					<div class = "memberPoint">					
 					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">0</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "${member.mpoint }">							
-					<input type="text" id="pointInput" name = "ompoint" readonly="readonly" value = "0">
+					<input type="text" id="pointInput" name = "ompoint" disabled="disabled" value = "0">
 					<input type="button" value = "포인트사용" class = "payForMemberPoint">
 					<br><br>
 					</div>					
@@ -374,11 +374,11 @@ const autoHyphen = (target) => {
 					</div>
 				</div>
 				<div class="btnArea">			
-					<input type = "button" id = "naverPayBtn" value = "네이버페이결제" style = "display:none;">
+					<input type = "button" id = "naverPayBtn" value = "네이버페이결제" style = "display: none;">
 					<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>  
 <script>  
      var oPay = Naver.Pay.create({
-          "mode" : "production", // development or production
+          "mode" : "development", // development or production
           "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
       });
 
@@ -393,7 +393,7 @@ const autoHyphen = (target) => {
           "totalPayAmount": price,
           "taxScopeAmount": price,
           "taxExScopeAmount": "0",
-          "returnUrl": "${conPath }/order/orderComplete.do?cid=${param.cid}"
+          "returnUrl": "localhost:8091/adventure/order/orderComplete.do?cid=${param.cid}"
         });
    });
 </script>  

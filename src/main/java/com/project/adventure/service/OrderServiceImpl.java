@@ -35,8 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	private ReviewDao reviewDao;
 	@Override
 	public void orderDetail(Order order, HttpSession session) {
-		// order_list 테이블추가
-		System.out.println("~~~~ order_list 테이블추가");
+		// order_list 테이블추가		
 		orderDao.ordersInfoInsert(order);
 		ArrayList<Integer> cids = (ArrayList<Integer>) session.getAttribute("cids");
 		int totalPrice = 0;

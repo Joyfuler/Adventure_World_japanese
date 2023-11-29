@@ -16,5 +16,5 @@ public class Review_Comment {
 	private String mid;
 	private String mname;
 	private int startRow;
-	private int endRow;
+	private int endRow;	
 }

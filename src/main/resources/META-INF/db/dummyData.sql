@@ -305,10 +305,13 @@ SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME, (select count(*) from review_comme
     	WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = 47;
 
 
+SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT RC.*, M.MNAME 
+		FROM REVIEW_COMMENT RC,	MEMBER M 
+		WHERE RC.MID = M.MID AND RID = 47
+		ORDER BY RCRDATE DESC) A) WHERE RN BETWEEN 2 AND 4;
+select * from qna;
 
-
-
-
+select * from review_comment;
 
 
 

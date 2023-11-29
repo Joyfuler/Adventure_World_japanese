@@ -21,16 +21,13 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 </head>
 <jsp:include page="../main/header.jsp"/>
 <body>
-<div id=adminmain>
-
+<div id="adminmain">
    <div id="login">
    <h1>관리자로 로그인 되었습니다</h1>
    <hr>
    </div>
    <h1>하실일을 선택하세요</h1>
-   <div id=main2>
-<form method="post" name="frm">
-
+   <div id="main2" style = "margin-bottom: 100px;">
    	<div class="buttons">
       	<input type="button" value="어트랙션 관리" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer">
    	</div>
@@ -49,7 +46,12 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 	<div class="buttons">
 		<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do'" style="cursor:pointer">
 	</div>
-</form>
+	<div class = "buttons">
+		<input type="button" value="리뷰글 관리" onclick="location.href='${conPath}/worker/workerReviewList.do'" style="cursor:pointer">
+	</div>
+	<div class = "buttons">
+		<input type = "button" value = "유저주문내역" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer;">
+	</div>
 </div>
 </div>
 </body>

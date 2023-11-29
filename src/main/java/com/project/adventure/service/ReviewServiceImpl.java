@@ -208,6 +208,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int reviewDelete(int rid) {
+		review_CommentDao.deleteAllComments(rid);
+		System.out.println(rid+" 에 해당하는 리뷰의 댓글들을 우선 삭제함");
 		return reviewDao.reviewDelete(rid);
 	}
 
@@ -257,23 +259,76 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public List<Review_Comment> getReviewComments(int rid, String replyPageNum) {
 		Paging paging = new Paging(review_CommentDao.commentTotCnt(rid), replyPageNum, 5, 5);
-		/*
-		 * Review_Comment comments = review_CommentDao.getReviewComments(rid);
-		 * comments.setStartRow(paging.getStartRow());
-		 * comments.setEndRow(paging.getEndRow()); List<Review> reviewList =
-		 * reviewDao.reviewList(review_Comment);
-		 */
-		
-		return review_CommentDao.getReviewComments(rid);
+		Review_Comment commentsInfo = new Review_Comment();
+		commentsInfo.setRid(rid);
+		commentsInfo.setStartRow(paging.getStartRow());
+		commentsInfo.setEndRow(paging.getEndRow());		
+		return review_CommentDao.getReviewComments(commentsInfo);
 	}
 
 	@Override
 	public int commentWrite(Review_Comment review_Comment) {
+		int result = review_CommentDao.checkCommentCount(review_Comment);
+		if (result <4) {
+			Member pointUpMember = new Member();
+			pointUpMember.setMid(review_Comment.getMid());
+			pointUpMember.setMpoint(10);
+			memberDao.plusMemberPoint(pointUpMember);
+			System.out.println("해당 리뷰에 대한 댓글이 4개 미만이므로 포인트 10 증정");
+		} else {
+			System.out.println("해당 리뷰에 대한 댓글이 4개 이상이므로 포인트 지급 없음");
+		}
 		return review_CommentDao.commentWrite(review_Comment);
 	}
 
 	@Override
-	public int commentTotCnt(Review_Comment review_Comment) {
-		return 0;		
+	public int commentTotCnt(int rid) {
+		return review_CommentDao.commentTotCnt(rid);		
+	}
+
+	@Override
+	public Review_Comment getOriginalCommentDto(int rcid) {
+		return review_CommentDao.getOriginalCommentDto(rcid);
+	}
+
+	@Override
+	public int reviewCommentReply(Review_Comment review_Comment) {
+		review_CommentDao.commentReplyPreStep(review_Comment);
+		int result = review_CommentDao.checkCommentCount(review_Comment);
+		if (result <4) {
+			Member pointUpMember = new Member();
+			pointUpMember.setMid(review_Comment.getMid());
+			pointUpMember.setMpoint(10);
+			memberDao.plusMemberPoint(pointUpMember);
+			System.out.println("해당 리뷰에 대한 댓글이 4개 미만이므로 포인트 50 증정");
+		} else {
+			System.out.println("해당 리뷰에 대한 댓글이 4개 이상이므로 포인트 지급 없음");
+		}
+		return review_CommentDao.reviewCommentReply(review_Comment);
+	}
+	
+	@Override
+	public Review_Comment commentDetail(int rcid) {
+		return review_CommentDao.commentDetail(rcid);
+	}	
+
+	@Override
+	public int commentDelete(int rcid) {
+		return review_CommentDao.commentDelete(rcid);		
+	}
+
+	@Override
+	public int modifyComment(Review_Comment review_Comment) {
+		return review_CommentDao.modifyComment(review_Comment);
+	}
+
+	@Override
+	public int workerDeleteReview(int[] rid) {
+		int result = 0;
+		for(int id : rid) {
+			review_CommentDao.deleteAllComments(id);
+			result += reviewDao.reviewDelete(id);
+		}
+		return result;
 	}	
 }

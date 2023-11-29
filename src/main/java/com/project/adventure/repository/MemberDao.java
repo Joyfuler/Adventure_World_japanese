@@ -27,4 +27,5 @@ public interface MemberDao {
 	public List<Member> memberList(Member member);
 	public int workermodify(Member member);
 	public int towithDrawalMember(String mid);
+	public int workerRestoreLevel(String mid);
 }

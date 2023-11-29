@@ -29,4 +29,10 @@ public class WorkerMemberController {
 		model.addAttribute("deleteResult", memberService.towithDrawalMember(mid));
 		return "forward:memberList.do";
 	}
+	
+	@RequestMapping(value = "workerRestoreLevel", method = RequestMethod.GET)
+	public String workerRestoreLevel(String[] mid, Model model) {
+		model.addAttribute("adjustResult", memberService.workerRestoreLevel(mid));
+		return "forward:memberList.do";
+	}
 }

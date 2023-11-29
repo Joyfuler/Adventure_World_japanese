@@ -196,6 +196,15 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public int workerRestoreLevel(String[] mid) {
+		int result = 0;
+		for (String id: mid) {
+			result += memberDao.workerRestoreLevel(id);
+		}
+			return result;		
+	}
+
 	
 
 	
