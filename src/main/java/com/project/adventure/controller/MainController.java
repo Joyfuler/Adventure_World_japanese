@@ -31,8 +31,8 @@ public class MainController {
 	public ReviewService reviewService;
 	
 	@RequestMapping(value = "main", method = {RequestMethod.GET, RequestMethod.POST })
-	public String main (Model model) {
-		model.addAttribute("bannerList", bannerService.bannerList()); 
+	public String main (Model model, String from) {
+		model.addAttribute("bannerList", bannerService.bannerList(from)); 
 		model.addAttribute("eventList", eventService.eventList());
 		model.addAttribute("bestList", attractionService.bestAttractionList());
 		model.addAttribute("paradeList", paradeService.paradeList());

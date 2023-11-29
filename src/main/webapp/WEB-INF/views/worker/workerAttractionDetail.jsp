@@ -10,6 +10,14 @@
 <meta charset="UTF-8">
 <title>어트랙션 목록</title>
 </head>
+<script>
+function go_deleteAttraction(aid){
+		if(confirm('정말 삭제하시겠습니까?')){
+			var url="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }; 
+			location.href=url;
+			}
+		}
+</script>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
@@ -92,7 +100,7 @@
 	<div class="btnArea">
 		<a href="${conPath }/workerAttraction/attractionListP.do" class="purpleBtn">목록</a>
 		<a href="${conPath }/workerAttraction/update.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">수정</a>
-		<a href="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">삭제</a>
+		<a href="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn" onclick="go_deleteAttraction('${attractionDetail.aid}')">삭제</a>
 	</div>
 </div>
 

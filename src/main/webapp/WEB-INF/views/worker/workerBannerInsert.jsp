@@ -130,20 +130,18 @@
        }
    </style>
 <script>
-	function change_border(bno){
-		var selectTag = document.getElementById("banner"+bno);  //bno의 값을 변수에 저장
-		var totCntPlus1 = ${cntBanner}+1;  //bno의 값을 변수에 저장
-		var selectVal = selectTag.options[ selectTag.selectedIndex ].value;
-		// 식별한 SELECT 태그의 선택된 인덱스값으로 선택된 값을 추출합니다
-		
-		if (selectVal == totCntPlus1){
-			location.href='${conPath }/workerBanner/update.do?bno=' + bno + '&usage=N&border=' + selectVal;
-		}else{
-			location.href='${conPath }/workerBanner/update.do?bno=' + bno + '&usage=Y&border=' + selectVal;
-
-		}
-		// bno 와 바꾸려는 값을 갖고 이동합니다
-
+	var cntBanner = ${cntBanner+2};
+	$(document).ready(function(){
+		$('select[name="order_seq"]').change(function(){ //<select name="order_seq" class="pl"> 이게바뀌면
+			$('input[name="border"]').val($(this).val());//바뀐값을 input[name="border"] 여따 넣어라
+			var selectVal = $('select[name="order_seq"]').val();
+			if (cntBanner == selectVal){
+				$('input[name="usage"]').val('N');
+			}else{
+				$('input[name="usage"]').val('Y');
+			}
+			});
+		});
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -153,6 +151,7 @@
             <h1>배너 등록</h1>
             <br><hr><br>
             <form action="${conPath }/workerBanner/insert.do" method="post" enctype="multipart/form-data" >
+            	<input type="text" name="border">
             	<input type="text" name="usage">
                 <table class="baba">
                     <tr>
@@ -163,10 +162,10 @@
                         <th>순위</th> 
                         <td>
                             <select name="order_seq" class="pl">
-                            <c:forEach var="cnt" begin="1" end="${cntBanner}">
+                            <c:forEach var="cnt" begin="1" end="${cntBanner+1}">
                             	<option value="${cnt}">${cnt}</option>
                             </c:forEach>
-                            <option value="${cntBanner +1}">사용안함</option>
+                            <option value="${cntBanner +2}">사용안함</option>
                             </select>
                         </td>
                     </tr>
