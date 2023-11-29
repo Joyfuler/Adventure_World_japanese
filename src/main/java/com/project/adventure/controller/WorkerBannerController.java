@@ -17,26 +17,26 @@ public class WorkerBannerController {
 	@Autowired
 	private BannerService bannerService;
 	@RequestMapping(value="list", method = {RequestMethod.GET, RequestMethod.POST})
-	public String bannerList(Banner banner, Model model) {
-		model.addAttribute("bannerList" ,bannerService.bannerList());
+	public String bannerList(Banner banner, Model model, String from) {
+		model.addAttribute("bannerList" ,bannerService.bannerList(from));
 		model.addAttribute("cntBanner", bannerService.cntBanner(banner));
 		return "worker/workerBanner";
 	}
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public String updateForm(Banner banner, Model model) {
 		model.addAttribute("UpdateBanner", bannerService.updateBanner(banner));
-		return "forward:list.do";
+		return "forward:list.do?from=admin";
 	}
 	@RequestMapping(value="insert", method=RequestMethod.GET)
-	public String insert(Banner banner, Model model) {
-		model.addAttribute("bannerList" ,bannerService.bannerList());
+	public String insert(Banner banner, Model model, String from) {
+		model.addAttribute("bannerList" ,bannerService.bannerList(from));
 		model.addAttribute("cntBanner", bannerService.cntBanner(banner));
 		return "worker/workerBannerInsert";
 	}
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public String insert(MultipartHttpServletRequest mRequest, Banner banner, Model model) {
 		model.addAttribute("bannerList", bannerService.insertBanner(mRequest, banner));
-		return "forward:list.do";
+		return "forward:list.do?from=admin";
 	}
 	@RequestMapping(value="delete", method=RequestMethod.GET)
 	public String delete(int bno, Model model) {

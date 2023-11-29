@@ -11,6 +11,14 @@
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
+<script>
+function go_deleteNotice(nid){
+		if(confirm('정말 삭제하시겠습니까?')){
+			var url="${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }"; 
+			location.href=url;
+			}
+		}
+</script>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <div class="event01">
@@ -31,7 +39,7 @@
 		<div class="event10">
 	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/worker/list.do'">
 	   		<input type="button" value="수 정" class="btn" onclick="location.href='${conPath }/worker/update.do?nid=${notice.nid }&pageNum=${param.pageNum }'">
-	   		<input type="button" value="삭 제" class="btn" onclick="location.href='${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }'">
+	   		<input type="button" value="삭 제" class="btn" onclick="go_deleteNotice('${notice.nid}')">
 		</div>
 	</div>
 </div>

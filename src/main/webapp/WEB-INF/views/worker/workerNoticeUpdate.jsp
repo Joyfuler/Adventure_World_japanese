@@ -193,6 +193,26 @@ h1{
 <div class="findfindd">
 <h1>공지사항 수정</h1>
 <br><hr><br>
+<!-- include summernote css/js-->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script>
+	 $(document).ready(function() {
+		 $('#summernote').summernote({
+		        height: 300,
+		        minHeight: null,
+		        maxHeight: null,
+		        lang : 'ko-KR',
+		        onImageUpload: function(files, editor, welEditable) {
+		                sendFile(files[0], editor, welEditable);
+		            }
+
+		    });
+	 });
+</script>
 <form action= "${conPath }/worker/update.do" method="post" enctype="multipart/form-data">
 	<table class="baba">
 		<tr>
@@ -215,7 +235,7 @@ h1{
 	   	</tr>
 	   	<tr>
 			<th>내용</th> 
-			<td><input type="text" name="ntext" size="47" value="${notice.ntext }"></td>
+			<td><textarea name="ntext" id="summernote" size="47" >${notice.ntext }</textarea></td>
 		</tr>
 	   	<tr>
 	   		<td class="button" colspan="2" style="text-align: center;">

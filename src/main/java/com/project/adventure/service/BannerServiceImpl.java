@@ -23,8 +23,8 @@ public class BannerServiceImpl implements BannerService {
 	private BannerDao bannerDao;
 		
 	@Override
-	public List<Banner> bannerList() {
-		return bannerDao.bannerList();		
+	public List<Banner> bannerList(String from) {
+		return bannerDao.bannerList(from);		
 	}
 
 	@Override

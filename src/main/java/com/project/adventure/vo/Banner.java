@@ -15,4 +15,5 @@ public class Banner {
 	private String usage;
 	private Date brdate;
 	private String bimg;
+	private String from;
 }

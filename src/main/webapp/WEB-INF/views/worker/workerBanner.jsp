@@ -11,6 +11,11 @@
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js">
 </script>
+<c:if test = "${not empty deleteResult }">
+	<script>
+		alert('${deleteResult}');
+	</script>
+</c:if>
 <script>
 	function change_border(bno){
 		var selectTag = document.getElementById("banner"+bno);  //bno의 값을 변수에 저장
@@ -28,7 +33,7 @@
  }
 	function go_deleteBanner(bno){
 		if(confirm('정말 삭제하시겠습니까?')){
-			var url="${conPath }/workerBanner/delete.do"; 
+			var url="${conPath }/workerBanner/delete.do?from=admin&bno=" + bno; 
 			location.href=url;
 			}
 		}
@@ -45,7 +50,7 @@
     </div>
     <div class="board-searchh">
         <div class="containerr">
-            <div class="search-wrap">
+            <div class="search-wrap" style="width:80%;">
                 <input type="button" class="btn btn-dark" value="등록" style="float:right; margin:0 0 20px;" onClick="location.href='${conPath }/workerBanner/insert.do'"></input>
                 <br>
             </div>
@@ -87,10 +92,6 @@
 										</c:if>
 										
                                     </c:forEach>
-                                    <%-- <c:if test="${banner.border eq cntBanner}">
-									    <option value="${(cntBanner + 1)}"  selected>사용안함</option>
-									</c:if>
-									<option value="${(cntBanner + 1)}">사용안함</option> --%>
 									<c:if test="${banner.border eq cntBanner+1}">
 									    <option value="${cntBanner +1}" selected="selected">사용안함</option>
 									</c:if>

@@ -47,7 +47,7 @@ function go_search(){
                         <label for="search" class="blind"> 공지사항검색</label>
                         <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
                         <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="${conPath }/notice/list.do"></button>  
+                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/notice/list.do'"></button>  
                     </div>
                 
             </div>
@@ -68,7 +68,7 @@ function go_search(){
                 <c:forEach items="${notice}" var="notice">
 	                <tr>
 	                    <td>${notice.nid}</td>
-	                    <th><a href="${conPath }/notice/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
+	                    <th style="text-align: center;"><a href="${conPath }/notice/detail.do?nid=${notice.nid}&pageNum=${paging.currentPage}">${notice.ntitle}</a></th>  <!-- &schTitle=${param.schTitle} -->
 	                    <td><fmt:formatDate value="${notice.nrdate}" type="date"/></td>
 	                </tr>
 	          	</c:forEach>

@@ -8,7 +8,7 @@ import com.project.adventure.vo.Banner;
 
 @Mapper
 public interface BannerDao {
-	public List<Banner> bannerList();
+	public List<Banner> bannerList(String from);
 	public int insertBanner(Banner banner);
 	public int updateBanner(Banner banner);
 	public int deleteBanner(int bno);

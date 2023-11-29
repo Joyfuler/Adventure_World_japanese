@@ -18,7 +18,7 @@ import com.project.adventure.vo.Worker;
 
 @Controller
 @RequestMapping("worker")
-public class WorkerController {
+public class WorkerMainController {
 	@Autowired
 	private NoticeService noticeService;
 	@Autowired

@@ -10,10 +10,15 @@
 		<result property="border" column="border"/>
 		<result property="usage" column="usage"/>
 		<result property="brdate" column="brdate"/>
-		<result property="bimg" column="bimg"/>			
+		<result property="bimg" column="bimg"/>		
 	</resultMap>  
-	<select id="bannerList" resultMap="BannerResult">
-		SELECT * FROM BANNER ORDER BY BORDER
+	<select id="bannerList" parameterType="String" resultMap="BannerResult">
+		<if test = "from ==null">
+			SELECT * FROM BANNER WHERE USAGE='Y' ORDER BY BORDER
+		</if>
+		<if test = "from != null">
+			SELECT * FROM BANNER ORDER BY BORDER
+		</if> 
 	</select>
 	<insert id="insertBanner" parameterType="Banner">
 		INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
@@ -28,7 +33,7 @@
 	<select id="cntBanner" resultType="int">
 		SELECT COUNT(*) FROM BANNER
 	</select>
-	<delete id="deleteBanner">
+	<delete id="deleteBanner" parameterType="int">
 		DELETE FROM BANNER WHERE BNO = #{bno}
 	</delete>
 </mapper>

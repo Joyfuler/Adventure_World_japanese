@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.adventure.repository.NoticeCommentDao">
+	<resultMap type="NoticeComment" id="NoticeCommentResult">
+		<result property="cnum" column="cnum"/>
+		<result property="nid" column="nid"/>
+		<result property="cname" column="cname"/>
+		<result property="cmemo" column="cmemo"/>
+		<result property="cdate" column="cdate"/>
+		<result property="cgroup" column="cgroup"/>
+		<result property="cstep" column="cstep"/>
+		<result property="cindent" column="cindent"/>
+		<result property="cip" column="cip"/>
+	</resultMap>
+	<select id="commentList" parameterType="NoticeComment" resultMap="NoticeCommentResult">
+		SELECT * 
+    FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM NCOMMENT WHERE NID=#{nid} ORDER BY CGROUP DESC, CSTEP) A)
+    WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<insert id="commentWrite" parameterType="NoticeComment">
+		INSERT INTO NCOMMENT (CNUM, NID, CNAME, CMEMO, CGROUP, CSTEP, CINDENT, CIP)
+    VALUES (NCOMMENT_SQ.NEXTVAL, #{nid}, #{cname}, #{cmemo},NCOMMENT_SQ.CURRVAL, 0,0, #{cip})
+	</insert>
+	<update id="commentReplyPreStep" parameterType="NoticeComment">
+		UPDATE NCOMMENT SET CSTEP=CSTEP+1 WHERE CGROUP=#{cgroup} AND CSTEP>#{cstep}
+	</update>
+	<insert id="commentReply" parameterType="NoticeComment">
+		INSERT INTO NCOMMENT (CNUM, NID, CNAME, CMEMO, CGROUP, CSTEP, CINDENT, CIP)
+		    VALUES (NCOMMENT_SQ.NEXTVAL, #{nid}, #{cname}, #{cmemo}, #{cgroup}, #{cstep}+1, #{cindent}+1, #{cip})
+	</insert>
+	<update id="commentModify" parameterType="NoticeComment">
+		UPDATE NCOMMENT SET
+		    CNAME = #{cname},
+		    CMEMO = #{cmemo},
+		    CDATE = SYSDATE,
+		    CIP = #{cip}
+		  WHERE CNUM=#{cnum}
+	</update>
+	<delete id="commentDelete" parameterType="int">
+		DELETE FROM NCOMMENT WHERE CNUM= #{cnum}
+	</delete>
+	<select id="commentDetail" parameterType="int" resultType="NoticeComment">
+		SELECT * FROM NCOMMENT WHERE CNUM=#{cnum}
+	</select>
+</mapper>
