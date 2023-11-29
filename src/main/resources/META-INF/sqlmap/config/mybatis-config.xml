@@ -21,11 +21,8 @@
 			<typeAlias type="com.project.adventure.vo.Faq" alias="Faq"/>
 			<typeAlias type="com.project.adventure.vo.Review" alias = "Review"/>
 			<typeAlias type="com.project.adventure.vo.Review_Comment" alias = "Review_Comment"/>
-<<<<<<< HEAD
 			<typeAlias type="com.project.adventure.vo.NoticeComment" alias = "NoticeComment"/>
-=======
 			<typeAlias type="com.project.adventure.vo.LostItem" alias = "LostItem"/>
->>>>>>> f1bbefadd48d97ce41e3c42988c8cc501d5af61b
 			<!-- 이하 dto 추가한 패키지를 alias 넣어서 추가 -->			
 		</typeAliases>
 		<mappers>
@@ -43,11 +40,8 @@
 			<mapper resource="META-INF/sqlmap/mappers/Faq.xml"/>
 			<mapper resource="META-INF/sqlmap/mappers/Review.xml"/>
 			<mapper resource="META-INF/sqlmap/mappers/Review_Comment.xml"/>
-<<<<<<< HEAD
 			<mapper resource="META-INF/sqlmap/mappers/NoticeComment.xml"/>
-=======
 			<mapper resource="META-INF/sqlmap/mappers/LostItem.xml"/>
->>>>>>> f1bbefadd48d97ce41e3c42988c8cc501d5af61b
 			<!-- 이하 맡은 쿼리가 든 xml 경로를 추가 -->			
 		</mappers>
 	</configuration>
