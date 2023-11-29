@@ -44,6 +44,7 @@ public class ReviewController {
 	@RequestMapping(value = "reviewContent", method = {RequestMethod.GET, RequestMethod.POST})
 	public String reviewContent(Model model, int rid, String replyPageNum) {
 		model.addAttribute("reviewContent", reviewService.getReviewContent(rid));
+		model.addAttribute("paging", new Paging(reviewService.commentTotCnt(rid), replyPageNum, 5, 5));
 		model.addAttribute("reviewComments", reviewService.getReviewComments(rid, replyPageNum));		
 		return "review/reviewContent";
 	}
@@ -79,5 +80,39 @@ public class ReviewController {
 		model.addAttribute("commentWriteResult", reviewService.commentWrite(review_Comment));
 		return "forward:reviewContent.do";
 	}
+	
+	@RequestMapping(value = "commentReplyView", method = RequestMethod.GET)
+	public String commentReplyView(Model model, int rcid) {
+		model.addAttribute("originalCommentInfo", reviewService.getOriginalCommentDto(rcid));
+		return "review/reviewCommentReply";
+	}
+	
+	@RequestMapping(value = "reviewCommentReply", method = RequestMethod.GET)
+	public String reviewCommentReply(Model model, Review_Comment review_Comment, String replyPageNum) {
+		model.addAttribute("replyResult", reviewService.reviewCommentReply(review_Comment));
+		return "forward:reviewContent.do";
+		
+	}
+	
+	@RequestMapping(value = "commentDelete", method = RequestMethod.GET)
+	public String commentDelete(Model model, int rcid) {
+		model.addAttribute("deleteResult", reviewService.commentDelete(rcid));		
+		return "forward:reviewContent.do";
+	}
+	
+	@RequestMapping(value = "replyModifyView", method = RequestMethod.GET)
+	public String replyModifyView(int rcid, Model model) {
+		model.addAttribute("comment", reviewService.commentDetail(rcid));
+		return "review/reviewCommentModify";
+	}
+	
+	@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
+	public String modifyComment(Review_Comment review_Comment, Model model) {
+		model.addAttribute("modifyResult", reviewService.modifyComment(review_Comment));
+		return "forward:reviewContent.do";
+	}
+	
+	
+	
 	
 }

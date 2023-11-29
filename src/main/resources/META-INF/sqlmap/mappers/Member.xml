@@ -95,10 +95,10 @@
 		SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER WHERE MID LIKE '%'||#{schWord}||'%' ORDER BY MRDATE DESC)A) WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
 	</select>
-	<update id = "towithDrawalMember" parameterType = "String">
-			<!-- <foreach collection = "array" item = "mid" open ="UPDATE MEMBER SET MLEVEL =0 WHERE MID IN (" separator = "," close = ")">
-			#{mid}
-			</foreach> -->
-			UPDATE MEMBER SET MLEVEL =0 WHERE MID=#{mid}
+	<update id = "towithDrawalMember" parameterType = "String">			
+			UPDATE MEMBER SET MLEVEL = 0 WHERE MID= #{mid}
+	</update>
+	<update id = "workerRestoreLevel" parameterType= "String">
+			UPDATE MEMBER SET MLEVEL = 1 WHERE MID = #{mid}
 	</update>
 </mapper>

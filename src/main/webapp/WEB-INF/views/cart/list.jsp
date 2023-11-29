@@ -166,7 +166,7 @@
 	          	</c:if>	
              </tbody>
          </table>
-             <div id ="paging">
+             <div id ="paging" style = "font-size: 15px; font-weight: 500;">
 			<c:if test="${paging.startPage > paging.blockSize}">
 				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
 			</c:if>	

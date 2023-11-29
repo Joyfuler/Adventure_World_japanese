@@ -1,6 +1,7 @@
 package com.project.adventure.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class Review {
 	private String rcontentImgFileName;
 	private int rscore;
 	private String rphoto;
-	private Date rrdate;
+	private Timestamp rrdate;
 	private String mid;
 	private int otype;
 	private int odid;

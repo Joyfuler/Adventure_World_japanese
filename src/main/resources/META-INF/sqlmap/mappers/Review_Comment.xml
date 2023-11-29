@@ -18,17 +18,60 @@
 		<result property="endRow" column="endRow"/>
 	</resultMap>
 	<select id="getReviewComments" parameterType="Review_Comment" resultMap="Review_CommentResult">
-		SELECT * 
+		 SELECT * 
 		FROM (SELECT ROWNUM RN, A.* 
 		FROM (SELECT RC.*, M.MNAME 
 		FROM REVIEW_COMMENT RC,	MEMBER M 
 		WHERE RC.MID = M.MID AND RID = #{rid}
-		ORDER BY RCRDATE DESC) A) 
-		WHERE RN BETWEEN #{startRow} AND {endRow}
+		ORDER BY RCGROUP, RCSTEP) A) 
+		WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<select id = "commentTotCnt" parameterType = "Review_Comment" resultType="int">
+	<select id = "commentTotCnt" parameterType = "int" resultType="int">
 		SELECT COUNT(*) 
 		FROM REVIEW_COMMENT
 		WHERE RID = #{rid}
 	</select>	
+	<select id = "getOriginalCommentDto" parameterType="int" resultMap="Review_CommentResult">
+		SELECT * FROM REVIEW_COMMENT
+		WHERE RCID = #{rcid}
+	</select>
+	<select id = "checkCommentCount" parameterType="Review_Comment" resultType="int">
+		SELECT COUNT(*) 
+		FROM REVIEW_COMMENT
+		WHERE RID = #{rid} AND MID = #{mid}
+	</select>
+	<select id="commentDetail" parameterType="int" resultMap="Review_CommentResult">
+		SELECT RC.*, M.MNAME FROM REVIEW_COMMENT RC, MEMBER M
+        WHERE RC.MID = M.MID AND RCID = #{rcid}
+	</select>
+	<insert id = "commentWrite" parameterType="Review_Comment">
+		INSERT INTO REVIEW_COMMENT 
+		(RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
+		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
+		#{rccontent}, REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 
+		#{rid}, #{mid})
+	</insert>
+	<update id = "commentReplyPreStep" parameterType="Review_Comment">
+		<![CDATA[
+			UPDATE REVIEW_COMMENT SET RCSTEP=RCSTEP+1 WHERE RCGROUP=#{rcgroup} AND RCSTEP> #{rcstep}
+		]]>	
+	</update>
+	<insert id = "reviewCommentReply" parameterType = "Review_Comment">
+		INSERT INTO REVIEW_COMMENT 
+		(RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
+		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
+		#{rccontent}, #{rcgroup}, #{rcstep} +1, #{rcindent} +1, 
+		#{rid}, #{mid})
+	</insert>
+	<delete id = "commentDelete" parameterType="int">
+		DELETE FROM REVIEW_COMMENT
+		WHERE RCID = #{rcid}
+	</delete>
+	<update id = "modifyComment" parameterType="Review_Comment">
+		UPDATE REVIEW_COMMENT SET RCCONTENT = #{rccontent}
+        WHERE RCID = #{rcid}
+	</update>
+	<delete id = "deleteAllComments" parameterType = "int">
+		DELETE FROM REVIEW_COMMENT WHERE RID = #{rid}
+	</delete>
 </mapper>

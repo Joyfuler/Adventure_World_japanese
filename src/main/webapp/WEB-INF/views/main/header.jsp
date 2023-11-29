@@ -66,7 +66,7 @@
 						</div>
 						</li>
 						<li><a href="${conPath }/worker/logout.do">logout</a></li>
-						<li><a href="${conPath }/worker/workerMain.do">HOME</a></li>
+						<li><a href="${conPath }/worker/workerMain.do" style = "color:blue;">관리자모드</a></li>
 						<li>${worker.wname}(${worker.wid})</li>
 				</c:if>
 			</ul>

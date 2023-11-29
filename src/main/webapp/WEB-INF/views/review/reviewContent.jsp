@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link href = "${conPath }/css/world.css" rel = "stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
 	function noImage(imageElement) {
     	imageElement.src = "${conPath}/images/noimg.jpg";
@@ -27,23 +28,66 @@
 <script>
 	$(document).ready(function(){
 		$('.replyComment').click(function(){				
-		var rcid = $(this).attr('id');					
+		var rcid = $(this).data('id');
+		var replySpace = $('.replySpace'+rcid);
+		if (replySpace.is(':visible')){
+			replySpace.hide();
+		} else {
 			$.ajax({
-					url : '${conPath }/review/commentReplyView.do?bno=${reviewContent.rid }&rcid='+rcid,
+					url : '${conPath }/review/commentReplyView.do?rid=${reviewContent.rid }&rcid='+rcid,
 					type : 'get',
-					data : {'bno' : '${reviewContent.rid}', 'rcid' : rcid},
+					data : {'rid' : '${reviewContent.rid}', 'rcid' : rcid},
 					dataType : 'text',
 					success : function(data, status){						
-						$('.replySpace'+rcid).html(data);
+						replySpace.html(data);
+						replySpace.show();
 					}
 				});
-			});
-			
-			$('.reportButton').click(function(){
-				$('.reportForm').css('display', 'block');
-			});						
+			}
 		});
-	</script>
+		
+		$('.deleteComment').click(function(){
+			var rcid = $(this).data('id');
+			var confirmDelete = confirm ('정말 삭제하시겠습니까?');
+			if (confirmDelete){
+				location.href='${conPath}/review/commentDelete.do?rid=${reviewContent.rid}&rcid='+rcid;
+			}
+		})
+		
+		$('.reportButton').click(function(){
+			$('.reportForm').css('display', 'block');
+		});
+			
+		$('form#replyForm').submit(function(){
+			var rccontentValue = $('#rccontent').val().trim();
+			if (rccontentValue == ''){
+				alert("댓글 내용을 입력해주세요.");
+				return false;
+			}
+		});	
+		
+		$('.notMemberSubmit').on("click",function(){
+			alert('먼저 로그인하셔야 합니다.');
+			location.href = "${conPath}/member/loginMember.do?next=review/reviewContent.do?rid=${reviewContent.rid}";
+		});	
+	
+		$('.btnModify').on("click",function(e){
+			e.preventDefault();
+			var rcid = $(this).data('rcid');
+			var pageNum = $(this).data('pageNum');
+			var replyPageNum = $(this).data('replyPageNum');		
+			$.ajax({
+				url: '${conPath}/review/replyModifyView.do',
+				data: {'rcid': rcid, 'pageNum' : pageNum, 'replyPageNum' : replyPageNum },
+				type : 'get',
+				dataType : 'html',
+				success: function(data, status){
+				$('.reply'+rcid).html(data);
+			}
+		});
+	});
+});		
+</script>
 </head>
 <body>
 <c:if test="${not empty successMsg }">
@@ -54,6 +98,26 @@
 <c:if test = "${not empty failMsg }">
 	<script>
 		alert('${failMsg}');	
+	</script>
+</c:if>
+<c:if test = "${not empty commentWriteResult }">
+	<script>
+		alert('${commentWriteResult eq 1? "댓글 작성 완료": "댓글 작성 실패"}');
+	</script>
+</c:if>
+<c:if test = "${not empty param.loginResult }">
+	<script>
+		alert('${param.loginResult}');
+	</script>
+</c:if>
+<c:if test = "${not empty replyResult }">
+	<script>
+		alert('${replyResult eq 1 ? "대댓글 작성 완료" : "대댓글 작성 실패"}');
+	</script>
+</c:if>	
+<c:if test = "${not empty deleteResult }">
+	<script>
+		alert('${deleteResult eq 1 ? "댓글 삭제 완료" : "댓글 삭제 실패"}');		
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
@@ -104,13 +168,31 @@
                </div>
             </div>            
             <div class="comment_list border" id="comment_container">               
-            	<div class="write">
+            	<div class="write" style = "margin-left:10px;">
             		<c:forEach var = "comments" items="${reviewComments }">
+            			<div class = "reply${comments.rcid }">            			
+            			<c:forEach var="i" begin="1" end="${comments.rcindent }">
+									<c:if test="${i eq comments.rcindent }">
+										<b>└─</b>
+									</c:if>
+									<c:if test="${i!= comments.rcindent }"> 
+									&nbsp; &nbsp; &nbsp; 
+									</c:if>
+								</c:forEach>    
             		<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: ${comments.rcrdate }</span>&nbsp; &nbsp;
             	 	<br><br>           	 
-					<div class="comment_area _comment_area">			
+					<div class="comment_area _comment_area">
+						<c:forEach var="i" begin="1" end="${comments.rcindent }">									 
+									&nbsp; &nbsp; &nbsp; &nbsp;									
+						</c:forEach>
 						<span>${comments.rccontent }</span><br>
-						<a href = "${conPath }/review/replyComment.do?rcid=${comments.rcid}" style = "color: blue;">[답글]</a>
+						<c:if test = "${comments.rcindent <4 }">
+							<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[답글]</a>					
+						</c:if>
+						<c:if test = "${comments.mid eq member.mid }">
+						<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[삭제]</a>
+						<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[수정]</a>
+						</c:if>
 						<hr>		
 						<table>
 							<tr>
@@ -119,12 +201,29 @@
         					</tr> 
 						</table>						
 					</div>
+				</div>	
+				</c:forEach>	
+				<br>
+				<div class = "paging" style = "text-align: center; font-weight: bold;">
+					<c:if test="${paging.startPage > paging.blockSize}">
+						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.startPage-1 }&pageNum=${empty param.pageNum? '1': param.pageNum }">[이전]</a>
+					</c:if>
+					<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+						<c:if test="${paging.currentPage eq i }"> 
+							[<b style = "color: red;"> ${i } </b>] 
+						</c:if>
+						<c:if test="${paging.currentPage != i }">
+							<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${i }&pageNum=${empty param.pageNum? '1': param.pageNum}">[${i }]</a>
+						</c:if>
 					</c:forEach>
-					<br>
-					<form action = "${conPath }/review/commentWrite.do">
+					<c:if test="${paging.endPage < paging.pageCnt }">
+						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.endPage+1 }&pageNum=${empty param.pageNum? '1': param.pageNum}">[다음]</a>
+					</c:if>
+				</div>
+					<form action = "${conPath }/review/commentWrite.do" id = "replyForm">
 					<input type = "hidden" name = "rid" value = "${reviewContent.rid }">
 					<input type = "hidden" name = "mid" value = "${member.mid }">					
-					<table>
+					<table style = "margin-left: 10px;">
 						<tr>
 							<td> <b>댓글 작성</b> </td>
     	        	</tr>
@@ -134,12 +233,9 @@
             			</td>
             			<td>
             				<c:if test = "${empty member }">
-            					&nbsp;<input type = "button" value = "댓글작성" onclick = "location.href='${conPath}/loginView.do?next=review/reviewList.do'">
-            				</c:if>
-            				<c:if test = "${not empty member and member.mlevel eq -2 }">
-            					&nbsp;<input type = "button" value = "(차단유저)">
-            				</c:if>
-            				<c:if test = "${not empty member and member.mlevel != -2}">
+            					&nbsp;<input type = "button" value = "댓글작성" class = "notMemberSubmit">
+            				</c:if>            				
+            				<c:if test = "${not empty member }">
             					&nbsp;<input type = "submit" value = "댓글작성">
             				</c:if>
             			</td>

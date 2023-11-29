@@ -26,4 +26,5 @@ public interface MemberService {
 	public List<Member> memberList(String pageNum,Member member);
 	public int workermodify(Member member, HttpSession session);
 	public int towithDrawalMember(String[] mid);
+	public int workerRestoreLevel(String[] mid);
 }
