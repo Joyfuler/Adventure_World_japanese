@@ -1,0 +1,58 @@
+DROP TABLE LOSTITEM CASCADE CONSTRAINTS;
+DROP SEQUENCE LOSTITEM_SEQ;
+DROP TABLE ITEM CASCADE CONSTRAINTS;
+--DROP SEQUENCE ITEM_SEQ;
+
+--CREATE SEQUENCE ITEM_SEQ;
+--CREATE TABLE ITEM(
+--    ino   NUMBER(5) PRIMARY KEY,
+--    litem   VARCHAR2(100) UNIQUE
+--);
+CREATE SEQUENCE LOSTITEM_SEQ;
+CREATE TABLE LOSTITEM(
+    lno   NUMBER(5) PRIMARY KEY NOT NULL,
+    litem   VARCHAR2(100) NOT NULL, --REFERENCES ITEM(litem),
+    lname    VARCHAR2(100) NOT NULL,
+    lphoto  VARCHAR2(4000),
+    location  VARCHAR2(1000),
+    lrdate  DATE DEFAULT SYSDATE,
+    lresult  VARCHAR2(100) DEFAULT '보관중'
+);
+
+
+--LOSTITEM
+--ID = item
+select * from item;
+select * from item where ino = 1;
+select * from item where litem like '%'||'신'||'%';
+insert into item (ino,litem) VALUES (LOSTITEM_SEQ.NEXTVAL,'가방');
+insert into item (ino,litem) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발');
+--ID = itemList
+SELECT * FROM
+    (SELECT ROWNUM RN, A.* 
+       FROM(SELECT * FROM LOSTITEM ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+       FROM (SELECT * FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = '2023-11-29' ORDER BY LRDATE )A)WHERE RN BETWEEN 1 AND 2;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+        FROM(SELECT * FROM LOSTITEM WHERE LRDATE BETWEEN '2023-11-29' AND '2023-11-30'  
+                    AND LITEM like '%'||'가'||'%'  ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+        FROM(SELECT * FROM LOSTITEM WHERE LRDATE BETWEEN '2023-11-29' AND '2023-11-30'  
+                    and(LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%') ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+--ID = insertItem
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','핑크색구두','','범퍼카');
+--ID = updateItem
+UPDATE LOSTITEM SET lresult ='방문수령' WHERE lno = 1;
+--ID = modifyitem
+
+--ID = itemTotCnt
+SELECT COUNT(*) FROM LOSTITEM;
+SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE = '2023-11-30';
+SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = '2023-11-29' AND LITEM like '%'||'신'||'%';
+SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE  = '2023-11-29' AND (LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%');
+--ID = getItem
+SELECT * FROM LOSTITEM WHERE LNO =1;
+
