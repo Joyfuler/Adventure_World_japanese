@@ -18,7 +18,9 @@ function qpwChk(qno){
 </script>
 
 <style>
- .page-title{background-image: url("../images/themepark/theme5.png"); height: 300px; color: white;}
+#paging{padding-top: 50px;}
+.container h3{padding-top: 100px; color: white;text-shadow: -1px 0px black, 0px 2px black, 2px 0px black, 0px -1px black;}
+ .page-title{background-image: url("../images/themepark/theme5.png"); height: 300px; }
 #buttons{text-align:center;}
 .submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
 .cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
@@ -99,7 +101,7 @@ function qpwChk(qno){
 	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
 	       		<td><c:choose>
 					<c:when test="${qna.isreply=='Y'}"> yes 
-					<img src="${conPath }/images/ic2.png" style="width:20px;vertical-align: middle">	
+					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
 					</c:when>
 				</c:choose></td>    
 	   		</tr>
@@ -146,7 +148,7 @@ function qpwChk(qno){
 	       		<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
 	       		<td><c:choose>
 					<c:when test="${qna.isreply=='Y'}"> yes 
-					<img src="${conPath }/images/ic2.png" style="width:20px;vertical-align: middle">	
+					<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
 					</c:when>
 				</c:choose></td>    
 	   		</tr>
@@ -164,7 +166,7 @@ function qpwChk(qno){
 			</c:if>	
 			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 				<c:if test="${paging.currentPage eq i }"> 
-					[<b style = "color:red;">${i }</b>] 
+					[<b style = "color:lightgray;">${i }</b>] 
 				</c:if>
 				<c:if test="${paging.currentPage != i }">
 					[ <a href="${conPath }/qna/qnaList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]

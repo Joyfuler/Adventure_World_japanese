@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.LostItemDao">
+	<resultMap type="LostItem" id="LostItemResult">
+		<result property="lno" column="lno"/> 
+		<result property="litem" column="litem"/> 
+		<result property="lname" column="lname"/> 
+		<result property="lphoto" column="lphoto"/> 
+		<result property="location" column="location"/> 
+		<result property="lrdate" column="lrdate"/> 
+		<result property="lresult" column="lresult"/> 
+	</resultMap>
+	<select id="itemList" parameterType="LostItem" resultMap="LostItemResult" >
+		 <if test="(schDate=='' or schDate==null) and (schWord=='' or schWord==null) "> 
+			SELECT * FROM
+    (SELECT ROWNUM RN, A.* 
+       FROM(SELECT * FROM LOSTITEM ORDER BY LRDATE DESC)A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+		 </if>
+		<if test="(schDate!='' and schDate!=null) and (schWord=='' or schWord==null) ">
+		SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+       FROM (SELECT * FROM LOSTITEM WHERE LRDATE = #{schDate} ORDER BY LRDATE )A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if>
+		<if test="(schWord!='' and schWord!=null) and (schDate!='' and schDate!=null ) ">
+			SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+        FROM(SELECT * FROM LOSTITEM WHERE  LRDATE = #{schDate} 
+                    AND(LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%') ORDER BY LRDATE DESC)A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+		</if> 
+	</select>
+	<select id="itemTotCnt" parameterType="LostItem" resultType="int" >
+	 	<if test="(schDate=='' or schDate==null) and (schWord=='' or schWord==null)"> -->
+			SELECT COUNT(*) FROM LOSTITEM
+		 </if>
+		<if test="(schDate!='' and schDate!=null) and (schWord=='' or schWord==null)">
+			SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE = #{schDate}
+		</if>
+		<if test="(schWord!='' and schWord!=null) and (schDate!='' and schDate!=null)">
+			SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE  = #{schDate} AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
+		</if>
+	</select>
+	<select id="getItem" parameterType="int" resultType="LostItem">
+		SELECT * FROM LOSTITEM WHERE LNO =#{lno}
+	</select>
+	<insert id="insertItem" parameterType="LostItem">
+		INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,#{litem},#{lname},#{lphoto},#{Location})
+	</insert>
+	<update id="updateItem" parameterType="int"> 
+		UPDATE LOSTITEM SET lresult ='방문수령' WHERE lno = #{lno}
+	</update>
+	<update id="modifyItem" parameterType="LostItem">
+		UPDATE LostItem SET
+	        litem = #{litem},
+	        lname = #{lname},
+	        lphoto = lphoto,
+	        Location = #{Location}
+   				 WHERE lno=#{lno}
+	</update>
+</mapper>
