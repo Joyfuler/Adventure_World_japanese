@@ -136,6 +136,7 @@
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <article>
     <div class="findfindd">
         <div class="id_foundd">

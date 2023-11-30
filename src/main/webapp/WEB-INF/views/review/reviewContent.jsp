@@ -52,16 +52,15 @@
 			if (confirmDelete){
 				location.href='${conPath}/review/commentDelete.do?rid=${reviewContent.rid}&rcid='+rcid;
 			}
-		})
-		
-		$('.reportButton').click(function(){
-			$('.reportForm').css('display', 'block');
-		});
-			
+		});		
+	
 		$('form#replyForm').submit(function(){
 			var rccontentValue = $('#rccontent').val().trim();
 			if (rccontentValue == ''){
 				alert("댓글 내용을 입력해주세요.");
+				return false;
+			} else if (rccontentValue.length <=10){
+				alert('댓글 내용은 10글자 이상이어야 합니다.');
 				return false;
 			}
 		});	
@@ -76,17 +75,34 @@
 			var rcid = $(this).data('rcid');
 			var pageNum = $(this).data('pageNum');
 			var replyPageNum = $(this).data('replyPageNum');		
-			$.ajax({
-				url: '${conPath}/review/replyModifyView.do',
-				data: {'rcid': rcid, 'pageNum' : pageNum, 'replyPageNum' : replyPageNum },
-				type : 'get',
-				dataType : 'html',
-				success: function(data, status){
-				$('.reply'+rcid).html(data);
+				$.ajax({
+					url: '${conPath}/review/replyModifyView.do',
+					data: {'rcid': rcid, 'pageNum' : pageNum, 'replyPageNum' : replyPageNum },
+					type : 'get',
+					dataType : 'html',
+					success: function(data, status){
+					$('.reply'+rcid).html(data);
+				}
+			});
+		});
+		
+		$('.reportButton').click(function(){
+			var reportForm = $('.reportForm');
+			if (reportForm.css('display') == 'none'){
+				reportForm.css('display', 'block');
+			} else {
+				reportForm.css('display', 'none');
 			}
 		});
-	});
-});		
+		
+		$('.reportSubmit').click(function(){			
+			var rtitle = '${reviewContent.rtitle}';
+			alert("[제목] " + rtitle + " 리뷰 게시글을 신고하였습니다.");
+			$('.report').submit();
+		});
+		
+		
+	});		
 </script>
 </head>
 <body>
@@ -100,9 +116,9 @@
 		alert('${failMsg}');	
 	</script>
 </c:if>
-<c:if test = "${not empty commentWriteResult }">
+<c:if test = "${not empty commentWriteMsg }">
 	<script>
-		alert('${commentWriteResult eq 1? "댓글 작성 완료": "댓글 작성 실패"}');
+		alert('${commentWriteMsg}');
 	</script>
 </c:if>
 <c:if test = "${not empty param.loginResult }">
@@ -110,9 +126,9 @@
 		alert('${param.loginResult}');
 	</script>
 </c:if>
-<c:if test = "${not empty replyResult }">
+<c:if test = "${not empty replyWriteMsg }">
 	<script>
-		alert('${replyResult eq 1 ? "대댓글 작성 완료" : "대댓글 작성 실패"}');
+		alert('${replyWriteMsg}');
 	</script>
 </c:if>	
 <c:if test = "${not empty deleteResult }">
@@ -249,11 +265,54 @@
 	<div id = "buttons" style = "margin: 10px 0 10px 20px; text-align: center;">
 	<br>
 		<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewList.do?pageNum=${param.pageNum eq null? '1': param.pageNum}'">리뷰목록</button>						
-		<c:if test = "${reviewContent.mid eq member.mid}">
+		<c:if test = "${reviewContent.mid eq member.mid or not empty worker}">
 			<button class = "bg-light" onclick = "deleteConfirm()"> 리뷰삭제</button>
 			<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewModify.do?pageNum=${param.pageNum eq null? '1': param.pageNum }&rid=${param.rid }'"> 리뷰 수정 </button>
 		</c:if>
+		<c:if test = "${reviewContent.mid != member.mid }">		
+        	<button class=" bg-light reportButton">게시글신고</button>
+        	</c:if>
 	</div>	
+	  <div class = "reportForm" style = "display: none; margin: 0 0 10px 800px;">
+        	<form action = "${conPath }/review/report.do" class = "report">
+        	<input type = "hidden" name = "rid" value = "${reviewContent.rid }">        	        	
+         	<input type = "hidden" name = "mid" value = "${empty member ? 'nonmember' : member.mid }">       
+        	<table style = "border : 1px solid gray;">        	
+        		<tr>
+	        		<td> 신고 사유를 선택해주세요. </td>
+    	    	</tr>
+        		<tr>	 
+        			<td>
+        				<input type = "radio" value = "1" class = "reason1" name = "rreason" id = "reason1">
+        				<label for = "reason1">욕설</label>
+        			</td>
+        		</tr>
+        		<tr>
+	        		<td>		
+        				<input type = "radio" value = "2" class = "reason2" name = "rreason" id = "reason2">
+        				<label for = "reason2">도배</label>
+        			</td>
+        		</tr>
+        		<tr>		
+	        		<td>
+        				<input type = "radio" value = "3" class = "reason3" name = "rreason" id = "reason3">
+        				<label for = "reason3">포인트파밍</label>
+        			</td>
+        		</tr>
+        		<tr>
+	        		<td>		
+        				<input type = "radio" value = "4" class = "reason4" name = "rreason" id = "reason4">
+        				<label for = "reason4">기타</label>
+        			</td>
+        		</tr> 	   		
+ 	   			<tr>
+	 	   			<td>
+ 	   					<input type = "button" class = "reportSubmit" value = "신고"> 	   				
+ 	   				</td>	
+ 	   			</tr>	
+ 	   		</table>
+ 	   	</form>
+        </div>
 <jsp:include page="../main/footer.jsp"/>								
 </body>
 </html>

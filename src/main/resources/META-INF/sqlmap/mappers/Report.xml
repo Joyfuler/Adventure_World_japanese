@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.adventure.repository.ReportDao">
+	<resultMap type="Report" id="Report_Result">
+		<result property="rno" column="rno"/>		
+		<result property="rreason" column="rreason"/>		
+		<result property="reportdate" column="reportdate"/>
+		<result property="mid" column="mid"/>
+		<result property="rid" column="rid"/>		
+		<result property="reportermid" column="reportermid"/>
+		<result property="writermid" column="writermid"/>
+		<result property="rcontent" column="rcontent"/>
+		<result property="rtitle" column="rtitle"/>
+		<result property="rrdate" column="rrdate"/>
+		<result property="mname" column="mname"/>		
+	</resultMap>
+	<select id="reportList" parameterType="Report" resultMap="Report_Result">
+		SELECT * FROM 
+			(SELECT ROWNUM RN, A.* 
+			FROM (SELECT REVIEW.RID, REVIEW.RTITLE, 
+				REVIEW.RCONTENT, REVIEW.RRDATE, 
+				REVIEW.MID AS WRITERMID, MEMBER.MID, 
+				MEMBER.MNAME, REPORT.RNO, REPORT.RREASON, 
+				REPORT.MID AS REPORTERMID, REPORT.REPORTDATE 
+				FROM REVIEW, MEMBER, REPORT 
+				WHERE REVIEW.RID = REPORT.RID 
+				AND MEMBER.MID = REPORT.MID
+				ORDER BY REPORTDATE DESC) A) 
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id = "totCnt" parameterType = "Report" resultType="int">
+		SELECT COUNT(*) FROM REPORT
+		<if test = "searchword != null and searchword != ''">
+			WHERE RNO LIKE '%'|| #{searchword} || '%'
+		</if>
+	</select>			
+	<insert id = "reportReview" parameterType="Report">
+		INSERT INTO REPORT (RNO, RREASON, MID, RID) 
+				VALUES (REPORT_SEQ.NEXTVAL, #{rreason}, #{mid}, #{rid})
+	</insert>
+	<delete id = "deleteReport" parameterType="int">
+		DELETE FROM REPORT WHERE RNO = #{rno}
+	</delete>
+	
+</mapper>

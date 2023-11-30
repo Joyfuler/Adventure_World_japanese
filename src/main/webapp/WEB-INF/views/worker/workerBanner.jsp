@@ -42,6 +42,7 @@
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <form action="${conPath }/workerBanner/insert.do">
     <div class="page-titlee">
         <div class="containerr">

@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.adventure.service.OrderService;
+import com.project.adventure.service.ReportService;
 import com.project.adventure.service.ReviewService;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Order_Detail;
+import com.project.adventure.vo.Report;
 import com.project.adventure.vo.Review;
 import com.project.adventure.vo.Review_Comment;
 
@@ -24,7 +26,9 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	@Autowired
-	private OrderService orderService;	
+	private OrderService orderService;
+	@Autowired
+	private ReportService reportService;
 	
 	@RequestMapping(value = "reviewList", method = {RequestMethod.GET, RequestMethod.POST})
 	public String reviewList(Model model, Review review, String pageNum) {
@@ -76,8 +80,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "commentWrite", method = RequestMethod.GET)
-	public String commentWrite(Model model, Review_Comment review_Comment) {
-		model.addAttribute("commentWriteResult", reviewService.commentWrite(review_Comment));
+	public String commentWrite(Model model, Review_Comment review_Comment, HttpSession session) {
+		model.addAttribute("commentWriteMsg", reviewService.commentWrite(review_Comment, session));
 		return "forward:reviewContent.do";
 	}
 	
@@ -88,8 +92,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "reviewCommentReply", method = RequestMethod.GET)
-	public String reviewCommentReply(Model model, Review_Comment review_Comment, String replyPageNum) {
-		model.addAttribute("replyResult", reviewService.reviewCommentReply(review_Comment));
+	public String reviewCommentReply(Model model, Review_Comment review_Comment, HttpSession session, String replyPageNum) {
+		model.addAttribute("replyWriteMsg", reviewService.reviewCommentReply(review_Comment, session));
 		return "forward:reviewContent.do";
 		
 	}
@@ -112,7 +116,9 @@ public class ReviewController {
 		return "forward:reviewContent.do";
 	}
 	
-	
-	
-	
+	@RequestMapping(value = "report", method = RequestMethod.GET)
+	public String report(Report report) {
+		reportService.reportReview(report);
+		return "forward:reviewContent.do";
+	}
 }

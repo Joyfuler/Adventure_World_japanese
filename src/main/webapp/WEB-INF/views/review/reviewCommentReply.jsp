@@ -22,7 +22,9 @@
 		$('.submitChk').on("click",function(){
 			var comment = $('textarea[name="rccontent"]').val().trim();
 			if (comment == ''){
-				alert('댓글 내용을 확인해주세요.');				
+				alert('댓글 내용을 확인해주세요.');
+			} else if (comment.length <= 10){
+				alert('댓글 내용은 10글자 이상으로 작성해주세요.');			
 			} else {
 				$('form#reply').submit();
 			}

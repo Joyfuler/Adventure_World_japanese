@@ -21,6 +21,7 @@ function go_deleteNotice(nid){
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <div class="event01">
 	<div class="event02">공지사항</div>
     <div class="event03">

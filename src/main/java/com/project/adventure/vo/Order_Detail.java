@@ -29,4 +29,6 @@ public class Order_Detail {
 	private String review;
 	private int startRow;
 	private int endRow;	
+	private String display;
+	private String searchword;
 }

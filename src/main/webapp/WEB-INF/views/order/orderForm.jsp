@@ -9,6 +9,8 @@
 <meta charset="UTF-8">
 <title>주문 /결제</title>
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script>
 const autoHyphen = (target) => {
 	 target.value = target.value.replace(/[^0-9]/g, '')
@@ -57,7 +59,7 @@ const autoHyphen = (target) => {
 				$('.input_wrap_visitor').show('slow');
 			}	
 		});
-		
+		// 포인트 사용 선택시
 		$('#pntChk').click(function(){
 			if ($(this).prop('checked')){
 				$('#pointInput').prop('disabled', false);
@@ -65,7 +67,7 @@ const autoHyphen = (target) => {
 				$('#pointInput').prop('disabled', true);
 			}
 		});
-		
+		// 포인트 입력 시 최종 결제금액에서 차감
 		$('#pointInput').keyup(function(){
 			var realPointValue = parseInt($('#realPoint').val()) || 0;
 			var enteredValue = parseInt($(this).val()) || 0;			
@@ -93,11 +95,46 @@ const autoHyphen = (target) => {
 			$('#disCountmemberPoint').text(enteredValue);
 			updateTotalOrderAmount();
 			}
+		});	
+		
+		$('input[name="payment"]').change(function(){
+			updatePaymentButton();
+		});
+		
+		
+		$('.kakaopayBtn').click(function(){			
+			var chk1 = $('#chkAgr1');
+			var chk2 = $('#chkAgr2');
+			if (!chk1.prop('checked') || !chk2.prop('checked')){
+				alert('필수 동의 약관 사항에 동의해주세요.');
+			} else {
+				var amount = parseInt($('#payPreAmt').text()) || 0;
+				var mid = '${member.mid}';
+				var currentTime = new Date();				
+				var orderNo = mid + currentTime;				
+				IMP.init('imp47220035');
+				 IMP.request_pay({
+				        //pg : 'html5_inicis.INIpayTest',
+				        pg : 'kakaopay.TC0ONETIME',
+				        merchant_uid: orderNo,
+				        name : 'Adventure World 티켓결제',
+				        amount : amount,
+				 }, function(rsp){
+					 console.log(rsp);
+					 if (rsp.success){
+						 console.log('카카오페이 결제성공');
+						 $('.orderCompleteForm').submit();
+					 } else {
+						 console.log('카카오페이 결제실패');
+						 var msg = "결제에 실패하였습니다.";						 
+					 }
+				 });
+			}	
 		});		
 	});
 	</script>
 	<script>
-	function updateMemberPoint(realPointValue){
+	function updateMemberPoint(){
 		var realPointValue = parseInt($('#realPoint').val()) || 0;
 		var enteredValue = parseInt($('#pointInput').val()) || 0;
 		var result = realPointValue - enteredValue;
@@ -109,6 +146,17 @@ const autoHyphen = (target) => {
 			$('#memberPoint').text(result);
 		}
 	}	
+	
+	function updatePaymentButton(){
+		var selectedPayment = $('input[name="payment"]:checked').val();		
+		if (selectedPayment == 'kakaoPay'){
+			$('#paymentBtn').removeClass('kakaopayBtn naverpayBtn');
+			$('#paymentBtn').addClass('btn btn-primary bg-dark kakaopayBtn');			
+		} else if (selectedPayment == 'naverPay'){
+			$('#paymentBtn').removeClass('kakaopayBtn naverpayBtn');
+			$('#paymentBtn').addClass('btn btn-primary bg-dark naverpayBtn');
+		}
+	}	
 	</script>
 	<script>
 	function updateTotalOrderAmount(){
@@ -117,19 +165,7 @@ const autoHyphen = (target) => {
 		var newTotOrderAmt = payPreAmt - disCountmemberPoint;
 		$('#payPreAmt').text(newTotOrderAmt);
 		alert('총 금액에서 ' + disCountmemberPoint + '원 만큼 할인이 적용되었습니다.');	}		
-	</script>
-	<script>
-		function submitChk(){			
-			var chk1 = $('#chkAgr1');
-			var chk2 = $('#chkAgr2');
-			if (!chk1.prop('checked') || !chk2.prop('checked')){
-				alert('필수 동의 약관 사항에 동의해주세요.');
-				return false;
-			} else {
-				return true;
-			}
-		}
-	</script>
+	</script>	
 </head>
 <link href="${conPath }/css/order.css" rel="stylesheet">
 <link
@@ -140,8 +176,7 @@ const autoHyphen = (target) => {
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-	crossorigin="anonymous"></script>
-	<script type="text/javascript"	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
+	crossorigin="anonymous"></script>		
 <body style="background-image: url('${conPath}/images/bg_pc_visual.png'); background-repeat: no-repeat;">
 	<jsp:include page="../main/header.jsp" />
 	<c:if test = "${empty member }">
@@ -196,7 +231,7 @@ const autoHyphen = (target) => {
 				</div>
 			</div>
 		</div>
-		<form action = "${conPath }/order/orderComplete.do" method = "post">
+		<form action = "${conPath }/order/orderComplete.do" method = "post" class = "orderCompleteForm">
 		<input type = "hidden" name = "mid" value = "${member.mid }">		
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="headingTwo">
@@ -281,10 +316,10 @@ const autoHyphen = (target) => {
 			</div>			
 				<div class="pay-check-list" style = "padding-left: 10px;">
 					<p class="checks">
-						<input type="radio" name="payment" value="kakaopay" id="payment1" checked = "checked">
+						<input type="radio" name="payment" value="kakaoPay" id="payment1" checked = "checked">
 							<label for="payment1">
 							<img src = "${conPath }/images/kakaopay.png" style = "height:25px;">카카오페이</label>					
-						&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment2">
+						&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment2" disabled = "disabled">
 							<label for="payment2">
 							<img src = "${conPath }/images/naverpay.png" style = "height:25px;">네이버페이</label>
 					</p>
@@ -373,36 +408,8 @@ const autoHyphen = (target) => {
 						<p class="dotStyle">필수 항목에 모두 동의하셔야 서비스를 이용하실 수 있습니다.</p>
 					</div>
 				</div>
-				<div class="btnArea">			
-					<input type = "button" id = "naverPayBtn" value = "네이버페이결제" style = "display: none;">
-					<script src="https://nsp.pay.naver.com/sdk/js/naverpay.min.js"></script>  
-<script>  
-     var oPay = Naver.Pay.create({
-          "mode" : "development", // development or production
-          "clientId": "u86j4ripEt8LRfPGzQ8" // clientId
-      });
-
-    //직접 만든 네이버페이 결제 버튼에 click 이벤트를 할당하세요.
-    var elNaverPayBtn = document.getElementById("naverPayBtn");    
-    elNaverPayBtn.addEventListener("click", function() {
-    var price = $('#payPreAmt').text();
-    oPay.open({
-          "merchantUserKey": "store-c4cb05e3-222f-4fa8-b606-68337b01cfdd",
-          "merchantPayKey": "merchant_" + new Date().getTime(),
-          "productName": "Adventure World 결제 테스트",
-          "totalPayAmount": price,
-          "taxScopeAmount": price,
-          "taxExScopeAmount": "0",
-          "returnUrl": "localhost:8091/adventure/order/orderComplete.do?cid=${param.cid}"
-        });
-   });
-</script>  
-</body>  
-					
-						
-					<button class = "btn btn-primary bg-dark" onclick = "return submitChk()">
-						결제하기
-					</button>
+				<div class="btnArea">
+					<input type = "button" id = "paymentBtn" class = "btn btn-primary bg-dark kakaopayBtn" value = "결제하기">
 				</div>			
 			</div>								
 		</div>		

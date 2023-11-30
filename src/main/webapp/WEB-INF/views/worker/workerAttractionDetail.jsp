@@ -20,6 +20,7 @@ function go_deleteAttraction(aid){
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <article>
 <div class="att_Detail_title">
    	<div id="att_Detail_text">${attractionDetail.aname}</div>
