@@ -43,12 +43,27 @@ input[name=list]{margin-right: -50px;border-radius: 12px 12px 12px 12px; height:
 </head>
 <script>
 $(function(){
-	$('form').submit(function(){
-	 if($('input[name="schDate"]').val() == '' ){
+	/* $('form').submit(function(){
+		var schDate = $('input[name="schDate"]').val();
+	 if($('input[name="schDate"]').val() == '' && $('input[name="schWord"]').val() == '' ){
 		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
 	 	return false;
+		}else if(schDate ==''){
+			schDate.push(null);
 		}
-	})
+			
+	});
+	 */
+	$('.lostItemSch').click(function(){
+		
+		var schDate = $('input[name="schDate"]').val();
+		var schWord = $('input[name="schWord"]').val();
+		if (schDate == null || schDate == ''){
+			location.href = '${conPath}/lostItemList.do?schWord='+schWord;
+		} else {
+			location.href = '${conPath}/lostItemList.do?schWord='+schWord+'&schDate='+schDate;
+		}		
+	});
 });
 </script>
 <script>
@@ -102,7 +117,7 @@ $(function(){
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
-<form action="${conPath }/lostItemList.do" method="get">
+<form action="${conPath }/lostItemList.do" method="get" class = "lostItemForm">
 <section class="notice">
 <c:if test="${not empty ItemModyfyReult }">
 	<script>
@@ -147,7 +162,7 @@ $(function(){
                         <input type="text" id="datepicker" name="schDate" value="${param.schDate}" 
                         	autocomplete="off" placeholder="분실 날짜" >
                         <input id="search" type="text" name="schWord" placeholder="분실한 소지품을 입력해주세요." value="${param.schWord}" size="50">
-                        <input type="submit" class="btn btn-dark" value="검색" >
+                        <input type="button" class="btn btn-dark lostItemSch" value="검색" >
                  		<input type="button" name="list" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/lostItemList.do'">
                      </div>
                 
