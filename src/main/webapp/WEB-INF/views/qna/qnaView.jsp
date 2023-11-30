@@ -23,9 +23,7 @@ border: 1px solid #e4e4e4;
 background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
 color: #000;
 }
-.buttons{
-	width: 100px;
-}
+
 </style>
 </head>
 <body>
@@ -63,9 +61,9 @@ color: #000;
 		</form>
 		<br>
 		<div class="buttons">
-			<input type="button"  value="목록보기" class="purpleBtn" style="border:none;"
+			<input type="button"  value="목록보기" class="purpleBtn" 
 				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
-			<input type="button"  value="돌아가기"  class="purpleBtn" style="border:none;"
+			<input type="button"  value="돌아가기"  class="purpleBtn" 
 				onclick="history.back()">
 		</div>
 		<br>
