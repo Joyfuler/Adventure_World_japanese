@@ -293,28 +293,35 @@ INSERT INTO WORKER VALUES('admin','1234', '관리자', '010-7777-7777');
 INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE ,MEMAIL)
 VALUES ('admin', '1234', '관리자', '010-7777-7777', 'admin@naver.com');
 
--- 11. REVIEW_COMMENT INSERTION
+-- 11. REVIEW INSERTION
+INSERT INTO REVIEW (RID, RTITLE, RCONTENT, RSCORE, RPHOTO, MID, ODID)
+VALUES (REVIEW_SEQ.NEXTVAL, '꿈같은 시간', '나는 행복합니다. 한화 화이팅!!!', '5', 'noimg.jpg', 'one', 1);
+
+-- 12. REVIEW_COMMENT INSERTION
 INSERT INTO REVIEW_COMMENT (RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
-VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, '잘보고갑니다', REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 47, 'trio');
-SELECT * FROM REVIEW;
-SELECT RC.*, M.MNAME FROM REVIEW_COMMENT RC, MEMBER M WHERE RC.MID = M.MID AND RID = 47 ORDER BY RCRDATE DESC;
-SELECT COUNT(*) CNT FROM REVIEW_COMMENT WHERE RID = 47;
+VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, '잘보고갑니다', REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 1, 'one');
+     
+     
+-- 13. LOSTITEM INSERTION
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','아동용 핑크색 개릭터신발','shose3.jpg','범퍼카');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'카드','우리은행카드','card3.jpg','정글탐험보트');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'외투','남성용 검은색 롱패딩','outer.jpg','점핑피쉬');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','아동용 검은색 패딩신발','shose2.jpg','회전목마');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','여성용 검은색 부츠','shose.jpg','범퍼카');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'카드','검은색카드','card2.jpg','범퍼카');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'지갑','루이비통 지갑','wallet2.jpg','후렌치 레볼루션');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'카드','하늘색카드','card.jpg','와일드 밸리');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'지갑','회색 지갑','wallet.jpg','회전목마');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'핸드폰','흰색 아이폰','phone.jpg','후렌치 레볼루션');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'핸드폰','파란색 아이폰','phone2.jpg','드림보트');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'화장품','검은색 쿠션','cosmetic.jpg','와일드 윙');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'모자','흰색 털 모자','hat1.jpg','풍선비행');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'에어팟','에어팟 한쪽','airpods.jpg','범퍼카');
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'가방','파란색 백팩','bag.jpg','자이로드롭'); 
 
-SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME, (select count(*) from review_comment where rid=r.rid) cnt 
-    	FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
-    	WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = 47;
+-- 14. REPORT INSERTION
+INSERT INTO REPORT (RNO, RREASON, REPORTDATE, MID, RID)
+VALUES (REPORT.SEQ_NEXTVAL,1, SYSDATE, 'one', 1);
+SELECT * FROM REPORT;
+SELECT * FROM REPORT;
 
-
-SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT RC.*, M.MNAME 
-		FROM REVIEW_COMMENT RC,	MEMBER M 
-		WHERE RC.MID = M.MID AND RID = 47
-		ORDER BY RCRDATE DESC) A) WHERE RN BETWEEN 2 AND 4;
-select * from qna;
-
-select * from review_comment;
-
-
-
-
-
-            

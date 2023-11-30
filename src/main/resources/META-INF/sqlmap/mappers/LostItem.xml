@@ -13,26 +13,32 @@
 		<result property="lresult" column="lresult"/> 
 	</resultMap>
 	<select id="lostitemList" parameterType="LostItem" resultMap="LostItemResult" >
-		 <if test="schDate==null and (schWord=='' or schWord==null) "> 
+		 <if test="schDate==null and (schWord=='' or schWord==null)"> 
 			SELECT * FROM
-    (SELECT ROWNUM RN, A.* 
-       FROM(SELECT * FROM LOSTITEM ORDER BY LNO DESC)A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+    		(SELECT ROWNUM RN, A.* 
+       			FROM(SELECT * FROM LOSTITEM ORDER BY LNO DESC) A)
+       			WHERE RN BETWEEN #{startRow} AND #{endRow}
 		 </if>
-		<if test="schDate!=null and (schWord=='' or schWord==null) ">
-		SELECT * FROM
-    (SELECT ROWNUM RN, A.*
-       FROM (SELECT * FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} ORDER BY LNO )A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+		<if test="schDate !=null and (schWord=='' or schWord==null)">
+			SELECT * FROM
+    		(SELECT ROWNUM RN, A.*
+       			FROM (SELECT * FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} ORDER BY LNO )A)WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
-		<if test="(schWord!='' and schWord!=null) and schDate!=null">
+		<if test="schDate != null and (schWord!='' and schWord!=null)">
 			SELECT * FROM
-    (SELECT ROWNUM RN, A.*
-        FROM(SELECT * FROM LOSTITEM WHERE  to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} 
-                    AND(LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%') ORDER BY LNO DESC)A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+    			(SELECT ROWNUM RN, A.*
+        		FROM (SELECT * FROM LOSTITEM WHERE  to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} 
+                    AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%') ORDER BY LNO DESC) A) WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if> 
-		<if test="(schWord!='' and schWord!=null) and schDate==null">
+		<if test="schDate == null and (schWord!='' and schWord!=null)">
 			SELECT * FROM
-    (SELECT ROWNUM RN, A.*
-        FROM(SELECT * FROM LOSTITEM WHERE (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%') ORDER BY LNO DESC)A)WHERE RN BETWEEN #{startRow} AND #{endRow}
+  			  (SELECT ROWNUM RN, A.*
+	        	FROM (SELECT * 
+	        		FROM LOSTITEM 
+	        		WHERE (LITEM LIKE '%'||#{schWord}||'%' 
+	        			OR LNAME LIKE '%'||#{schWord}||'%') 
+	        			ORDER BY LNO DESC) A) 
+	        			WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if> 
 	</select>
 	<select id="itemTotCnt" parameterType="LostItem" resultType="int" >
@@ -40,17 +46,30 @@
 			SELECT COUNT(*) FROM LOSTITEM
 		 </if>
 		<if test="schDate!=null and (schWord=='' or schWord==null)">
-			SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate}
+			SELECT COUNT(*) FROM LOSTITEM 
+			WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate}
 		</if>
 		<if test="(schWord!='' and schWord!=null) and schDate!=null">
-			SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd')  = #{schDate} AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
+			SELECT COUNT(*) FROM LOSTITEM 
+			WHERE to_char(LRDATE, 'yyyy-mm-dd') 
+			= #{schDate} AND 
+				(LITEM LIKE '%'||#{schWord}||'%' 
+				OR LNAME LIKE '%'||#{schWord}||'%')
+		</if>
+		<if test = "schDate== null and (schWord != '' and schWord != null)">
+			SELECT COUNT(*) FROM LOSTITEM 
+			WHERE (LITEM LIKE '%'||#{schWord}||'%' 
+			OR LNAME LIKE '%'||#{schWord}||'%')
 		</if>
 	</select>
 	<select id="getItem" parameterType="int" resultType="LostItem">
 		SELECT * FROM LOSTITEM WHERE LNO =#{lno}
 	</select>
 	<insert id="insertItem" parameterType="LostItem">
-		INSERT INTO LOSTITEM (lno,litem,lname,lphoto,location) VALUES (LOSTITEM_SEQ.NEXTVAL,#{litem},#{lname},#{lphoto},#{location})
+		INSERT INTO LOSTITEM 
+		(lno,litem,lname,lphoto,location) 
+		VALUES (LOSTITEM_SEQ.NEXTVAL, 
+		#{litem},#{lname},#{lphoto},#{location})
 	</insert>
 	<update id="updateItem" parameterType="int"> 
 		UPDATE LOSTITEM SET lresult ='방문수령' WHERE lno = #{lno}
