@@ -97,25 +97,25 @@ $(document).ready(function(){
                			</tr>
                		</c:if>
                		<c:if test = "${not empty orderList }">		
-               		<c:set var = "oid" value = "0"/>
-					<c:forEach var="orderLists" items="${orderList }">
-						<c:if test = "${oid eq orderLists.oid }">
-					 		<tr class = "hidden-row">					 	
-					 	</c:if>
-					 	<c:if test = "${oid != orderLists.oid }">
-					 		<tr>
-					 	</c:if>	
-	                	<td>
-	                		<c:if test = "${oid != orderLists.oid }">
-	                			<fmt:formatDate value="${orderLists.ocrdate}" type="date"/>
-	                		</c:if>
-	                	</td>
-	                    <td>
+               			<c:set var = "oid" value = "0"/>
+						<c:forEach var="orderLists" items="${orderList }">
+							<c:if test = "${oid eq orderLists.oid }">
+					 			<tr class = "hidden-row">					 	
+					 		</c:if>
+					 		<c:if test = "${oid != orderLists.oid }">
+						 		<tr>
+						 	</c:if>	
+	    	            	<td>
+	       	        		<c:if test = "${oid != orderLists.oid }">
+	           	    			<fmt:formatDate value="${orderLists.ocrdate}" type="date"/>
+	               			</c:if>
+		                	</td>
+		                    <td>
 	                    	<c:if test = "${oid != orderLists.oid }">
 	                    		${orderLists.oid}
 	                    	</c:if>
-	                    </td>
-	                    <td>
+	    	                </td>
+	        	            <td>
                           <c:choose>
                              <c:when test = "${orderLists.otype eq 0}">
                                	자유이용권 

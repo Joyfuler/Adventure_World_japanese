@@ -163,8 +163,8 @@
 						</c:forEach>&nbsp; ${reviewContent.rscore } 점<br>
 				</div>
 				<div class="text-center">
-						<br>
-						<b>${reviewContent.rtitle }</b> <br>
+					<br>
+					<b>${reviewContent.rtitle }</b> <br>
 					<div class = "border text-center justify-content-center" style="padding-bottom: 10px;">
 						<br>											
 						${reviewContent.rcontent }					
@@ -175,52 +175,52 @@
 				<br><br>
 			</div>
 			<div class="section text-left" id="comment_area" style = "text-align:left !important;">
-            <div class="comment-block">
-               <div class="btn-gruop-wrap clearfix">
-                  <div class="btn-gruop btn-group-comment">
-                     <img src = "${conPath }/images/comment_icon.png" style = "width: 25px;">
-                      댓글 <span id="comment_count" style = "font-weight: bold;">${reviewContent.commentcnt }</span> 건  &nbsp; &nbsp; <a href = "#rccontent" style = "color:blue;">[댓글작성]</a>
-                  </div>         
-               </div>
-            </div>            
-            <div class="comment_list border" id="comment_container">               
-            	<div class="write" style = "margin-left:10px;">
-            		<c:forEach var = "comments" items="${reviewComments }">
-            			<div class = "reply${comments.rcid }">            			
-            			<c:forEach var="i" begin="1" end="${comments.rcindent }">
-									<c:if test="${i eq comments.rcindent }">
-										<b>└─</b>
-									</c:if>
-									<c:if test="${i!= comments.rcindent }"> 
+            	<div class="comment-block">
+               		<div class="btn-gruop-wrap clearfix">
+                  		<div class="btn-gruop btn-group-comment">
+                     		<img src = "${conPath }/images/comment_icon.png" style = "width: 25px;">
+                      		댓글 <span id="comment_count" style = "font-weight: bold;">${reviewContent.commentcnt }</span> 건  &nbsp; &nbsp; <a href = "#rccontent" style = "color:blue;">[댓글작성]</a>
+                  		</div>         
+               		</div>
+            	</div>            
+            	<div class="comment_list border" id="comment_container">               
+            		<div class="write" style = "margin-left:10px;">
+            			<c:forEach var = "comments" items="${reviewComments }">
+            				<div class = "reply${comments.rcid }">            			
+            				<c:forEach var="i" begin="1" end="${comments.rcindent }">
+								<c:if test="${i eq comments.rcindent }">
+									<b>└─</b>
+								</c:if>
+								<c:if test="${i!= comments.rcindent }"> 
 									&nbsp; &nbsp; &nbsp; 
-									</c:if>
-								</c:forEach>    
-            		<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: ${comments.rcrdate }</span>&nbsp; &nbsp;
-            	 	<br><br>           	 
-					<div class="comment_area _comment_area">
-						<c:forEach var="i" begin="1" end="${comments.rcindent }">									 
+								</c:if>
+							</c:forEach>    
+            				<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: ${comments.rcrdate }</span>&nbsp; &nbsp;
+            	 			<br><br>           	 
+							<div class="comment_area _comment_area">
+								<c:forEach var="i" begin="1" end="${comments.rcindent }">									 
 									&nbsp; &nbsp; &nbsp; &nbsp;									
-						</c:forEach>
-						<span>${comments.rccontent }</span><br>
-						<c:if test = "${comments.rcindent <4 }">
-							<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[답글]</a>					
-						</c:if>
-						<c:if test = "${comments.mid eq member.mid }">
-						<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[삭제]</a>
-						<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[수정]</a>
-						</c:if>
-						<hr>		
-						<table>
-							<tr>
-								<td class = "replySpace${comments.rcid }" colspan="3">            	        	
-            					</td>
-        					</tr> 
-						</table>						
-					</div>
-				</div>	
-				</c:forEach>	
-				<br>
-				<div class = "paging" style = "text-align: center; font-weight: bold;">
+								</c:forEach>	
+								<span>${comments.rccontent }</span><br>
+								<c:if test = "${comments.rcindent <4 }">
+									<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[답글]</a>					
+								</c:if>
+								<c:if test = "${comments.mid eq member.mid }">
+									<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[삭제]</a>
+									<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[수정]</a>
+								</c:if>
+								<hr>		
+								<table>
+									<tr>
+										<td class = "replySpace${comments.rcid }" colspan="3">            	        	
+            							</td>
+        							</tr> 
+								</table>						
+							</div>
+						</div>	
+					</c:forEach>	
+					<br>
+					<div class = "paging" style = "text-align: center; font-weight: bold;">
 					<c:if test="${paging.startPage > paging.blockSize}">
 						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.startPage-1 }&pageNum=${empty param.pageNum? '1': param.pageNum }">[이전]</a>
 					</c:if>
@@ -236,7 +236,7 @@
 						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.endPage+1 }&pageNum=${empty param.pageNum? '1': param.pageNum}">[다음]</a>
 					</c:if>
 				</div>
-					<form action = "${conPath }/review/commentWrite.do" id = "replyForm">
+				<form action = "${conPath }/review/commentWrite.do" id = "replyForm">
 					<input type = "hidden" name = "rid" value = "${reviewContent.rid }">
 					<input type = "hidden" name = "mid" value = "${member.mid }">					
 					<table style = "margin-left: 10px;">
@@ -312,7 +312,7 @@
  	   			</tr>	
  	   		</table>
  	   	</form>
-        </div>
+   </div>
 <jsp:include page="../main/footer.jsp"/>								
 </body>
 </html>

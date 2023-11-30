@@ -83,63 +83,63 @@
 			<div class="gray_frame">
 					<input type = "hidden" name = "mid" value = "${member.mid }">							
 					<div class = "writeForm">
-					<script>
-						$(document).ready(function(){
-							$(".starCheck").click(function() {
-								var starScore = $(this).attr("starScore"); 
-								$(".starCheck").attr("src","${conPath}/images/point_star_out.png");	
-								for (idx = 1; idx <= starScore; idx++) {
-									$("img[starScore=" + idx + "]").attr("src", "${conPath}/images/point_star_on.png");
-								}
-								<%-- form과 hidden input창의 value값을 클릭한 값으로 변경. --%>
-								$("input[name=rscore]").attr("value", starScore);				
-								$(".reviewScore").html(starScore);
-							});
+						<script>
+							$(document).ready(function(){
+								$(".starCheck").click(function() {
+									var starScore = $(this).attr("starScore"); 
+									$(".starCheck").attr("src","${conPath}/images/point_star_out.png");	
+									for (idx = 1; idx <= starScore; idx++) {
+										$("img[starScore=" + idx + "]").attr("src", "${conPath}/images/point_star_on.png");
+									}
+									<%-- form과 hidden input창의 value값을 클릭한 값으로 변경. --%>
+									$("input[name=rscore]").attr("value", starScore);				
+									$(".reviewScore").html(starScore);
+								});
 							
-							$('#odidSelect').change(function(){
-								var selectedOption = $('select[name="odid"] option:selected');
-								var reviewValue = selectedOption.data('review');
-								$('#pointObtained').val(reviewValue);
-							});
-						});						
-					</script>					
+								$('#odidSelect').change(function(){
+									var selectedOption = $('select[name="odid"] option:selected');
+									var reviewValue = selectedOption.data('review');
+									$('#pointObtained').val(reviewValue);
+								});
+							});						
+						</script>					
 						<table style = "width: 1000px;">
-								<tr style = "padding: 10px;">									
-									<td colspan= "2" style = "cursor: pointer;">
-										<br><br> 
-										&nbsp;&nbsp;&nbsp;별점 : <img src = "${conPath }/images/point_star_on.png" starScore = "1" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "2" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "3" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="4" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="5" class = "starCheck">  / (<span class = "reviewScore">5</span>/5)점<br><br>
-										<input type = "hidden" name ="rscore" class = "rscore" value = "5">				
-									</td>						
-								</tr>
-								<tr></tr>
-								<tr style = "text-align: left !important; padding-left: 20px;">
-									<td colspan = "2">
-										&nbsp;&nbsp;&nbsp;티켓 선택&nbsp;&nbsp;&nbsp;&nbsp;
-										<select name = "odid" id = "odidSelect">				
-											<c:if test = "${availableList.size() eq 0 }">
+							<tr style = "padding: 10px;">									
+								<td colspan= "2" style = "cursor: pointer;">
+									<br><br> 
+									&nbsp;&nbsp;&nbsp;별점 : <img src = "${conPath }/images/point_star_on.png" starScore = "1" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "2" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "3" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="4" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="5" class = "starCheck">  / (<span class = "reviewScore">5</span>/5)점<br><br>
+									<input type = "hidden" name ="rscore" class = "rscore" value = "5">				
+								</td>						
+							</tr>
+							<tr></tr>
+							<tr style = "text-align: left !important; padding-left: 20px;">
+								<td colspan = "2">
+									&nbsp;&nbsp;&nbsp;티켓 선택&nbsp;&nbsp;&nbsp;&nbsp;
+									<select name = "odid" id = "odidSelect">				
+										<c:if test = "${availableList.size() eq 0 }">
 											<option value = "1"> 구매티켓 없음
-											</c:if>
-											<c:if test = "${avaliableList.size() ne 0 }">							
+										</c:if>
+										<c:if test = "${avaliableList.size() ne 0 }">							
 											<c:forEach var = "lists" items="${availableList }">											
-											<c:choose>
-												<c:when test = "${lists.review eq 'N' }">
-													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: blue;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 없음
-												</c:when>
-												<c:otherwise>
-													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: red;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 있음
-												</c:otherwise>
-											</c:choose>					
-											<c:if test = "${lists.otype eq 1 }">
-											/ 어트랙션 - ${lists.oatname1 } / ${lists.oatname2 } / ${lists.oatname3 }
-											</c:if>
-											)																																
+												<c:choose>
+													<c:when test = "${lists.review eq 'N' }">
+														<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: blue;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 없음
+													</c:when>
+													<c:otherwise>
+														<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: red;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 있음
+													</c:otherwise>
+												</c:choose>					
+												<c:if test = "${lists.otype eq 1 }">
+													/ 어트랙션 - ${lists.oatname1 } / ${lists.oatname2 } / ${lists.oatname3 }
+												</c:if>
+												)																																
 											</c:forEach>
-											</c:if>																			
-										</select>
-										<br>
-										&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※티켓을 선택하지 않았거나, 해당 티켓의 리뷰 작성 이력이 이미 존재하는 경우 포인트가 지급되지 않습니다.</span>
-										<input type = "hidden" id = "pointObtained" name = "pointObtained" value = "Y">
-										<br><br>
+										</c:if>																			
+									</select>
+									<br>
+									&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※티켓을 선택하지 않았거나, 해당 티켓의 리뷰 작성 이력이 이미 존재하는 경우 포인트가 지급되지 않습니다.</span>
+									<input type = "hidden" id = "pointObtained" name = "pointObtained" value = "Y">
+									<br><br>
 									</td>		
 								</tr>
 								<tr>
@@ -169,17 +169,17 @@
 										<input type = "file" name = "temprimg" style = "display: none;">																			
 										<img id = "uploadedImg" height = "44px">
 									</td>
-								</tr>							
-					</table>						
+								</tr>						
+						</table>						
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>								
+		</div>								
 </section>
 <div class = "button-area" style = "text-align: center;">
-<input type = "submit" value = "글작성" style = "margin-left: 50px;"> 
-<input type = "button" value = "초기화" onclick = "location.reload(true);" style = "margin-left: 10px;"> 
-<input type = "button" value = "글목록" onclick = "location.href='${conPath }/review/reviewList.do'" style = "margin-left: 10px;">
+	<input type = "submit" value = "글작성" style = "margin-left: 50px;"> 
+	<input type = "button" value = "초기화" onclick = "location.reload(true);" style = "margin-left: 10px;"> 
+	<input type = "button" value = "글목록" onclick = "location.href='${conPath }/review/reviewList.do'" style = "margin-left: 10px;">
 </div>
 <br><br><br>
 </form>

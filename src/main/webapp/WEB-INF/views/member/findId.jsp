@@ -48,40 +48,40 @@ input[type="text"] {
 <body>
   <c:if test="${not empty findResult}">
       <script>
-      alert('${findResult}');
+    	  alert('${findResult}');
       </script>
    </c:if>
 <div id="find_div">
 	<div class="find_border">
-   <h2 class="findId_title">아이디 찾기</h2><br>
-   <h5 style = "text-align: center;">회원가입시 입력한 이름과 전화번호를 입력해주세요. </h5>
-   <form action = "${conPath }/member/findId.do" method = "post">      
-      <table class="find-id">
-         <tr>
-         	<th>
-         		&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;
-         	</th>
-         	<td>
-         		<input type="text" name="mname" class="input-text" maxlength="20" placeholder = "이름입력"/>
-         	</td>
-         </tr>
-      </table>
-      <table class="find-id">
-         <tr>
-         	<th>
-         		전화번호&nbsp;&nbsp;
-         	</th>
-         	<td>
-         		<input type="text" name="mphone" class="input-text" maxlength="13" placeholder = "전화번호 입력" oninput="autoHyphen(this)"/>
-         	</td>
-         </tr>
-      </table>      
-      <br>
-      <div class="findId-button">
-      <input type="submit" value="찾기" class = "button" onclick="return findIdChk()" />
-      <input type = "button" value = "닫기" class = "button" style = "margin-left: 10px; "onclick = "window.close()"/>
-      </div>   
-   </form>
+   		<h2 class="findId_title">아이디 찾기</h2><br>
+   		<h5 style = "text-align: center;">회원가입시 입력한 이름과 전화번호를 입력해주세요. </h5>
+   		<form action = "${conPath }/member/findId.do" method = "post">      
+      		<table class="find-id">
+         		<tr>
+         			<th>
+         				&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;
+         			</th>
+         			<td>
+         				<input type="text" name="mname" class="input-text" maxlength="20" placeholder = "이름입력"/>
+         			</td>
+         		</tr>
+      		</table>
+      		<table class="find-id">
+         		<tr>
+         			<th>
+         				전화번호&nbsp;&nbsp;
+         			</th>
+         			<td>
+         				<input type="text" name="mphone" class="input-text" maxlength="13" placeholder = "전화번호 입력" oninput="autoHyphen(this)"/>
+         			</td>
+         		</tr>
+      		</table>      
+      		<br>
+      		<div class="findId-button">
+      			<input type="submit" value="찾기" class = "button" onclick="return findIdChk()" />
+      			<input type = "button" value = "닫기" class = "button" style = "margin-left: 10px; "onclick = "window.close()"/>
+      		</div>   
+   		</form>
    </div>   
 </div>
 </body>

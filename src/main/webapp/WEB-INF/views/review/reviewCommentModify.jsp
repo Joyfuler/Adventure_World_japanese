@@ -39,11 +39,12 @@
 					</td>
 					<td>
 						<textarea rows="3" cols="30" name="rccontent" style="width:500px; height:80px; float:left; margin: 5px; margin-left: 20px;" placeholder="댓글내용">${comment.rccontent }</textarea>
+					</td>
+				</tr>		
 			</table>
 			<input type ="submit" value="수정" class="btn" style="margin: 5px;">
 			<input type ="button" value = "취소" class = "cancelBtn btn">
-		</form>
-	
+		</form>	
 	<p style="clear:both;"></p>
 	<br>
 </body>
