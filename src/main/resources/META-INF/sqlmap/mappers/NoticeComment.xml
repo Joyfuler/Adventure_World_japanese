@@ -19,6 +19,9 @@
     FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM NCOMMENT WHERE NID=#{nid} ORDER BY CGROUP DESC, CSTEP) A)
     WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
+	<select id="commentTotCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM NCOMMENT WHERE NID=#{nid}
+	</select>
 	<insert id="commentWrite" parameterType="NoticeComment">
 		INSERT INTO NCOMMENT (CNUM, NID, CNAME, CMEMO, CGROUP, CSTEP, CINDENT, CIP)
     VALUES (NCOMMENT_SQ.NEXTVAL, #{nid}, #{cname}, #{cmemo},NCOMMENT_SQ.CURRVAL, 0,0, #{cip})

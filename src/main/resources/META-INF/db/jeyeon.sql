@@ -50,11 +50,11 @@ SELECT * FROM WORKER;
 
 -- 공지사항 리스트
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '결제가 안돼요', 'ㅠㅠ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '산타 빌리지 투어 and 산타의 미라클 프레젠트', 'santa.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '티켓교환은 어떻게 하나요?', 'ㅠㅠ','내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '이용예약제 안내(키즈토리아, 언더씨킹덤) 안내', '이용예약제.jpg','내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '집에 언제가나요?', 'ㅠㅠ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '풍선비행 탑승예약제 안내', '풍선비행.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
     VALUES(NOTICE_SEQ.NEXTVAL, '배고파요', 'ㅠㅠ', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
@@ -206,7 +206,7 @@ SELECT NCOMMENT_SQ.CURRVAL FROM NCOMMENT;
 -- 댓글번호로 댓글 dto 가져오기(id = commentDetail)
 SELECT * FROM NCOMMENT WHERE CNUM=1;
 SELECT * FROM NCOMMENT;
-
+commit;
 
     
 

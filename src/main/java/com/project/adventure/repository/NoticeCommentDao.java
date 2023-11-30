@@ -10,7 +10,7 @@ import com.project.adventure.vo.NoticeComment;
 @Mapper
 public interface NoticeCommentDao {
 	public List<NoticeComment> commentList(NoticeComment noticeComment);
-	public int commentTotCnt(int bid);
+	public int commentTotCnt(int nid);
 	public int commentWrite(NoticeComment noticeComment);
 	public int commentReplyPreStep(NoticeComment noticeComment);
 	public int commentReply(NoticeComment noticeComment);
