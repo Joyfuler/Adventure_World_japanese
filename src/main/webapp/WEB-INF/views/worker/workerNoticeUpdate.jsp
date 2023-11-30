@@ -188,6 +188,7 @@ h1{
 		</script>
 	</c:if>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 
 <article>
 <div class="findfindd">

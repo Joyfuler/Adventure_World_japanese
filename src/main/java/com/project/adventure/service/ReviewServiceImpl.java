@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -267,18 +268,23 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int commentWrite(Review_Comment review_Comment) {
+	public String commentWrite(Review_Comment review_Comment, HttpSession session) {
+		String msg = "";
 		int result = review_CommentDao.checkCommentCount(review_Comment);
-		if (result <4) {
+		if (result <3) {
 			Member pointUpMember = new Member();
 			pointUpMember.setMid(review_Comment.getMid());
-			pointUpMember.setMpoint(10);
+			pointUpMember.setMpoint(50);
 			memberDao.plusMemberPoint(pointUpMember);
-			System.out.println("해당 리뷰에 대한 댓글이 4개 미만이므로 포인트 10 증정");
+			msg = "댓글 작성 완료. 해당 리뷰에 대한 댓글 작성으로 50포인트를 획득하였습니다.";			
 		} else {
-			System.out.println("해당 리뷰에 대한 댓글이 4개 이상이므로 포인트 지급 없음");
+			msg = "댓글 작성 완료. 동일한 리뷰에 대한 포인트 획득은 댓글 3개까지만 가능합니다.";			
 		}
-		return review_CommentDao.commentWrite(review_Comment);
+		// 포인트 적립 후 즉시 반영 위해 다시 session 전달.
+		Member sessionMember = memberDao.getMemberInfo(review_Comment.getMid());
+		session.setAttribute("member", sessionMember);
+		review_CommentDao.commentWrite(review_Comment);
+		return msg;
 	}
 
 	@Override
@@ -292,19 +298,24 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int reviewCommentReply(Review_Comment review_Comment) {
+	public String reviewCommentReply(Review_Comment review_Comment, HttpSession session) {
+		String msg = "";
 		review_CommentDao.commentReplyPreStep(review_Comment);
 		int result = review_CommentDao.checkCommentCount(review_Comment);
-		if (result <4) {
+		if (result <3) {
 			Member pointUpMember = new Member();
 			pointUpMember.setMid(review_Comment.getMid());
-			pointUpMember.setMpoint(10);
-			memberDao.plusMemberPoint(pointUpMember);
-			System.out.println("해당 리뷰에 대한 댓글이 4개 미만이므로 포인트 50 증정");
+			pointUpMember.setMpoint(50);
+			memberDao.plusMemberPoint(pointUpMember);			
+			msg = "댓글 작성 완료. 해당 리뷰에 대한 댓글 작성으로 50포인트를 획득하였습니다.";
 		} else {
-			System.out.println("해당 리뷰에 대한 댓글이 4개 이상이므로 포인트 지급 없음");
+			msg = "댓글 작성 완료. 동일한 리뷰에 대한 포인트 획득은 댓글 3개까지만 가능합니다.";
 		}
-		return review_CommentDao.reviewCommentReply(review_Comment);
+		// 포인트 적립 후 즉시 반영 위해 다시 session 전달.
+		Member sessionMember = memberDao.getMemberInfo(review_Comment.getMid());
+		session.setAttribute("member", sessionMember);		
+		review_CommentDao.reviewCommentReply(review_Comment);
+		return msg;
 	}
 	
 	@Override

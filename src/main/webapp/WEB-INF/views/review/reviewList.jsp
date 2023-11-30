@@ -55,8 +55,8 @@
 <article>
 <div class="attractionForm" style = "padding-bottom: 10px;">
 	<div class="page-title" style = "text-align: center; font-weight: bold;">	
-		<div class="container" style = "background-color: #5c10e6; color: white;">
-			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; text-align:center; margin-bottom: 5px;">방문해 주신 분들의 리뷰입니다.</h3>
+		<div class="container" style = "background-color: #7e32f8; color: white;">
+			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; text-align:center; margin-bottom: 5px;">리뷰 & 후기 게시판</h3>
 			<h4> ※리뷰 게시글을 작성해 주신 모든 유저분들께 멤버십 포인트 1000p 를 적립해 드립니다.</h4>					
 		</div>		
 	</div>
@@ -105,7 +105,7 @@
 	                <img src="${conPath }/resources/memberImg/${reviews.rcontentImgFileName}" onerror="noImage(this)"/>                                        	
                 </c:otherwise>
             </c:choose>
-				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span><span style = "font-size: 0.7em; color: red;">[${reviews.commentcnt }]</span>
+				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span><span style = "font-size: 0.7em; color: red;"> [${reviews.commentcnt }]</span>
 				<h6>${reviews.rrdate }</h6>
 				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? '자유이용권' : '패스트패스'}</span>									
 			</a>

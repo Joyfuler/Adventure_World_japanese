@@ -40,6 +40,7 @@ function go_search(){
 
 
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <article>
 <form action="${conPath }/workerAttraction/attractionListP.do" method="get">
 <section class="notice">

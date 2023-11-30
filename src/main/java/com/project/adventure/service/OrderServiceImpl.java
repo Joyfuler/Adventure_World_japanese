@@ -72,10 +72,10 @@ public class OrderServiceImpl implements OrderService {
 		return order_DetailDao.priceTotal(oid);
 	}
 	@Override
-	public List<Order_Detail> orderList(Order_Detail order_Detail, String pageNum) {
+	public List<Order_Detail> orderList(Order_Detail order_Detail, String pageNum) {		
 		Paging paging = new Paging(order_DetailDao.totCnt(order_Detail), pageNum, 5, 5);
 		order_Detail.setStartRow(paging.getStartRow());
-		order_Detail.setEndRow(paging.getEndRow());
+		order_Detail.setEndRow(paging.getEndRow());		
 		return order_DetailDao.orderList(order_Detail);
 
 	}
@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
 		int result = 0;
 		for(int id : oid) {			
 			result += order_DetailDao.deleteOrder(id);
-			orderDao.deleteOrder(id);
+			// orderDao.deleteOrder(id);
 		}
 		return result;
 	}

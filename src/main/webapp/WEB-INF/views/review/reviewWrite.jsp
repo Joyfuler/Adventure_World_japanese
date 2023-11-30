@@ -115,8 +115,12 @@
 								<tr style = "text-align: left !important; padding-left: 20px;">
 									<td colspan = "2">
 										&nbsp;&nbsp;&nbsp;티켓 선택&nbsp;&nbsp;&nbsp;&nbsp;
-										<select name = "odid" id = "odidSelect">											
-											<c:forEach var = "lists" items="${availableList }">
+										<select name = "odid" id = "odidSelect">				
+											<c:if test = "${availableList.size() eq 0 }">
+											<option value = "1"> 구매티켓 없음
+											</c:if>
+											<c:if test = "${avaliableList.size() ne 0 }">							
+											<c:forEach var = "lists" items="${availableList }">											
 											<c:choose>
 												<c:when test = "${lists.review eq 'N' }">
 													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: blue;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 없음
@@ -128,12 +132,12 @@
 											<c:if test = "${lists.otype eq 1 }">
 											/ 어트랙션 - ${lists.oatname1 } / ${lists.oatname2 } / ${lists.oatname3 }
 											</c:if>
-											)
-											</option>																						
-											</c:forEach>																			
+											)																																
+											</c:forEach>
+											</c:if>																			
 										</select>
 										<br>
-										&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※해당 티켓의 리뷰 작성 이력이 이미 존재하는 경우 포인트가 지급되지 않습니다.</span>
+										&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※티켓을 선택하지 않았거나, 해당 티켓의 리뷰 작성 이력이 이미 존재하는 경우 포인트가 지급되지 않습니다.</span>
 										<input type = "hidden" id = "pointObtained" name = "pointObtained" value = "Y">
 										<br><br>
 									</td>		

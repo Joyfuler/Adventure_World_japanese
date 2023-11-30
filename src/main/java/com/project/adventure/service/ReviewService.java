@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -26,9 +27,9 @@ public interface ReviewService {
 	public void reviewModify(Review review, MultipartHttpServletRequest mRequest, Model model);
 	public List<Review_Comment> getReviewComments(int rid, String replyPageNum);
 	public int commentTotCnt(int rid);
-	public int commentWrite(Review_Comment review_Comment);
+	public String commentWrite(Review_Comment review_Comment, HttpSession session);
 	public Review_Comment getOriginalCommentDto(int rcid);
-	public int reviewCommentReply(Review_Comment review_Comment);
+	public String reviewCommentReply(Review_Comment review_Comment, HttpSession session);
 	public int commentDelete(int rcid);
 	public Review_Comment commentDetail(int rcid);
 	public int modifyComment(Review_Comment review_Comment);

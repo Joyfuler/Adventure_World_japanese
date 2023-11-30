@@ -54,6 +54,9 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 	</div>
 	<div class = "buttons">
 		<input type = "button" value = "분실물 센터" onclick = "location.href='${conPath}/lostItemList.do'" style = "cursor:pointer;">
+  </div>
+  <div>
+		<input type = "button" value = "신고관리" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer;">
 	</div>
 </div>
 </div>

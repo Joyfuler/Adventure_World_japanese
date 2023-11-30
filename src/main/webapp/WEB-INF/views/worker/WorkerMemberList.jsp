@@ -74,6 +74,7 @@
 <form action="${conPath }/workermodify.do" method="get">
 <section class="notice" >
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
   <div class="page-titlee" style="margin-top:-100 " >
         <div class="containerr">
             <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 회원 리스트 </h3>
