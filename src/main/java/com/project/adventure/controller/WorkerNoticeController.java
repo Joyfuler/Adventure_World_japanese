@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.project.adventure.service.NoticeCommentService;
 import com.project.adventure.service.NoticeService;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Notice;
@@ -17,6 +18,8 @@ import com.project.adventure.vo.Notice;
 public class WorkerNoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private NoticeCommentService noticeCommentService;
 	@RequestMapping(value="list" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(String pageNum, Notice notice, Model model) {
 		model.addAttribute("notice", noticeService.noticeList(pageNum, notice));
@@ -24,8 +27,9 @@ public class WorkerNoticeController {
 		return "worker/workerNotice";
 	}
 	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public String detail(int nid, Model model) {
+	public String detail(int nid, Model model, String commentPageNum) {
 		model.addAttribute("notice", noticeService.getDetailNotice(nid));
+		model.addAttribute("commentList", noticeCommentService.noticeComments(nid, commentPageNum, model));
 		return "worker/workerNoticeDetail";
 	}
 	@RequestMapping(value="insert", method=RequestMethod.GET)

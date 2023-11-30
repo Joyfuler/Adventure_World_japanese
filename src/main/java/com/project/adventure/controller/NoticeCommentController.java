@@ -20,4 +20,19 @@ public class NoticeCommentController {
 		noticeCommentService.commentWrite(noticeComment, request, model);
 		return "forward:../notice/detail.do";
 	}
+	@RequestMapping(value="delete")
+	public String delete(NoticeComment noticeComment, String commentPageNum, Model model) {
+		noticeCommentService.commentDelete(noticeComment.getCnum(), model);
+		return "forward:../notice/detail.do";
+	}
+	@RequestMapping(value="replyView")
+	public String replyView(int cnum, Model model) {
+		model.addAttribute("comment", noticeCommentService.commentDetail(cnum));
+		return "notice/noticeCommentReply";
+	}
+	@RequestMapping(value="reply")
+	public String reply(NoticeComment noticeComment, HttpServletRequest request, Model model) {
+		noticeCommentService.commentReply(noticeComment, request, model);
+		return "forward:../notice/detail.do";
+	}
 }

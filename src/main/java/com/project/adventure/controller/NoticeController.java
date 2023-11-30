@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.project.adventure.service.NoticeCommentService;
 import com.project.adventure.service.NoticeService;
 import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Notice;
@@ -16,6 +17,8 @@ import com.project.adventure.vo.Notice;
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private NoticeCommentService noticeConmmentService;
 	@RequestMapping(value="list" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(String pageNum, Notice notice, Model model) {
 		model.addAttribute("notice", noticeService.noticeList(pageNum, notice));
@@ -23,8 +26,9 @@ public class NoticeController {
 		return "notice/notice";
 	}
 	@RequestMapping(value="detail", method=RequestMethod.GET)
-	public String detail(int nid, Model model) {
+	public String detail(int nid, Model model, String commentPageNum) {
 		model.addAttribute("notice", noticeService.getDetailNotice(nid));
+		model.addAttribute("commentList", noticeConmmentService.noticeComments(nid, commentPageNum, model));
 		return "notice/noticeDetail";
 	}
 }

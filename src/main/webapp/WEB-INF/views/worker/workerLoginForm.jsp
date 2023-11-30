@@ -53,12 +53,6 @@
    <div id=input>
       <input name="wpw" placeholder="&nbsp;비밀번호" size="40" type="password" style="width:500px"><br>
    </div>
-   <div class="menu1">
-      <ul>
-          <li><a href="#">아이디 찾기 | </a></li>
-             <li><a href="#">&nbsp;비밀번호 찾기</a></li>
-      </ul>
-   </div>
    <div class="ar">&nbsp;&nbsp;&nbsp;${message}</div>
    <div id="buttons">
       <input type="submit" value="로그인" class="submit" onclick="return loginCheck()">
