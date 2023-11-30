@@ -8,12 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script>
-/* function go_reply(qno){
-	document.frm.action='${conPath}/qna/adminqnqreply.do?qno='+qno+'&wid=${worer.mid}&pageNum=${param.pageNum }';
-	document.frm.submit();
-} */
-</script>
+<style>
+
+</style>
 </head>
 <body>
 <article>
@@ -59,10 +56,13 @@
 		</div>
 		<br>
 		<div class="buttons" style="height:70px;" >
-					<input type="submit" style="padding :0;" class="purpleBtn" value="저장">
-					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum }'">
-					<input type="button" style="padding :0;" value="삭제" class="purpleBtn" onclick="location.href='${conPath}/qna/qnadelete.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
-					<input type="button" style="padding :0;" value="수정" class="purpleBtn" onclick="location.href='${conPath}/qna/modify.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
+					<input type="submit" style="padding :0;" class="purpleBtn" value="저장"  width="10">
+					<input type="button" style="padding :0;" value="목록보기" class="purpleBtn" 
+						onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum }'"s>
+					<input type="button" style="padding :0;" value="삭제" class="purpleBtn"
+						 onclick="location.href='${conPath}/qna/qnadelete.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
+					<input type="button" style="padding :0;" value="수정" class="purpleBtn"
+						 onclick="location.href='${conPath}/qna/modify.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
 		</div>
 		<br>
 	</div>
