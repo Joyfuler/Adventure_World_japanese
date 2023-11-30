@@ -2,40 +2,128 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var = "conPath" value = "${pageContext.request.contextPath }"/> 
+<c:set var = "conPath" value = "${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 <link href="${conPath }/css/order.css" rel="stylesheet">  
 <style>
-#buttons{text-align:center;}
-.submit{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color: #fff; background:rgb(111, 35, 249);;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
-.cancel{position:relative; font-size: 20px;padding-bottom:10px; width:200px; height:55px;color:#6317ed; background:white;font-weight:bold;border-radius: 28px;border:1px solid #6317ed;}
-input{border: 2px solid black;  }
+input[name=schDate]{
+  width: 100px;
+  height: 42px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: white;
+  margin-left:5px;
+}
+input[name=schWord] {
+ margin-left:10px;
+  width: 400px;
+  height: 42px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: white;
+}
+input[type=submit]{margin-left: 30px; border-radius: 12px 12px 12px 12px; height: 40px;}
+input[name=list]{margin-right: -50px;border-radius: 12px 12px 12px 12px; height: 40px;}
+.buts input[type=button]{border-radius: 12px 12px 12px 12px; height: 50px; font-size:large;
+ text-align:center; margin-left: 10px; margin-bottom: 50px; background-color: lightblue; border-color: white; cursor: pointer;}
+.buts input[type=button]:first-child {margin-left: 170px;}
 </style>
 	
 </head>
 <script>
-function go_search(){
-	 if($('input[name="key"]').val() == "" ){
+$(function(){
+	$('form').submit(function(){
+	 if($('input[name="schDate"]').val() == '' ){
 		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
 	 	return false;
-	} 
-}
+		}
+	})
+});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#modifyItem').on('click', function() {
+			var selectedCids= [];
+			$('input[name="lno"]:checked').each(function(){
+				selectedCids.push($(this).val());
+			});	
+			if (selectedCids.length >0){
+				var url = '${conPath}/modifyItem.do?lno='+selectedCids;
+				location. href = url;	
+		    } else {
+		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		    }
+		});
+	});
+</script>
+<script>	
+	$(document).ready(function() {
+		$('#updateItem').on('click', function() {
+			var selectedCids= [];
+			$('input[name="lno"]:checked').each(function(){
+				selectedCids.push($(this).val());
+			});	
+			if (selectedCids.length >0){
+				var url = '${conPath}/updateItem.do?lno='+selectedCids;
+				location. href = url;	
+		    } else {
+		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		    }
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#deleteItem').on('click', function() {
+			var selectedCids= [];
+			$('input[name="lno"]:checked').each(function(){
+				selectedCids.push($(this).val());
+			});	
+			if (selectedCids.length >0){
+				var url = '${conPath}/deleteItem.do?lno='+selectedCids;
+				location. href = url;	
+		    } else {
+		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		    }
+		});
+	});	
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
 <form action="${conPath }/lostItemList.do" method="get">
 <section class="notice">
+<c:if test="${not empty ItemModyfyReult }">
+	<script>
+		alert("수정이 완료되었습니다");
+	</script>
+</c:if>
+<c:if test="${not empty updateItemReult }">
+	<script >
+	alert("처리결과 수정이 완료되었습니다");
+	</script>
+</c:if>
+<c:if test="${not empty deleteItemReult }">
+	<script >	
+	alert("삭제가 완료되었습니다");
+	</script>
+</c:if>
 <div class="page-title">
 	<div class="container">
 		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">분실물 검색</h3>
 	</div>
 </div>
-
     <div class="board-searchh">
         <div class="container">
                       <div class="search-wrap">
@@ -44,16 +132,24 @@ function go_search(){
 					<div id="calendarPopup" class="calendar-popup"></div>
                   	
 				</div>
+				<c:if test="${not empty worker }">
+				<div class="buts">
+					<input type="button" class="btn btn-dark" value="수정" id="modifyItem" >
+           			<input type="button" class="btn btn-dark" value="수령" id="updateItem" >
+           			<input type="button" class="btn btn-dark" value="삭제" id="deleteItem" >
+           			<input type="button"  class="btn btn-dark" value="추가" onclick="location.href='${conPath}/insertItem.do'">
+				</div>
+				</c:if>
             <div class="search-window">	
                         <label for="datepicker">
-                        	<img src="${conPath }/images/ticket_images/calendar.png" style="width:30px; height:30px;">
+                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
                         </label>
                         <input type="text" id="datepicker" name="schDate" value="${param.schDate}" 
-                        	autocomplete="off" placeholder="분실한 날짜를 입력해주세요." >
+                        	autocomplete="off" placeholder="분실 날짜" >
                         <input id="search" type="text" name="schWord" placeholder="분실한 소지품을 입력해주세요." value="${param.schWord}" size="50">
-                        <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="${conPath }/lostItemList.do"></button>  
-                    </div>
+                        <input type="submit" class="btn btn-dark" value="검색" >
+                 		<input type="button" name="list" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/lostItemList.do'">
+                     </div>
                 
             </div>
         </div>
@@ -70,6 +166,9 @@ function go_search(){
                      <th scope="col" class="th-num">습득물 사진</th>
                     <th scope="col" class="th-num">습득일</th>
                     <th scope="col" class="th-title">처리결과</th>
+                    <c:if test="${not empty worker }">
+                    <th scope="col" class="th-title"></th>
+                    </c:if>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,10 +176,17 @@ function go_search(){
 	                <tr>
 	                    <td>${lostItem.litem}</td>
 	                    <td>${lostItem.lname }</td> 
-	                    <td>${lostItem.location }</td> 
-	                    <td><img src="${conPath }/lostitemImg/${lostItem.lphoto}"/></td>
+	                    <td>
+	                    <img src="${conPath }/images/themepark/placeholder.png" style="width:24px; height:24px;">
+	                    ${lostItem.location }</td> 
+	                    <td><img src="${conPath }/lostitemimg/${lostItem.lphoto} " style="width:100px; height:100px;"/></td>
 	                    <td><fmt:formatDate value="${lostItem.lrdate}" type="date"/></td>
-	                    <td>${lostItem.lresult }</td> 
+	                    <td>${lostItem.lresult }</td>
+	                     <c:if test="${not empty worker}">
+	                     <td> 
+		                    <input type="checkbox" name="lno" value="${lostItem.lno }" style="width: 20px; height: 20px;">		        	
+	                    </td>  
+                 		</c:if> 
 	                </tr>
 	          	</c:forEach>
                 
@@ -98,7 +204,7 @@ function go_search(){
 			<b>[ ${i } ]</b> 
 		</c:if>
 		<c:if test="${paging.currentPage != i }">
-			[ <a href="${conPath }/lostItemList.do?pageNum=${i }&schWord=${param.schWord}&schDate=${param.schDate}">${i }</a> ]
+			[ <a href="${conPath }/lostItemList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
 		</c:if>
 	</c:forEach>
 	<c:if test="${paging.endPage<paging.pageCnt }">

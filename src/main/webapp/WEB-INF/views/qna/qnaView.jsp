@@ -23,6 +23,9 @@ border: 1px solid #e4e4e4;
 background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
 color: #000;
 }
+.buttons{
+	width: 100px;
+}
 </style>
 </head>
 <body>

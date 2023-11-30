@@ -19,15 +19,15 @@ import com.project.adventure.util.Paging;
 import com.project.adventure.vo.LostItem;
 @Service
 public class LostItemServiceImpl implements LostItemService {
-	String backupPath = "C:/Webpro/source/10_2ndTeamProject/Adventure/src/main/webapp/lostitemImg/";
+	String backupPath = "C:/Webpro/source/10_2ndTeamProject/Adventure/src/main/webapp/lostitemimg/";
 	@Autowired
 	private LostItemDao lostitemDao;
 	@Override
-	public List<LostItem> itemList(String pageNum,LostItem lostItem) {
+	public List<LostItem> lostitemList(String pageNum,LostItem lostItem) {
 		Paging paging = new Paging(lostitemDao.itemTotCnt(lostItem), pageNum, 5, 5);
 		lostItem.setStartRow(paging.getStartRow());
 		lostItem.setEndRow(paging.getEndRow());
-		return lostitemDao.itemList(lostItem);
+		return lostitemDao.lostitemList(lostItem);
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class LostItemServiceImpl implements LostItemService {
 
 	@Override
 	public int insertItem(MultipartHttpServletRequest mRequest, LostItem lostItem) {
-		String uploadPath = mRequest.getRealPath("lostitemImg/");
+		String uploadPath = mRequest.getRealPath("lostitemimg/");
 		Iterator<String> params = mRequest.getFileNames(); // 파일이름두개
 		String bimg = "";
 		String param = params.next();
@@ -70,8 +70,8 @@ public class LostItemServiceImpl implements LostItemService {
 	}
 
 	@Override
-	public LostItem getQna(int lno) {
-		return lostitemDao.getQna(lno);
+	public LostItem getItem(int lno) {
+		return lostitemDao.getItem(lno);
 	}
 
 	@Override
@@ -146,6 +146,11 @@ public class LostItemServiceImpl implements LostItemService {
 		}
 		//복사
 		return false;
+	}
+
+	@Override
+	public int deleteItem(int lno) {
+		return lostitemDao.deleteItem(lno);
 	}
 
 
