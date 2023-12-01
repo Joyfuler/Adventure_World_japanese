@@ -54,11 +54,11 @@ public class QnaServiceImpl implements QnaService {
 		return qnaDao.deleteQna(qno);
 	}
 	@Override
-	public int modify(Qna qna) {
+	public int modify(Qna qna) {				
 		return qnaDao.modify(qna);
 	}
 	@Override
-	public int qnaRreply(int qno) {
-		return qnaDao.qnaRreply(qno);
+	public int qnaRreply(Qna qna) {
+		return qnaDao.qnaRreply(qna);
 	}
 }

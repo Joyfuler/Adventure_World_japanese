@@ -39,7 +39,7 @@
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,ISREPLY,REPLY,QGROUP,QPWCHK,MID) VALUES
 			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw},'Y',#{reply},#{qgroup},#{qpwchk},#{mid})
 	</insert>
-	<update id="qnaRreply" parameterType="int" >
+	<update id="qnaRreply" parameterType="Qna" >
 		UPDATE QNA SET
                 REPLY = #{reply}
                 WHERE QNO = #{qno}

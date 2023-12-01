@@ -31,7 +31,7 @@ public class WorkerQnaController {
 	@RequestMapping(value="adminqnqreply", method = RequestMethod.POST)
 	public String adminQnaRepSave (Qna qna, Model model){
 		System.out.println("원글 번호 : " + qna.getQno());
-        qnaService.qnaRreply(qna.getQno());
+        qnaService.qnaRreply(qna);
 		model.addAttribute("replyResult",qnaService.qnaReply(qna));
 		return "forward:workerQnaList.do";
 	}

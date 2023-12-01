@@ -43,7 +43,7 @@
 						<td>${Qna.qcontent}</td>
 					</tr>
 					<tr>     
-						<c:if test="${Qna.reply=='' && Qna.reply==null}"> <!-- 관리자 답변 전 표시 -->		
+						<c:if test="${Qna.reply eq '' || Qna.reply eq null}"> <!-- 관리자 답변 전 표시 -->		
 			    			<th>답변내용</th>
 			    			<td colspan="2"><textarea id="summernote" name="reply" rows="2" cols="45"></textarea>
 						</c:if>
@@ -57,7 +57,12 @@
 			</div>
 			<br>
 			<div class="buttons" >
-				<input type="button"  class="btn btn-primary" value="답변하기" onclick = "location.href='${conPath}/worker/workerQnamodify.do?qno=${Qna.qno }&pageNum=${empty param.pageNum? '1' : param.pageNum }'">
+				<c:if test = "${not empty Qna.reply }">
+					<input type = "button" class = "btn btn-primary" value = "수정하기" onclick = "location.href='${conPath}/worker/workerQnamodify.do?qno=${Qna.qno }'">
+				</c:if>
+				<c:if test = "${empty Qna.reply }">
+					<input type="submit" class="btn btn-primary" value="답변하기">
+				</c:if>								
 				<input type="button"  class="btn btn-primary" value="목록보기" 
 					onclick="location.href='${conPath}/worker/workerQnaList.do?pageNum=${empty param.pageNum? '1': param.pageNum }'">
 				<input type="button"  class="btn btn-primary" value="삭제" 

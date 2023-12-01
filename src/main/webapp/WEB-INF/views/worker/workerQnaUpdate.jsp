@@ -48,7 +48,7 @@
 						</tr>
 						<tr>		
 			    			<th>답변내용</th>
-			    			<td colspan="2"><textarea id="summernote" name="reply" rows="2" cols="45"></textarea>
+			    			<td colspan="2"><textarea id="summernote" name="reply" rows="2" cols="45">${Qna.reply }</textarea>
 						</tr>	
 					</table>
 				</div>

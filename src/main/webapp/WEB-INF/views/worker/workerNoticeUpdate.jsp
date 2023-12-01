@@ -225,7 +225,7 @@ h1{
 			        </label>
 			        <input type="text" name="image" id="image" value="${notice.ncontent}" style="width: calc(100% - 80px); float: left;">
 			    </div>
-	   			<div id="filename";>
+	   			<div id="filename">
 	   			<input type="file" name="temp_ncontent" id="mymy" style = "width:90%; display: none;">
 	   			</div>
 	   		</td>
