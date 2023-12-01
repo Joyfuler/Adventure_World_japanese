@@ -131,14 +131,14 @@ function qpwChk(qno){
 			    			<c:if test="${not empty worker }">
 			    				<c:choose>
 								<c:when test="${qna.qpwchk=='Y'}">
-									<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
+									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
 										<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 										${qna.qtitle}
 										</a>
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 								</c:when>
 								<c:otherwise>
-									<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
+									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
 									<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
 									 ${qna.qtitle}
 									 </a>
