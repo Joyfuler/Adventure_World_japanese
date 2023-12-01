@@ -23,17 +23,16 @@
 			var schWord = $('input[name="schWord"]').val();
 			location.href = '${conPath}/memberList.do?schWord='+schWord;
 		});
-		
 		$('.restoreLevel').on('click',function(){
 			var checkedMids = [];
 			$('input[name="mid"]:checked').each(function(){
 				checkedMids.push($(this).val());
 			if (checkedMids.length == 0){
 				alert('등급을 조정할 회원이 선택되지 않았습니다.');	
-			} else {
+			}else {
 				var url = '${conPath}/workerRestoreLevel.do?mid='+checkedMids.join('&mid=');
 				location.href = url;
-			}
+				}
 			});
 		});
 		
@@ -50,7 +49,6 @@
 				cnt++;
 			}
 		}
-		
 		if (cnt == 0){
 			alert('적어도 1개 이상의 항목을 선택한 후 변경해주세요.');
 			return false;
@@ -80,19 +78,15 @@
             <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 회원 리스트 </h3>
         </div>
     </div>
-
     <div class="board-searchh">
         <div class="containerr">
             <div class="search-window">
-                
-                    <div class="search-wrap" >
-                        <label for="search" class="blind"> 회원 이름 검색 </label>
-                        <input id="search" type="search" name="schWord" placeholder="회원 이름을 입력해주세요." value="${param.schWord}">
-                        <input type="button" id="schmid" class="btn btn-dark" value="검색"   >
-                        <input type="button" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/memberList.do'">
-                          
-                    </div>
-               
+                <div class="search-wrap" >
+                    <label for="search" class="blind"> 회원 이름 검색 </label>
+                    <input id="search" type="search" name="schWord" placeholder="회원 이름을 입력해주세요." value="${param.schWord}">
+                    <input type="button" id="schmid" class="btn btn-dark" value="검색"   >
+                    <input type="button" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/memberList.do'">
+                </div>
             </div>
         </div>
     </div>

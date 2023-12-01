@@ -9,13 +9,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-#plusebtn{position: absolute; right:45px; bottom:15px;  }
-#btn2{width:110px; background: #555;color: #fff; font-size: 25px;}
-
-
-
-
-
+	#plusebtn{position: absolute; right:45px; bottom:15px;  }
+	#btn2{width:110px; background: #555;color: #fff; font-size: 25px;}
 </style>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -37,8 +32,6 @@ function go_search(){
         }
     </script>
 </c:if>
-
-
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
 <article>
@@ -49,23 +42,19 @@ function go_search(){
 		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">어트랙션 관리</h3>
 	</div>
 </div>
-
     <div class="board-searchh">
         <div class="container">
             <div class="search-window">
-          
-                      <div class="search-wrap">
-                        <label for="search" class="blind">어트랙션 검색</label>
-                        <input id="search" type="text" name="schTitle" placeholder="어트랙션 이름을 입력해 주세요." value="${param.schTitle}">
-                        <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/workerAttraction/attractionListP.do'">
-                 		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/workerAttraction/insert.do'">   
-                    </div>
-                
+                <div class="search-wrap">
+                   <label for="search" class="blind">어트랙션 검색</label>
+                   <input id="search" type="text" name="schTitle" placeholder="어트랙션 이름을 입력해 주세요." value="${param.schTitle}">
+                   <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
+            		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/workerAttraction/attractionListP.do'">
+            		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/workerAttraction/insert.do'">   
+               </div>
             </div>
         </div>
     </div>
-   
     <div class="board-list">
         <div class="container">
             <table class="board-table">
@@ -86,7 +75,6 @@ function go_search(){
 	                    <td><a href="${conPath }/workerAttraction/update.do?aid=${workerAttraction.aid}&pageNum=${paging.currentPage}">수정하기</a></td>
 	                </tr>
 	          	</c:forEach>
-                
                 </tbody>
             </table>
         </div>

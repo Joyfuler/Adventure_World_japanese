@@ -20,6 +20,9 @@
 		<input type="hidden" name="cgroup" value="${comment.cgroup}">
 		<input type="hidden" name="cstep" value="${comment.cstep}">
 		<input type="hidden" name="cindent" value="${comment.cindent}">
+	<c:if test="${member.mname == null}">
+		<input type="hidden" name="cname" value="비회원" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이"  required="required">
+	</c:if>
 		<input type="text" name="cname" value="${member.mname }" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이"  required="required">
 		<textarea rows="2" cols="5" name="cmemo" style="width:50%; height:50px; float:left; margin: 5px;" placeholder="댓글내용"  required="required"></textarea>
 		<input type="submit" value="댓글저장" class="btn" style="height:50px; float:left; margin: 5px;">

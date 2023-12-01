@@ -152,8 +152,8 @@
             <h1>배너 등록</h1>
             <br><hr><br>
             <form action="${conPath }/workerBanner/insert.do" method="post" enctype="multipart/form-data" >
-            	<input type="text" name="border">
-            	<input type="text" name="usage">
+            	<input type="hidden" name="border">
+            	<input type="hidden" name="usage">
                 <table class="baba">
                     <tr>
                         <th>제목</th>

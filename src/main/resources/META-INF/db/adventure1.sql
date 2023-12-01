@@ -46,6 +46,8 @@ CREATE TABLE MEMBER
     MPOINT NUMBER(10) DEFAULT 1000
 );
 
+
+select * from member;
 CREATE SEQUENCE CART_SEQ MAXVALUE 99999
 NOCACHE NOCYCLE;
 CREATE TABLE CART(
@@ -407,7 +409,7 @@ SELECT WNAME FROM WORKER WHERE WID='admin';
 -- 워커 카운트 id=getAllCount
 SELECT COUNT(*) FROM WORKER;
 
-
+alter table order_detail add display varchar2(1) default 'Y';
 -- 11. NOTICE QUERY
 -- 공지사항 리스트 id=NoticeList
 SELECT * FROM NOTICE WHERE NTITLE LIKE '%' || '결' || '%' ORDER BY NID DESC;

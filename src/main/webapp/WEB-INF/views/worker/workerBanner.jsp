@@ -22,12 +22,10 @@
 		var totCntPlus1 = ${cntBanner}+1;  //bno의 값을 변수에 저장
 		var selectVal = selectTag.options[ selectTag.selectedIndex ].value;
 		// 식별한 SELECT 태그의 선택된 인덱스값으로 선택된 값을 추출합니다
-		
 		if (selectVal == totCntPlus1){
 			location.href='${conPath }/workerBanner/update.do?bno=' + bno + '&usage=N&border=' + selectVal;
 		}else{
 			location.href='${conPath }/workerBanner/update.do?bno=' + bno + '&usage=Y&border=' + selectVal;
-
 		}
 		// bno 와 바꾸려는 값을 갖고 이동합니다
  }
@@ -38,7 +36,6 @@
 			}
 		}
 </script>
-
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -57,7 +54,6 @@
             </div>
         </div>
     </div>
-
     <div class="board-list">
         <div class="container">
             <table class="board-table">
@@ -70,7 +66,6 @@
                         <th scope="col" class="th-num">삭제</th>
                     </tr>
                 </thead>
-
                 <c:if test="${cntBanner == 0}">
                     <tr>
                         <td width="100%" colspan="6" align="center" height="23">등록된 배너가 없습니다.</td>
@@ -91,7 +86,6 @@
 										<c:if test="${cnt!=banner.border}">
 										    <option value="${cnt}">${cnt}</option>
 										</c:if>
-										
                                     </c:forEach>
 									<c:if test="${banner.border eq cntBanner+1}">
 									    <option value="${cntBanner +1}" selected="selected">사용안함</option>

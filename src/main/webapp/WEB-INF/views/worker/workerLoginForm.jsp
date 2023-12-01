@@ -42,7 +42,6 @@
    </div>
    <h2 style="color:gray; font-weight:400">관리자 아이디와 비밀번호로 로그인 하세요.</h2>
    <br><br>
-   
    <form action = "${conPath }/worker/workerLoginForm.do" method="post">
    <input type="hidden" name="after" value="${after}">
    <!-- <input type="hidden" name="command" value="login">  action="world.do"-->
@@ -59,8 +58,6 @@
    </div><br><br>
    <div id=content> 문의사항이 있으시면 고객만족센터에 연락하세요.<br>
    고객만족센터 : 1899-0000</div>
-   
-   
    </form>
 </div>
 </body>

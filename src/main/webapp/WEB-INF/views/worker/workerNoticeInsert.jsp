@@ -168,8 +168,11 @@ table {
     margin: 0 auto;
 }
 h1{
- text-align: center;
- font-size: 50px;
+	text-align: center;
+	font-size: 50px;
+}
+input, button, select, textarea{
+  	line-height: 0px !important;
 }
 </style>
 <body>
@@ -179,32 +182,29 @@ h1{
 			alert('공지사항 등록 완료');
 		</script>
 	</c:if>
-	
-	
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
 <article>
-<div class="findfindd">
-<h1>공지사항 추가</h1>
-<br><hr><br>
+	<div class="findfindd">
+	<h1>공지사항 추가</h1>
+	<br><hr><br>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <script>
-				 $(document).ready(function() {
-					 $('#summernote').summernote({
-					        height: 300,
-					        minHeight: null,
-					        maxHeight: null,
-					        lang : 'ko-KR',
-					        onImageUpload: function(files, editor, welEditable) {
-					                sendFile(files[0], editor, welEditable);
-					            }
-	
-					    });
-				 });
-	</script>
+	 $(document).ready(function() {
+		 $('#summernote').summernote({
+	        height: 300,
+	        minHeight: null,
+	        maxHeight: null,
+	        lang : 'ko-KR',
+	        onImageUpload: function(files, editor, welEditable) {
+	                sendFile(files[0], editor, welEditable);
+	            }
+		  });
+	 });
+</script>
 <form action= "${conPath }/worker/insert.do" method="post" enctype="multipart/form-data" onsubmit="return title();">
 	<table class="baba">
 		<tr>
@@ -223,7 +223,6 @@ h1{
 			<th>내용</th> 
 			<td>
 			<!-- include summernote css/js-->
-			
 				<textarea name="ntext" id="summernote" ></textarea>
 			</td>
 		</tr>

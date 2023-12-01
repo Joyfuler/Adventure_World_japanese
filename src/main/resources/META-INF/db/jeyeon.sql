@@ -56,13 +56,13 @@ INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
     VALUES(NOTICE_SEQ.NEXTVAL, '풍선비행 탑승예약제 안내', '풍선비행.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '배고파요', 'ㅠㅠ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '신규 어트랙션 <배틀그라운드 월드 에이전트> OPEN', 'bg.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '우와 금요일이에요', 'ㅎㅎ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '주차시스템 개선 안내', 'parking.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '내일은 주말이에요', 'ㅎㅎ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '탑승예약제(스페인해적선, 후렌치레볼루션) 안내', 'yo.jpg', '내용', SYSDATE , 'admin');
 INSERT INTO NOTICE (NID, NTITLE, NCONTENT, NTEXT, NRDATE, WID)
-    VALUES(NOTICE_SEQ.NEXTVAL, '추워요', 'ㅠㅠ', '내용', SYSDATE , 'admin');
+    VALUES(NOTICE_SEQ.NEXTVAL, '장애인 탑승예약제 시행 안내', 'hh.jpg', '내용', SYSDATE , 'admin');
 
 -- worker dao
 
