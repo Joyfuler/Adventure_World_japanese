@@ -88,11 +88,11 @@ function qpwChk(qno){
 		    			<c:if test="${not empty worker }">
 		    				<c:choose>
 							<c:when test="${qna.qpwchk=='Y'}">
-								<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
+								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
 									&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 							</c:when>
 							<c:otherwise>
-								<a href="${conPath }/qna/adminQnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
+								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">${qna.qtitle}</a>
 							</c:otherwise>
 						</c:choose>
 		    			</c:if>

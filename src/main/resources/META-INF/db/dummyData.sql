@@ -11,9 +11,6 @@ INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL,
     ('two', '1234', '김길동', '011-1313-2525', 'acc.ab.com',
     '130-120', '서울시 송파구 잠실2동' , '리센츠 아파트 201동 505호');
 
-
-SELECT * FROM MEMBER;
-
 -- 2. CART INSERTION 
 
 INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,

@@ -50,7 +50,7 @@ function enabled1() {
 <body>
  <jsp:include page="../main/header.jsp"/>
 <article>
-<c:if test="${not empty member }"> 
+<c:if test="${empty member }"> 
 	<script>
 	   alert('로그인 후 문의글 작성이 가능합니다');
 	   location.href = '${conPath}/member/loginMember.do?next=qna/qnaWriteForm.do';

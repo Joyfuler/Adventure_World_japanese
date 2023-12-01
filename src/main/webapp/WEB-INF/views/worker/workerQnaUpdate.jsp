@@ -8,17 +8,25 @@
 <meta charset="UTF-8">
 <title>관리자 QNA 수정</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script>
-</script>
+<style>
+	input, button, select, textarea{
+	line-height: 0px !important;
+	}
+</style>
 </head>
 <body>
 <article>
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
-	<form action="${conPath}/worker/workerQnaDetail.do" method="post">
+	<form action="${conPath}/worker/adminqnqreply.do" method="post">	
 		<input type="hidden" name="qno" value="${Qna.qno}">
 		<input type="hidden" name = "pageNum" value="${param.pageNum }">
 		<input type="hidden" name="mid" value="${Qna.mid}">
+		<input type = "hidden" name = "qtitle" value = "${Qna.qtitle }">
+		<input type = "hidden" name = "qcontent" value = "${Qna.qcontent }">
+		<input type = "hidden" name = "qpw" value = "${Qna.qpw }">
+		<input type = "hidden" name = "qpwchk" value = "${Qna.qpwchk }">
+		<input type = "hidden" name = "qgroup" value = "${Qna.qgroup }">
 		<div class="qna">
 			<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 			<div class="qnaBox">

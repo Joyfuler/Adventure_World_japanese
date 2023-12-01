@@ -1,22 +1,14 @@
 package com.project.adventure.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.project.adventure.service.QnaService;
-import com.project.adventure.service.WorkerService;
 import com.project.adventure.util.Paging;
-import com.project.adventure.vo.Member;
 import com.project.adventure.vo.Qna;
 
 @Controller
@@ -39,7 +31,7 @@ public class QnaController {
 		model.addAttribute("Qna", qnaService.getQna(qno));
 		return "qna/qnaView";
 	}
-	@RequestMapping(value = "passCheck",method = RequestMethod.GET  )
+	@RequestMapping(value = "passCheck",method = RequestMethod.GET)
 	public String passCheck( @RequestParam("qno") int qno,Model model) {	
 			model.addAttribute("qno", qno);
 			return "qna/checkPass";

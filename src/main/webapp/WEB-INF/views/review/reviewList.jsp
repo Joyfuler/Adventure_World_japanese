@@ -45,9 +45,9 @@
 		alert('${deleteResult eq 1? "리뷰 삭제 완료" : "리뷰 삭제 실패"}');
 	</script>
 </c:if>
-<c:if test = "${not empty successMsg }">
+<c:if test = "${not empty writeResult }">
 	<script>
-		alert('${successMsg}');
+		alert('${writeResult}');
 	</script>
 </c:if>	
 <jsp:include page="../main/header.jsp"/>

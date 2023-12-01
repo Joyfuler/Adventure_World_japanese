@@ -143,6 +143,7 @@
             <h1>어트랙션 수정</h1>
             <br><hr><br>  
             <form action="${conPath }/workerAttraction/update.do" method="post"enctype="multipart/form-data">
+            	<input type = "hidden" name = "aid" value = "${attraction.aid }">
                 <table class="baba">
 			        <tr>
 						<th>어트랙션 이름</th>
@@ -175,15 +176,31 @@
 					<tr>
 						<th>베스트 어트랙션<br>(Y/N)</th>
 						<td>
-							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="Y">사용
-							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="N"checked>미사용	
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="Y"
+							<c:if test = "${attraction.best eq 'Y' }">
+								checked = "checked"
+							</c:if>
+							>사용
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="N"
+							<c:if test = "${attraction.best eq 'N' }">
+								checked = "checked"
+							</c:if>
+							>미사용	
 						</td>
 					</tr>
 					<tr>
 						<th>운휴정보<br>(Y/N)</th> 
 						<td>
-							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="Y">사용
-							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="N"checked>미사용
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="Y"
+							<c:if test = "${attraction.stopday eq 'Y' }">
+								checked = "checked"
+							</c:if>	
+							>사용
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="N"
+							<c:if test = "${attraction.stopday eq 'N' }">
+								checked = "checked"
+							</c:if>	
+							>미사용
 						</td>	
 					</tr>
                     <tr>

@@ -22,7 +22,7 @@ public class AttractionController {
 		model.addAttribute("tag2List", attractionService.tag2List());
 		return "attraction/attractionList";
 	}
-	@RequestMapping(value = "searchAttracionList", method = RequestMethod.GET)
+	@RequestMapping(value = "searchAttractionList", method = RequestMethod.GET)
 	public String searchAttractionList(Model model, Attraction attraction) {	
 		model.addAttribute("searchOk", "searchOk");
 		model.addAttribute("searchAttractionList", attractionService.searchAttractionList(attraction));

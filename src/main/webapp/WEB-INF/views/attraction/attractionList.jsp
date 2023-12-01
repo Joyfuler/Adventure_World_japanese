@@ -56,7 +56,7 @@ content: "▲";
 		<br>		
 	<!-- 검색 영역 -->
 		<div class = "search-container" id = "searchContainer">
-			<form action = "${conPath }/attraction/searchAttracionList.do">	
+			<form action = "${conPath }/attraction/searchAttractionList.do">	
 			<label for = "attraction" style = "color: ghostwhite;"> 태그검색</label>
 			<br><br>
 			태그 1 검색 &nbsp;&nbsp;&nbsp;

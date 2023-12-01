@@ -57,11 +57,11 @@
 			</div>
 			<br>
 			<div class="buttons" >
-				<input type="submit"  class="btn btn-primary" value="수정" >
+				<input type="button"  class="btn btn-primary" value="답변하기" onclick = "location.href='${conPath}/worker/workerQnamodify.do?qno=${Qna.qno }&pageNum=${empty param.pageNum? '1' : param.pageNum }'">
 				<input type="button"  class="btn btn-primary" value="목록보기" 
-					onclick="location.href='${conPath}/worker/workerQnaList.do?pageNum=${param.pageNum }'">
+					onclick="location.href='${conPath}/worker/workerQnaList.do?pageNum=${empty param.pageNum? '1': param.pageNum }'">
 				<input type="button"  class="btn btn-primary" value="삭제" 
-					 onclick="location.href='${conPath}/worker/workerQnadelete.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
+					 onclick="location.href='${conPath}/worker/workerQnadelete.do?pageNum=${empty param.pageNum? '1': param.pageNum  }&qno=${Qna.qno}'">
 			</div>
 			<br>
 	 	</div>

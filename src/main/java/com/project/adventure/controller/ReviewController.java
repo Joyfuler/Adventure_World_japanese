@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.adventure.service.OrderService;
 import com.project.adventure.service.ReportService;
@@ -54,9 +56,10 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "reviewWrite", method = RequestMethod.POST)
-	public String reviewWrite(Model model, Review review, MultipartHttpServletRequest mRequest, String pointObtained) {		
+	public String reviewWrite(Model model, Review review, MultipartHttpServletRequest mRequest, String pointObtained, RedirectAttributes requestAttributes) {		
 		reviewService.reviewWrite(review, mRequest, model, pointObtained);
-		return "forward:reviewList.do";
+		requestAttributes.addFlashAttribute("writeResult", "게시글 작성 완료");
+		return "redirect:reviewList.do";
 	}
 	
 	@RequestMapping(value = "reviewModify", method = RequestMethod.GET)
@@ -92,10 +95,9 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value = "reviewCommentReply", method = RequestMethod.GET)
-	public String reviewCommentReply(Model model, Review_Comment review_Comment, HttpSession session, String replyPageNum) {
+	public String reviewCommentReply(Model model, Review_Comment review_Comment, HttpSession session) {
 		model.addAttribute("replyWriteMsg", reviewService.reviewCommentReply(review_Comment, session));
-		return "forward:reviewContent.do";
-		
+		return "forward:reviewContent.do";		
 	}
 	
 	@RequestMapping(value = "commentDelete", method = RequestMethod.GET)
