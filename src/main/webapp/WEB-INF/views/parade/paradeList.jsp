@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>진행중인 퍼레이드</title>
+<title>진행중인 공연 / 퍼레이드</title>
 <style>
     @keyframes fadeInUp {
         0% {opacity: 0;transform: translate3d(0, 100%, 0);}

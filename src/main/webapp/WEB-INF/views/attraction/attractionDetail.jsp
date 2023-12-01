@@ -69,16 +69,15 @@
 	<div class="att_holiday_tool">
 		<p class="att_holiday_txt">			
 				<c:if test = "${attractionDetail.stopday eq 'Y'}">
-				<span style = "font-size: 1.5em; color: red;">
+					<span style = "font-size: 1.5em; color: red;">
 					이 어트랙션은 ${weekSchedule } 까지 운휴 중입니다.
-				</span>	  
+					</span>	  
 				</c:if>
 				<c:if test = "${attractionDetail.stopday eq 'N'}">
-				<span style = "font-size: 1.5em;">
+					<span style = "font-size: 1.5em;">
 					이 어트랙션은 ${weekSchedule } 까지 휴일 없이 운영됩니다.
-				</span>	
-				</c:if>
-					
+					</span>	
+				</c:if>				
 		</p>
 	</div>
 	<p class="txt">
@@ -93,7 +92,6 @@
 		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">목록</a>
 	</div>
 </div>
-
 </article>
 </body>
 <jsp:include page="../main/footer.jsp"/>

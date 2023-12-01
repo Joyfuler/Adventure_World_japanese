@@ -24,11 +24,11 @@
 <article>
 <div class="join2">	
 		<div class="join_title">회원가입 약관</div>
-		<div class="box">
-			<div class="text1" style = "text-align: center;">
-				어드벤처 월드 회원가입 페이지에 오신 것을 환영합니다.<br>
-				회원가입 전, 개인정보 유출 방지를 위해 아래 약관에 동의해주세요. 
-			</div>
+			<div class="box">
+				<div class="text1" style = "text-align: center;">
+					어드벤처 월드 회원가입 페이지에 오신 것을 환영합니다.<br>
+					회원가입 전, 개인정보 유출 방지를 위해 아래 약관에 동의해주세요. 
+				</div>
 			<div class="text2">
 				<textarea cols="152" rows="13" readonly>제 1 장 총 칙
 제 1 조 (목적)
@@ -157,7 +157,7 @@
 
 (2) 회사는 서비스상에 게재되어 있거나 본 서비스를 통한 광고주의 판촉활동에 회원이 참여하거나 교신 또는 거래를 함으로써 발생하는 손실과 손해에 대해 책임을 지지 않습니다.
 
-</textarea>
+				</textarea>
 			</div>
 			<div class="text3">
 				<form action = "${conPath }/member/join.do">
@@ -166,13 +166,11 @@
 			</div>
 		</div>
 		<div class="bottom">
-				<input type="submit" value="다음" class="submit" onclick="return agreeChk()">
+			<input type="submit" value="다음" class="submit" onclick="return agreeChk()">
 				</form>						
 		</div>			
-</div>
+	</div>
 </article>
 <jsp:include page="../main/footer.jsp"/>	
 </body>
 </html>
-
-

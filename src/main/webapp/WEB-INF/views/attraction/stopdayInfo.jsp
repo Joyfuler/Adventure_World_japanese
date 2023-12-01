@@ -31,17 +31,20 @@
 			<h2 style="text-align:center;">이번 주 운휴 어트랙션 시설 안내</h2>
 		</div>
 		<div class="operation_date_box">
-				<c:set var="now" value="<%=new java.util.Date() %>"></c:set>
-				<h5 style = "text-align:center;"> 오늘의 날짜</h5>
-				<h3 style="text-align:center;">
-					<fmt:formatDate value="${now}"></fmt:formatDate>
-				</h3>
+			<c:set var="now" value="<%=new java.util.Date() %>"></c:set>
+			<h5 style = "text-align:center;"> 오늘의 날짜</h5>
+			<h3 style="text-align:center;">
+				<fmt:formatDate value="${now}"></fmt:formatDate>
+			</h3>
 		</div>		
 		<div class="operation_time_box">
-			<div class="time_box_title" style = "background-color: ">운영 시간</div>
-			<div class="time_box_time"> 오전 10시 ~ 밤 10시 </div>
-		</div>
-		
+			<div class="time_box_title" style = "background-color: ">
+				운영 시간
+			</div>
+			<div class="time_box_time"> 
+				오전 10시 ~ 밤 10시 
+			</div>
+		</div>		
 		<br><br>
 		<h2 style="font-size:30px; text-align:center; line-height:100px;">이번 주 운휴시설</h2>
 		<h3 style = "text-align:center;">운휴 기간 : ${weekSchedule }</h3>		 

@@ -25,10 +25,9 @@ DROP SEQUENCE REPORT_SEQ;
 DROP TABLE REPORT;
 DROP TABLE WORKER;
 DROP TABLE MEMBER;
-
-select * from review_comment;
-
-
+DROP TABLE LOSTITEM;
+select * from order_list;
+desc order_list;
 -- 2. TABLE CREATION
 
 CREATE TABLE MEMBER
@@ -103,39 +102,6 @@ CREATE TABLE BANNER(
     BRDATE DATE DEFAULT SYSDATE,
     BIMG VARCHAR2 (1000)
     );  
-    
-   	SELECT * FROM 
-			(SELECT ROWNUM RN, 
-			A.RID, A.RTITLE, A.RCONTENT, A.RSCORE, 
-			A.RPHOTO, A.RRDATE, A.MID, A.OTYPE, 
-			A.OATNAME1, A.R_ODID, A.MNAME, A.OATNAME2, A.OATNAME3, 
-			A.OVISITDATE, (SELECT COUNT(*) FROM REVIEW_COMMENT WHERE RID=A.RID) AS COMMENTCOUNT
-				FROM (
-    				SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME
-	    			FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
-    				WHERE R.ODID = OD.ODID AND R.MID = M.MID    			    			
-    				ORDER BY R.RRDATE DESC
-    	) A 
-    		) WHERE RN BETWEEN 1 AND 5;
-CREATE SEQUENCE EVENT_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
-SELECT * FROM REVIEW_COMMENT WHERE RID = 47;
-SELECT * 
-		FROM (SELECT ROWNUM RN, A.* 
-		FROM (SELECT RC.*, M.MNAME 
-		FROM REVIEW_COMMENT RC,	MEMBER M 
-		WHERE RID = 47
-		ORDER BY RCGROUP, RCSTEP) A) 
-		WHERE RN BETWEEN 16 AND 20;
-        select * from review_comment;
-        
-        SELECT * FROM REVIEW_COMMENT WHERE RCID=47;
-        SELECT RC.*, M.MNAME FROM REVIEW_COMMENT RC, MEMBER M
-        WHERE RC.MID = M.MID AND RCID = 47;
-        select * from review;
-        SELECT * FROM REVIEW_COMMENT;
-        UPDATE REVIEW_COMMENT SET RCCONTENT = 'ㅁㄹ?'
-        WHERE RCID = 17;
-        
         
 CREATE TABLE EVENT(
     ENO NUMBER(5) PRIMARY KEY,
@@ -187,6 +153,19 @@ CREATE TABLE NOTICE(
     NRDATE DATE DEFAULT SYSDATE,
     WID VARCHAR2(20) REFERENCES WORKER(WID)
     );
+CREATE SEQUENCE NCOMMENT_SQ NOCACHE NOCYCLE;    
+CREATE TABLE NCOMMENT(
+    CNUM NUMBER(5) PRIMARY KEY,
+    NID NUMBER(6) REFERENCES NOTICE(NID) NOT NULL,
+    CNAME VARCHAR2(100) NOT NULL,
+    CMEMO VARCHAR2(4000) NOT NULL,
+    CDATE DATE DEFAULT SYSDATE NOT NULL,
+    CGROUP NUMBER(5) NOT NULL,
+    CSTEP NUMBER(2) NOT NULL,
+    CINDENT NUMBER(2) NOT NULL,
+    CIP VARCHAR2(20) NOT NULL
+);    
+    
 
 CREATE SEQUENCE QNA_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE QNA(
@@ -236,14 +215,6 @@ CREATE TABLE REVIEW_COMMENT(
     MID VARCHAR2(20) REFERENCES MEMBER(MID)
 );
 
-
-                SELECT REVIEW.*, MEMBER.MID, MEMBER.MNAME, REPORT.RNO,
-				REPORT.RREASON, REPORT.MID AS REPORTERMID, REPORT.REPORTDATE FROM 
-				REVIEW, MEMBER, REPORT WHERE REVIEW.RID = REPORT.RID AND MEMBER.MID = REPORT.MID
-				ORDER BY REPORTDATE DESC;
-
-
-
 CREATE SEQUENCE REPORT_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE REPORT(
     RNO NUMBER(5) PRIMARY KEY,
@@ -252,18 +223,18 @@ CREATE TABLE REPORT(
     MID VARCHAR2 (20) REFERENCES MEMBER (MID),
     RID VARCHAR2(5) REFERENCES REVIEW (RID)
 );
-    
-    SELECT *
-    			FROM (SELECT ROWNUM RN, A.* 
-            	FROM (SELECT O.*, OD.ODID, OD.OP1, OD.OP2, OD.OTYPE, 
-            	OD.OATNAME1, OD.OATNAME2, OD.OATNAME3, OD.OPRICE1, 
-            	OD.OPRICE2, OD.ORESULT, OD.OCRDATE, OD.OVISITDATE 
-                FROM ORDER_LIST O, ORDER_DETAIL OD 
-                WHERE O.OID = OD.OID AND MID = 'trio' ORDER BY O.OID DESC) A )
-    			WHERE RN BETWEEN 1 AND 5;
-    select * from order_detail;
-    DESC LOSTITEM;
-    SELECT * FROM LOSTITEM;
+
+CREATE SEQUENCE LOSTITEM_SEQ;
+CREATE TABLE LOSTITEM(
+    lno   NUMBER(5) PRIMARY KEY NOT NULL,
+    litem   VARCHAR2(100) NOT NULL, --REFERENCES ITEM(litem),
+    lname    VARCHAR2(100) NOT NULL,
+    lphoto  VARCHAR2(4000),
+    location  VARCHAR2(1000),
+    lrdate  DATE DEFAULT SYSDATE,
+    lresult  VARCHAR2(100) DEFAULT '보관중'
+);
+
 -- 3. Member Query
 -- 1) 회원가입 joinMember
     INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
@@ -351,7 +322,7 @@ SELECT *
     FROM (SELECT ROWNUM RN, A.* 
         FROM(SELECT * FROM ATTRACTION
             WHERE UPPER(ANAME) LIKE '%' || UPPER('범') || '%' ORDER BY AID DESC) A)
-        WHERE RN BETWEEN 1 AND 4
+        WHERE RN BETWEEN 1 AND 4;
 -- 어트랙션 insert id=insertAttraction
 INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
 VALUES
@@ -383,6 +354,37 @@ VALUES (PARADE_SEQ.NEXTVAL, '카니발 판타지 퍼레이드', '브라질의 �
 		세계 유명 축제를 한 번에 즐길 수 있는 기회를 놓치지 마세요!','퍼레이드 길, 카니발 광장 (가이드맵 167)','11.17(금) ~ 12.18(일)',
         '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
 		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade1.jpg','paradeDetail1');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '해피 크리스마스 퍼레이드', '꿈 속 산타나라에서 내려 온 산타클로스와 요정들이 춤추고 노래하며 꿈과 사랑을 선물하는 버라이어티 크리스마스 퍼레이드
+','어드벤처 1층 퍼레이드 코스
+','11.20(금) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade5.jpg','paradeDetail5.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '산타 빌리지 투어', '크리스마스 선물을 준비하는 산타와 선물요정들의 신나는 하루
+','어드벤처 1층 퍼레이드 코스
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade6.jpg','paradeDetail6.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '마법성냥과 꿈꾸는 밤
+', '마음씨 착한 성냥팔이 소녀와 함께 떠나는 환상적인 꿈의 세계
+','어드벤처 1층 가든스테이지
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade7.jpg','paradeDetail7.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '캐롤 밴드 쇼
+', '다양한 스타일의 캐롤 음악과 함께하는 여성 밴드 콘서트
+','어드벤처 1층 만남의 광장
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade8.jpg','paradeDetail8.jpg');
+
 
 -- 9. ORDER QUERY
 -- 특정 아이디의 전체 주문내역 출력
@@ -475,3 +477,97 @@ commit;
 --WOKERMEMEBRLIST
 SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM MEMBER WHERE MID LIKE '%'||'w'||'%' ORDER BY MRDATE DESC)A) WHERE RN BETWEEN 1 AND 5;
 
+-- 11. LOSTITEM QUERY
+
+--LOSTITEM
+--ID = item
+select * from item;
+select * from item where ino = 1;
+select * from item where litem like '%'||'신'||'%';
+insert into item (ino,litem) VALUES (LOSTITEM_SEQ.NEXTVAL,'가방');
+insert into item (ino,litem) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발');
+--ID = itemList
+SELECT * FROM
+    (SELECT ROWNUM RN, A.* 
+       FROM(SELECT * FROM LOSTITEM ORDER BY lno DESC)A)WHERE RN BETWEEN 1 AND 3;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+       FROM (SELECT * FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = '2023-11-30' ORDER BY LRDATE )A)WHERE RN BETWEEN 1 AND 2;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+        FROM(SELECT * FROM LOSTITEM WHERE LRDATE BETWEEN '2023-11-30' AND '2023-11-30'  
+                    AND LITEM like '%'||'가'||'%'  ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+SELECT * FROM
+    (SELECT ROWNUM RN, A.*
+        FROM(SELECT * FROM LOSTITEM WHERE LRDATE BETWEEN '2023-11-29' AND '2023-11-30'  
+                    and(LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%') ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+--ID = insertItem
+INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','핑크색구두','','범퍼카');
+--ID = updateItem
+UPDATE LOSTITEM SET lresult ='방문수령' WHERE lno = 1;
+--ID = modifyitem
+UPDATE LostItem SET
+	        litem = '팔찌',
+	        lname = '은색링팔찌',
+	        lphoto = 'ac.jpg',
+	        Location = '범퍼카'
+   				 WHERE lno= 21;
+--ID = itemTotCnt
+SELECT COUNT(*) FROM LOSTITEM;
+SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE = '2023-11-30';
+SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = '2023-11-29' AND LITEM like '%'||'신'||'%';
+SELECT COUNT(*) FROM LOSTITEM WHERE LRDATE  = '2023-11-29' AND (LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%');
+--ID = getItem
+SELECT * FROM LOSTITEM WHERE LNO =1;
+commit;
+--ID = deleteItem
+DELETE FROM LOSTITEM WHERE LNO =22;
+
+
+-- 12. BANNER QUERY
+-- 배너 리스트 id=bannerList
+SELECT * FROM BANNER; ORDER BY BORDER;
+-- 새배너 만들기 id=insertBanner
+INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
+    VALUES (BANNER_SEQ.NEXTVAL, '제목1', '1', 'Y', 'mainimgs1.jpg');
+-- 배너 순서변경 id=updateSeq
+UPDATE BANNER SET
+        BORDER = '1',
+        USAGE = 'Y',
+        BIMG = 'mainimgs1.jpg'
+    WHERE BNO = '1';
+-- 배너 제거 id=deleteBanner
+DELETE FROM BANNER WHERE BNO = '1';
+-- 배너 갯수 id=cntBanner
+SELECT COUNT(*) FROM BANNER;
+
+-- 13. NOTICE_COMMENT QUERY
+-- 상세보기에서 댓글리스트(id = commentList)
+SELECT * FROM NCOMMENT WHERE NID=3 ORDER BY CGROUP DESC, CSTEP;
+SELECT * 
+    FROM (SELECT ROWNUM RN, A.* FROM (SELECT * FROM NCOMMENT WHERE NID=3 ORDER BY CGROUP DESC, CSTEP) A)
+    WHERE RN BETWEEN 1 AND 4;
+-- 댓글 갯수(id = commentTotCnt)
+SELECT COUNT(*) FROM NCOMMENT WHERE NID=3;
+-- 답변 댓글 쓰기 전 (id = commentReplyPreStep)
+UPDATE NCOMMENT SET CSTEP=CSTEP+1 WHERE CGROUP=2 AND CSTEP>0;
+-- 답변 댓글 쓰기 (id = commentReply)
+INSERT INTO NCOMMENT (CNUM, NID, CNAME, CMEMO, CGROUP, CSTEP, CINDENT, CIP)
+    VALUES (NCOMMENT_SQ.NEXTVAL, 3, '답쟁이','뭐가 좋아요',2, 1,1, '127.0.0.');
+UPDATE NCOMMENT SET CSTEP=CSTEP+1 WHERE CGROUP=2 AND CSTEP>0;
+INSERT INTO NCOMMENT (CNUM, NID, CNAME, CMEMO, CGROUP, CSTEP, CINDENT, CIP)
+    VALUES (NCOMMENT_SQ.NEXTVAL, 3, '답쟁이','대답하세요',2, 1,1, '127.0.0.');
+-- 댓글 수정( id = commentModify) (미구현)
+UPDATE NCOMMENT SET
+    CNAME = '홍길동',
+    CMEMO = '그렇죠',
+    CDATE = SYSDATE,
+    CIP = '127.0.0.1'
+    WHERE CNUM=1;
+-- 댓글 삭제 (id = commentDelete)
+DELETE FROM NCOMMENT WHERE CNUM=1;
+SELECT * FROM NCOMMENT WHERE NID=3 ORDER BY CGROUP DESC, CSTEP;
+ROLLBACK;
+SELECT NCOMMENT_SQ.CURRVAL FROM NCOMMENT;
+-- 댓글번호로 댓글 dto 가져오기(id = commentDetail)
+SELECT * FROM NCOMMENT WHERE CNUM=1;

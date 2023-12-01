@@ -53,41 +53,41 @@ content: "▲";
     	<h1 id="att_title_exp">언제나 새롭고 즐거운 경험을 주는 어드벤처 월드의  어트랙션을 소개합니다.</h1>
 	</div>
 	<div id="att_search" onclick = "toggleSearch()">조건검색</div>	
-	<br>		
+		<br>		
 	<!-- 검색 영역 -->
-	<div class = "search-container" id = "searchContainer">
-	<form action = "${conPath }/attraction/searchAttracionList.do">	
-	<label for = "attraction" style = "color: ghostwhite;"> 태그검색</label>
-	<br><br>
-	태그 1 검색 &nbsp;&nbsp;&nbsp;
-	<select id = "tag1" name = "tag1">	
-			<option value = "">첫번째 태그 검색 </option>
-		<c:forEach var = "tag1s" items= "${tag1List }">			
-			<option value = "${tag1s.tag1 }" style = "padding-left:20px;"
-			<c:if test = "${param.tag1 eq tag1s.tag1}">
-			selected = "selected"
-			</c:if>
-			> ${tag1s.tag1 }</option>        
-        </c:forEach>        
-	</select>	
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	태그 2 검색 &nbsp;&nbsp;&nbsp;
-	<select id = "tag2" name = "tag2"> 
-			<option value ="">두번째 태그 검색</option>
-		<c:forEach var = "tag2s" items = "${tag2List }">
-			<option value = "${tag2s.tag2 }" style = "padding-left: 20px;"
-			<c:if test = "${param.tag2 eq tag2s.tag2 }">			
-			selected = "selected"
-			</c:if>
-			>${tag2s.tag2 }</option>
-		<br>
-		</c:forEach>
-	</select>
-	<br><br>	
-		<input type = "submit" class = "searchApply" value = "선택 적용">
-		<input type = "button" class = "searchApply" value = "검색조건 초기화" onclick = "location.href='${conPath}/attraction/attractionList.do'">		
-	<br><br>			
-	</form>			
+		<div class = "search-container" id = "searchContainer">
+			<form action = "${conPath }/attraction/searchAttracionList.do">	
+			<label for = "attraction" style = "color: ghostwhite;"> 태그검색</label>
+			<br><br>
+			태그 1 검색 &nbsp;&nbsp;&nbsp;
+			<select id = "tag1" name = "tag1">	
+				<option value = "">첫번째 태그 검색 </option>
+				<c:forEach var = "tag1s" items= "${tag1List }">			
+					<option value = "${tag1s.tag1 }" style = "padding-left:20px;"
+					<c:if test = "${param.tag1 eq tag1s.tag1}">
+						selected = "selected"
+					</c:if>
+					> ${tag1s.tag1 }</option>        
+        		</c:forEach>        
+			</select>	
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			태그 2 검색 &nbsp;&nbsp;&nbsp;
+			<select id = "tag2" name = "tag2"> 
+				<option value ="">두번째 태그 검색</option>
+				<c:forEach var = "tag2s" items = "${tag2List }">
+					<option value = "${tag2s.tag2 }" style = "padding-left: 20px;"
+					<c:if test = "${param.tag2 eq tag2s.tag2 }">			
+						selected = "selected"
+					</c:if>
+					>${tag2s.tag2 }</option>
+					<br>
+				</c:forEach>
+			</select>
+			<br><br>	
+			<input type = "submit" class = "searchApply" value = "선택 적용">
+			<input type = "button" class = "searchApply" value = "검색조건 초기화" onclick = "location.href='${conPath}/attraction/attractionList.do'">		
+			<br><br>			
+		</form>			
 	</div>
 	<div class="att_back">
 		<c:if test = "${empty searchOk }">
@@ -105,18 +105,16 @@ content: "▲";
 				<h3 style = "text-align: center;">검색 결과가 존재하지 않습니다.</h3>
 			</c:if>
 		<c:forEach var = "searchAttractions" items = "${searchAttractionList }">
-			<div id="att_list">
-				
+			<div id="att_list">				
 				<c:if test = "${not empty searchAttractions }">
-				<a href="${conPath }/attraction/attractionDetail.do?aid=${searchAttractions.aid }">
+					<a href="${conPath }/attraction/attractionDetail.do?aid=${searchAttractions.aid }">
 					<img src="${conPath }/images/attraction_images/${searchAttractions.aimage}"/>
 					<h3>${searchAttractions.aname}</h3>										
-				</a>
+					</a>
 				</c:if>
 			</div>
 		</c:forEach>
-		</c:if>
-		
+		</c:if>		
 	</div>
 </div>
 </article>
@@ -124,8 +122,7 @@ content: "▲";
 <script>
 	function toggleSearch(){
 		var searchContainer = $("#searchContainer");
-		var attSearch = $("#att_search");
-		
+		var attSearch = $("#att_search");		
 		searchContainer.toggle("fast", function(){
 			attSearch.toggleClass("opened", searchContainer.is(":visible"));			
 		});
