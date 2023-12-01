@@ -131,47 +131,47 @@
             <form action="${conPath }/workerAttraction/insert.do" method="post" enctype="multipart/form-data">
                 <table class="baba">
                     <tr>
-			<th>어트랙션 이름</th>
-			<td><input type="text" name="aname" size="47"></td>
-		</tr>
-		<tr>
-			<th>어트랙션 설명</th>
-			<td><input type="text" name="acontent" size="47"></td>
-		</tr>
-		<tr>
-			<th>태그1</th>
-			<td><input type="text" name="tag1" size="47"></td>
-		</tr>
-		<tr>
-			<th>태그2</th>
-			<td><input type="text" name="tag2" size="47"></td>
-		</tr>
-		<tr>
-			<th>탑승인원(숫자)</th>
-			<td><input type="text" name="headcount" size="47"></td>
-		</tr>
-		<tr>
-			<th>제한사항1(키)</th>
-			<td><input type="text" name="height" size="47"></td>
-		</tr>
-		<tr>
-			<th>제한사항2(나이)</th> 
-			<td><input type="text" name="age" size="47"></td>
-		</tr>
-		<tr>
-			<th>베스트 어트랙션<br>(Y/N)</th>
-			<td>
-				<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="Y">사용
-				<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="N"checked>미사용	
-			</td>
-		</tr>
-		<tr>
-			<th>운휴정보<br>(Y/N)</th> 
-			<td>
-				<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="Y">사용
-				<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="N"checked>미사용
-			</td>	
-		</tr>
+						<th>어트랙션 이름</th>
+						<td><input type="text" name="aname" size="47"></td>
+					</tr>
+					<tr>
+						<th>어트랙션 설명</th>
+						<td><input type="text" name="acontent" size="47"></td>
+					</tr>
+					<tr>
+						<th>태그1</th>
+						<td><input type="text" name="tag1" size="47"></td>
+					</tr>
+					<tr>
+						<th>태그2</th>
+						<td><input type="text" name="tag2" size="47"></td>
+					</tr>
+					<tr>
+						<th>탑승인원(숫자)</th>
+						<td><input type="text" name="headcount" size="47"></td>
+					</tr>
+					<tr>
+						<th>제한사항1(키)</th>
+						<td><input type="text" name="height" size="47"></td>
+					</tr>
+					<tr>
+						<th>제한사항2(나이)</th> 
+						<td><input type="text" name="age" size="47"></td>
+					</tr>
+					<tr>
+						<th>베스트 어트랙션<br>(Y/N)</th>
+						<td>
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="Y">사용
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="N"checked>미사용	
+						</td>
+					</tr>
+					<tr>
+						<th>운휴정보<br>(Y/N)</th> 
+						<td>
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="Y">사용
+							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="N"checked>미사용
+						</td>	
+					</tr>
                     <tr>
                         <th>어트랙션 이미지</th>
                         <td>

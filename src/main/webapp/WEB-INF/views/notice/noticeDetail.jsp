@@ -102,13 +102,13 @@
   				var cnum = $(this).attr('id');
   	  			$.ajax({
   	  				url : '${conPath}/noticeComment/replyView.do',
-  						data : {'cnum':cnum, 'pageNum':'${param.pageNum}', 'commentPageNum':'${param.commentPageNum}'},
-  						type : 'get',
-  						dateType : 'html',
-  						success : function(data, status){
-  							$('.replySpace'+cnum).html(data);
-  						}
-  	  		});
+					data : {'cnum':cnum, 'pageNum':'${param.pageNum}', 'commentPageNum':'${param.commentPageNum}'},
+					type : 'get',
+					dateType : 'html',
+					success : function(data, status){
+						$('.replySpace'+cnum).html(data);
+					}
+  	  			});
   			}
   		});
   	});
@@ -127,13 +127,16 @@
 		<div class="event06"><fmt:formatDate value="${notice.nrdate}" type="date"/></div>
 	</div>
 	<div class="event08">
-		<img src="images/notice_images/${notice.ncontent}" width="1150px"/>
+		<img src="${conPath }/images/notice_images/${notice.ncontent}" width="1150px"/>
 	</div>
 	<div class="replyContainer">
 	<h2>댓글</h2>
 	<form action="${conPath }/noticeComment/write.do">
 		<input type="hidden" name="nid" value="${param.nid }">
 		<input type="hidden" name="pageNum" value="${param.pageNum }">
+	<c:if test="${member.mname == null}">
+		<input type="hidden" name="cname" value="비회원" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이">
+	</c:if>
 		<input type="hidden" name="cname" value="${member.mname }" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이">
 		<textarea rows="2" cols="5" name="cmemo" style="width:50%; height:50px; float:left; margin: 5px;"></textarea>
 		<input type="submit" value="댓글저장" class="btn" style="height:50px; float:left; margin: 5px;">
@@ -179,8 +182,6 @@
 			[ <a href="${conPath }/notice/detail.do?nid=${param.nid}&pageNum=${param.pageNum }&commentPageNum=${comPaging.endPage+1}">다음</a> ]
 		</c:if>
 	</div>
-	
-	
 	<div class="event09">
 		<div class="event10">
 	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/notice/list.do'">

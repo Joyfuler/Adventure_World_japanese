@@ -13,10 +13,8 @@ import com.project.adventure.vo.Attraction;
 @Controller
 @RequestMapping("attraction")
 public class AttractionController {
-	
 	@Autowired
 	private AttractionService attractionService;	
-	
 	@RequestMapping(value = "attractionList", method = RequestMethod.GET)
 	public String attractionList(Model model) {
 		model.addAttribute("attractionList", attractionService.attractionList());
@@ -24,27 +22,22 @@ public class AttractionController {
 		model.addAttribute("tag2List", attractionService.tag2List());
 		return "attraction/attractionList";
 	}
-	
 	@RequestMapping(value = "searchAttracionList", method = RequestMethod.GET)
 	public String searchAttractionList(Model model, Attraction attraction) {	
 		model.addAttribute("searchOk", "searchOk");
 		model.addAttribute("searchAttractionList", attractionService.searchAttractionList(attraction));
 		return "forward:attractionList.do";
 	}
-	
 	@RequestMapping(value = "attractionDetail", method = RequestMethod.GET)
 	public String attractionDetail(Model model, String aid) {
 		model.addAttribute("attractionDetail", attractionService.attractionDetail(aid));
 		model.addAttribute("weekSchedule", WeekDayCalculator.getCurrentWeekSchedule());
 		return "attraction/attractionDetail";
 	}
-	
 	@RequestMapping(value = "stopdayInfo", method = RequestMethod.GET)
 	public String stopdayInfo(Model model) {
 		model.addAttribute("weekSchedule", WeekDayCalculator.getCurrentWeekSchedule());
 		model.addAttribute("stopdayAttractionList", attractionService.stopDayAttractionList());
 		return "attraction/stopdayInfo";
 	}
-	
-	
 }

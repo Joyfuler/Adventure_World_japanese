@@ -167,19 +167,17 @@ h1{
 <script>
 	$(document).ready(function() {
 		$('#mymy').change(function() {
-				// 첨부한 파일명을 input에 넣어줌
-				if (window.FileReader) {
-					var filename = $(this)[0].files[0].name; 
-				} else {
-					var filename = $(this).val().split('/').pop()
-							.split('\\').pop();
-				}
-				 $('.sbimage').children(':eq(1)').val(filename);
+			// 첨부한 파일명을 input에 넣어줌
+			if (window.FileReader) {
+				var filename = $(this)[0].files[0].name; 
+			} else {
+				var filename = $(this).val().split('/').pop()
+						.split('\\').pop();
+			}
+			 $('.sbimage').children(':eq(1)').val(filename);
 		});
 	});
 </script>
-
-
 <body>
 <c:set var="SUCCESS" value="1"/>
 	<c:if test="${insertResult == SUCCESS }">
@@ -189,7 +187,6 @@ h1{
 	</c:if>
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
-
 <article>
 <div class="findfindd">
 <h1>공지사항 수정</h1>
@@ -203,15 +200,14 @@ h1{
 <script>
 	 $(document).ready(function() {
 		 $('#summernote').summernote({
-		        height: 300,
-		        minHeight: null,
-		        maxHeight: null,
-		        lang : 'ko-KR',
-		        onImageUpload: function(files, editor, welEditable) {
-		                sendFile(files[0], editor, welEditable);
-		            }
-
-		    });
+	        height: 300,
+	        minHeight: null,
+	        maxHeight: null,
+	        lang : 'ko-KR',
+	        onImageUpload: function(files, editor, welEditable) {
+	                sendFile(files[0], editor, welEditable);
+	            }
+		  });
 	 });
 </script>
 <form action= "${conPath }/worker/update.do" method="post" enctype="multipart/form-data">

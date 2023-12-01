@@ -11,11 +11,6 @@
 <style>
 #plusebtn{position: absolute; right:45px; bottom:15px;  }
 #btn2{width:110px; background: #555;color: #fff; font-size: 25px;}
-
-
-
-
-
 </style>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -39,23 +34,19 @@ function go_search(){
 		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">공지사항</h3>
 	</div>
 </div>
-
     <div class="board-searchh">
         <div class="container">
             <div class="search-window">
-          
-                      <div class="search-wrap">
-                        <label for="search" class="blind"> 공지사항검색</label>
-                        <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
-                        <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/worker/list.do'">
-                 		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/worker/insert.do'">   
-                    </div>
-                
+                <div class="search-wrap">
+                    <label for="search" class="blind"> 공지사항검색</label>
+                    <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
+                    <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
+             		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/worker/list.do'">
+             		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/worker/insert.do'">   
+                </div>
             </div>
         </div>
     </div>
-   
     <div class="board-list">
         <div class="container">
             <table class="board-table">
@@ -74,7 +65,6 @@ function go_search(){
 	                    <td><fmt:formatDate value="${notice.nrdate}" type="date"/></td>
 	                </tr>
 	          	</c:forEach>
-                
                 </tbody>
             </table>
         </div>

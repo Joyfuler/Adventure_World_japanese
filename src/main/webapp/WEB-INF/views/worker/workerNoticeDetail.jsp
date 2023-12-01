@@ -105,24 +105,24 @@
   				var cnum = $(this).attr('id');
   	  			$.ajax({
   	  				url : '${conPath}/noticeComment/replyView.do',
-  						data : {'cnum':cnum, 'pageNum':'${param.pageNum}', 'commentPageNum':'${param.commentPageNum}'},
-  						type : 'get',
-  						dateType : 'html',
-  						success : function(data, status){
-  							$('.replySpace'+cnum).html(data);
-  						}
-  	  		});
+					data : {'cnum':cnum, 'pageNum':'${param.pageNum}', 'commentPageNum':'${param.commentPageNum}'},
+					type : 'get',
+					dateType : 'html',
+					success : function(data, status){
+						$('.replySpace'+cnum).html(data);
+					}
+  	  			});
   			}
   		});
   	});
 </script>
 <script>
 function go_deleteNotice(nid){
-		if(confirm('정말 삭제하시겠습니까?')){
-			var url="${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }"; 
-			location.href=url;
-			}
+	if(confirm('정말 삭제하시겠습니까?')){
+		var url="${conPath }/worker/delete.do?nid=${notice.nid }&pageNum=${param.pageNum }"; 
+		location.href=url;
 		}
+	}
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -135,7 +135,7 @@ function go_deleteNotice(nid){
 		<div class="event06"><fmt:formatDate value="${notice.nrdate}" type="date"/></div>
 	</div>
 	<div class="event08">
-		<img src="${conPath }/noticeImg/${notice.ncontent}" width="1150px"/>
+		<img src="${conPath }/images/notice_images/${notice.ncontent}" width="1150px"/>
 		<div class="event-text">
         	<h3 style="text-align: center;">${notice.ntext}</h3>
     	</div>

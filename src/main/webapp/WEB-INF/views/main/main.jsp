@@ -74,7 +74,7 @@ $(document).ready(function(){
 	<div id = "view" style="position:relative; width:1350px; overflow:hidden; height:506px; border-radius:20px; margin: 0 auto;">
 		<div id ="imgs" style="position:absolute; width:6750px;">
 			<c:forEach items="${bannerList}" var="banners">
-				<img src="${conPath }/adminImg/${banners.bimg}" style="width:1350px; object-fit: fill; margin:0;">
+				<img src="${conPath }/images/banner/${banners.bimg}" style="width:1350px; object-fit: fill; margin:0;">
 		 	</c:forEach>
 		</div>
 	</div>
