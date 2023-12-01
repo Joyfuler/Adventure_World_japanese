@@ -42,7 +42,7 @@
 		</if> 
 	</select>
 	<select id="itemTotCnt" parameterType="LostItem" resultType="int" >
-	 	<if test="schDate==null and (schWord=='' or schWord==null)"> -->
+	 	<if test="schDate==null and (schWord=='' or schWord==null)">
 			SELECT COUNT(*) FROM LOSTITEM
 		 </if>
 		<if test="schDate!=null and (schWord=='' or schWord==null)">
@@ -51,6 +51,7 @@
 		</if>
 		<if test="schDate!=null and (schWord!='' and schWord!=null) ">
 			SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd')  = #{schDate} AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
+		</if>	
 		<if test="(schWord!='' and schWord!=null) and schDate!=null">
 			SELECT COUNT(*) FROM LOSTITEM 
 			WHERE to_char(LRDATE, 'yyyy-mm-dd') 

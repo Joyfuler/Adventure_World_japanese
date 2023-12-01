@@ -12,7 +12,7 @@ public class FaqSeviceImpl implements FaqService {
 	@Autowired
 	private FaqDao faqDao;
 	@Override
-	public List<Faq> faqList() {
+	public List<Faq> faqList(Faq faq) {
 		return faqDao.faqList();
 	}
 
