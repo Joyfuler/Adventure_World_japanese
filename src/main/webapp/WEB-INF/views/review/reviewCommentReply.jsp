@@ -61,13 +61,11 @@
 					</c:if>					
 					<c:if test = "${empty member }">
 						<input type = "button" value = "작성하기" class = "notMemberSubmit">
-					</c:if>	
-							
+					</c:if>								
 				</td>
 			</tr>		
 		</table>	
 	</form>
-	<p style="clear:both;"></p>
-	
+	<p style="clear:both;"></p>	
 </body>
 </html>

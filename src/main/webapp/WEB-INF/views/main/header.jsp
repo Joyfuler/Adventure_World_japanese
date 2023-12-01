@@ -85,7 +85,7 @@
 					</button>
 					<div class="dropdown-content">
 						<a href="${conPath }/attraction/attractionList.do">어트랙션</a>
-						<a href="${conPath }/paradeList.do">퍼레이드</a>
+						<a href="${conPath }/paradeList.do">공연 / 퍼레이드</a>
 					</div>
 				</div>
 				<div class="dropdown">

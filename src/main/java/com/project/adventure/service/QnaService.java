@@ -15,4 +15,5 @@ public interface QnaService {
 	public Qna getQna(int qno);
 	public int qnaReply(Qna qna);
 	public int modify(Qna qna);
+	public int qnaRreply(int qno);
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QNA 상세보기</title>
 <style>
 .qnaBox{margin-bottom: 300px;}
 .qnaimg{
@@ -22,9 +22,6 @@ padding: 42px 50px 35px;
 border: 1px solid #e4e4e4;
 background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
 color: #000;
-}
-.buttons{
-	width: 100px;
 }
 </style>
 </head>
@@ -63,9 +60,9 @@ color: #000;
 		</form>
 		<br>
 		<div class="buttons">
-			<input type="button"  value="목록보기" class="purpleBtn" style="border:none;"
+			<input type="button"  value="목록보기" class="purpleBtn" 
 				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
-			<input type="button"  value="돌아가기"  class="purpleBtn" style="border:none;"
+			<input type="button"  value="돌아가기"  class="purpleBtn" 
 				onclick="history.back()">
 		</div>
 		<br>

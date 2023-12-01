@@ -7,4 +7,5 @@ public class Faq {
 	private int fno;
 	private String ftitle;
 	private String fcontent;
+	private String schWord;
 }

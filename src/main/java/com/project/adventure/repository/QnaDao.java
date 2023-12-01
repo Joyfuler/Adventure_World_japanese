@@ -15,6 +15,7 @@ public interface QnaDao {
 	public int deleteQna(int qno);
 	public Qna getQna(int qno);
 	public int qnaReply(Qna qna);
+	public int qnaRreply(int qno);
 	public int modify(Qna qna);
 
 }

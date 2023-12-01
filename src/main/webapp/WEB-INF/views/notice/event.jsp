@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>World</title>
+<title>현재 진행중인 이벤트</title>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
@@ -20,7 +20,7 @@
 	</div>
 </div>
 <hr style="width:1100px; margin: 0 auto;"/>
-<div class="ccontainer">
+<div class="container_event">
 	<c:forEach var="events" items="${eventList }">
 	<div class="slide" style="background-image:url('${conPath}/images/${events.eimage }');">
 		<h3 style = "text-shadow: 1px 1px 2px #FFFFFF">

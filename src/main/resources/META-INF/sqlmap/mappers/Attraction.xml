@@ -27,12 +27,16 @@
 	<select id="attractionListP" parameterType="Attraction" resultMap="AttractionResult">
 		SELECT * 
     FROM (SELECT ROWNUM RN, A.* 
-        FROM(SELECT * FROM ATTRACTION
-            WHERE UPPER(ANAME) LIKE '%' || UPPER(#{schTitle}) || '%' ORDER BY AID DESC) A)
-        WHERE RN BETWEEN #{startRow} AND #{endRow}
+        FROM (SELECT * FROM ATTRACTION
+            WHERE UPPER(ANAME) LIKE '%' || UPPER(#{schTitle}) || '%' 
+            ORDER BY AID DESC) A)
+       		WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
 	<select id="totCntAttraction" parameterType="Attraction" resultType="int">
-		SELECT COUNT(*) FROM ATTRACTION WHERE UPPER(ANAME) LIKE'%' || UPPER(#{schTitle}) || '%'
+		SELECT COUNT(*) 
+		FROM ATTRACTION 
+		WHERE UPPER(ANAME) LIKE '%' 
+		|| UPPER(#{schTitle}) || '%'
 	</select>
 	<select id = "tag1List" resultMap= "AttractionResult">
 		SELECT DISTINCT TAG1 FROM ATTRACTION
@@ -42,7 +46,10 @@
 	</select>
 	<select id = "searchAttractionList" parameterType="Attraction" resultMap = "AttractionResult">	
 	<if test = "tag1!='' and tag2!=''">
-		SELECT * FROM ATTRACTION WHERE TAG1 = #{tag1} AND TAG2 = #{tag2} 
+		SELECT * 
+		FROM ATTRACTION 
+		WHERE TAG1 = #{tag1} 
+		AND TAG2 = #{tag2} 
 	</if>	
 	<if test = "tag1=='' and tag2!=''">
 		SELECT * FROM ATTRACTION WHERE TAG2 = #{tag2}
@@ -55,35 +62,40 @@
 	</if>	
 	</select>
 	<select id = "attractionDetail" parameterType="String" resultMap="AttractionResult">
-		SELECT * FROM ATTRACTION WHERE AID = #{aid}
+		SELECT * FROM ATTRACTION 
+		WHERE AID = #{aid}
 	</select>
 	<select id = "stopDayAttractionList" resultMap = "AttractionResult">
-		SELECT * FROM ATTRACTION WHERE STOPDAY = 'Y'
+		SELECT * FROM ATTRACTION 
+		WHERE STOPDAY = 'Y'
 	</select>
 	<insert id="insertAttraction" parameterType="Attraction">
-		INSERT INTO ATTRACTION (AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
+		INSERT INTO ATTRACTION 
+		(AID, ANAME, ACONTENT, HEIGHT, AGE, BEST, 
+		STOPDAY, TAG1, TAG2, AIMAGE, HEADCOUNT)
 			VALUES
 			(ATTRACTION_SEQ.NEXTVAL, #{aname} ,#{acontent},
-			#{height}, #{age}, #{best}, #{stopday}, #{tag1}, #{tag2}, #{aimage}, #{headcount})
+			#{height}, #{age}, #{best}, 
+			#{stopday}, #{tag1}, #{tag2}, #{aimage}, #{headcount})
 	</insert>
 	<update id="updateAttraction" parameterType="Attraction">
 		UPDATE ATTRACTION SET
-        ANAME = #{aname},
-        ACONTENT = #{acontent},
-        HEIGHT = #{height},
-        AGE = #{age},
-        BEST = #{best},
-        STOPDAY = #{stopday},
-        TAG1 = #{tag1},
-        TAG2 = #{tag2},
+        	ANAME = #{aname},
+        	ACONTENT = #{acontent},
+        	HEIGHT = #{height},
+        	AGE = #{age},
+        	BEST = #{best},
+        	STOPDAY = #{stopday},
+        	TAG1 = #{tag1},
+        	TAG2 = #{tag2},
         	<if test="aimage==null">
         		 AIMAGE = null,
         	</if>
         	<if test="aimage!=null and aimage!=''">
         		 AIMAGE = #{aimage},
         	</if>
-        HEADCOUNT = #{headcount}
-    WHERE AID = #{aid}
+        	HEADCOUNT = #{headcount}
+    		WHERE AID = #{aid}
 	</update>
 	<delete id="deleteAttraction" parameterType="int">
 		DELETE FROM ATTRACTION WHERE AID=#{aid}

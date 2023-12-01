@@ -80,33 +80,33 @@
 	<select id = "getReviewContent" parameterType="int" resultMap="ReviewResult">
 		SELECT R.*, OD.ODID AS R_ODID, OD.*, M.MNAME,
 		(SELECT COUNT(*) FROM REVIEW_COMMENT WHERE RID=R.RID) COMMENTCNT
-    	FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
-    	WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = #{rid}
+    		FROM REVIEW R, ORDER_DETAIL OD, MEMBER M 
+    		WHERE R.ODID = OD.ODID AND R.MID = M.MID and RID = #{rid}
 	
 	</select>
 	<select id = "reviewInfo" resultMap = "ReviewResult">
 		SELECT 
   			(SELECT COUNT(*) FROM REVIEW) REVIEWCOUNT,
   			(SELECT NVL(AVG(RSCORE), 0) FROM REVIEW) AVG
-		FROM DUAL
+			FROM DUAL
 	</select>
 	<insert id = "writeReview" parameterType = "Review">
 		INSERT INTO REVIEW (RID, RTITLE, RCONTENT, RSCORE, RPHOTO, MID, ODID)
-		VALUES (REVIEW_SEQ.NEXTVAL, 
-		#{rtitle}, #{rcontent}, #{rscore}, #{rphoto}, #{mid}, #{odid})		
+			VALUES (REVIEW_SEQ.NEXTVAL, 
+			#{rtitle}, #{rcontent}, #{rscore}, #{rphoto}, #{mid}, #{odid})		
 	</insert>
 	<update id = "modifyReview" parameterType = "Review">
 		UPDATE REVIEW SET
-		RTITLE = #{rtitle},
-		RCONTENT = #{rcontent},
-		RSCORE = #{rscore},
+			RTITLE = #{rtitle},
+			RCONTENT = #{rcontent},
+			RSCORE = #{rscore},
 		<if test = "rphoto == null or rphoto== ''">
-			RPHOTO = null
+				RPHOTO = null
 		</if>		
 		<if test = "rphoto != null and rphoto != ''">
-			RPHOTO = #{rphoto}
+				RPHOTO = #{rphoto}
 		</if>	 
-		WHERE RID = #{rid}
+			WHERE RID = #{rid}
 	</update>	
 	<delete id = "reviewDelete" parameterType = "int">
 		DELETE FROM REVIEW WHERE RID = #{rid}

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 분실물 추가</title>
 <style>
 table {
     border-collapse: collapse;
@@ -97,7 +97,6 @@ table {
     padding: 3px;
     background-color: rgb(233, 233, 233);
 }
-
 .update_buttons {
     position: relative;
     width: 100%;
@@ -147,8 +146,14 @@ table {
 						<td><input type="text" name="location" size="47"></td>
 					</tr>
 					<tr>
-						<th>분실일</th>
-						<td><input type="text" name="lrdate" size="47"></td>
+						<th>분실일
+							 <label for="datepicker" style="margin-left: -80px;">
+		                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
+	                        </label>
+						</th>
+						<td> 
+								<input type="text" id="datepicker" name="lrdate" size="10">
+						</td>
 					</tr>
 					<tr>
 						<th>처리결과</th>
@@ -157,7 +162,7 @@ table {
      			</table>
 			     <div class="update_buttons">
 			         <input type="submit" value="분실물 등록">
-			         <input type="button" value="목록으로" onclick="location.href='${conPath }/worker/list.do'">
+			         <input type="reset" value="돌아가기" onclick="history.go(-1)">
 			     </div>
    			</form>
 	    </div>
@@ -165,4 +170,25 @@ table {
 </article>
 <jsp:include page="../main/footer.jsp"/>
 </body>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+$( function() {
+    $( "#datepicker" ).datepicker({
+    	dateFormat: "yy-mm-dd",
+    	monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    	dayNamesMin: [ "일", "월", "화", "수", "목", "금", "토" ],
+    	changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+    	changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+    	showMonthAfterYear: true,
+    	yearSuffix: '년',
+    	showOtherMonths: true, // 현재 달이 아닌 달의 날짜도 회색으로 표시
+    	//minDate: '-100y',	 // 현재날짜로부터 100년이전까지 년을 표시한다.
+    	minDate: new Date(1950, 1 - 1, 1), // 1950년 1월1일을 최소 날짜로 세팅
+    	maxDate : 'y', // 현재 날짜 이전만 선택 가능
+    	yearRange: 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
+    });
+});
+  </script>
 </html>

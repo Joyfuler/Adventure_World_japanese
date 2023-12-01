@@ -9,7 +9,12 @@
 		<result property="fcontent" column="fcontent"/>
 	</resultMap>
 	<select id ="faqList" parameterType="Faq" resultMap="FaqResult">
-		SELECT * FROM FAQ ORDER BY FNO
+		<if test="schWord=='' or schWord==null">
+			SELECT * FROM FAQ ORDER BY FNO
+		</if>
+		<if test="schWord!='' and schWord!=null">			
+			SELECT * FROM FAQ WHERE (FTITLE LIKE '%'||#{schWord}||'%' OR FCONTENT LIKE '%'||#{schWord}||'%') ORDER BY FNO
+		</if>
 	</select>
 	<select id="getfaqInfo" parameterType="int" resultMap="FaqResult">
 		SELECT * FROM FAQ WHERE FNO = #{fno}

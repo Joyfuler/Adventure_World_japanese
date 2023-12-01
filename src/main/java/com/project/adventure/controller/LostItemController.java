@@ -21,35 +21,41 @@ public class LostItemController {
 		model.addAttribute("paging", new Paging(lostItemService.itemTotCnt(lostItem), pageNum, 10, 10));
 		return "lostItem/lostItemList";
 	}
+	@RequestMapping(value = "workerlostItemList", method = {RequestMethod.GET,RequestMethod.POST})
+	public String workeritemList(Model model, String pageNum, LostItem lostItem) {
+		model.addAttribute("lostItem",lostItemService.lostitemList(pageNum, lostItem));
+		model.addAttribute("paging", new Paging(lostItemService.itemTotCnt(lostItem), pageNum, 10, 10));
+		return "worker/workerItemList";
+	}
 	@RequestMapping(value = "insertItem", method = RequestMethod.GET)
 	public String insertItem() {
-		return "lostItem/insertItem";
+		return "worker/workerItemInsert";
 	}
 	@RequestMapping(value = "insertItem", method = RequestMethod.POST)
 	public String insertItem(Model model, LostItem lostItem,MultipartHttpServletRequest mRequest) {
 		model.addAttribute("insertReult",lostItemService.insertItem(mRequest, lostItem));
-		return "forward:lostItemList.do";
+		return "forward:workerlostItemList.do";
 	}
 	@RequestMapping(value="modifyItem", method=RequestMethod.GET)
 	public String updateForm(int lno, Model model) {
 		model.addAttribute("lostItem",lostItemService.getItem(lno));
-		return "lostItem/modifyItem";
+		return "worker/workerItemUpdate";
 	}
 	@RequestMapping(value="modifyItem", method=RequestMethod.POST)
 	public String updateForm(Model model,LostItem lostItem,MultipartHttpServletRequest mRequest) {
 		model.addAttribute("ItemModyfyReult", lostItemService.modifyItem(mRequest, lostItem));
-		return "forward:lostItemList.do";
+		return "forward:workerlostItemList.do";
 	}
 	@RequestMapping(value="updateItem", method=RequestMethod.GET)
 	public String updateItem(int lno,Model model,LostItem lostItem) {
 		model.addAttribute("lostItem",lostItemService.getItem(lno));
 		model.addAttribute("updateItemReult", lostItemService.updateItem(lostItem));
-		return "forward:lostItemList.do";
+		return "forward:workerlostItemList.do";
 	}
 	@RequestMapping(value="deleteItem", method=RequestMethod.GET)
 	public String deleteitem(int lno,Model model) {
 		model.addAttribute("deleteItemReult", lostItemService.deleteItem(lno));
-		return "forward:lostItemList.do";
+		return "forward:workerlostItemList.do";
 	}
 	
 	

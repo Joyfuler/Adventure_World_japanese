@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>FAQ 리스트</title>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 <style>
 .answer {display: none;}
@@ -28,70 +28,54 @@ function Answer(answerId) {
     }
 }
 </script>
-<!-- <script >
-$(document).ready(function(){ 
-    $("#answercontent").click(function(){
-      $(this).parent("#answerId");
-
-
-</script> -->
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
 <article>
-<div class="page-title" style="text-align:center;">
-	<div class="container">
-		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px;">QnA</h3>
-	</div>
-</div>
-<div style="position: relative; text-align: center;">
-  <img src="${conPath }/images/qna_image.jpg" style="opacity: 0.5;">
-  <div style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);">
-    <p style="font-size: 24px; color: white;">
-    <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; padding-top: 50px;"> 더 궁금하신 사항이 있으면 <br>이용문의를 이용하시기 바랍니다.</h3>
-	<div id="buttons" style="float:center">
-		<c:if test="${not empty worker }">
-			<input type="button" value="추가" class="submit" onclick="location.href='${conPath}/faqInsert.do'" >
-		</c:if> 
-		<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'">
-	</div>
-
-  </div>
- <br><br><br>
- <div id="board-search">
-        <div class="container">
-            <div class="search-window"> 
- 		
-			</div>
+	<div class="page-title" style="text-align:center;">
+		<div class="container">
+			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px;">FAQ</h3>
 		</div>
-</div>
-<br>
-</div><br><br>
-<div id="board-list">
-        <div class="container">
-            <table class="board-table" style="font-size:20px; width:960px; margin:0 auto;">  
-            <c:set var="i" value="1"/>
-            <c:forEach items="${faqList }" var="faq">
-               <tr>
-					<td><img src="${conPath}/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border: 1px solid blue;"></td>
-					<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
-						<c:if test="${not empty worker }">
-							<button onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'">수정</button>
-							<button onclick="location.href='${conPath}/faqdelete.do?fno=${faq.fno}'">삭제</button>
-						</c:if>
-					</span></th>
-				</tr>
-				<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->
-					<td></td>
-				<th style="font-size: 18px; font-weight: normal">${faq.fcontent}</th>
-				</tr>
-				<c:set var="i" value="${i+1 }"/>
-            </c:forEach>
-            </table>
-        </div>
-    </div>
-
-
+	</div>
+	<div style="position: relative; text-align: center;">
+	  <img src="${conPath }/images/qna_image.jpg" style="opacity: 0.5;">
+	  <div style="position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);">
+	    <p style="font-size: 24px; color: white;">
+	    <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; padding-top: 50px;"> 더 궁금하신 사항이 있으면 <br>이용문의를 이용하시기 바랍니다.</h3>
+		<div id="buttons" style="float:center">
+			<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'">
+		</div>
+	
+	 </div>
+ 	<br><br><br>
+	 <div id="board-search">
+	        <div class="container">
+	            <div class="search-window"> 
+	 		
+				</div>
+			</div>
+	</div>
+	<br>
+	</div><br><br>
+	<div id="board-list">
+	        <div class="container">
+	            <table class="board-table" style="font-size:20px; width:960px; margin:0 auto;">  
+	            <c:set var="i" value="1"/>
+	            <c:forEach items="${faqList }" var="faq">
+	               <tr>
+						<td><img src="${conPath}/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border: 1px solid blue;"></td>
+						<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
+						</span></th>
+					</tr>
+					<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->
+						<td></td>
+					<th style="font-size: 18px; font-weight: normal">${faq.fcontent}</th>
+					</tr>
+					<c:set var="i" value="${i+1 }"/>
+	            </c:forEach>
+	            </table>
+	        </div>
+	  </div>
 </article>
 <br><br><br>
 <jsp:include page="../main/footer.jsp"/>

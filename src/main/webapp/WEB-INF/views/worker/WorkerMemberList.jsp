@@ -7,9 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 회원정보</title>
 <link href="${conPath }/css/admincss.css" rel="stylesheet">
-
 <style>
 .notice{height: auto;}
 #buttons{text-align:center;}
@@ -34,8 +33,7 @@
 				location.href = url;
 				}
 			});
-		});
-		
+		});		
 	});	
 </script>
 <script>
@@ -70,7 +68,7 @@
 	</script>
 </c:if>
 <form action="${conPath }/workermodify.do" method="get">
-<section class="notice" >
+<section class="notice">
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
   <div class="page-titlee" style="margin-top:-100 " >

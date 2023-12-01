@@ -64,11 +64,11 @@ $(document).ready(function(){
 	     <div class="board-list">
 	        <div class="container" style="width:1000px;">
 		        <div class="mypage-btn-dede-wrap">
-		        	<input type = "button" value = "모두선택" class = "selectAll" style = "float: left; margin-top: 25px;">
+		        	<input type = "button" value = "모두선택" class = "selectAll dede" style = "float: left; margin-top: 25px;">
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold; color:#5c10e6;">
 						<li>
-							<input type = "button" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
+							<input type = "button" class = "dede" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
 						</li>
 					</ul>
 					</nav>
@@ -97,25 +97,25 @@ $(document).ready(function(){
                			</tr>
                		</c:if>
                		<c:if test = "${not empty orderList }">		
-               		<c:set var = "oid" value = "0"/>
-					<c:forEach var="orderLists" items="${orderList }">
-						<c:if test = "${oid eq orderLists.oid }">
-					 		<tr class = "hidden-row">					 	
-					 	</c:if>
-					 	<c:if test = "${oid != orderLists.oid }">
-					 		<tr>
-					 	</c:if>	
-	                	<td>
-	                		<c:if test = "${oid != orderLists.oid }">
-	                			<fmt:formatDate value="${orderLists.ocrdate}" type="date"/>
-	                		</c:if>
-	                	</td>
-	                    <td>
+               			<c:set var = "oid" value = "0"/>
+						<c:forEach var="orderLists" items="${orderList }">
+							<c:if test = "${oid eq orderLists.oid }">
+					 			<tr class = "hidden-row">					 	
+					 		</c:if>
+					 		<c:if test = "${oid != orderLists.oid }">
+						 		<tr>
+						 	</c:if>	
+	    	            	<td>
+	       	        		<c:if test = "${oid != orderLists.oid }">
+	           	    			<fmt:formatDate value="${orderLists.ocrdate}" type="date"/>
+	               			</c:if>
+		                	</td>
+		                    <td>
 	                    	<c:if test = "${oid != orderLists.oid }">
 	                    		${orderLists.oid}
 	                    	</c:if>
-	                    </td>
-	                    <td>
+	    	                </td>
+	        	            <td>
                           <c:choose>
                              <c:when test = "${orderLists.otype eq 0}">
                                	자유이용권 

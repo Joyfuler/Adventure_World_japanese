@@ -83,10 +83,10 @@
 		</select>
 		&nbsp; &nbsp; <input type = "text" name = "searchWord" class = "searchWord" placeholder="제목·내용 검색" value="${param.searchWord }"><img src = "${conPath }/images/2866321.png" class = "searchIcon" style = "width: 20px; padding-top: 5px; margin-left: 5px;">
 		<c:if test = "${not empty member }">
-		<input type = "button" class = "writeReview" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
+			<input type = "button" class = "writeReview" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
 		<c:if test = "${empty member }">
-		<input type = "button" class = "notLogin" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
+			<input type = "button" class = "notLogin" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
 	</form><br>
 	<div class = "reviewInfo" style = "margin-left: 200px;">
@@ -95,42 +95,42 @@
 	</div>
 	<div class="att_back">		
 		<c:forEach var="reviews" items="${reviewList }">
-		<div id="att_list">
-			<a href="${conPath }/review/reviewContent.do?rid=${reviews.rid }&pageNum=${param.pageNum eq null? '1':param.pageNum}">				
+			<div id="att_list">
+				<a href="${conPath }/review/reviewContent.do?rid=${reviews.rid }&pageNum=${param.pageNum eq null? '1':param.pageNum}">				
 				<c:choose>
-                <c:when test="${not empty reviews.rphoto}">
-                    <img src="${conPath }/memberImg/${reviews.rphoto}" onerror="noImage(this)"/>
-                </c:when>
-                <c:otherwise>   
-	                <img src="${conPath }/resources/memberImg/${reviews.rcontentImgFileName}" onerror="noImage(this)"/>                                        	
-                </c:otherwise>
-            </c:choose>
+                	<c:when test="${not empty reviews.rphoto}">
+                    	<img src="${conPath }/memberImg/${reviews.rphoto}" onerror="noImage(this)"/>
+                	</c:when>
+                	<c:otherwise>   
+	                	<img src="${conPath }/resources/memberImg/${reviews.rcontentImgFileName}" onerror="noImage(this)"/>                                        	
+                	</c:otherwise>
+            	</c:choose>
 				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span><span style = "font-size: 0.7em; color: red;"> [${reviews.commentcnt }]</span>
-				<h6>${reviews.rrdate }</h6>
+				<h6><fmt:formatDate value = "${reviews.rrdate }" dateStyle="long"/></h6>
 				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? '자유이용권' : '패스트패스'}</span>									
-			</a>
-		</div>
+				</a>
+			</div>
 		</c:forEach>						
 	</div>
 </article>
 <div class = "paging" style = "text-align: center; font-weight: bold;">
-		<c:if test="${paging.startPage > paging.blockSize}">
-			<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[이전]</a>
-		</c:if>	
-		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
-			<c:if test="${paging.currentPage eq i }"> 
-				[<b style = "color: red;"> ${i } </b>] 
-			</c:if>
-			<c:if test="${paging.currentPage != i }">
-				<a href="${conPath }/review/reviewList.do?pageNum=${i }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[${i }]</a>
-			</c:if>
-		</c:forEach>
-		<c:if test="${paging.endPage < paging.pageCnt }">
-			<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[다음]</a>
+	<c:if test="${paging.startPage > paging.blockSize}">
+		<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[이전]</a>
+	</c:if>	
+	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
+		<c:if test="${paging.currentPage eq i }"> 
+			[<b style = "color: red;"> ${i } </b>] 
 		</c:if>
-	</div>
-	<div style = "float: left; margin-left: 180px;">							
-	</div>	
+		<c:if test="${paging.currentPage != i }">
+			<a href="${conPath }/review/reviewList.do?pageNum=${i }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[${i }]</a>
+		</c:if>
+	</c:forEach>
+	<c:if test="${paging.endPage < paging.pageCnt }">
+		<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[다음]</a>
+	</c:if>
+</div>
+<div style = "float: left; margin-left: 180px;">							
+</div>	
 <br><br>
 <br><br>
 <jsp:include page="../main/footer.jsp"/>	

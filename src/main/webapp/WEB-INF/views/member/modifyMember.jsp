@@ -70,48 +70,48 @@
 		<input type = "hidden" name = "dbmpw" class = "dbmpw" value = "${member.mpw }"> 
 		<div class="basic_box">
 			<div class="basic_box_text">
-				<label>아이디(변경불가)</label>
+					<label>아이디(변경불가)</label>
 					<br>
 					<input type = "text" name = "mid" value = "${member.mid }" class = "dup" readonly = "readonly">
 					<br>				
-			    <label>기존 비밀번호 확인</label><span style = "color: red;">*</span>
+				    <label>기존 비밀번호 확인</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="password" class="dup dbmpwChk">
 			    	<br> 
 			    	<span class = "dbmpwChkMsg" style = "color: red; font-size : 0.9em;">&nbsp; &nbsp; </span>
 			    	<br><br>
-			    <label>새 비밀번호</label><span style = "color: red;">*</span>
+				    <label>새 비밀번호</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="password" name="mpw" class = "mpw">
 			    	<br>
-			    <label>이름</label>
+				    <label>이름</label>
 			    	<br>
 			    	<input type="text" name="mname" class="dup" value="${member.mname}">
 			    	<br>
-			    <label id=last>휴대폰 번호</label><span style = "color: red;">*</span>
+				    <label id=last>휴대폰 번호</label><span style = "color: red;">*</span>
 			    	<input type="text" name="mphone" class = "mphone" class="dup" value="${member.mphone}"><br>			   
-			    <label>우편번호</label>
+			    	<label>우편번호</label>
 			    	<br>
 			    	<input type="text" class="dup"  id="sample6_postcode" name="maddress1" value="${member.maddress1}"  style="width:400px;" readonly = "readonly">      
 			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center" ><br>
-				<label>주소</label>
+					<label>주소</label>
 					<br>
 					<input type="text" class="dup" id="sample6_address"  size="50" name="maddress2" value="${member.maddress2}" readonly><br><br>
-				<label>상세주소</label>
+					<label>상세주소</label>
 					<br>
 					<input type="text" class="dup" id="sample6_detailAddress"  name="maddress3" value="${member.maddress3}" size="50"><br>
 					<input type="hidden" class="dup" id="sample6_extraAddress">
 					<br>				
-				<label>이메일(변경불가)</label>
+					<label>이메일(변경불가)</label>
 					<br>
 					<input type="text" name="memail" class="dup" value = "${member.memail }" readonly = "readonly">
 					<br>
+				</div>
 			</div>
-		</div>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>		
 		<script>
-		    function sample6_execDaumPostcode() {
-		        new daum.Postcode( {
+		function sample6_execDaumPostcode() {
+		    new daum.Postcode( {
 		            oncomplete: function(data) {
 		                var addr = '';
 		                var extraAddr = ''; 
@@ -120,7 +120,6 @@
 		                } else { 
 		                    addr = data.jibunAddress;
 		                }
-
 		                if(data.userSelectedType === 'R'){
 		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
 		                        extraAddr += data.bname;
@@ -136,7 +135,6 @@
 		                } else {
 		                    document.getElementById("sample6_extraAddress").value = '';
 		                }
-
 		                document.getElementById('sample6_postcode').value = data.zonecode;
 		                document.getElementById("sample6_address").value = addr;
 		                document.getElementById("sample6_detailAddress").focus();
@@ -150,7 +148,7 @@
 			<div class="join_buttons_text">
 			    <input type="submit" value="정보수정" class="join_submit" onclick="return modifyChk()"> 
 			    <input type="reset" value="취소" class="join_cancel">
-			    <input type="button" value="회원탈퇴" class="withdrawal_button">
+			    <input type="button" value="회원탈퇴" class="withdrawal_button join_cancel">
 			</div>
 		</div>
 	</form>

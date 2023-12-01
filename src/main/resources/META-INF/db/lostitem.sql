@@ -40,8 +40,7 @@ SELECT * FROM
                     AND LITEM like '%'||'가'||'%'  ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
 SELECT * FROM
     (SELECT ROWNUM RN, A.*
-        FROM(SELECT * FROM LOSTITEM WHERE LRDATE BETWEEN '2023-11-29' AND '2023-11-30'  
-                    and(LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%') ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
+        FROM(SELECT * FROM LOSTITEM WHERE (LITEM LIKE '%'||'신'||'%' OR LNAME LIKE '%'||'신'||'%') ORDER BY LRDATE DESC)A)WHERE RN BETWEEN 1 AND 3;
 --ID = insertItem
 INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','핑크색구두','','범퍼카');
 --ID = updateItem

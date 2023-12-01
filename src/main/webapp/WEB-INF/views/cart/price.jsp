@@ -3,16 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가격</title>
 <link href="${conPath }/order/order.css" rel="stylesheet">  
 <script src="${conPath }/order/order.js"></script>
-
-
-
+</head>
+<body>
 <div class="bigBox">
 	<p class="bigBox1">
 		<span> 티켓요금 </span>
 	</p>
-	
 	<p class="bigBox2">
 		<span> 자유이용권 | 패스트 패스이용권 </span>
 	</p><br>
@@ -54,9 +57,7 @@
 			<p>90,000원</p>
 			</li>			
 		</ul>
-	
 	</div>
-	
 </div>
 		<div class="bigBox4">
 			<ul class="barList">
@@ -140,11 +141,10 @@
 				<li>
 				⊙ 내용 : 종합이용권 30% 우대
 				</li><br>
-
 		</ul>
-
 	</div>
-
 </div>
 
 <br><br><br><br><br><br><br>
+</body>
+</html>

@@ -20,7 +20,7 @@
 $(document).ready(function(){
 	var num=0;
 	setInterval(function(){
-        	$('#imgs').animate({ left : num * -1355 },1500);
+        	$('#imgs').animate({ left : num * -1355 },500);
         num++;
     	if(num==(Number('${bannerList.size()}'))){
     		num=0;    	
@@ -153,7 +153,7 @@ $(document).ready(function(){
 	</div>  
 	<h3>꿈과 환상의 세계로 어서오세요!</h3>
 	<div id="main_view_">     
-		<c:forEach var="parades" items="${paradeList }">         
+		<c:forEach var="parades" items="${paradeList }" begin="0" end="3">         
 		<div id="parade">		   
 		    <div class="scale">
 		        <a href="parade">

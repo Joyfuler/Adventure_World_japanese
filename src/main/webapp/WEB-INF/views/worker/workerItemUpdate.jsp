@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 분실물 수정</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -151,7 +151,7 @@ table {
 						<th>분실물 이름</th>
 						<td><input type="text" name="lname" size="47" value="${lostItem.lname }"></td>
 					</tr>
-					 <tr>
+					<tr>
 			            <th>분실물 이미지</th>
 			            <td>
 			               <%--  <div id="filename"></div>
@@ -179,10 +179,10 @@ table {
 						<td><input type="text" name="lresult" size="47" value="${lostItem.lresult }"></td>
 					</tr>
      			</table>
-			     <div class="update_buttons">
+			    <div class="update_buttons">
 			         <input type="submit" value="분실물 등록">
-			         <input type="button" value="목록으로" onclick="location.href='${conPath }/worker/list.do'">
-			     </div>
+			         <input type="button" value="목록으로" onclick="location.href='${conPath }/worker/workerlostItemList.do'">
+			    </div>
    			</form>
 	    </div>
     </div>

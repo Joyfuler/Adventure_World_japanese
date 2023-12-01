@@ -18,13 +18,13 @@
 		<result property="endRow" column="endRow"/>
 	</resultMap>
 	<select id="getReviewComments" parameterType="Review_Comment" resultMap="Review_CommentResult">
-		 SELECT * 
+		SELECT * 
 		FROM (SELECT ROWNUM RN, A.* 
-		FROM (SELECT RC.*, M.MNAME 
-		FROM REVIEW_COMMENT RC,	MEMBER M 
-		WHERE RC.MID = M.MID AND RID = #{rid}
-		ORDER BY RCGROUP, RCSTEP) A) 
-		WHERE RN BETWEEN #{startRow} AND #{endRow}
+			FROM (SELECT RC.*, M.MNAME 
+			FROM REVIEW_COMMENT RC,	MEMBER M 
+			WHERE RC.MID = M.MID AND RID = #{rid}
+			ORDER BY RCGROUP, RCSTEP) A) 
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
 	<select id = "commentTotCnt" parameterType = "int" resultType="int">
 		SELECT COUNT(*) 
@@ -47,9 +47,9 @@
 	<insert id = "commentWrite" parameterType="Review_Comment">
 		INSERT INTO REVIEW_COMMENT 
 		(RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
-		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
-		#{rccontent}, REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 
-		#{rid}, #{mid})
+			VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
+			#{rccontent}, REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 
+			#{rid}, #{mid})
 	</insert>
 	<update id = "commentReplyPreStep" parameterType="Review_Comment">
 		<![CDATA[
@@ -59,9 +59,9 @@
 	<insert id = "reviewCommentReply" parameterType = "Review_Comment">
 		INSERT INTO REVIEW_COMMENT 
 		(RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
-		VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
-		#{rccontent}, #{rcgroup}, #{rcstep} +1, #{rcindent} +1, 
-		#{rid}, #{mid})
+			VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, 
+			#{rccontent}, #{rcgroup}, #{rcstep} +1, #{rcindent} +1, 
+			#{rid}, #{mid})
 	</insert>
 	<delete id = "commentDelete" parameterType="int">
 		DELETE FROM REVIEW_COMMENT

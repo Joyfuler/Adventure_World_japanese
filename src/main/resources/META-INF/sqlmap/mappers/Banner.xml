@@ -22,13 +22,13 @@
 	</select>
 	<insert id="insertBanner" parameterType="Banner">
 		INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
-    VALUES (BANNER_SEQ.NEXTVAL, #{btitle}, #{border}, #{usage}, #{bimg})
+   			 VALUES (BANNER_SEQ.NEXTVAL, #{btitle}, #{border}, #{usage}, #{bimg})
 	</insert>
 	<update id="updateBanner" parameterType="Banner">
 		UPDATE BANNER SET
         BORDER = #{border},
         USAGE = #{usage}
-    WHERE BNO = #{bno}
+   		WHERE BNO = #{bno}
 	</update>
 	<select id="cntBanner" resultType="int">
 		SELECT COUNT(*) FROM BANNER
