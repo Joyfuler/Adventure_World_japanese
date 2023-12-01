@@ -24,13 +24,13 @@
     		(SELECT ROWNUM RN, A.*
        			FROM (SELECT * FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} ORDER BY LNO )A)WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
-		<if test="schDate != null and (schWord!='' and schWord!=null)">
+		<if test="schDate!=null and (schWord!='' and schWord!=null)  ">
 			SELECT * FROM
     			(SELECT ROWNUM RN, A.*
         		FROM (SELECT * FROM LOSTITEM WHERE  to_char(LRDATE, 'yyyy-mm-dd') = #{schDate} 
                     AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%') ORDER BY LNO DESC) A) WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if> 
-		<if test="schDate == null and (schWord!='' and schWord!=null)">
+		<if test="schDate==null and  (schWord!='' and schWord!=null) ">
 			SELECT * FROM
   			  (SELECT ROWNUM RN, A.*
 	        	FROM (SELECT * 
@@ -49,6 +49,8 @@
 			SELECT COUNT(*) FROM LOSTITEM 
 			WHERE to_char(LRDATE, 'yyyy-mm-dd') = #{schDate}
 		</if>
+		<if test="schDate!=null and (schWord!='' and schWord!=null) ">
+			SELECT COUNT(*) FROM LOSTITEM WHERE to_char(LRDATE, 'yyyy-mm-dd')  = #{schDate} AND (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
 		<if test="(schWord!='' and schWord!=null) and schDate!=null">
 			SELECT COUNT(*) FROM LOSTITEM 
 			WHERE to_char(LRDATE, 'yyyy-mm-dd') 
@@ -60,6 +62,9 @@
 			SELECT COUNT(*) FROM LOSTITEM 
 			WHERE (LITEM LIKE '%'||#{schWord}||'%' 
 			OR LNAME LIKE '%'||#{schWord}||'%')
+		</if>
+		<if test="schDate==null and (schWord!='' and schWord!=null) ">
+			SELECT COUNT(*) FROM LOSTITEM WHERE (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
 		</if>
 	</select>
 	<select id="getItem" parameterType="int" resultType="LostItem">

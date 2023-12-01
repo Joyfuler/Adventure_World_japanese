@@ -57,4 +57,8 @@ public class QnaServiceImpl implements QnaService {
 	public int modify(Qna qna) {
 		return qnaDao.modify(qna);
 	}
+	@Override
+	public int qnaRreply(int qno) {
+		return qnaDao.qnaRreply(qno);
+	}
 }

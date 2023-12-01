@@ -3,9 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>예매</title>
 <link href="${conPath }/css/order.css" rel="stylesheet">
-<script src="script/order.js"></script>
+<script src="${conPath }/js/order.js"></script>
+</head>
+<body>
 <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="reserve">
@@ -93,3 +99,6 @@
 	</div>
 </div>
 </article>
+<jsp:include page="../main/footer.jsp"/>
+</body>
+</html>

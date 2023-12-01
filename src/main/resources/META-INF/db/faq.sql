@@ -9,6 +9,7 @@ CREATE TABLE FAQ(
 );
 --id = faqList
 SELECT * FROM FAQ ORDER BY FNO;
+SELECT * FROM FAQ WHERE (FTITLE LIKE '%'||'매'||'%' OR FCONTENT LIKE '%'||'매'||'%') ORDER BY FNO;
 --ID = faqmodyfy
 UPDATE FAQ SET FTITLE = '매직패스 사전예매는 어떻게 하나요?',
                FCONTENT = '매직패스 프리미엄 사전 예매는 롯데월드 앱에서만 가능하며매일 자정, 당일을 포함한 3일간의 예매가 가능합니다.<br><br>

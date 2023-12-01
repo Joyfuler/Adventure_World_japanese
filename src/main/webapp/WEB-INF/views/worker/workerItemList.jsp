@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>분실물 센터</title>
+<title>관리자 분실물 센터</title>
  <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 <link href="${conPath }/css/order.css" rel="stylesheet">  
 <style>
@@ -33,30 +33,21 @@ input[name=schWord] {
   padding-left: 10px;
   background-color: white;
 }
+.buts input[type=button]{border-radius: 12px 12px 12px 12px; height: 40px; margin-top:10px; 
+ text-align:center;  margin-bottom: 50px; background-color: lightgray; border-color: white; cursor: pointer;}
 </style>
 	
 </head>
 <script>
 $(function(){
-	/* $('form').submit(function(){
-		var schDate = $('input[name="schDate"]').val();
-	 if($('input[name="schDate"]').val() == '' && $('input[name="schWord"]').val() == '' ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
-	 	return false;
-		}else if(schDate ==''){
-			schDate.push(null);
-		}
-			
-	});
-	 */
 	$('.lostItemSch').click(function(){
 		
 		var schDate = $('input[name="schDate"]').val();
 		var schWord = $('input[name="schWord"]').val();
 		if (schDate == null || schDate == ''){
-			location.href = '${conPath}/lostItemList.do?schWord='+schWord;
+			location.href = '${conPath}/workerlostItemList.do?schWord='+schWord;
 		} else {
-			location.href = '${conPath}/lostItemList.do?schWord='+schWord+'&schDate='+schDate;
+			location.href = '${conPath}/workerlostItemList.do?schWord='+schWord+'&schDate='+schDate;
 		}		
 	});
 });
@@ -128,106 +119,113 @@ $(function(){
 </script>
 <body>
 <jsp:include page="../main/header.jsp"/>
+<jsp:include page="workerHeader.jsp"/>
 <article>
-	<form action="${conPath }/lostItemList.do" method="get" class = "lostItemForm">
-	<section class="notice">
-	<c:if test="${not empty ItemModyfyReult }">
-		<script>
-			alert("수정이 완료되었습니다");
-		</script>
-	</c:if>
-	<c:if test="${not empty updateItemReult }">
-		<script >
-		alert("처리결과 수정이 완료되었습니다");
-		</script>
-	</c:if>
-	<c:if test="${not empty deleteItemReult }">
-		<script >	
-		alert("삭제가 완료되었습니다");
-		</script>
-	</c:if>
-	<div class="page-title">
-		<div class="container">
-			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">분실물 검색</h3>
+	<form action="${conPath }/workerlostItemList.do" method="get" class = "lostItemForm">
+		<section class="notice">
+		<c:if test="${not empty ItemModyfyReult }">
+			<script>
+				alert("수정이 완료되었습니다");
+			</script>
+		</c:if>
+		<c:if test="${not empty updateItemReult }">
+			<script >
+			alert("처리결과 수정이 완료되었습니다");
+			</script>
+		</c:if>
+		<c:if test="${not empty deleteItemReult }">
+			<script >	
+			alert("삭제가 완료되었습니다");
+			</script>
+		</c:if>
+		<div class="page-title">
+			<div class="container">
+				<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">분실물 검색</h3>
+			</div>
 		</div>
-	</div>
-	    <div class="board-searchh">
-	        <div class="container">
-	           <div class="search-wrap">
-					<div class="order_box_date_date">
-						<div id="calendarPopup" class="calendar-popup"></div> 	
-					</div>
-	            <div class="search-window">	
+		    <div class="board-searchh">
+		        <div class="container">
+	               <div class="search-wrap">
+						<div class="order_box_date_date">
+							<div id="calendarPopup" class="calendar-popup"></div>
+						</div>
+			            <div class="search-window">	
 	                        <label for="datepicker">
 	                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
 	                        </label>
 	                        <input type="text" id="datepicker" name="schDate" value="${param.schDate}" 
 	                        	autocomplete="off" placeholder="분실 날짜" >
 	                        <input id="search" type="text" name="schWord" placeholder="분실한 소지품을 입력해주세요." value="${param.schWord}" size="50">
-	                        <input type="button" class="btn btn-dark lostItemSch" value="검색" style="margin-left: 20px; ">
-	                 		<input type="button"  class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/lostItemList.do'">
-                </div>
-            </div>
-        </div>
-    </div>
-	    <div class="board-list">
-	        <div class="container">
-	            <table class="board-table">
-	                <thead>
-	                <tr>
-	                    <th scope="col" class="th-num">분류</th>
-	                    <th scope="col" class="th-title">습득물</th>
-	                    <th scope="col" class="th-date">습득장소</th>
-	                     <th scope="col" class="th-num">습득물 사진</th>
-	                    <th scope="col" class="th-num">습득일</th>
-	                    <th scope="col" class="th-title">처리결과</th>
-	                    <c:if test="${not empty worker }">
-	                    <th scope="col" class="th-title"></th>
-	                    </c:if>
-	                </tr>
-	                </thead>
-	                <tbody>
-	                <c:forEach items="${lostItem}" var="lostItem">
-		                <tr>
-		                    <td>${lostItem.litem}</td>
-		                    <td>${lostItem.lname }</td> 
-		                    <td>
-		                    <img src="${conPath }/images/themepark/placeholder.png" style="width:24px; height:24px;">
-		                    ${lostItem.location }</td> 
-		                    <td><img src="${conPath }/lostitemimg/${lostItem.lphoto} " style="width:100px; height:100px;"/></td>
-		                    <td><fmt:formatDate value="${lostItem.lrdate}" type="date"/></td>
-		                    <td>${lostItem.lresult }</td>
-		                     <c:if test="${not empty worker}">
-		                     <td> 
-			                    <input type="checkbox" name="lno" value="${lostItem.lno }" style="width: 20px; height: 20px;">		        	
-		                    </td>  
-	                 		</c:if> 
-		                </tr>
-		          	</c:forEach>
-	                </tbody>
-	            </table>
-	        </div>
-	    </div>
-	</section>
+	                        <input type="button" class="btn btn-dark lostItemSch" value="검색" style="margin-left: 20px;">
+	                 		<input type="button" name="list" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/workerlostItemList.do'">
+		                </div>      
+		            </div>
+		        </div>
+		     </div>
+		    <div class="board-list">
+		        <div class="container">
+		            <table class="board-table">
+		                <thead>
+			                <tr>
+			                    <th scope="col" class="th-num">분류</th>
+			                    <th scope="col" class="th-title">습득물</th>
+			                    <th scope="col" class="th-date">습득장소</th>
+			                    <th scope="col" class="th-num">습득물 사진</th>
+			                    <th scope="col" class="th-num">습득일</th>
+			                    <th scope="col" class="th-title">처리결과</th>
+			                    <c:if test="${not empty worker }">
+			                    	<th scope="col" class="th-title"></th>
+			                    </c:if>
+			                </tr>
+		                </thead>
+		                <tbody>
+			                <c:forEach items="${lostItem}" var="lostItem">
+				                <tr>
+				                    <td>${lostItem.litem}</td>
+				                    <td>${lostItem.lname }</td> 
+				                    <td>
+				                    <img src="${conPath }/images/themepark/placeholder.png" style="width:24px; height:24px;">
+				                    ${lostItem.location }</td> 
+				                    <td><img src="${conPath }/lostitemimg/${lostItem.lphoto} " style="width:100px; height:100px;"/></td>
+				                    <td><fmt:formatDate value="${lostItem.lrdate}" type="date"/></td>
+				                    <td>${lostItem.lresult }</td>
+				                     <c:if test="${not empty worker}">
+				                     <td> 
+					                    <input type="checkbox" name="lno" value="${lostItem.lno }" style="width: 20px; height: 20px;" class="check_btnbtn">		        	
+				                    </td>  
+			                 		</c:if> 
+				                </tr>
+				          	</c:forEach>
+		                </tbody>
+		            </table>
+		            <div class="buts">
+						<input type="button" class="btn btn-dark" value="수정" id="modifyItem" >
+	           			<input type="button" class="btn btn-dark" value="수령" id="updateItem" >
+	           			<input type="button" class="btn btn-dark" value="삭제" id="deleteItem" >
+	           			<input type="button"  class="btn btn-dark" value="추가" onclick="location.href='${conPath}/insertItem.do'">
+					</div>
+		        </div>
+		    </div>
+		</section>
 	<div style="text-align: center; margin-top: 20px;">
 		<c:if test="${paging.startPage>paging.blockSize}">
-			[ <a href="${conPath }/lostItemList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}&schDate=${param.schDate}">이전</a> ]
+			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}&schDate=${param.schDate}">이전</a> ]
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
 				<b>[ ${i } ]</b> 
 			</c:if>
 			<c:if test="${paging.currentPage != i }">
-				[ <a href="${conPath }/lostItemList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
+				[ <a href="${conPath }/workerlostItemList.do?pageNum=${i }&schWord=${param.schWord}">${i }</a> ]
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.pageCnt }">
-			[ <a href="${conPath }/lostItemList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}&schDate=${param.schDate}">다음</a> ]
+			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}&schDate=${param.schDate}">다음</a> ]
 		</c:if>
 	</div>
-	</form>
-	<br>
-	<br><br><br><br><br><br><br>
+</form>
+<br>
+<br><br><br><br><br><br><br>
 </article>
 <jsp:include page="../main/footer.jsp"/>
 </body>

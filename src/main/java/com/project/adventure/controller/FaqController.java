@@ -18,29 +18,34 @@ public class FaqController {
 		model.addAttribute("faqList", faqService.faqList());
 		return "faq/faqList";
 	}
+	@RequestMapping(value = "workerFaqList", method = {RequestMethod.GET,RequestMethod.POST})
+	public String workerFaqList(Faq faq, Model model) {
+		model.addAttribute("faqList", faqService.faqList(faq));
+		return "worker/workerFaqList";
+	}
 	@RequestMapping(value = "faqdelete", method = RequestMethod.GET )
 	public String faqDelete(int fno,Model model) {
-		model.addAttribute("faqDelete",faqService.faqDelete(fno));
-		return "forward:faqList.do";
+		model.addAttribute("faqDeleteResult",faqService.faqDelete(fno));
+		return "forward:workerFaqList.do";
 	}
 	@RequestMapping(value = "faqModify", method =RequestMethod.GET)
 	public String faqModify(Model model, int fno){
 		model.addAttribute("faq",faqService.getfaqInfo(fno));
-		return "faq/faqModify";
+		return "worker/workerFaqUpdate";
 	}
 
 	@RequestMapping(value = "faqModify", method= RequestMethod.POST)
 	public String faqModify(Model model, Faq faq){
 		model.addAttribute("faqModify", faqService.faqModify(faq));
-		return "forward:faqList.do";
+		return "forward:workerFaqList.do";
 	}
 	@RequestMapping(value = "faqInsert", method = RequestMethod.GET)
 	public String faqInsert() {
-		return "faq/faqInsert";
+		return "worker/workerFaqInsert";
 	}
 	@RequestMapping(value = "faqInsert", method = RequestMethod.POST)
 	public String faqInsert(Model model, Faq faq) {
-		model.addAttribute("faqInsert", faqService.faqinsert(faq));
-		return "forward:faqList.do";
+		model.addAttribute("faqInsertResult", faqService.faqinsert(faq));
+		return "forward:workerFaqList.do";
 	}
 }

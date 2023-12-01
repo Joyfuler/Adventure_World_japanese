@@ -28,13 +28,13 @@
 		<input type="button" value="공지사항 관리" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer; width: 80px;">
 	</div>
     <div class="buttons">
-		<input type="button" value="회원 관리" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer; width: 80px;">
+		    <input type="button" value="회원 관리" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer; width: 80px;">
    	</div>	
    	<div class="buttons">
-		<input type="button" value="Q & A 관리" onclick="location.href='${conPath}/qna/qnaList.do'" style="cursor:pointer; width: 80px;">
+		    <input type="button" value="Q&A 관리" onclick="location.href='${conPath}/qna/qnaList.do'" style="cursor:pointer; width: 80px;">
 	</div>
 	<div class="buttons">
-		<input type="button" value="FAQ 관리" onclick="location.href='${conPath}/faqList.do'" style="cursor:pointer; width: 80px;">
+		    <input type="button" value="FAQ 관리" onclick="location.href='${conPath}/faqList.do'" style="cursor:pointer; width: 80px;">
 	</div>
 	<div class="buttons">
 		<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do?from=admin'" style="cursor:pointer; width: 80px;">

@@ -38,7 +38,12 @@
 	 <insert id="qnaReply" parameterType="Qna">
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,ISREPLY,REPLY,QGROUP,QPWCHK,MID) VALUES
 			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw},'Y',#{reply},#{qgroup},#{qpwchk},#{mid})
-	</insert> 
+	</insert>
+	<update id="qnaRreply" parameterType="int" >
+		UPDATE QNA SET
+                REPLY = #{reply}
+                WHERE QNO = #{qno}
+	</update> 
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
 		<if test="schWord=='' or schWord==null">
 			select count(*) from QNA
