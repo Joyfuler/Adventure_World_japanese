@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 FAQ 추가</title>
 <style>
 .faq{position:relaive; width:100%; height:1300px; margin:0 auto; font-family:'IBM Plex Sans KR', sans-serif;}
 .faqBox{position:relative; width:900px; margin:0 auto; }
@@ -16,34 +16,33 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../main/header.jsp"/>
-	<div class="faq">
-		<form action="${conPath }/faqInsert.do" method="post">
-			<div class="faqBox">
-			<h2> FAQ 게시판 </h2>
-				<table class="box1">
-					<tr>
-						<legend>제목
-							<input type="text" name="ftitle" size="70" autofocus="autofocus">
-						</legend>
-					</tr>
-					<tr>
-						<legend>내용
-							<textarea id="summernote" name="fcontent">
-							</textarea>			
-						</legend>
-					</tr>
-				</table>
-			</div> 
-			<div class ="buttons">
-			 <input type="submit" value="글쓰기" class="purpleBtn" style="border:none;"> 
-	         <input type="reset" value="취소" class="purpleBtn" style="border:none;">  
-			</div>
-		</form>
-	</div>
-	<jsp:include page="../main/footer.jsp"/>
+<jsp:include page="../main/header.jsp"/>
+<div class="faq">
+	<form action="${conPath }/faqInsert.do" method="post">
+		<div class="faqBox">
+		<h2> FAQ 게시판 </h2>
+			<table class="box1">
+				<tr>
+					<legend>제목
+						<input type="text" name="ftitle" size="70" autofocus="autofocus">
+					</legend>
+				</tr>
+				<tr>
+					<legend>내용
+						<textarea id="summernote" name="fcontent">
+						</textarea>			
+					</legend>
+				</tr>
+			</table>
+		</div> 
+		<div class ="buttons">
+		  	<input type="submit" value="글쓰기" class="purpleBtn" style="border:none;"> 
+          	<input type="button" value="목록가기" class="purpleBtn" style="border:none;" onclick="location.href='${conPath}/workerFaqList.do'"> 
+		</div>
+	</form>
+</div>
+<jsp:include page="../main/footer.jsp"/>
 </body>
-</html>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -63,3 +62,4 @@
 		    });
 	 });
 </script>
+</html>

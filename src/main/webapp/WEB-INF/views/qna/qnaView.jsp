@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QNA 상세보기</title>
 <style>
 .qnaBox{margin-bottom: 300px;}
 .qnaimg{
@@ -23,7 +23,6 @@ border: 1px solid #e4e4e4;
 background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
 color: #000;
 }
-
 </style>
 </head>
 <body>

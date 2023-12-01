@@ -6,10 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QNA 비밀번호 확인</title>
 </head>
 <body>
-
 <script >
 	opener.location.href="${conPath}/qna/qnaView.do?qno=" + ${param.qno};
 	self.close();

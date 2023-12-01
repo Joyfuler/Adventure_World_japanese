@@ -20,31 +20,37 @@
 </head>
 <body>	
 	<div id = "adminmain">
-	 <div id="main2" style = "margin-bottom: 100px; width: 1000px;">
-   	<div class="buttons">
-      	<input type="button" value="어트랙션 관리" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer; width: 100px;">
-   	</div>
-    <div class="buttons">
-		<input type="button" value="공지사항 관리" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer; width: 100px;">
-	</div>
-    <div class="buttons">
-		<input type="button" value="회원 관리" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer; width: 100px;">
-   	</div>	
-	<div class="buttons">
-		<input type="button" value="FAQ 관리" onclick="location.href='${conPath}/faqList.do'" style="cursor:pointer; width: 100px;">
-	</div>
-	<div class="buttons">
-		<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do?from=admin'" style="cursor:pointer; width: 100px;">
-	</div>
-	<div class = "buttons">
-		<input type="button" value="리뷰글 관리" onclick="location.href='${conPath}/worker/workerReviewList.do'" style="cursor:pointer; width: 100px;">
-	</div>
-	<div class = "buttons">
-		<input type = "button" value = "유저주문내역" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer; width: 100px;">
-	</div>
-	<div class = "buttons">
-		<input type = "button" value = "신고관리" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer; width: 100px;">
-	</div>
+		 <div id="main2" style = "margin-bottom: 100px; width: 1000px;">
+	   	<div class="buttons">
+	      	<input type="button" value="어트랙션 관리" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer; width: 100px;">
+	   	</div>
+	    <div class="buttons">
+			<input type="button" value="공지사항 관리" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer; width: 100px;">
+		</div>
+	    <div class="buttons">
+			<input type="button" value="회원 관리" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer; width: 100px;">
+	   	</div>	
+		<div class="buttons">
+			<input type="button" value="FAQ 관리" onclick="location.href='${conPath}/workerFaqList.do'" style="cursor:pointer; width: 100px;">
+		</div>
+		<div class="buttons">
+			<input type="button" value="QNA 관리" onclick="location.href='${conPath}/worker/workerQnaList.do'" style="cursor:pointer; width: 100px;">
+		</div>
+		<div class="buttons">
+			<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do?from=admin'" style="cursor:pointer; width: 100px;">
+		</div>
+		<div class = "buttons">
+			<input type="button" value="리뷰글 관리" onclick="location.href='${conPath}/worker/workerReviewList.do'" style="cursor:pointer; width: 100px;">
+		</div>
+		<div class = "buttons">
+			<input type = "button" value = "유저주문내역" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer; width: 100px;">
+		</div>
+		<div class = "buttons">
+			<input type = "button" value = "신고관리" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer; width: 100px;">
+		</div>
+		<div class = "buttons">
+			<input type = "button" value = "분실물 센터" onclick = "location.href='${conPath}/workerlostItemList.do'" style = "cursor:pointer; width: 100px;">
+		</div>
 	</div>
 </div>
 </body>

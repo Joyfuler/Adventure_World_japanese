@@ -75,32 +75,4 @@ public class QnaController {
 	    		model.addAttribute("wirteResult",qnaService.insertQna(qna));
 		return "forward:qnaList.do";
 	}
-	@RequestMapping(value="adminQnaView", method =RequestMethod.GET)
-	public String adminqna_view (Model model, int qno){		
-		model.addAttribute("Qna", qnaService.getQna(qno));
-		return "qna/adminQnaView";
-	}
-	@RequestMapping(value="adminqnqreply", method = RequestMethod.POST)
-	public String adminQnaRepSave (Qna qna, Model model){		
-		model.addAttribute("replyResult",qnaService.qnaReply(qna));
-		return "forward:qnaList.do";
-	}
-	@RequestMapping(value = "qnadelete", method = RequestMethod.GET)
-	public String deleteQna(int qno, Model model ) {
-		model.addAttribute("deleteResult",qnaService.deleteQna(qno));
-		return "forward:qnaList.do";
-	}
-	@RequestMapping(value = "modify", method = RequestMethod.GET)
-	public String modify(Model model,int qno) {
-		model.addAttribute("Qna", qnaService.getQna(qno));
-		return "qna/adminQnamodify";
-	}
-	@RequestMapping(value = "modify", method = RequestMethod.POST)
-	public String modify(Model model, Qna qna) {
-		model.addAttribute("modify",qnaService.modify(qna));
-		return "forward:qnaView.do";
-	}
-	
-	
-
 }
