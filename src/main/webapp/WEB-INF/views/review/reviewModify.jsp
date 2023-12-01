@@ -126,8 +126,8 @@
 									<span>&nbsp;&nbsp;제목&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</td>
 								<td>
-									<input id="rtitle" name="rtitle" class = "writeInput" maxlength="100" tabindex="2" style = "width: 700px; height: 20px; margin-bottom: 10px;" 
-									type="text" value = "[수정] ${originalInfo.rtitle }">																			
+									<input id="rtitle" name="rtitle" class = "writeInput" maxlength="30" tabindex="2" style = "width: 700px; height: 20px; margin-bottom: 10px;" 
+									type="text" value = "${originalInfo.rtitle }">																			
 								</td>
 							</tr>								
 							<tr>

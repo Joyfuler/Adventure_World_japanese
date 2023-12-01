@@ -8,7 +8,7 @@
 		<result property="ftitle" column="ftitle"/>
 		<result property="fcontent" column="fcontent"/>
 	</resultMap>
-	<select id ="faqList" parameterType="Faq" resultMap="FaqResult">
+	<select id ="faqList" resultMap="FaqResult">
 		SELECT * FROM FAQ ORDER BY FNO
 	</select>
 	<select id="getfaqInfo" parameterType="int" resultMap="FaqResult">

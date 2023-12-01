@@ -82,7 +82,7 @@ const autoHyphen = (target) => {
 				updateMemberPoint();
 			}			
 		});	
-		
+		// 멤버십 포인트로 할인받기 클릭시
 		$('.payForMemberPoint').click(function(){
 			var payPreAmt = parseInt($('#payPreAmt').text()) || 0;
 			var enteredValue = parseInt($('#pointInput').val()) || 0;
@@ -90,42 +90,39 @@ const autoHyphen = (target) => {
 				alert('결제 금액이 음수가 되지 않도록 포인트를 조정해주세요.');				
 				payPreAmt = parseInt($('#totOrderAmt').text()) || 0;
 				$('#payPreAmt').text(payPreAmt); 
-				$('#pointInput').val(0);				
+				$('#pointInput').val(0);
+				$('#memberPoint').val('${member.mpoint}');
 			} else {
 			$('#disCountmemberPoint').text(enteredValue);
 			updateTotalOrderAmount();
 			}
-		});	
-		
-		$('input[name="payment"]').change(function(){
-			updatePaymentButton();
-		});
-		
-		
-		$('.kakaopayBtn').click(function(){			
+		});		
+		// 결제하기 버튼 클릭시. 선택된 결제방식에 따라 다른 결제방식창 호출
+		$('.payBtn').click(function(){			
 			var chk1 = $('#chkAgr1');
 			var chk2 = $('#chkAgr2');
 			if (!chk1.prop('checked') || !chk2.prop('checked')){
 				alert('필수 동의 약관 사항에 동의해주세요.');
 			} else {
+				var selectedPayment = $('input[name="payment"]:checked');
+				var pgValue = selectedPayment.data('id');
 				var amount = parseInt($('#payPreAmt').text()) || 0;
 				var mid = '${member.mid}';
 				var currentTime = new Date();				
 				var orderNo = mid + currentTime;				
 				IMP.init('imp47220035');
-				 IMP.request_pay({
-				        //pg : 'html5_inicis.INIpayTest',
-				        pg : 'kakaopay.TC0ONETIME',
+				 IMP.request_pay({				        
+				        pg : pgValue,
 				        merchant_uid: orderNo,
 				        name : 'Adventure World 티켓결제',
 				        amount : amount,
 				 }, function(rsp){
 					 console.log(rsp);
 					 if (rsp.success){
-						 console.log('카카오페이 결제성공');
+						 console.log('결제성공');
 						 $('.orderCompleteForm').submit();
 					 } else {
-						 console.log('카카오페이 결제실패');
+						 console.log('결제실패');
 						 var msg = "결제에 실패하였습니다.";						 
 					 }
 				 });
@@ -145,18 +142,7 @@ const autoHyphen = (target) => {
 		} else {		
 			$('#memberPoint').text(result);
 		}
-	}	
-	
-	function updatePaymentButton(){
-		var selectedPayment = $('input[name="payment"]:checked').val();		
-		if (selectedPayment == 'kakaoPay'){
-			$('#paymentBtn').removeClass('kakaopayBtn naverpayBtn');
-			$('#paymentBtn').addClass('btn btn-primary bg-dark kakaopayBtn');			
-		} else if (selectedPayment == 'naverPay'){
-			$('#paymentBtn').removeClass('kakaopayBtn naverpayBtn');
-			$('#paymentBtn').addClass('btn btn-primary bg-dark naverpayBtn');
-		}
-	}	
+	}			
 	</script>
 	<script>
 	function updateTotalOrderAmount(){
@@ -269,8 +255,7 @@ const autoHyphen = (target) => {
 						</div>
 					</div>	
 					<div class="listBox">
-						<ul class="listTypeDot import">
-							<li>방문자 정보의 이메일 주소로 티켓 정보 URL이 전송됩니다.</li>
+						<ul class="listTypeDot import">							
 						</ul>
 					</div>		
 				</div>			
@@ -316,12 +301,15 @@ const autoHyphen = (target) => {
 			</div>			
 			<div class="pay-check-list" style = "padding-left: 10px;">
 				<p class="checks">
-					<input type="radio" name="payment" value="kakaoPay" id="payment1" checked = "checked">
+					<input type="radio" name="payment" value="kakaoPay" id="payment1" checked = "checked" data-id="kakaopay.TC0ONETIME">
 					<label for="payment1">
 						<img src = "${conPath }/images/kakaopay.png" style = "height:25px;">카카오페이
-					</label>					
-					&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment2" disabled = "disabled">
-					<label for="payment2">
+					</label>	
+					<label for = "payment2">
+						&nbsp; &nbsp; <input type = "radio" name = "payment" value = "cardPay" id = "payment2" data-id = "kcp.AO09C"> 카드결제				
+					</label>
+					<label for="payment3">
+						&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment3" data-id = "naverco" disabled = "disabled">					
 						<img src = "${conPath }/images/naverpay.png" style = "height:25px;">네이버페이
 					</label>
 				</p>
@@ -411,7 +399,7 @@ const autoHyphen = (target) => {
 					</div>
 				</div>
 				<div class="btnArea">
-					<input type = "button" id = "paymentBtn" class = "btn btn-primary bg-dark kakaopayBtn" value = "결제하기">
+					<input type = "button" id = "paymentBtn" class = "btn btn-primary bg-dark payBtn" value = "결제하기">
 				</div>			
 			</div>								
 		</div>		

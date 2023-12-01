@@ -155,7 +155,7 @@
 						<c:if test = "${reviewContent.otype eq 1 }">
 						어트랙션: ${reviewContent.oatname1 } / ${reviewContent.oatname2 } / ${reviewContent.oatname3 } <br>
 						</c:if> 
-						작성일: ${reviewContent.rrdate } <br>
+						작성일: <fmt:formatDate value="${reviewContent.rrdate }" dateStyle="long"/> <br>
 						
 						평점 : 
 						<c:forEach var="i" begin="1" end="5">
@@ -205,7 +205,7 @@
 								<c:if test = "${comments.rcindent <4 }">
 									<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[답글]</a>					
 								</c:if>
-								<c:if test = "${comments.mid eq member.mid }">
+								<c:if test = "${comments.mid eq member.mid or not empty worker}">
 									<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[삭제]</a>
 									<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[수정]</a>
 								</c:if>

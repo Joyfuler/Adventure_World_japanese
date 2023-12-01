@@ -106,7 +106,7 @@
                 	</c:otherwise>
             	</c:choose>
 				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span><span style = "font-size: 0.7em; color: red;"> [${reviews.commentcnt }]</span>
-				<h6>${reviews.rrdate }</h6>
+				<h6><fmt:formatDate value = "${reviews.rrdate }" dateStyle="long"/></h6>
 				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? '자유이용권' : '패스트패스'}</span>									
 				</a>
 			</div>

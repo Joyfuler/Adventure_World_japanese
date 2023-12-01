@@ -26,7 +26,8 @@ DROP TABLE REPORT;
 DROP TABLE WORKER;
 DROP TABLE MEMBER;
 DROP TABLE LOSTITEM;
-
+select * from order_list;
+desc order_list;
 -- 2. TABLE CREATION
 
 CREATE TABLE MEMBER
@@ -353,6 +354,37 @@ VALUES (PARADE_SEQ.NEXTVAL, '카니발 판타지 퍼레이드', '브라질의 �
 		세계 유명 축제를 한 번에 즐길 수 있는 기회를 놓치지 마세요!','퍼레이드 길, 카니발 광장 (가이드맵 167)','11.17(금) ~ 12.18(일)',
         '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.
 		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade1.jpg','paradeDetail1');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '해피 크리스마스 퍼레이드', '꿈 속 산타나라에서 내려 온 산타클로스와 요정들이 춤추고 노래하며 꿈과 사랑을 선물하는 버라이어티 크리스마스 퍼레이드
+','어드벤처 1층 퍼레이드 코스
+','11.20(금) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade5.jpg','paradeDetail5.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '산타 빌리지 투어', '크리스마스 선물을 준비하는 산타와 선물요정들의 신나는 하루
+','어드벤처 1층 퍼레이드 코스
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade6.jpg','paradeDetail6.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '마법성냥과 꿈꾸는 밤
+', '마음씨 착한 성냥팔이 소녀와 함께 떠나는 환상적인 꿈의 세계
+','어드벤처 1층 가든스테이지
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade7.jpg','paradeDetail7.jpg');
+
+INSERT INTO PARADE (PNO, PTITLE, PINFO, PPLACE, PPERIOD, PCAUTION,PIMG,PIMG2)
+VALUES (PARADE_SEQ.NEXTVAL, '캐롤 밴드 쇼
+', '다양한 스타일의 캐롤 음악과 함께하는 여성 밴드 콘서트
+','어드벤처 1층 만남의 광장
+','11.25(수) ~ 12.31(일)',
+        '※ 현장 상황 및 기상 예보에 따라 공연 일정이 변경 및 취소될 수 있습니다.<br>
+		※ 이용 정보-운영시간에서 공연시간 확인 가능합니다.','parade8.jpg','paradeDetail8.jpg');
+
 
 -- 9. ORDER QUERY
 -- 특정 아이디의 전체 주문내역 출력

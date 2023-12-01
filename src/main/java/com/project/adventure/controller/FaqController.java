@@ -14,8 +14,8 @@ public class FaqController {
 	@Autowired
 	private FaqService faqService;
 	@RequestMapping(value = "faqList", method = {RequestMethod.GET,RequestMethod.POST})
-	public String faqList(Faq faq, Model model) {
-		model.addAttribute("faqList", faqService.faqList(faq));
+	public String faqList(Model model) {
+		model.addAttribute("faqList", faqService.faqList());
 		return "faq/faqList";
 	}
 	@RequestMapping(value = "faqdelete", method = RequestMethod.GET )

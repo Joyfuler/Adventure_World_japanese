@@ -53,20 +53,6 @@
             });
         });*/
         
-        
- /* Banner*/
-    $(function(){
-    	var num=0;
-    	setInterval(function(){
-            $('#imgss').animate({ left : num * -2000 },1000);
-                num++;
-                if(num==5)num=0;
-        }, 2000);
-    });
-
-
-       
-        
 function go_(){
 	location.href = "adminProductList";
 }

@@ -64,11 +64,11 @@ $(document).ready(function(){
 	     <div class="board-list">
 	        <div class="container" style="width:1000px;">
 		        <div class="mypage-btn-dede-wrap">
-		        	<input type = "button" value = "모두선택" class = "selectAll" style = "float: left; margin-top: 25px;">
+		        	<input type = "button" value = "모두선택" class = "selectAll dede" style = "float: left; margin-top: 25px;">
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold; color:#5c10e6;">
 						<li>
-							<input type = "button" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
+							<input type = "button" class = "dede" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
 						</li>
 					</ul>
 					</nav>

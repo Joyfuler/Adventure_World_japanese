@@ -148,7 +148,7 @@
 			<div class="join_buttons_text">
 			    <input type="submit" value="정보수정" class="join_submit" onclick="return modifyChk()"> 
 			    <input type="reset" value="취소" class="join_cancel">
-			    <input type="button" value="회원탈퇴" class="withdrawal_button">
+			    <input type="button" value="회원탈퇴" class="withdrawal_button join_cancel">
 			</div>
 		</div>
 	</form>
