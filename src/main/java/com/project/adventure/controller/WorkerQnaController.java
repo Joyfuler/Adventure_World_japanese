@@ -47,6 +47,9 @@ public class WorkerQnaController {
 	}
 	@RequestMapping(value = "workerQnamodify", method = RequestMethod.POST)
 	public String modify(Model model, Qna qna) {
+		// 답변 내용 수정할 시 답변글로 추가함
+		qnaService.qnaReply(qna);
+		// 수정한 답변 내용을 원글에도 변경 적용		
 		model.addAttribute("modify",qnaService.modify(qna));
 		return "forward:workerQnaDetail.do";
 	}

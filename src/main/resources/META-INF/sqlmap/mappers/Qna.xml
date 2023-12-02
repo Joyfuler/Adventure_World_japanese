@@ -53,13 +53,13 @@
     	</if>
 	</select>
 	<delete id="deleteQna" parameterType="int">
-    	DELETE FROM QNA WHERE QNO =#{QNO}
+    	DELETE FROM QNA WHERE QNO =#{qno}
 	</delete>
 	<update id="modify" parameterType="Qna" >
 		UPDATE QNA SET
                 REPLY = #{reply}
                 WHERE QNO = #{qno}
-	</update>
+	</update>	
 </mapper>
 
 
