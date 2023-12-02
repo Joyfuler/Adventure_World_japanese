@@ -57,6 +57,14 @@
 	<delete id="deleteQna" parameterType="int">
     	DELETE FROM QNA WHERE QNO =#{qno}
 	</delete>
+	<update id = "userModify" parameterType = "Qna">
+		UPDATE QNA SET
+			QTITLE = #{qtitle},
+			QCONTENT = #{qcontent},
+			QPW = #{qpw},
+			QPWCHK = #{qpwchk}
+			WHERE QNO = #{qno}			
+	</update>
 	<update id="modify" parameterType="Qna" >
 		UPDATE QNA SET
                 REPLY = #{reply},

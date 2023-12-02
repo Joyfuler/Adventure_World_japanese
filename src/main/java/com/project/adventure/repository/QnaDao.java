@@ -16,6 +16,7 @@ public interface QnaDao {
 	public Qna getQna(int qno);
 	public int qnaReply(Qna qna);
 	public int qnaRreply(Qna qna);
-	public int modify(Qna qna);	
+	public int modify(Qna qna);
+	public int userModify(Qna qna);	
 
 }

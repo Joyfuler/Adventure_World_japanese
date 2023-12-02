@@ -24,8 +24,24 @@ background: #f9f9f9 url('${conPath}/images/roler2.jpg') no-repeat right bottom;
 color: #000;
 }
 </style>
+<script>
+	function deleteConfirm(){
+		var answer = confirm('정말 삭제하시겠습니까?');
+		var qno = ${Qna.qno};
+		if (answer){
+			location.href = "${conPath}/qna/deleteQna.do?qno="+qno;
+		}		
+	}
+</script>
+
+
 </head>
 <body>
+<c:if test = "${not empty modifyResult}">
+	<script>
+		alert('${modifyResult eq 1? "글 수정이 완료되었습니다." : "글수정 실패"}');
+	</script>
+</c:if>
 <article>
 <jsp:include page="../main/header.jsp"/>
 <div class="qna">
@@ -60,10 +76,16 @@ color: #000;
 		</form>
 		<br>
 		<div class="buttons">
-			<input type="button"  value="목록보기" class="purpleBtn" 
+			<input type="button"  value="목록보기" class="purpleBtn" style = "width: 100px; padding: 0;" 
 				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
-			<input type="button"  value="돌아가기"  class="purpleBtn" 
+			<input type="button"  value="돌아가기"  class="purpleBtn" style = "width: 100px; padding: 0;"
 				onclick="history.back()">
+			<c:if test = "${member.mid eq Qna.mid }">
+				<input type="button"  value="수정하기" class="purpleBtn" style = "width: 100px; padding: 0;"
+				onclick = "location.href='${conPath}/qna/qnaModify.do?pageNum=${empty param.pageNum? '1': param.pageNum}&qno=${Qna.qno }'">
+				<input type="button"  value="삭제하기" class="purpleBtn" style = "width: 100px; padding: 0;"
+				onclick = "deleteConfirm()">
+			</c:if>
 		</div>
 		<br>
 	</div>

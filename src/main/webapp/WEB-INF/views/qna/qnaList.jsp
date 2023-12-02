@@ -27,7 +27,7 @@ function qpwChk(qno){
 </style>
 </head>
 <body>
-<c:if test="${not empty wirteResult}">
+<c:if test="${not empty writeResult}">
 	<script>
 		alert('글작성 성공');
 	</script>
@@ -35,6 +35,11 @@ function qpwChk(qno){
 <c:if test="${not empty replyResult}">
 	<script>
 		alert('답변작성 성공');
+	</script>
+</c:if>
+<c:if test = "${not empty deleteResult }">
+	<script>
+		alert('${deleteResult eq 1? "질문글 삭제가 완료되었습니다." : "삭제실패"}');
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>

@@ -64,7 +64,35 @@ public class QnaController {
 	    			qna.setQpwchk( "Y" );
 	    		}
 	    		qna.setMid(qna.getMid());
-	    		model.addAttribute("wirteResult",qnaService.insertQna(qna));
+	    		model.addAttribute("writeResult",qnaService.insertQna(qna));
 		return "forward:qnaList.do";
 	}
+	
+	@RequestMapping(value = "qnaModify", method = RequestMethod.GET)
+	public String qnaModify(int qno, Model model) {
+		model.addAttribute("originalQnaInfo", qnaService.getQna(qno));
+		return "qna/qnaModify";
+	}
+	
+	@RequestMapping(value = "qnaModifyConfirm", method = RequestMethod.POST)
+	public String qnaModify(Qna qna, Model model,
+			@RequestParam(value="check", required=false) String check) {
+			System.out.println("qna : " + qna);
+			if (check == null) {
+				qna.setQpwchk("N");
+				qna.setQpw("");
+			} else {
+				qna.setQpwchk("Y");				
+			}
+		
+		model.addAttribute("modifyResult", qnaService.userModify(qna));			
+		return "forward:qnaView.do";
+	}
+	
+	@RequestMapping(value = "deleteQna", method = RequestMethod.GET)
+	public String deleteQna(int qno, Model model) {
+		model.addAttribute("deleteResult", qnaService.deleteQna(qno));
+		return "forward:qnaList.do";
+	}
+	
 }

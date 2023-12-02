@@ -17,7 +17,12 @@ INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,
 PRICE1,PRICE2,RESULT,MID)
     VALUES (CART_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
     '25000','18000',0, 'one');
-
+update cart set visitdate = '23/12/01' where cid = 76;
+commit;
+select * from cart;
+update cart set visitdate = '23/12/01' where cid = 80;
+select * from cart where mid= 'trio';
+select * from qna;
 INSERT INTO CART( CID, p1, p2, TYPE, ATNAME1, ATNAME2, ATNAME3, PRICE1, PRICE2, RESULT, VISITDATE ,MID )
     VALUES (CART_SEQ.NEXTVAL,1,1,1,'A','B','C',10000,5000,0,'2023-11-23','one');
     SELECT * FROM CART;
