@@ -48,6 +48,6 @@ public class WorkerQnaController {
 	@RequestMapping(value = "workerQnamodify", method = RequestMethod.POST)
 	public String modify(Model model, Qna qna) {
 		model.addAttribute("modify",qnaService.modify(qna));
-		return "forward:workerQnaDetail";
+		return "forward:workerQnaDetail.do";
 	}
 }

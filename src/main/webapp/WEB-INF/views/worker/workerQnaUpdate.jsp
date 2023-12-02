@@ -18,7 +18,7 @@
 <article>
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
-	<form action="${conPath}/worker/adminqnqreply.do" method="post">	
+	<form action="${conPath}/worker/workerQnamodify.do" method="post">	
 		<input type="hidden" name="qno" value="${Qna.qno}">
 		<input type="hidden" name = "pageNum" value="${param.pageNum }">
 		<input type="hidden" name="mid" value="${Qna.mid}">
