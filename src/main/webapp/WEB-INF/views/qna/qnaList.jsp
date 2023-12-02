@@ -115,14 +115,14 @@ function qpwChk(qno){
 			    			<c:choose>
 								<c:when test="${qna.qpwchk=='Y'}">
 									 <span onClick="qpwChk(${qna.qno})">
-											<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
+											<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
 											${qna.qtitle}
 											</span> 
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 								</c:when>
 								<c:otherwise>
 									<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-										<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
+										<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
 										${qna.qtitle} 
 										</a>
 								</c:otherwise>
@@ -132,24 +132,24 @@ function qpwChk(qno){
 			    				<c:choose>
 								<c:when test="${qna.qpwchk=='Y'}">
 									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
-										<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
+										<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
 										${qna.qtitle}
 										</a>
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 								</c:when>
 								<c:otherwise>
 									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-									<img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle">
+									<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
 									 ${qna.qtitle}
 									 </a>
 								</c:otherwise>
 							</c:choose>
 			    			</c:if>
 			    			</td>
-			       			<td><fmt:formatDate value="${qna.qrdate}" type="date"/></td>
+			       			<td><fmt:formatDate value="${qna.qrdate}" pattern="yy-MM-dd hh:mm:ss"/></td>
 			       			<td>
 			       			<c:choose>
-							<c:when test="${qna.isreply=='Y'}"> yes 
+							<c:when test="${qna.isreply=='Y' }"> yes 
 								<img src="${conPath }/images/replyicon.png" style="width:20px;vertical-align: middle">	
 							</c:when>
 							</c:choose>

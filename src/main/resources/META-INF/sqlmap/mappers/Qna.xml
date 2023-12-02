@@ -9,6 +9,7 @@
 		<result property="qcontent" column="qcontent"/>
 		<result property="qpw" column="qpw"/>
 		<result property="isreply" column="isreply"/>
+		<result property="reply" column="reply"/>
 		<result property="qrdate" column="qrdate"/>		
 		<result property="qgroup" column="qgroup"/>
 		<result property="qstep" column="qstep"/>
@@ -19,12 +20,12 @@
 	<select id="QnaList" parameterType="Qna" resultMap="QnaResult">
 		<if test="schWord=='' or schWord==null">
 		SELECT * FROM
-    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QGROUP DESC, ISREPLY)A)
+    	(SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA ORDER BY QGROUP DESC, QRDATE ASC, ISREPLY)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
 		</if>
 		<if test="schWord!='' and schWord!=null">
 		SELECT * FROM
-   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QGROUP DESC, ISREPLY)A)
+   		 (SELECT ROWNUM RN, A.* FROM(SELECT * FROM QNA WHERE QTITLE LIKE '%'||#{schWord}||'%' ORDER BY QGROUP DESC, QRDATE ASC, ISREPLY)A)
    		 WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</if>
 	</select>
@@ -33,15 +34,16 @@
 	</select>
 	<insert id="insertQna" parameterType="Qna" >
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,QGROUP,QPWCHK,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,#{qpwchk},#{mid})
+			(QNA_SEQ.NEXTVAL, #{qtitle},#{qcontent},#{qpw}, QNA_SEQ.CURRVAL,#{qpwchk},#{mid})
 	</insert>
 	 <insert id="qnaReply" parameterType="Qna">
 		INSERT INTO QNA (QNO,QTITLE,QCONTENT,QPW,ISREPLY,REPLY,QGROUP,QPWCHK,MID) VALUES
-			(QNA_SEQ.NEXTVAL,#{qtitle},#{qcontent},#{qpw},'Y',#{reply},#{qgroup},#{qpwchk},#{mid})
+			(QNA_SEQ.NEXTVAL, ' └[답]'||#{qtitle},#{qcontent},#{qpw},'N',#{reply},#{qgroup},#{qpwchk},#{mid})
 	</insert>
-	<update id="qnaRreply" parameterType="Qna" >
+	<update id="qnaRreply" parameterType="Qna">
 		UPDATE QNA SET
-                REPLY = #{reply}
+                REPLY = #{reply},
+                ISREPLY = 'Y'
                 WHERE QNO = #{qno}
 	</update> 
 	<select id ="qnaTotCnt" parameterType="Qna" resultType="int">
@@ -57,7 +59,8 @@
 	</delete>
 	<update id="modify" parameterType="Qna" >
 		UPDATE QNA SET
-                REPLY = #{reply}
+                REPLY = #{reply},
+                ISREPLY = 'Y'
                 WHERE QNO = #{qno}
 	</update>	
 </mapper>

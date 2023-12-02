@@ -1,6 +1,6 @@
 package com.project.adventure.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ public class Qna {
 	private String qpw;
 	private String isreply;
 	private String reply;
-	private Date qrdate;
+	private Timestamp qrdate;
 	private int qgroup;
 	private String mid;
 	//검색

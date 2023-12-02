@@ -83,7 +83,6 @@
 	        onImageUpload: function(files, editor, welEditable) {
 	                sendFile(files[0], editor, welEditable);
 	            }
-
 	    });
  });
 </script>
