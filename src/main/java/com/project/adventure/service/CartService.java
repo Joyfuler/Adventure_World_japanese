@@ -19,4 +19,5 @@ public interface CartService {
 	public void updateResult(int[] cid);
 	public Cart getTicketAmountAndPrice(int[] cid);
 	public void cidsAdd(int[] cid, HttpSession session);
+	public int autoDeleteCart(int cid);
 }

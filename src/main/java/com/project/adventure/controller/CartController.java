@@ -58,9 +58,16 @@ public class CartController {
 	}	
 	
 	@RequestMapping(value = "delete", method= {RequestMethod.GET ,RequestMethod.POST})
-	public String delete(int[] cid, Model model ) {
+	public String delete(int[] cid, Model model) {
 		model.addAttribute("deleteResult", cartService.deleteCart(cid));
 		return "forward:list.do";
 	}	
+	
+	@RequestMapping(value = "expiredTicketautoDelete", method = RequestMethod.GET)
+	public String autoDelete(int cid, Model model) {
+		model.addAttribute("autoDeleteResult", cartService.autoDeleteCart(cid));
+		return "forward:list.do";
+	}
+	
 }
 	

@@ -35,7 +35,7 @@
 					</tr>
 					<tr>
 						<legend>내용
-							<textarea id="summernote" name="fcontent" value="${faq.fcontent }">	</textarea>			
+							<textarea id="summernote" name="fcontent">${faq.fcontent }</textarea>			
 						</legend>
 					</tr>
 				</table>

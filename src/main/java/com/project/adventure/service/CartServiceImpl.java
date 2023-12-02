@@ -116,6 +116,11 @@ private CartDao cartDao;
 		}
 		session.setAttribute("cids", cids);
 	}
+
+	@Override
+	public int autoDeleteCart(int cid) {
+		return cartDao.deleteCart(cid);
+	}
 	
 	
 

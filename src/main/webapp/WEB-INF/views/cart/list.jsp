@@ -81,6 +81,11 @@
 		alert('삭제가 성공적으로 완료되었습니다.');
 	</script>
 </c:if>
+<c:if test = "${not empty autoDeleteResult }">
+	<script>
+		alert('기간이 지난 예매내역은 자동으로 삭제되었습니다.');
+	</script>
+</c:if>	
 <input type = "hidden" name="mid" value="${member.mid}"> 
 	<section class="notice">
 	   <div class="page-title">
@@ -124,8 +129,14 @@
 	               			</td>
 	               		</tr>
 	               	</c:if>
+	               	<c:set var = "nowDate" value = "<%=new java.util.Date()%>"/>	               		               			
 	               	<c:if test = "${not empty cartList }">		
-						<c:forEach var="dto" items="${cartList }">
+						<c:forEach var="dto" items="${cartList }">		
+					        <c:if test="${dto.visitdate lt nowDate }">
+					        	<script>					        		
+					        		location.href = "${conPath}/cart/expiredTicketautoDelete.do?cid=${dto.cid}&mid=${member.mid}";
+					        	</script>
+					        </c:if>	
 							 <tr>
 			                	<td><fmt:formatDate value="${dto.crdate}" type="date"/></td>
 			                    <td>${dto.cid}</td>
