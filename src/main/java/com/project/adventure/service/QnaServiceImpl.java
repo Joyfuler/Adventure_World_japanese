@@ -32,7 +32,7 @@ public class QnaServiceImpl implements QnaService {
 	}
 	@Override
 	public int qnaTotCnt(Qna qna) {
-		return  qnaDao.qnaTotCnt(qna);
+		return qnaDao.qnaTotCnt(qna);
 	}
 
 	@Override

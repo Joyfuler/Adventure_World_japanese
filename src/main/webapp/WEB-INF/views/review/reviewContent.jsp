@@ -195,7 +195,7 @@
 									&nbsp; &nbsp; &nbsp; 
 								</c:if>
 							</c:forEach>    
-            				<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: ${comments.rcrdate }</span>&nbsp; &nbsp;
+            				<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: <fmt:formatDate value="${comments.rcrdate }" pattern="yy년 MM월 dd일 hh:mm:ss"/></span>&nbsp; &nbsp;
             	 			<br><br>           	 
 							<div class="comment_area _comment_area">
 								<c:forEach var="i" begin="1" end="${comments.rcindent }">									 

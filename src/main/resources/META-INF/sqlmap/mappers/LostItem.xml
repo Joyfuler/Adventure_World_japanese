@@ -63,10 +63,7 @@
 			SELECT COUNT(*) FROM LOSTITEM 
 			WHERE (LITEM LIKE '%'||#{schWord}||'%' 
 			OR LNAME LIKE '%'||#{schWord}||'%')
-		</if>
-		<if test="schDate==null and (schWord!='' and schWord!=null) ">
-			SELECT COUNT(*) FROM LOSTITEM WHERE (LITEM LIKE '%'||#{schWord}||'%' OR LNAME LIKE '%'||#{schWord}||'%')
-		</if>
+		</if>	
 	</select>
 	<select id="getItem" parameterType="int" resultType="LostItem">
 		SELECT * FROM LOSTITEM WHERE LNO =#{lno}

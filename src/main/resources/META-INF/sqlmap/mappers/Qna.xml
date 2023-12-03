@@ -51,7 +51,7 @@
 			select count(*) from QNA
 		</if>
 		<if test="schWord!='' and schWord!=null">
-			select count(*) from  QNA where QTITLE like '%'||#{schWord}||'%'
+			select count(*) from QNA where QTITLE like '%'||#{schWord}||'%'
     	</if>
 	</select>
 	<delete id="deleteQna" parameterType="int">

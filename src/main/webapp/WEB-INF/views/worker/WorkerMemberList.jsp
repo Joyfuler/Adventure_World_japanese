@@ -81,7 +81,7 @@
             <div class="search-window">
                 <div class="search-wrap" >
                     <label for="search" class="blind"> 회원 이름 검색 </label>
-                    <input id="search" type="search" name="schWord" placeholder="회원 이름을 입력해주세요." value="${param.schWord}">
+                    <input id="search" type="search" name="schWord" placeholder="회원 아이디로 검색" value="${param.schWord}">
                     <input type="button" id="schmid" class="btn btn-dark" value="검색"   >
                     <input type="button" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/memberList.do'">
                 </div>

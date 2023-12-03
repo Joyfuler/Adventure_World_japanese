@@ -47,9 +47,10 @@
         var patternEng = /[a-zA-Z]/;        
         var patternSpc = /[~`!@#$%^&*()_\-+={}\[\]\\|:;<>,.?\/]/;
         var mphone = $('input.mphone').val();
+        var mname = $('input[name="mname"]').val();
 		if (dbmpwChkMsg != '비밀번호가 일치합니다.'){
 			alert('비밀번호를 다시 확인해주세요.');
-			return false;
+			return false;			
 		} else if (mpw == ''){
 			alert('새 비밀번호를 입력해주세요.'); 
 			return false;
@@ -58,6 +59,9 @@
 			return false;			
 		} else if (mphone ==''){
 			alert('휴대폰 번호는 필수 입력사항입니다.');
+			return false;
+		} else if (mname ==''){
+			alert('이름을 입력해주세요.');
 			return false;
 		}
 	}
@@ -84,7 +88,7 @@
 			    	<br>
 			    	<input type="password" name="mpw" class = "mpw">
 			    	<br>
-				    <label>이름</label>
+				    <label>이름</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="text" name="mname" class="dup" value="${member.mname}">
 			    	<br>

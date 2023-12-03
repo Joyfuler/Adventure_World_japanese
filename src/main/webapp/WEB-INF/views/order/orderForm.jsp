@@ -44,6 +44,7 @@ const autoHyphen = (target) => {
 				$('#visitUserPhone_check').val(chargeUserPhone);
 				$('.input_wrap_visitor').hide('slow');				
 			} else {
+				// 체크 해제시, 원상복구
 				$('#visitUserName').val('');
 				$('#visitUserName').prop("disabled", true);
 				$('#visitUserName_check').val('');
@@ -63,8 +64,10 @@ const autoHyphen = (target) => {
 		$('#pntChk').click(function(){
 			if ($(this).prop('checked')){
 				$('#pointInput').prop('disabled', false);
+				$('.payForMemberPoint').prop('disabled',false);
 			} else {
 				$('#pointInput').prop('disabled', true);
+				$('.payForMemberPoint').prop('disabled',true);
 			}
 		});
 		// 포인트 입력 시 최종 결제금액에서 차감
@@ -91,7 +94,7 @@ const autoHyphen = (target) => {
 				payPreAmt = parseInt($('#totOrderAmt').text()) || 0;
 				$('#payPreAmt').text(payPreAmt); 
 				$('#pointInput').val(0);
-				$('#memberPoint').val('${member.mpoint}');
+				$('#memberPoint').val('${member.mpoint}');				
 			} else {
 			$('#disCountmemberPoint').text(enteredValue);
 			updateTotalOrderAmount();
@@ -279,7 +282,7 @@ const autoHyphen = (target) => {
 					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">0</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "${member.mpoint }">							
 					<input type="text" id="pointInput" name = "ompoint" disabled="disabled" value = "0">
-					<input type="button" value = "포인트사용" class = "payForMemberPoint">
+					<input type="button" value = "포인트사용" class = "payForMemberPoint" disabled="disabled">
 					<br><br>
 				</div>					
 			</div>
@@ -337,14 +340,14 @@ const autoHyphen = (target) => {
 									<c:if test = "${amountInfo.type0sum != 0 }">
 										<li> 자유이용권 ( 어른 : ${amountInfo.type0adult } 매 / 청소년 : ${amountInfo.type0youth } 매)
 										<span> 
-											합 계 ( ${amountInfo.type0sum })원			
+											합 계 ( ${amountInfo.type0sum } )원			
 										</span>
 										</li>
 									</c:if>
 									<c:if test = "${amountInfo.type1sum != 0 }">
 										<li> 패스트티켓  (어른 : ${amountInfo.type1adult } 매 / 청소년 : ${amountInfo.type1youth } 매)
 										<span> 
-										합 계 ( ${amountInfo.type1sum })원
+										합 계 ( ${amountInfo.type1sum } )원
 										</span>
 										</li>
 									</c:if>

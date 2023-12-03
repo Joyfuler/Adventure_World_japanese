@@ -114,7 +114,7 @@ public class ReviewController {
 	
 	@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
 	public String modifyComment(Review_Comment review_Comment, Model model) {
-		model.addAttribute("modifyResult", reviewService.modifyComment(review_Comment));
+		model.addAttribute("modifyResult", reviewService.modifyComment(review_Comment));		
 		return "forward:reviewContent.do";
 	}
 	

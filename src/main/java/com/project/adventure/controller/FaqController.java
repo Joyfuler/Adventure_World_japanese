@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.adventure.service.FaqService;
+import com.project.adventure.util.Paging;
 import com.project.adventure.vo.Faq;
 
 @Controller
@@ -20,7 +21,7 @@ public class FaqController {
 	}
 	@RequestMapping(value = "workerFaqList", method = {RequestMethod.GET,RequestMethod.POST})
 	public String workerFaqList(Faq faq, Model model) {
-		model.addAttribute("faqList", faqService.faqList(faq));
+		model.addAttribute("faqList", faqService.faqList(faq));		
 		return "worker/workerFaqList";
 	}
 	@RequestMapping(value = "faqdelete", method = RequestMethod.GET )

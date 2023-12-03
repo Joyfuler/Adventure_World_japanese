@@ -97,6 +97,7 @@ function Answer(answerId) {
         </div>
     </div>
   </form>
+  </div>
 </article>
 <br><br><br>
 <jsp:include page="../main/footer.jsp"/>

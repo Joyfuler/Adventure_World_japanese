@@ -62,8 +62,8 @@ src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 	new daum.roughmap.Lander({
 		"timestamp" : "1700551576844",
 		"key" : "2gws2",
-		"mapWidth" : "1200",
-		"mapHeight" : "900"
+		"mapWidth" : "900",
+		"mapHeight" : "600"
 	}).render();
 </script>
 <br><br>

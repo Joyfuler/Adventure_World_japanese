@@ -25,7 +25,7 @@
 <jsp:include page="../main/header.jsp"/>
 <c:if test = "${not empty joinResult }">
 	<script>
-		alert('${joinResult eq 1? "어드벤처 월드 가입을 환영합니다." : "가입실패"}'); 
+		alert('${joinResult eq 1? "어드벤처 월드 가입을 환영합니다. 가입을 기념하여 멤버십 포인트 1000점을 지급해 드립니다." : "가입실패"}'); 
 	</script>
 </c:if>
 <c:if test = "${not empty loginResult }">
@@ -57,8 +57,8 @@
    		</div>
    		<div class="menu1">
       		<ul>
-          		<li onclick="window.open('${conPath}/member/findId.do', '_blank', 'width=500, height=450');" style="cursor:pointer;">아이디 찾기 |</li>          
-          		<li onclick="window.open('${conPath}/member/findPw.do', '_blank', 'width=500, height=450');" style="cursor:pointer;">&nbsp;비밀번호 찾기 |</li>
+          		<li onclick="window.open('${conPath}/member/findId.do', '_blank', 'width=600, height=500');" style="cursor:pointer;">아이디 찾기 |</li>          
+          		<li onclick="window.open('${conPath}/member/findPw.do', '_blank', 'width=600, height=500');" style="cursor:pointer;">&nbsp;비밀번호 찾기 |</li>
           		<li onclick="location.href='${conPath}/member/joinMember.do'" style="cursor:pointer;">&nbsp;회원가입</li>
       		</ul>
    		</div>  
