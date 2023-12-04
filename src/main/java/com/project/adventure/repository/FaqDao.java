@@ -14,5 +14,5 @@ public interface FaqDao {
 	public Faq getfaqInfo(int fno);
 	public int faqDelete(int fno);
 	public int faqModify(Faq faq);
-	public int faqinsert(Faq faq);
+	public int faqinsert(Faq faq);	
 }

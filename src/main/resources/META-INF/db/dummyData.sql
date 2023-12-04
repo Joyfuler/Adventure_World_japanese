@@ -4,7 +4,6 @@ INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL,
     VALUES
     ('one', '1234', '김나리', '010-2525-3535', 'acc@ac.com',
     '133-100', '서울시 성동구 성수동', '1번지 21호');
-
 INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL, 
     MADDRESS1, MADDRESS2, MADDRESS3)
     VALUES

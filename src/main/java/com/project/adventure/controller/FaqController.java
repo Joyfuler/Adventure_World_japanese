@@ -15,13 +15,13 @@ public class FaqController {
 	@Autowired
 	private FaqService faqService;
 	@RequestMapping(value = "faqList", method = {RequestMethod.GET,RequestMethod.POST})
-	public String faqList(Model model, Faq faq) {
-		model.addAttribute("faqList", faqService.faqList(faq));
+	public String faqList(Model model, Faq faq, String pageNum) {
+		model.addAttribute("faqList", faqService.faqList(faq));		
 		return "faq/faqList";
 	}
 	@RequestMapping(value = "workerFaqList", method = {RequestMethod.GET,RequestMethod.POST})
-	public String workerFaqList(Faq faq, Model model) {
-		model.addAttribute("faqList", faqService.faqList(faq));		
+	public String workerFaqList(Faq faq, Model model, String pageNum) {
+		model.addAttribute("faqList", faqService.faqList(faq));				
 		return "worker/workerFaqList";
 	}
 	@RequestMapping(value = "faqdelete", method = RequestMethod.GET )

@@ -35,5 +35,4 @@ public class FaqSeviceImpl implements FaqService {
 	public Faq getfaqInfo(int fno) {
 		return faqDao.getfaqInfo(fno);
 	}
-
 }
