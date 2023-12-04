@@ -139,10 +139,10 @@ $(document).ready(function(){
 	<div class="tag">
 	<ul>
 		<li>
-			<a href="${conPath }/attractionList.do">더 많은 어트랙션 보기</a>
+			<a href="${conPath }/attraction/attractionList.do">더 많은 어트랙션 보기</a>
 		</li>
 		<li>
-			<a href='${conPath }/stopDayInfo.do'>운휴 정보 보러 가기</a>
+			<a href='${conPath }/attraction/stopDayInfo.do'>운휴 정보 보러 가기</a>
 		</li>
 	</ul>
 </div>
