@@ -47,4 +47,5 @@
 	<select id="commentDetail" parameterType="int" resultType="NoticeComment">
 		SELECT * FROM NCOMMENT WHERE CNUM=#{cnum}
 	</select>
+	
 </mapper>

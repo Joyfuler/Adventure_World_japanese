@@ -117,6 +117,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 	@Override
 	public int deleteNotice(int nid) {
+		noticeDao.deleteAllComments(nid);
+		System.out.println(nid + "에 해당하는 댓글을 우선삭제");
 		return noticeDao.deleteNotice(nid);
 	}
 	private boolean filecopy(String serverFile, String backupFile) {//파일 복사가 될수도 있고 안될수도

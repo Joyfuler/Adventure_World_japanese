@@ -154,7 +154,7 @@ SELECT * FROM MEMBER;
 SELECT * FROM BANNER; ORDER BY BORDER;
 -- 새배너 만들기 id=insertBanner
 INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
-    VALUES (BANNER_SEQ.NEXTVAL, '제목1', '1', 'Y', 'mainimgs1.jpg');
+    VALUES (BANNER_SEQ.NEXTVAL, '배너1', '1', 'Y', 'banner1.jpg');
 -- 배너 순서변경 id=updateSeq
 UPDATE BANNER SET
         BORDER = '1',
@@ -201,6 +201,8 @@ UPDATE NCOMMENT SET
 -- 댓글 삭제 (id = commentDelete)
 DELETE FROM NCOMMENT WHERE CNUM=1;
 SELECT * FROM NCOMMENT WHERE NID=3 ORDER BY CGROUP DESC, CSTEP;
+-- 댓글 전부삭제 관리자가 공지삭제시 필요 (id=deleteAllComments)
+DELETE FROM NCOMMENT WHERE NID=1;
 ROLLBACK;
 SELECT NCOMMENT_SQ.CURRVAL FROM NCOMMENT;
 -- 댓글번호로 댓글 dto 가져오기(id = commentDetail)
