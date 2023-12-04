@@ -43,4 +43,7 @@
 	<delete id="deleteNotice" parameterType="int">
 		DELETE FROM NOTICE WHERE NID=#{nid}
 	</delete>
+	<delete id = "deleteAllComments" parameterType = "int">
+		DELETE FROM NCOMMENT WHERE NID=#{nid}
+	</delete>
 </mapper>

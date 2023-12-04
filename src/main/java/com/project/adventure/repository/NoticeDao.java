@@ -15,4 +15,5 @@ public interface NoticeDao {
 	public int updateNotice(Notice notice);
 	public Notice getDetailNotice(int nid);
 	public int deleteNotice(int nid);
+	public int deleteAllComments(int nid);
 }

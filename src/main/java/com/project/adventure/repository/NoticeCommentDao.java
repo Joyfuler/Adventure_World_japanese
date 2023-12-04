@@ -17,4 +17,5 @@ public interface NoticeCommentDao {
 	public int commentModify(NoticeComment noticeComment);
 	public int commentDelete(int cnum);
 	public NoticeComment commentDetail(int cnum);
+	
 }
