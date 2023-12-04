@@ -51,8 +51,9 @@
             <table class="board-tablee">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">주문번호</th>
-                    <th scope="col" class="th-id">주문자아이디</th>
+                	<th scope="col" class ="th-num">주문번호
+                    <th scope="col" class="th-denum">상세번호</th>
+                    <th scope="col" class="th-id">아이디</th>
                     <th scope="col" class="th-name">주문자명</th> 
      	            <th scope="col" class="th-email">주문자메일</th>              
      	            <th scope="col" class="th-hp">주문자폰</th>
@@ -72,11 +73,14 @@
             		</td>
             	</tr>
             </c:if>
-            <c:if test = "${orderList.size() != 0 }">			 
+            <c:if test = "${orderList.size() != 0 }">            			 
      		<c:forEach var = "orders" items="${orderList }">
 				<tr>
-					<td>	
+					<td>
 						${orders.oid }
+					</td>	
+					<td>	
+						${orders.odid }
 					</td>
 		    		<td>
 		    			${orders.mid }

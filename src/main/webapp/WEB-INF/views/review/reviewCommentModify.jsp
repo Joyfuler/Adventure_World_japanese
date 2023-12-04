@@ -10,9 +10,10 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <script>
-	$(document).ready(function(){		
+	$(document).ready(function(){
+		var rid = '${comment.rid}';		
 		$('.cancelBtn').click(function(){
-			location.reload();
+			location.href='${conPath}/review/reviewContent.do?rid='+rid;			
 		});
 	});
 </script>
