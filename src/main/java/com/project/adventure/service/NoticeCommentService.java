@@ -16,4 +16,5 @@ public interface NoticeCommentService {
 	public void commentModify(NoticeComment noticeComment, HttpServletRequest request, Model model);
 	public void commentDelete(int cnum, Model model);
 	public NoticeComment commentDetail(int cnum);
+
 }
