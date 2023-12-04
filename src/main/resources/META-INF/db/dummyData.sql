@@ -11,26 +11,20 @@ INSERT INTO MEMBER (MID, MPW, MNAME, MPHONE, MEMAIL,
     '130-120', '서울시 송파구 잠실2동' , '리센츠 아파트 201동 505호');
 
 -- 2. CART INSERTION 
-
 INSERT INTO CART (CID,P1,P2,TYPE,ATNAME1,ATNAME2,ATNAME3,
 PRICE1,PRICE2,RESULT,MID)
     VALUES (CART_SEQ.NEXTVAL, 1,2,'1','아틀란티스','박물관','지하동굴',
     '25000','18000',0, 'one');
-update cart set visitdate = '23/12/01' where cid = 76;
-commit;
-select * from cart;
-update cart set visitdate = '23/12/01' where cid = 80;
-select * from cart where mid= 'trio';
-select * from qna;
 INSERT INTO CART( CID, p1, p2, TYPE, ATNAME1, ATNAME2, ATNAME3, PRICE1, PRICE2, RESULT, VISITDATE ,MID )
     VALUES (CART_SEQ.NEXTVAL,1,1,1,'A','B','C',10000,5000,0,'2023-11-23','one');
-    SELECT * FROM CART;
     
-    
--- 3. ORDER_LIST INSERTION
-SELECT * FROM ORDER_LIST;
-INSERT INTO ORDER_LIST(OID, OP1, OP2, OTYPE, OATNAME1, OATNAME2, OATNAME3, OPRICE1, OPRICE2, ORESULT, MID)
-    VALUES (ORDER_LIST_SEQ.NEXTVAL,1,1,1,'A','B','C',10000,5000,0,'one');
+-- 3. ORDER INSERTION
+INSERT INTO ORDER_LIST (OID, ONAME, OMAIL, OPHONE, OMPOINT, PAYMENT, MID)
+    		VALUES (TO_CHAR(SYSDATE, 'RRMMDD')||TRIM(TO_CHAR(ORDER_LIST_SEQ.NEXTVAL, '000')), 
+            '장장장', 'tr@tr.com', '010-3535-2525', '100', 'kakaopay', 'trio');
+INSERT INTO ORDER_DETAIL (ODID, OP1, OP2, OTYPE, OATNAME1, OATNAME2, OATNAME3, OPRICE1, OPRICE2, ORESULT, OVISITDATE, OID)
+	    VALUES (ORDER_DETAIL_SEQ.NEXTVAL, 1, 1, 0, NULL, NULL, NULL, 53000, 53000, 0, '24/12/05', 
+	    (SELECT MAX(OID) FROM ORDER_LIST));  
     
 -- 4. BANNER INSERTION    
 INSERT INTO BANNER (BNO, BTITLE, BORDER, USAGE, BIMG)
@@ -254,8 +248,7 @@ INSERT INTO FAQ(FNO, FTITLE, FCONTENT) VALUES (FAQ_SEQ.NEXTVAL, '매직패스 �
 단, 예매 취소 시 매직패스 프리미엄 수량이 남아있지 않을 수 있으며,<br>
 당일 예매의 경우 예약 1시간 이후부터 취소 위약금 100%가 발생합니다.<br><br>
 ※ 매직패스 프리미엄은 실사용 목적을 위한 구매를 우선으로 하며, 비정상적인 방법으로의 구매,<br>
-   과도한 매수의 구매, 반복적인 구매 및 취소 행위, 재판매 행위 시 구매가 제한될 수 있습니다.<br>.');
-   
+   과도한 매수의 구매, 반복적인 구매 및 취소 행위, 재판매 행위 시 구매가 제한될 수 있습니다.<br>.');   
    
 INSERT INTO FAQ(FNO, FTITLE, FCONTENT) VALUES (FAQ_SEQ.NEXTVAL, '어드벤처를 나갔다가 다시 들어올 수 있나요? ','롯데월드 어드벤처에서는 파크 입장 후 퇴장하시면 원칙적으로 재입장이 불가능합니다.<br><br>
 단, 재입장을 도와드리는 몇가지 사항에 대해 안내해 드립니다.<br><br>
@@ -300,8 +293,7 @@ VALUES (REVIEW_SEQ.NEXTVAL, '꿈같은 시간', '나는 행복합니다. 한화 
 
 -- 12. REVIEW_COMMENT INSERTION
 INSERT INTO REVIEW_COMMENT (RCID, RCCONTENT, RCGROUP, RCSTEP, RCINDENT, RID, MID)
-VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, '잘보고갑니다', REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 1, 'one');
-     
+VALUES (REVIEW_COMMENT_SEQ.NEXTVAL, '잘보고갑니다', REVIEW_COMMENT_SEQ.CURRVAL, 0, 0, 1, 'one');     
      
 -- 13. LOSTITEM INSERTION
 INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXTVAL,'신발','아동용 핑크색 개릭터신발','shose3.jpg','범퍼카');
@@ -323,6 +315,3 @@ INSERT INTO LOSTITEM (lno,litem,lname,lphoto,Location) VALUES (LOSTITEM_SEQ.NEXT
 -- 14. REPORT INSERTION
 INSERT INTO REPORT (RNO, RREASON, REPORTDATE, MID, RID)
 VALUES (REPORT.SEQ_NEXTVAL,1, SYSDATE, 'one', 1);
-SELECT * FROM REPORT;
-SELECT * FROM REPORT;
-
