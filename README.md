@@ -25,7 +25,7 @@ Adventure World
 [8. 기능정의 및 설계](https://github.com/Joyfuler/2ndTeamProject#8-%EA%B8%B0%EB%8A%A5%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EA%B3%84) <br>
 [9. DFD (Data Flow Diagram)](https://github.com/Joyfuler/2ndTeamProject#9-dfd-data-flow-diagram) <br>
 [10. DB 설계 (ERD)](https://github.com/Joyfuler/2ndTeamProject#10-db-%EC%84%A4%EA%B3%84-erd-%EB%B0%8F-project-explorer)<br>
-[11. UI 화면 및 기능설명](https://github.com/Joyfuler/2ndTeamProject#10-db-%EC%84%A4%EA%B3%84-erd-%EB%B0%8F-project-explorer)<br>
+[11. UI 화면, 핵심기능 설명](https://github.com/Joyfuler/2ndTeamProject#11-ui-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5-%EC%84%A4%EB%AA%85)<br>
 
 
 ## 1. 주제 및 목적
