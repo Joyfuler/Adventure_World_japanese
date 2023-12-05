@@ -67,7 +67,8 @@ content: "▲";
 					<c:if test = "${param.tag1 eq tag1s.tag1}">
 						selected = "selected"
 					</c:if>
-					> ${tag1s.tag1 }</option>        
+					> ${tag1s.tag1 }
+					</option>        
         		</c:forEach>        
 			</select>	
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,7 +80,8 @@ content: "▲";
 					<c:if test = "${param.tag2 eq tag2s.tag2 }">			
 						selected = "selected"
 					</c:if>
-					>${tag2s.tag2 }</option>
+					>${tag2s.tag2 }
+					</option>
 					<br>
 				</c:forEach>
 			</select>
@@ -91,29 +93,29 @@ content: "▲";
 	</div>
 	<div class="att_back">
 		<c:if test = "${empty searchOk }">
-		<c:forEach var="attractions" items="${attractionList}">
-			<div id="att_list">
-				<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">
-					<img src="${conPath }/images/attraction_images/${attractions.aimage}"/>
-					<h3>${attractions.aname}</h3>					
-				</a>
-			</div>
-		</c:forEach>
+			<c:forEach var="attractions" items="${attractionList}">
+				<div id="att_list">
+					<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">
+						<img src="${conPath }/images/attraction_images/${attractions.aimage}"/>
+						<h3>${attractions.aname}</h3>					
+					</a>
+				</div>
+			</c:forEach>
 		</c:if>
 		<c:if test = "${not empty searchOk }">
 			<c:if test = "${searchAttractionList.size() eq 0 }">
 				<h3 style = "text-align: center;">검색 결과가 존재하지 않습니다.</h3>
 			</c:if>
-		<c:forEach var = "searchAttractions" items = "${searchAttractionList }">
-			<div id="att_list">				
-				<c:if test = "${not empty searchAttractions }">
-					<a href="${conPath }/attraction/attractionDetail.do?aid=${searchAttractions.aid }">
-					<img src="${conPath }/images/attraction_images/${searchAttractions.aimage}"/>
-					<h3>${searchAttractions.aname}</h3>										
-					</a>
-				</c:if>
-			</div>
-		</c:forEach>
+			<c:forEach var = "searchAttractions" items = "${searchAttractionList }">
+				<div id="att_list">				
+					<c:if test = "${not empty searchAttractions }">
+						<a href="${conPath }/attraction/attractionDetail.do?aid=${searchAttractions.aid }">
+						<img src="${conPath }/images/attraction_images/${searchAttractions.aimage}"/>
+						<h3>${searchAttractions.aname}</h3>										
+						</a>
+					</c:if>
+				</div>
+			</c:forEach>
 		</c:if>		
 	</div>
 </div>

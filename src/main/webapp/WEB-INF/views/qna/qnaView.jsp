@@ -50,7 +50,7 @@ color: #000;
 		<h2>QnA 게시판</h2>
 		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
 		<form class="fix02">
-		<input type="hidden" name ="pageNum" value="${param.pageNum }">
+			<input type="hidden" name ="pageNum" value="${param.pageNum }">
 	    	<table class="fix03">
 				<tr>
 					<th>제목</th>

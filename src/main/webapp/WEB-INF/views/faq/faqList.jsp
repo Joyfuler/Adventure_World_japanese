@@ -44,14 +44,12 @@ function Answer(answerId) {
 	    <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; padding-top: 50px;"> 더 궁금하신 사항이 있으면 <br>이용문의를 이용하시기 바랍니다.</h3>
 		<div id="buttons" style="float:center">
 			<input type="button" value="이용문의" class="submit" onclick="location.href='${conPath}/qna/qnaList.do?first=y'">
-		</div>
-	
+		</div>	
 	 </div>
  	<br><br><br>
 	 <div id="board-search">
 	        <div class="container">
-	            <div class="search-window"> 
-	 		
+	            <div class="search-window">	 		
 				</div>
 			</div>
 	</div>
@@ -63,13 +61,19 @@ function Answer(answerId) {
 	            <c:set var="i" value="1"/>
 	            <c:forEach items="${faqList }" var="faq">
 	               <tr>
-						<td><img src="${conPath}/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border: 1px solid blue;"></td>
-						<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
-						</span></th>
+						<td>
+							<img src="${conPath}/images/Q.jpg" style="width: 60px; height: 55px; border-radius: 50%; border: 1px solid blue;">
+						</td>
+						<th>
+							<span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
+							</span>
+						</th>
 					</tr>
 					<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->
 						<td></td>
-					<th style="font-size: 18px; font-weight: normal">${faq.fcontent}</th>
+						<th style="font-size: 18px; font-weight: normal">
+							${faq.fcontent}
+						</th>
 					</tr>
 					<c:set var="i" value="${i+1 }"/>
 	            </c:forEach>

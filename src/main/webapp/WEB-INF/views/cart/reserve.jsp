@@ -65,7 +65,7 @@
 					&nbsp;&nbsp;&nbsp;⊙ 만 65세 이상 : 어린이 요금 적용(기타 우대 적용불가)<br>
 				</li>
 				<li>
-				<span style="font-weight:bold;">※ 유아놀이시설</span><br>
+					<span style="font-weight:bold;">※ 유아놀이시설</span><br>
 		        	&nbsp;&nbsp;&nbsp;⊙ 어드벤처 : 매직붕붕카, 햇님달님, 어린이 범퍼카, 로티트레인, 스윙팡팡, 유레카, 키즈토리아, 언더씨킹덤,드림보트<br>
 					&nbsp;&nbsp;&nbsp;⊙ 매직아일랜드 : 머킹의 회전목마, 쁘띠빵빵
 				</li>

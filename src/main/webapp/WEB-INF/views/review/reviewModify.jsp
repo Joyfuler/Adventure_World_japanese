@@ -57,7 +57,7 @@
 							.split('\\').pop();
 				}
 				$(this).siblings('.rphoto').val(filename);
-		 });h
+		 });
     });    
     </script>
 </head>

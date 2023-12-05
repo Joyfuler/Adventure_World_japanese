@@ -44,10 +44,10 @@ function qpwChk(qno){
 </c:if>
 <jsp:include page="../main/header.jsp"/>
 <form action="${conPath }/qna/qnaList.do" name="frm" method="post">
-<input type="hidden" name = "wid" value="${param.wid }">
-<input type="hidden" name = "pageNum" value="${param.pageNum }">
-<section class="notice">
-  <div class="page-title" >
+	<input type="hidden" name = "wid" value="${param.wid }">
+	<input type="hidden" name = "pageNum" value="${param.pageNum }">
+	<section class="notice">
+  	<div class="page-title" >
         <div class="container">
             <h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">QnA</h3>
         </div>

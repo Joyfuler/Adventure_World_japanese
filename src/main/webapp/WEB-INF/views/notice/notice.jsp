@@ -40,7 +40,7 @@ function go_search(){
                    <label for="search" class="blind"> 공지사항검색</label>
                    <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
                    <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-            		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/notice/list.do'"></button>  
+            	   <input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/notice/list.do'"></button>  
                	</div>
             </div>
         </div>
@@ -88,7 +88,8 @@ function go_search(){
 </div>
 </form>
 <br>
-<br><br><br><br><br><br><br>
+<br><br><br><br>
+<br><br><br>
 </article>
 </body>
 <jsp:include page="../main/footer.jsp"/>
