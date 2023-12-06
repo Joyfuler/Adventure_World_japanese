@@ -44,7 +44,7 @@ Adventure World
 
 
 ## 4. 작업일정 (Gantt Chart)
-![aab-horz](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/ac9e08ea-dd18-4428-be53-f8e62433ae21)
+![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/436c59b0-425c-45b5-aefa-5a3ea5cc3fc7)
 
 
 ## 5. 요구사항 분석
@@ -116,4 +116,4 @@ Adventure World
 ![슬라이드58](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d1616cfd-94f1-4b3c-9035-f5d8b731f4b6)
 ![슬라이드59](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/43682084-d26a-44df-98e5-807158cc213b)
 ![슬라이드60](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f2a2542e-a78f-4179-acb0-15fe47526681)
-![슬라이드61](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5bc665d-35db-4544-96df-dd2461ad48cb)
+![슬라이드61]([https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5bc665d-35db-4544-96df-dd2461ad48cb](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/9b11dc3a-91fd-45d1-8900-f2942322af60))
