@@ -44,7 +44,7 @@ Adventure World
 
 
 ## 4. 작업일정 (Gantt Chart)
-
+![gantt chart](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/368de630-4cd0-46df-8090-e968ae714037)
 
 
 ## 5. 요구사항 분석
