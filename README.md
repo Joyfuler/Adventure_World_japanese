@@ -116,4 +116,4 @@ Adventure World
 ![슬라이드58](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d1616cfd-94f1-4b3c-9035-f5d8b731f4b6)
 ![슬라이드59](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/43682084-d26a-44df-98e5-807158cc213b)
 ![슬라이드60](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f2a2542e-a78f-4179-acb0-15fe47526681)
-![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/436c59b0-425c-45b5-aefa-5a3ea5cc3fc7)
+![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c4bd22e0-8fd4-4ef2-8f65-6efcafdb9b13)
