@@ -34,7 +34,7 @@ Adventure World
 
 
 ## 2. 개발환경
-![슬라이드5](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d2a7053e-26d3-424c-8df3-58ce965076ec)
+![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
 
 
 ## 3. 작업분할 구조도 (WBS)
