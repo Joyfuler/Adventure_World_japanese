@@ -134,10 +134,10 @@
 			    	<td>
 				    	${reviews.mname }
 				    </td>
-				    <td>
+				    <td onclick="goReviewPage(${reviews.rid})" style = "cursor:pointer;">
 				    	${reviews.rtitle}
 				    </td>
-				    <td style = "width: 300px;">
+				    <td onclick="goReviewPage(${reviews.rid})" style = "width: 300px; cursor:pointer;">
 				    	<c:out value="${reviews.rcontent }" escapeXml="true"/>
 				    </td>
 		    		<td>
