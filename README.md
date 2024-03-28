@@ -34,7 +34,7 @@ Adventure World
 
 
 ## 2. 개발환경
-![슬라이드5](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d2a7053e-26d3-424c-8df3-58ce965076ec)
+![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
 
 
 ## 3. 작업분할 구조도 (WBS)
@@ -44,7 +44,7 @@ Adventure World
 
 
 ## 4. 작업일정 (Gantt Chart)
-![aab-horz](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/ac9e08ea-dd18-4428-be53-f8e62433ae21)
+![gantt chart](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/368de630-4cd0-46df-8090-e968ae714037)
 
 
 ## 5. 요구사항 분석
@@ -116,4 +116,4 @@ Adventure World
 ![슬라이드58](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d1616cfd-94f1-4b3c-9035-f5d8b731f4b6)
 ![슬라이드59](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/43682084-d26a-44df-98e5-807158cc213b)
 ![슬라이드60](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f2a2542e-a78f-4179-acb0-15fe47526681)
-![슬라이드61](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5bc665d-35db-4544-96df-dd2461ad48cb)
+![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c4bd22e0-8fd4-4ef2-8f65-6efcafdb9b13)
