@@ -38,9 +38,9 @@ Adventure World
 
 
 ## 3. 作業分解構造図 (WBS)
-![슬라이드6](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/0348d2f1-973a-42b9-b547-a12f91e5d758)
-![슬라이드7](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/13a3290f-1d16-4349-a558-85fd3852a821)
-![슬라이드8](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/07056cd9-4e68-4fe6-980c-26fbfba5e999)
+![스크린샷 2024-05-15 183642](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/cc8c9e55-463b-4978-953c-4e8113b4a2a2)
+![스크린샷 2024-05-15 184914](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/477b93c9-bc8d-4aae-a35a-e8126e2fa765)
+![스크린샷 2024-05-15 184925](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/c57beaae-9943-431c-bd15-9d230761fb40)
 
 
 ## 4. 作業工程表 Gantt Chart
