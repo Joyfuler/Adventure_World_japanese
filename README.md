@@ -4,7 +4,7 @@ Adventure World
 
 - プロジェクト名 : Adventure World (遊園地のチケット予約・レビューサービス提供) <br>
 - プロジェクト人数 : 3人 (リーダー：張鎭旭(チャン・ジヌク） / イ・ジョンジン / パク・ジェヨン)
-- 進行期間 : 2023.11.20 ~ 2023.12.04 (二週間) <br>
+- 進行期間 : 2023.11.20 ~ 2023.12.04 (二週間) ／日本語訳進行中（期間未定）<br>
 - DBMS : Oracle 11g Express Edition <br>
 - 使用言語 : Java SE 8 Platform, HTML5, CSS, CSS3, JavaScript <br>
 - フレームワーク: Spring, Mybatis
