@@ -10,7 +10,7 @@ Adventure World
 - フレームワーク: Spring, Mybatis
 - Tools : Spring Tool Suite 3.9.13 / Sqldeveloper 19.2, eXERD
 - Open Source : jquery-3.7.1, jqueryUI, Bootstrap-Arcodion UI, Kakao Map Api, Ckeditor API, summernote editor API, KakaoPay / KCP API / Iamport API (for test payment)
-- プロジェクト紹介: 本プロジェクトは、遊園地サイトのチケット予約を再現し、「カートに入れる・決済」までのプロセスを具現しました。また、サイト内の活動を応じてメンバーシップポイントを獲得し、チケット予約の際決済額から割引ができるように企画しました。ポイント制度でサイト内にユーザの活動を促し、割引で更にチケットを予約するようにしています。
+- プロジェクト紹介: 本プロジェクトは、遊園地サイトのチケット予約を再現し、「カートに入れる・決済」までのプロセスを具現しました。また、サイト内の活動を応じてメンバーシップポイントを獲得し、チケット予約の際決済額から割引ができるように企画しました。ポイント制度でサイト内にユーザの活動を促し、割引で更にチケットを予約します。
 
 ![스크린샷 2024-05-15 170331](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/59182ade-01f0-42fb-86ce-93ccf8af2c2b)
 
