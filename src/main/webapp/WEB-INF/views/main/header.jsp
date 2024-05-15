@@ -23,9 +23,9 @@
 			<ul>
 				<c:if test ="${empty member and empty worker}">						
 						<li><a href="${conPath }/member/loginMember.do">login</a></li>
-						<li><a href="${conPath }/member/joinMember.do">회원가입</a></li>
-						<li><a href="${conPath }/worker/workerLoginForm.do">관리자</a></li>
-						<li><a href="${conPath }/main.do">HOME</a></li>						
+						<li><a href="${conPath }/member/joinMember.do">会員登録</a></li>
+						<li><a href="${conPath }/worker/workerLoginForm.do">管理者ログイン</a></li>
+						<li><a href="${conPath }/main.do">ホーム</a></li>						
 				</c:if>
 				<c:if test = "${not empty member and empty worker}">						
 						<li>
@@ -35,16 +35,16 @@
 											float:right;
 											background:#f7f7f7;"> 
 								<span style="display:block; height:15px; font-family:'IBM Plex Sans KR', sans-serif;
-								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
+								padding: 0; font-size:80%;  color:gray;">マイページ</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
-								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
-								<a href="${conPath }/order/orderList.do?mid=${member.mid }">주문내역</a>
+								<a href="${conPath }/cart/list.do?mid=${member.mid}">カート</a>
+								<a href="${conPath }/order/orderList.do?mid=${member.mid }">注文履歴</a>
 							</div>
 						</div>
 						</li>
-						<li><a href="${conPath }/member/logout.do">logout</a></li>
-						<li><a href="${conPath }/member/modify.do">정보수정</a></li>
+						<li><a href="${conPath }/member/logout.do">ログアウト</a></li>
+						<li><a href="${conPath }/member/modify.do">個人情報修正</a></li>
 						<li><a href="${conPath }/main.do">HOME</a></li>
 						<li>${member.mname}(${member.mid})</li>
 						<li>point: ${member.mpoint }</li>
@@ -57,16 +57,16 @@
 											float:right;
 											background:#f7f7f7;"> 
 								<span style="display:block; height:15px; font-family:'IBM Plex Sans KR', sans-serif;
-								padding: 0; font-size:80%;  color:gray;">마이페이지</span>
+								padding: 0; font-size:80%;  color:gray;">マイページ</span>
 							</button>
 							<div class="dropdown-content" style="min-width:90px;">
-								<a href="${conPath }/cart/list.do?mid=${member.mid}">장바구니</a>
-								<a href="${conPath }/order/orderList.do?mid=${member.mid}">주문내역</a>
+								<a href="${conPath }/cart/list.do?mid=${member.mid}">カート</a>
+								<a href="${conPath }/order/orderList.do?mid=${member.mid}">注文履歴</a>
 							</div>
 						</div>
 						</li>
 						<li><a href="${conPath }/worker/logout.do">logout</a></li>
-						<li><a href="${conPath }/worker/workerMain.do" style = "color:blue;">관리자모드</a></li>
+						<li><a href="${conPath }/worker/workerMain.do" style = "color:blue;">管理者モード</a></li>
 						<li>${worker.wname}(${worker.wid})</li>
 				</c:if>
 			</ul>
@@ -81,44 +81,44 @@
 			<div class="category">
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>즐길거리</span>
+						<span style = "font-weight:bold;">施設紹介</span>
 					</button>
 					<div class="dropdown-content">
-						<a href="${conPath }/attraction/attractionList.do">어트랙션</a>
-						<a href="${conPath }/paradeList.do">공연 / 퍼레이드</a>
+						<a href="${conPath }/attraction/attractionList.do">アトラクション</a>
+						<a href="${conPath }/paradeList.do">公演・パレード</a>
 					</div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span style = "font-size: 0.95em;">예매 / 이벤트</span>
+						<span style = "font-size: 0.95em; font-weight:bold;">予約ページ</span>
 					</button>
 					<div class="dropdown-content">
-			        	<a href="${conPath }/cart/reserve.do">예매</a>
-			        	<a href="${conPath }/event.do">이달의 혜택</a>
+			        	<a href="${conPath }/cart/reserve.do">チケット予約</a>
+			        	<a href="${conPath }/event.do">今月のイベント</a>
 					</div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>이용가이드</span>
+						<span style = "font-weight:bold;">ご利用の案内</span>
 					</button>
 					<div class="dropdown-content">
-						<a href="${conPath }/attraction/stopdayInfo.do">운영/운휴</a>
-						<a href="${conPath }/howCome.do">오시는 길</a>
+						<a href="${conPath }/attraction/stopdayInfo.do">休日案内</a>
+						<a href="${conPath }/howCome.do">アクセスガイド</a>
 					</div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn"> 
-						<span>커뮤니티</span>
+						<span style = "font-weight:bold;">コミュニティ</span>
 				    </button>
 				    <div class="dropdown-content">
-						<a href="${conPath }/notice/list.do">공지사항</a>
-						<a href="${conPath }/faqList.do">Q&amp;A</a>
-						<a href="${conPath }/lostItemList.do">분실물 센터</a>
+						<a href="${conPath }/notice/list.do">お知らせ</a>
+						<a href="${conPath }/faqList.do">よくあるご質問</a>
+						<a href="${conPath }/lostItemList.do">紛失届</a>
 				    </div>
 				</div>
 				<div class="dropdown">
 					<button class="dropbtn" onclick = "location.href='${conPath}/review/reviewList.do'"> 
-						<span style = "font-size: 0.95em;">리뷰</span>
+						<span style = "font-size: 0.95em; font-weight:bold;">レビュー</span>
 					</button>
 					
 				</div>

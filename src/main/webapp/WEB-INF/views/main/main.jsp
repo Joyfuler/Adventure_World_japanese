@@ -81,14 +81,14 @@ $(document).ready(function(){
 </div>
 <div id="mainTodayArea" >
 	<a href="guide">
- 		<img src="${conPath }/images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;오늘의 파크 운영시간 : &nbsp;&nbsp;오전 10시 ~ 오후 9시
+ 		<img src="${conPath }/images/icons/mainTodayArea_tit_icon.png"/>&nbsp;&nbsp;&nbsp;今日の運営時間 : &nbsp;&nbsp;午前 10時 ∼ 午後 9時まで
 	</a>
 </div>	
 <br>
 <div class="mainbox">
 	<div class="mainCon mainCon1">
-		<p class="mainTit"><span style="font-weight:bold">자신에게 맞는 혜택</span> 알아볼까요?</p><br>
-		<p class="mainTxt">현재 진행 중인 할인혜택을 알아보세요!</p>		 
+		<p class="mainTit"><span style="font-weight:bold">イベント一覧</span></p><br>
+		<p class="mainTxt">現在開催中のイベントをお知らせします！</p>		 
 		<div class="boxArea">                             
 			<div class="box-tr">
 				<c:forEach var="events" items="${eventList }" begin="0" end="3">
@@ -116,16 +116,16 @@ $(document).ready(function(){
 <!--  main3  -->
 
 <div id="mainback">
-	<div id="maintitle">재미있고 즐거운&nbsp;<span style="font-weight:bold;">다양한 어트랙션!</span>
+	<div id="maintitle">今注目の&nbsp;<span style="font-weight:bold;">アトラクション</span>
 	</div>
 	<div class="tag">
 		<ul>
-			<li>아이와 함께 </li>
-			<li>야외에서 신나게 </li>
-			<li>실내에서 쾌적하게!</li>
+			<li>子供と一緒に、 </li>
+			<li>フィールドで楽しく、 </li>
+			<li>パーク内で快適に！</li>
 		</ul>
 	</div>
-	<h2 style="font-size:30px; text-align:center; line-height:80px;">인기 어트랙션</h2>
+	<h2 style="font-size:30px; text-align:center; line-height:80px;">アトラクション一覧</h2>
 	<div id="mainimg">
 		<c:forEach var="attractions" items="${bestList}" begin="0" end="5">
 		 		<div id="att_list">
@@ -139,10 +139,10 @@ $(document).ready(function(){
 	<div class="tag">
 	<ul>
 		<li>
-			<a href="${conPath }/attraction/attractionList.do">더 많은 어트랙션 보기</a>
+			<a href="${conPath }/attraction/attractionList.do">詳細</a>
 		</li>
 		<li>
-			<a href='${conPath }/attraction/stopDayInfo.do'>운휴 정보 보러 가기</a>
+			<a href='${conPath }/attraction/stopDayInfo.do'>休日のご案内</a>
 		</li>
 	</ul>
 </div>
