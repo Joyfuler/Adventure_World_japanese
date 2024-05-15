@@ -29,12 +29,12 @@ Adventure World
 
 
 ## 1. テーマと目的
-![슬라이드3](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8277cea5-8329-4de0-8808-8bef0a138967)
-![슬라이드4](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/a406f6de-e512-4a07-a3eb-a628f8fd7d16)
+![스크린샷 2024-05-15 173740](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/d0354b32-2c49-4727-83d5-6dde8847cd8f)
+![스크린샷 2024-05-15 173750](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/34ebd967-a3ca-48e8-aa91-abbd988a0645)
 
 
 ## 2. 開発環境
-![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
+![스크린샷 2024-05-15 173805](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/6389a9ff-b45f-453e-bd05-767ff4906523)
 
 
 ## 3. 作業分解構造図 (WBS)
