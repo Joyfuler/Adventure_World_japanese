@@ -17,50 +17,50 @@ Adventure World
 # 目次
 [1. テーマと目的、参考にしたサイト](https://github.com/Joyfuler/2ndTeamProject#1-%EC%A3%BC%EC%A0%9C-%EB%B0%8F-%EB%AA%A9%EC%A0%81)<br>
 [2. 開発環境](https://github.com/Joyfuler/2ndTeamProject#2-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD)<br>
-[3. 작업분할 구조도 (WBS)](https://github.com/Joyfuler/2ndTeamProject#3-%EC%9E%91%EC%97%85%EB%B6%84%ED%95%A0-%EA%B5%AC%EC%A1%B0%EB%8F%84-wbs) <br>
-[4. 작업일정 Gantt Chart](https://github.com/Joyfuler/2ndTeamProject#4-%EC%9E%91%EC%97%85%EC%9D%BC%EC%A0%95-gantt-chart) <br>
-[5. 요구사항 분석 ](https://github.com/Joyfuler/2ndTeamProject#5-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EB%B6%84%EC%84%9D) <br>
-[6. 유스케이스 다이어그램](https://github.com/Joyfuler/2ndTeamProject#6-%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
-[7. 순차 다이어그램](https://github.com/Joyfuler/2ndTeamProject#7-%EC%88%9C%EC%B0%A8-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
-[8. 기능정의 및 설계](https://github.com/Joyfuler/2ndTeamProject#8-%EA%B8%B0%EB%8A%A5%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EA%B3%84) <br>
+[3. 作業分解構造図　(WBS)](https://github.com/Joyfuler/2ndTeamProject#3-%EC%9E%91%EC%97%85%EB%B6%84%ED%95%A0-%EA%B5%AC%EC%A1%B0%EB%8F%84-wbs) <br>
+[4. 作業工程表 Gantt Chart](https://github.com/Joyfuler/2ndTeamProject#4-%EC%9E%91%EC%97%85%EC%9D%BC%EC%A0%95-gantt-chart) <br>
+[5. 要件定義書](https://github.com/Joyfuler/2ndTeamProject#5-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EB%B6%84%EC%84%9D) <br>
+[6. ユースケース図](https://github.com/Joyfuler/2ndTeamProject#6-%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
+[7. シーケンス図](https://github.com/Joyfuler/2ndTeamProject#7-%EC%88%9C%EC%B0%A8-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
+[8. 機能定義及び設計](https://github.com/Joyfuler/2ndTeamProject#8-%EA%B8%B0%EB%8A%A5%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EA%B3%84) <br>
 [9. DFD (Data Flow Diagram)](https://github.com/Joyfuler/2ndTeamProject#9-dfd-data-flow-diagram) <br>
-[10. DB 설계 (ERD)](https://github.com/Joyfuler/2ndTeamProject#10-db-%EC%84%A4%EA%B3%84-erd-%EB%B0%8F-project-explorer)<br>
-[11. UI 화면, 핵심기능 설명](https://github.com/Joyfuler/2ndTeamProject#11-ui-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5-%EC%84%A4%EB%AA%85)<br>
+[10. データベース設計 (ERD)](https://github.com/Joyfuler/2ndTeamProject#10-db-%EC%84%A4%EA%B3%84-erd-%EB%B0%8F-project-explorer)<br>
+[11. UI画面と機能説明](https://github.com/Joyfuler/2ndTeamProject#11-ui-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5-%EC%84%A4%EB%AA%85)<br>
 
 
-## 1. 주제 및 목적
+## 1. テーマと目的
 ![슬라이드3](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8277cea5-8329-4de0-8808-8bef0a138967)
 ![슬라이드4](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/a406f6de-e512-4a07-a3eb-a628f8fd7d16)
 
 
-## 2. 개발환경
+## 2. 開発環境
 ![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
 
 
-## 3. 작업분할 구조도 (WBS)
+## 3. 作業分解構造図 (WBS)
 ![슬라이드6](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/0348d2f1-973a-42b9-b547-a12f91e5d758)
 ![슬라이드7](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/13a3290f-1d16-4349-a558-85fd3852a821)
 ![슬라이드8](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/07056cd9-4e68-4fe6-980c-26fbfba5e999)
 
 
-## 4. 작업일정 (Gantt Chart)
+## 4. 作業工程表 Gantt Chart
 ![gantt chart](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/368de630-4cd0-46df-8090-e968ae714037)
 
 
-## 5. 요구사항 분석
+## 5. 要件定義書
 ![슬라이드11](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/48f44596-5db3-4be7-a861-550eeaec774a)
 
 
-## 6. 유스케이스 다이어그램
+## 6. ユースケース図
 ![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/ff2bb500-934a-4fb4-93aa-5f55552c64f6)
 
 
-## 7. 순차 다이어그램
+## 7. シーケンス図
 ![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/33749722-d0a5-4f3c-93a3-669b1626ceca)
 ![슬라이드14](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8bc851c1-75da-4936-9a77-a3689a5c0b10)
 
 
-## 8. 기능정의 및 설계
+## 8. 機能定義書及び設計
 ![슬라이드19](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d4d23d89-2b5d-4b2e-9f0c-431a7f020284)
 ![슬라이드20](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/e554e7d5-f70a-4642-b5c1-16655a7164ae)
 ![슬라이드21](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/2d30107d-deac-4508-ae80-7c55b94b56fc)
@@ -73,12 +73,12 @@ Adventure World
 ![슬라이드18](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5034197-be8e-4a7f-b28d-e30520064eee)
 
 
-## 10. DB 설계 (ERD) 및 Project Explorer
+## 10.データベース設計(ERD)
 ![슬라이드22](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/9a173aec-e5cd-4aba-ac8d-b51e25551f62)
 ![슬라이드23](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/525ef218-f3b7-4aaf-b7c9-4d600d17f472)
 
 
-## 11. UI 화면 및 기능 설명
+## 11. UI画面及び機能説明
 ![슬라이드24](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d17ed9fa-b494-4770-8b60-40df5a18cbac)
 ![슬라이드25](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8f1fe26c-a7d5-4ce6-a881-332790e55af4)
 ![슬라이드26](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/41fece22-99b7-48c2-b3b7-fa9b60a32123)
