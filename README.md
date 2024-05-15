@@ -1,11 +1,6 @@
 Adventure World
 =================
-<<<<<<< HEAD
-<<<<<<< HEAD
-> 팀 프로젝트
-=======
 > チームプロジェクト
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 
 - プロジェクト名 : Adventure World (遊園地のチケット予約・レビューサービス提供) <br>
 - プロジェクト人数 : 3人 (リーダー：張鎭旭(チャン・ジヌク） / イ・ジョンジン / パク・ジェヨン)
@@ -33,57 +28,6 @@ Adventure World
 [11. UI画面と機能説明](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#11-ui%E7%94%BB%E9%9D%A2%E5%8F%8A%E3%81%B3%E6%A9%9F%E8%83%BD%E8%AA%AC%E6%98%8E)<br>
 
 
-<<<<<<< HEAD
-## 1. 주제 및 목적
-=======
-> チームプロジェクト
-
-- プロジェクト名 : Adventure World (遊園地のチケット予約・レビューサービス提供) <br>
-- プロジェクト人数 : 3명 (リーダー：張鎭旭(チャン・ジヌク） / イ・ジョンジン / パク・ジェヨン)
-- 進行期間 : 2023.11.20 ~ 2023.12.04 (二週間) <br>
-- DBMS : Oracle 11g Express Edition <br>
-- 使用言語 : Java SE 8 Platform, HTML5, CSS, CSS3, JavaScript <br>
-- フレームワーク: Spring, Mybatis
-- Tools : Spring Tool Suite 3.9.13 / Sqldeveloper 19.2, eXERD
-- Open Source : jquery-3.7.1, jqueryUI, Bootstrap-Arcodion UI, Kakao Map Api, Ckeditor API, summernote editor API, KakaoPay / KCP API / Iamport API (for test payment)
-- プロジェクト紹介: 本プロジェクトは、遊園地サイトのチケット予約を再現し、「カートに入れる・決済」までのプロセスを具現しました。また、サイト内の活動を応じてメンバーシップポイントを獲得し、チケット予約の際決済額から割引ができるように企画しました。ポイント制度でサイト内にユーザの活動を促し、割引で更にチケットを予約するようにしています。
-
-![main](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/a8437fb1-5704-4f6f-bf51-a5e705f7fb77)
-
-# 目次
-[1. テーマと目的、参考にしたサイト](https://github.com/Joyfuler/2ndTeamProject#1-%EC%A3%BC%EC%A0%9C-%EB%B0%8F-%EB%AA%A9%EC%A0%81)<br>
-[2. 開発環境](https://github.com/Joyfuler/2ndTeamProject#2-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD)<br>
-[3. 作業分解構造図　(WBS)](https://github.com/Joyfuler/2ndTeamProject#3-%EC%9E%91%EC%97%85%EB%B6%84%ED%95%A0-%EA%B5%AC%EC%A1%B0%EB%8F%84-wbs) <br>
-[4. 作業工程表 Gantt Chart](https://github.com/Joyfuler/2ndTeamProject#4-%EC%9E%91%EC%97%85%EC%9D%BC%EC%A0%95-gantt-chart) <br>
-[5. 要件定義書](https://github.com/Joyfuler/2ndTeamProject#5-%EC%9A%94%EA%B5%AC%EC%82%AC%ED%95%AD-%EB%B6%84%EC%84%9D) <br>
-[6. ユースケース図](https://github.com/Joyfuler/2ndTeamProject#6-%EC%9C%A0%EC%8A%A4%EC%BC%80%EC%9D%B4%EC%8A%A4-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
-[7. シーケンス図](https://github.com/Joyfuler/2ndTeamProject#7-%EC%88%9C%EC%B0%A8-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8) <br>
-[8. 機能定義及び設計](https://github.com/Joyfuler/2ndTeamProject#8-%EA%B8%B0%EB%8A%A5%EC%A0%95%EC%9D%98-%EB%B0%8F-%EC%84%A4%EA%B3%84) <br>
-[9. DFD (Data Flow Diagram)](https://github.com/Joyfuler/2ndTeamProject#9-dfd-data-flow-diagram) <br>
-[10. データベース設計 (ERD)](https://github.com/Joyfuler/2ndTeamProject#10-db-%EC%84%A4%EA%B3%84-erd-%EB%B0%8F-project-explorer)<br>
-[11. UI画面と機能説明](https://github.com/Joyfuler/2ndTeamProject#11-ui-%ED%99%94%EB%A9%B4-%EB%B0%8F-%EA%B8%B0%EB%8A%A5-%EC%84%A4%EB%AA%85)<br>
-
-
-## 1. テーマと目的
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-![슬라이드3](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8277cea5-8329-4de0-8808-8bef0a138967)
-![슬라이드4](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/a406f6de-e512-4a07-a3eb-a628f8fd7d16)
-
-
-<<<<<<< HEAD
-## 2. 개발환경
-![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
-
-
-## 3. 작업분할 구조도 (WBS)
-=======
-## 2. 開発環境
-![내것만남겨놓음](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f3b9803f-7d4d-445e-beec-85219fa03dca)
-
-
-## 3. 作業分解構造図 (WBS)
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-=======
 ## 1. テーマと目的
 ![스크린샷 2024-05-15 173740](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/d0354b32-2c49-4727-83d5-6dde8847cd8f)
 ![스크린샷 2024-05-15 173750](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/34ebd967-a3ca-48e8-aa91-abbd988a0645)
@@ -94,32 +38,11 @@ Adventure World
 
 
 ## 3. 作業分解構造図 (WBS)
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 ![슬라이드6](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/0348d2f1-973a-42b9-b547-a12f91e5d758)
 ![슬라이드7](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/13a3290f-1d16-4349-a558-85fd3852a821)
 ![슬라이드8](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/07056cd9-4e68-4fe6-980c-26fbfba5e999)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 4. 작업일정 (Gantt Chart)
-=======
-## 4. 作業工程表 Gantt Chart
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
-![gantt chart](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/368de630-4cd0-46df-8090-e968ae714037)
-
-
-## 5. 要件定義書
-![슬라이드11](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/48f44596-5db3-4be7-a861-550eeaec774a)
-
-
-## 6. ユースケース図
-![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/ff2bb500-934a-4fb4-93aa-5f55552c64f6)
-
-
-<<<<<<< HEAD
-## 7. 순차 다이어그램
-=======
 ## 4. 作業工程表 Gantt Chart
 ![gantt chart](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/368de630-4cd0-46df-8090-e968ae714037)
 
@@ -133,23 +56,11 @@ Adventure World
 
 
 ## 7. シーケンス図
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-=======
-## 7. シーケンス図
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 ![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/33749722-d0a5-4f3c-93a3-669b1626ceca)
 ![슬라이드14](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8bc851c1-75da-4936-9a77-a3689a5c0b10)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 8. 기능정의 및 설계
-=======
 ## 8. 機能定義書及び設計
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-=======
-## 8. 機能定義書及び設計
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 ![슬라이드19](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d4d23d89-2b5d-4b2e-9f0c-431a7f020284)
 ![슬라이드20](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/e554e7d5-f70a-4642-b5c1-16655a7164ae)
 ![슬라이드21](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/2d30107d-deac-4508-ae80-7c55b94b56fc)
@@ -162,28 +73,12 @@ Adventure World
 ![슬라이드18](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5034197-be8e-4a7f-b28d-e30520064eee)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 10. DB 설계 (ERD) 및 Project Explorer
-=======
 ## 10.データベース設計(ERD)
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-=======
-## 10.データベース設計(ERD)
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 ![슬라이드22](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/9a173aec-e5cd-4aba-ac8d-b51e25551f62)
 ![슬라이드23](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/525ef218-f3b7-4aaf-b7c9-4d600d17f472)
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 11. UI 화면 및 기능 설명
-=======
 ## 11. UI画面及び機能説明
->>>>>>> dbf7bd167e76e12d49b14a435a8572d2660dc3a1
-=======
-## 11. UI画面及び機能説明
->>>>>>> 5ee4ee02b270d49a8264d8509dd9a3cec78724f1
 ![슬라이드24](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d17ed9fa-b494-4770-8b60-40df5a18cbac)
 ![슬라이드25](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8f1fe26c-a7d5-4ce6-a881-332790e55af4)
 ![슬라이드26](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/41fece22-99b7-48c2-b3b7-fa9b60a32123)
