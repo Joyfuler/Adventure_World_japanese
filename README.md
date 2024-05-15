@@ -3,7 +3,7 @@ Adventure World
 > チームプロジェクト
 
 - プロジェクト名 : Adventure World (遊園地のチケット予約・レビューサービス提供) <br>
-- プロジェクト人数 : 3명 (リーダー：張鎭旭(チャン・ジヌク） / イ・ジョンジン / パク・ジェヨン)
+- プロジェクト人数 : 3人 (リーダー：張鎭旭(チャン・ジヌク） / イ・ジョンジン / パク・ジェヨン)
 - 進行期間 : 2023.11.20 ~ 2023.12.04 (二週間) <br>
 - DBMS : Oracle 11g Express Edition <br>
 - 使用言語 : Java SE 8 Platform, HTML5, CSS, CSS3, JavaScript <br>
@@ -12,7 +12,7 @@ Adventure World
 - Open Source : jquery-3.7.1, jqueryUI, Bootstrap-Arcodion UI, Kakao Map Api, Ckeditor API, summernote editor API, KakaoPay / KCP API / Iamport API (for test payment)
 - プロジェクト紹介: 本プロジェクトは、遊園地サイトのチケット予約を再現し、「カートに入れる・決済」までのプロセスを具現しました。また、サイト内の活動を応じてメンバーシップポイントを獲得し、チケット予約の際決済額から割引ができるように企画しました。ポイント制度でサイト内にユーザの活動を促し、割引で更にチケットを予約するようにしています。
 
-![main](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/a8437fb1-5704-4f6f-bf51-a5e705f7fb77)
+![스크린샷 2024-05-15 170331](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/59182ade-01f0-42fb-86ce-93ccf8af2c2b)
 
 # 目次
 [1. テーマと目的、参考にしたサイト](https://github.com/Joyfuler/2ndTeamProject#1-%EC%A3%BC%EC%A0%9C-%EB%B0%8F-%EB%AA%A9%EC%A0%81)<br>
