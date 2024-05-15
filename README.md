@@ -34,7 +34,7 @@ Adventure World
 
 
 ## 2. 開発環境
-![스크린샷 2024-05-15 173805](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/6389a9ff-b45f-453e-bd05-767ff4906523)
+![스크린샷 2024-05-15 174712](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/6a7d1421-5278-497f-b67b-54107062bbdb)
 
 
 ## 3. 作業分解構造図 (WBS)
