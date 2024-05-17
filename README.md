@@ -56,7 +56,7 @@ Adventure World
 
 
 ## 7. シーケンス図
-![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/33749722-d0a5-4f3c-93a3-669b1626ceca)
+![KakaoTalk_20231205_164534997](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/cda5c52a-b98d-4598-9571-4d3940d846ac)
 ![슬라이드14](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8bc851c1-75da-4936-9a77-a3689a5c0b10)
 
 
