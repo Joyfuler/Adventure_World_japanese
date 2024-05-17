@@ -60,7 +60,7 @@ Adventure World（アドベンチャーワールド）
 ![KakaoTalk_20231205_164534997-Page-1의 복사본 drawio](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/8c5aaf67-2559-4fa1-944e-1e2bc0c66a06)
 
 
-## 8. 機能定義書及び設計
+## 8. 機能定義及び設計
 ![슬라이드19](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d4d23d89-2b5d-4b2e-9f0c-431a7f020284)
 ![슬라이드20](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/e554e7d5-f70a-4642-b5c1-16655a7164ae)
 ![슬라이드21](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/2d30107d-deac-4508-ae80-7c55b94b56fc)
