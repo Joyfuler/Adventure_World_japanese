@@ -52,7 +52,7 @@ Adventure World
 
 
 ## 6. ユースケース図
-![ADVENTURE최종1205_수정](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/ff2bb500-934a-4fb4-93aa-5f55552c64f6)
+![스크린샷 2024-05-17 132150](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/e3833a65-240f-49ae-a959-d7f6e4761524)
 
 
 ## 7. シーケンス図
