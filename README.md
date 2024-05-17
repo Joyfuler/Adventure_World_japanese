@@ -44,7 +44,7 @@ Adventure World
 
 
 ## 4. 作業工程表 Gantt Chart
-![cats](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/2614bd36-d128-4a16-a479-ac0165657aa2)
+![cats](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/c643ac42-1937-4b38-845f-cfd7b7575dc1)
 
 
 ## 5. 要件定義書
