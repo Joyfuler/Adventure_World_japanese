@@ -12,7 +12,7 @@ Adventure World
 - Open Source : jquery-3.7.1, jqueryUI, Bootstrap-Arcodion UI, Kakao Map Api, Ckeditor API, summernote editor API, KakaoPay / KCP API / Iamport API (for test payment)
 - プロジェクト紹介: 本プロジェクトは、遊園地サイトのチケット予約を再現し、「カートに入れる・決済」までのプロセスを具現しました。また、サイト内の活動を応じてメンバーシップポイントを獲得し、チケット予約の際決済額から割引ができるように企画しました。ポイント制度でサイト内にユーザの活動を促し、割引で更にチケットを予約するよう試みます。
 
-![스크린샷 2024-05-15 170331](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/59182ade-01f0-42fb-86ce-93ccf8af2c2b)
+![스크린샷 2024-05-17 171115](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/1df04f18-c558-4fe8-a476-da8e066b3f61)
 
 # 目次
 [1. テーマと目的、参考にしたサイト](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#1-%E3%83%86%E3%83%BC%E3%83%9E%E3%81%A8%E7%9B%AE%E7%9A%84)<br>
