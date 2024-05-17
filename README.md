@@ -48,7 +48,7 @@ Adventure World
 
 
 ## 5. 要件定義書
-![슬라이드11](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/48f44596-5db3-4be7-a861-550eeaec774a)
+![스크린샷 2024-05-17 105858](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/71d7e21d-fb1f-4ee0-9559-679d5162dd10)
 
 
 ## 6. ユースケース図
