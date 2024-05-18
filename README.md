@@ -79,8 +79,8 @@ Adventure World（アドベンチャーワールド）
 
 
 ## 11. UI画面及び機能説明
-![슬라이드24](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d17ed9fa-b494-4770-8b60-40df5a18cbac)
-![슬라이드25](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/8f1fe26c-a7d5-4ce6-a881-332790e55af4)
+![스크린샷 2024-05-18 234219](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/74b8f840-ddb8-4696-b1bf-e628134a2e83)
+![스크린샷 2024-05-18 234230](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/1eb6b694-b18c-4874-8b35-1018b2313c49)
 ![슬라이드26](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/41fece22-99b7-48c2-b3b7-fa9b60a32123)
 ![슬라이드27](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/9fefac66-1bd2-432a-8a84-697805b144db)
 ![슬라이드28](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/52cd7f6e-e8b0-4428-8380-fc6a3da40c39)
