@@ -120,9 +120,9 @@ $(document).ready(function(){
 	</div>
 	<div class="tag">
 		<ul>
-			<li>子供と一緒に、 </li>
-			<li>フィールドで楽しく、 </li>
-			<li>パーク内で快適に！</li>
+			<li>子供と一緒! </li>
+			<li>室外で楽しく、 </li>
+			<li>どこでも快適に！</li>
 		</ul>
 	</div>
 	<h2 style="font-size:30px; text-align:center; line-height:80px;">アトラクション一覧</h2>
@@ -149,9 +149,9 @@ $(document).ready(function(){
 </div>
 <div class="main_bottom">
 	<div id="line">
-		<h1>진행중인 퍼레이드</h1>
+		<h1>開催中のパレート</h1>
 	</div>  
-	<h3>꿈과 환상의 세계로 어서오세요!</h3>
+	<h3>夢と希望の世界にようこそ！</h3>
 	<div id="main_view_">     
 		<c:forEach var="parades" items="${paradeList }" begin="0" end="3">         
 		<div id="parade">		   

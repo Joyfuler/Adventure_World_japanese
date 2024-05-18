@@ -16,12 +16,12 @@
 		<div class="top">	
 			<div class="links">
 				<br>	
-				<a href="#">월드 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">이용약관</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">개인정보처리방침</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">이메일무단수집거부</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">인재채용</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">사이트맵</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">ワールド紹介</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">利用約款</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">個人情報方針</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">メール</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">リクルート</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#">サイトマップ</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 		</div>
 		<div class="bottom">
@@ -31,8 +31,8 @@
 			<div class="left" style="text-align:left" >
 				<p class="flogo"><img src="${conPath }/images/adventureLogo.png" width=130px></p>
 				<div>
-					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;서울특별시 서대문구 신촌로 141 위고인빌딩 202호 강의실 | 대표자 : 이소영 </span></p>
-					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;사업자등록번호 : 219-85-00014 | 통신판매업신고번호 : 신촌 제5513호 | 전화 : 1661-2000</span></p>
+					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;ソウル特別市西大門区新村路141ウィゴインビル202号講義室 / 代表者:イ·ソヨン</span></p>
+					<p><span>&nbsp;&nbsp;&nbsp;&nbsp;登録番号 : 219-85-00014 | 通信販売番号 : 新村 第5513号 | 電話番号 : 1661-2000</span></p>
 					<p class="copyright">&nbsp;&nbsp;&nbsp;&nbsp;COPYRIGHT 2023 EZEN AC. ALL RIGHTS RESERVED.</p>
 				</div>
 			</div>
