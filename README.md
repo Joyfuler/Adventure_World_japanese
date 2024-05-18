@@ -61,9 +61,9 @@ Adventure World（アドベンチャーワールド）
 
 
 ## 8. 機能定義及び設計
-![슬라이드19](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d4d23d89-2b5d-4b2e-9f0c-431a7f020284)
-![슬라이드20](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/e554e7d5-f70a-4642-b5c1-16655a7164ae)
-![슬라이드21](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/2d30107d-deac-4508-ae80-7c55b94b56fc)
+![스크린샷1](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/b361f29c-b268-4818-9c1b-13ebfe1aa1cb)
+![스크린샷2](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/f5b4c49f-e408-455a-8ed9-a0b9953b4415)
+![스크린샷3](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/397be8e2-a54e-46ed-a8c7-c3f5317796fe)
 
 
 ## 9. DFD (Data Flow Diagram)
