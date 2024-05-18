@@ -67,10 +67,10 @@ Adventure World（アドベンチャーワールド）
 
 
 ## 9. DFD (Data Flow Diagram)
-![슬라이드15](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/991b0eb2-a97c-4a95-85f6-fad8d7db96f3)
-![슬라이드16](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d20a2dba-2242-4dab-ba1a-453ed767d848)
-![슬라이드17](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/2098a056-6ae0-4eda-9a99-7d0c99fdd0ad)
-![슬라이드18](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/c5034197-be8e-4a7f-b28d-e30520064eee)
+![스크린샷 2024-05-18 113006](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/4da07645-93b3-40f8-9001-7628a1fbe93b)
+![스크린샷 2024-05-18 113018](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/7a141940-74fe-4b11-94b0-84f6e4b70fc4)
+![스크린샷 2024-05-18 113026](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/4a5de02f-c0e8-41ef-9ac3-a74d4fe41ad7)
+![스크린샷 2024-05-18 113043](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/893fc6a0-2616-4b8a-83ba-1ea3ce6491c6)
 
 
 ## 10.データベース設計(ERD)
