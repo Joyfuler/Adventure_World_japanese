@@ -74,7 +74,7 @@ Adventure World（アドベンチャーワールド）
 
 
 ## 10.データベース設計(ERD)
-![슬라이드22](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/9a173aec-e5cd-4aba-ac8d-b51e25551f62)
+![스크린샷 2024-05-18 113636](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/d1a256ca-d05b-4998-89da-6ded13505480)
 ![슬라이드23](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/525ef218-f3b7-4aaf-b7c9-4d600d17f472)
 
 
