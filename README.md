@@ -61,7 +61,7 @@ Adventure World（アドベンチャーワールド）
 
 
 ## 8. 機能定義及び設計
-![스크린샷1](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/b361f29c-b268-4818-9c1b-13ebfe1aa1cb)
+![스크린샷1](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/cda11a9f-8c96-4260-a62e-1cdab1fa484a)
 ![스크린샷2](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/ebb738fb-2c33-42bf-a74a-590a389ca449)
 ![스크린샷3](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/397be8e2-a54e-46ed-a8c7-c3f5317796fe)
 
