@@ -25,7 +25,7 @@ Adventure World（アドベンチャーワールド）
 [8. 機能定義及び設計](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#8-%E6%A9%9F%E8%83%BD%E5%AE%9A%E7%BE%A9%E6%9B%B8%E5%8F%8A%E3%81%B3%E8%A8%AD%E8%A8%88) <br>
 [9. DFD (Data Flow Diagram)](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#9-dfd-data-flow-diagram) <br>
 [10. データベース設計 (ERD)](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#10%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E8%A8%AD%E8%A8%88erd)<br>
-[11. UI画面と機能説明](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#11-ui%E7%94%BB%E9%9D%A2%E5%8F%8A%E3%81%B3%E6%A9%9F%E8%83%BD%E8%AA%AC%E6%98%8E)<br>
+[11. UI画面と機能の説明](https://github.com/Joyfuler/Adventure_World_japanese/blob/japanese/README.md#11-ui%E7%94%BB%E9%9D%A2%E5%8F%8A%E3%81%B3%E6%A9%9F%E8%83%BD%E8%AA%AC%E6%98%8E)<br>
 
 
 ## 1. テーマと目的
@@ -78,7 +78,7 @@ Adventure World（アドベンチャーワールド）
 ![스크린샷 2024-05-18 113808](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/def15ca3-d844-48fe-85f0-ed9f4ca0964f)
 
 
-## 11. UI画面及び機能説明
+## 11. UI画面及び機能の説明
 ![스크린샷 2024-05-18 234219](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/74b8f840-ddb8-4696-b1bf-e628134a2e83)
 ![스크린샷 2024-05-18 234230](https://github.com/Joyfuler/Adventure_World_japanese/assets/137759165/1eb6b694-b18c-4874-8b35-1018b2313c49)
 ![슬라이드26](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/41fece22-99b7-48c2-b3b7-fa9b60a32123)
