@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		makeRandomNumber();
 		String setFrom = "triojang36@gmail.com";
 		String toMail = memail;
-		String title = "Adventure World 회원가입 인증메일입니다.";
-		String content = "Adventure World 홈페이지를 방문해주셔서 감사합니다." + "<br><br>인증 번호는  <span style = \"color:red;\">" + authNumber + "</span> 입니다."
-				+ "<br><br>해당 인증번호를 인증번호 확인란에 입력해 주세요." + "<br><br>감사합니다.";
+		String title = "Adventure World 会員登録の認証メールです。";
+		String content = "Adventure World へようこそ！" + "<br><br>認証コードは  <span style = \"color:red;\">" + authNumber + "</span> です。"
+				+ "<br><br>会員登録ページにて上の認証コードを入力してください。" + "<br><br>ありがとうございます。";
 
 		mailSend(setFrom, toMail, title, content);
 		System.out.println("인증코드는: " + authNumber);

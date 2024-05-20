@@ -9,6 +9,6 @@
 <meta charset="UTF-8">
 </head>
 <body>	
-	${midConfirmResult eq 0? "사용 가능한 아이디입니다" : "중복된 아이디입니다"}
+	${midConfirmResult eq 0? "使用可能なIDです" : "既に登録されているIDです"}
 </body>
 </html>

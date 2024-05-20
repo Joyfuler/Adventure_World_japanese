@@ -9,6 +9,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	${memailConfirmResult eq 0? "사용 가능한 이메일입니다" : "중복된 이메일입니다"}
+	${memailConfirmResult eq 0? "使用可能なメールです" : "既に使われているメールです"}
 </body>
 </html>

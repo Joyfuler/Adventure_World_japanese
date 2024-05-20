@@ -52,7 +52,7 @@ const autoHyphen = (target) => {
 				$('#pwChkResult').text('비밀번호가 일치하지 않습니다.');			
 			} else if(pw == pwChk) {
 				$('#pwChkResult').css('color','#212529');
-				$('#pwChkResult').text('비밀번호가 일치합니다.');
+				$('#pwChkResult').text('パスワードが一致しています');
 			}
 		});
 		/* 이메일 중복확인 */
@@ -90,7 +90,7 @@ const autoHyphen = (target) => {
 				success: function(data){
 					var textData = $(data).text().trim();
 					checkInput.prop('disabled', false);					
-					alert('이메일로 인증번호를 발송했습니다.');												
+					alert('メールに認証コードを送りました。');												
 					authCodeCompare.val(textData);
 				},
 				error : function(error){					
@@ -106,7 +106,7 @@ const autoHyphen = (target) => {
 				$('.emailAuthResult').text('전송된 인증번호와 입력한 인증번호가 서로 다릅니다.');
 			} else {
 				$('.emailAuthResult').css('color','#212529');
-				$('.emailAuthResult').text('인증번호가 일치합니다.');
+				$('.emailAuthResult').text('認証コードが一致しています');
 			}
 		});
 	});		
@@ -119,13 +119,13 @@ function submitChk(){
 	var emailAuthResult = $('.emailAuthResult').text().trim();
 	var mname = $('.mname').val();
 	var mphone = $('.mphone').val();
-	if (idConfirmResult != '사용 가능한 아이디입니다'){
+	if (idConfirmResult != '使用可能なIDです'){
 		alert('아이디 중복체크를 해 주세요');
 		return false;	
 	} else if (pwChkResult != '비밀번호가 일치합니다.'){
 		alert('비밀번호 형식을 체크하세요');
 		return false;
-	} else if (memailChkResult != '사용 가능한 이메일입니다'){
+	} else if (memailChkResult != '使用可能なIDです'){
 		alert('메일 형식을 체크하세요.');
 		return false;
 	} else if (mname == ''){
@@ -150,57 +150,57 @@ function submitChk(){
 <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="join3">
-	<div class="join_title">회원가입</div>
+	<div class="join_title">会員登録</div>
 		<form method="post" name="joinForm" action = "${conPath }/member/join.do">		
 			<div class="basic_box">
 				<div class="basic_box_text">
-					<label>아이디</label><span style = color:red;>*</span>
+					<label>ID</label><span style = color:red;>*</span>
 					<br>
 					<input type="text" name="mid" class="mid dup">			    
 			    	<br>
 			    	<span id = "idConfirmResult" style = "color:red;"> &nbsp; &nbsp; &nbsp; </span>
 			    	<br><br>
-			    	<label>비밀번호</label><span style = color:red;>*</span>
+			    	<label>PW</label><span style = color:red;>*</span>
 			    	<br>
 			    	<input type="password" name="mpw" class="dup mpw">
 				    <br>
-			    	<label>비밀번호 확인</label><span style = color:red;>*</span>
+			    	<label>PW確認</label><span style = color:red;>*</span>
 				    <br>
 			    	<input type="password" name="mpwChk" class="dup mpwChk">
 				    <br>
 			    	<span id = "pwChkResult" style = "color:red;"></span>
 				    <br><br>
-			    	<label>이름</label><span style = color:red;>*</span>
+			    	<label>名前</label><span style = color:red;>*</span>
 			    	<br>
 			    	<input type="text" name="mname" class="dup mname">
 			    	<br>
-			    	<label>휴대폰 번호</label><span style = color:red;>*</span>
+			    	<label>携帯番号</label><span style = color:red;>*</span>
 			    	<br>
 			    	<input type="text" name="mphone" class="dup mphone" maxlength="13" 
 					oninput="autoHyphen(this)">
 					<br>			    
-			    	<label>우편번호</label>
+			    	<label>郵便番号</label>
 			    	<br>
 			    	<input type="text" class="dup" id="sample6_postcode" name="maddress1"  style="width:390px;" readonly= "readonly">      
-			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center; font-family:'IBM Plex Sans KR', sans-serif;">
+			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="郵便番号検索" style="width:140px; float:right; text-align:center; font-family:'IBM Plex Sans KR', sans-serif;">
 			   		<br>
-					<label>주소</label>
+					<label>住所</label>
 					<br>
 					<input type="text" class="dup"  id="sample6_address" name = "maddress2"  size="50" name="address2"  value="${dto.address1}" readonly = "readonly">
 					<br><br>
-					<label>상세주소(직접입력)</label>
+					<label>住所の詳細</label>
 					<br>
 					<input type="text"  class="dup" id="sample6_detailAddress"  name="maddress3"   value="${dto.address2}" size="50">
 					<br>
 					<input type="hidden"  class="dup" id="sample6_extraAddress" value="${dto.address3}" readonly>
 					<br>
-					<label>이메일</label><span style = color:red;>*</span>
+					<label>メール</label><span style = color:red;>*</span>
 					<br>
 					<input type="text" name="memail" class="memail dup" style = "width:430px;">
-					<input type="button" id = "mail-Check-Btn" value="이메일인증" style="width:100px; float:right;"><br>
+					<input type="button" id = "mail-Check-Btn" value="メール認証" style="width:100px; float:right;"><br>
 					<span id = "emailChkResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span>					
 					<div class="mail-check-box">
-						<input class="form-control mail-check-Input" placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled" maxlength="6">
+						<input class="form-control mail-check-Input" placeholder="6桁の認証コードを入力" disabled="disabled" maxlength="6">
 						<br>
 						<span class = "emailAuthResult" style = "color:red;">&nbsp; &nbsp; &nbsp;</span>
 						<br>
@@ -212,17 +212,17 @@ function submitChk(){
 			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>		
 			<script>
 		    function sample6_execDaumPostcode() {
-		        new daum.Postcode( {
-		            oncomplete: function(data) {
+		        new daum.Postcode( {		        	
+		            oncomplete: function(data) {		            	
 		                var addr = '';
 		                var extraAddr = ''; 
 		                if (data.userSelectedType === 'R') { 
-		                    addr = data.roadAddress;
+		                    addr = data.roadAddressEnglish;
 		                } else { 
-		                    addr = data.jibunAddress;
+		                    addr = data.jibunAddressEnglish;
 		                }
 		                if(data.userSelectedType === 'R'){
-		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                    if(data.bname !== '' && /[dong|ro|ga]$/g.test(data.bname)){
 		                        extraAddr += data.bname;
 		                    }
 		                    if(data.buildingName !== '' && data.apartment === 'Y'){
@@ -249,8 +249,8 @@ function submitChk(){
 		<br><br><br>
 		<div class="join_buttons">
 			<div class="join_buttons_text">		    	
-		    	<input type="submit" value="회원가입" class="join_submit" style = "margin-left: 100px;" onclick = "return submitChk()">		    	
-		    	<input type="button" value="돌아가기" class="join_submit" onclick="history.back()">
+		    	<input type="submit" value="会員登録" class="join_submit" style = "margin-left: 100px;" onclick = "return submitChk()">		    	
+		    	<input type="button" value="前へ" class="join_submit" onclick="history.back()">
 		    </div>
 		</div>
 	</form>
