@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원정보 수정</title>
+<title>会員情報修正</title>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -69,44 +69,44 @@
 <jsp:include page="../main/header.jsp"/>
 <article>
 <div class="join3">
-	<div class="join_title">회원정보 수정</div>
+	<div class="join_title">会員情報修正</div>
 	<form action = "${conPath }/member/modify.do" method="post" name="joinForm">
 		<input type = "hidden" name = "dbmpw" class = "dbmpw" value = "${member.mpw }"> 
 		<div class="basic_box">
 			<div class="basic_box_text">
-					<label>아이디(변경불가)</label>
+					<label>IDの確認</label>
 					<br>
 					<input type = "text" name = "mid" value = "${member.mid }" class = "dup" readonly = "readonly">
 					<br>				
-				    <label>기존 비밀번호 확인</label><span style = "color: red;">*</span>
+				    <label>現在のパスワード</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="password" class="dup dbmpwChk">
 			    	<br> 
 			    	<span class = "dbmpwChkMsg" style = "color: red; font-size : 0.9em;">&nbsp; &nbsp; </span>
 			    	<br><br>
-				    <label>새 비밀번호</label><span style = "color: red;">*</span>
+				    <label>変更するパスワード</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="password" name="mpw" class = "mpw">
 			    	<br>
-				    <label>이름</label><span style = "color: red;">*</span>
+				    <label>名前</label><span style = "color: red;">*</span>
 			    	<br>
 			    	<input type="text" name="mname" class="dup" value="${member.mname}">
 			    	<br>
-				    <label id=last>휴대폰 번호</label><span style = "color: red;">*</span>
+				    <label id=last>携帯番号</label><span style = "color: red;">*</span>
 			    	<input type="text" name="mphone" class = "mphone" class="dup" value="${member.mphone}"><br>			   
-			    	<label>우편번호</label>
+			    	<label>郵便番号</label>
 			    	<br>
 			    	<input type="text" class="dup"  id="sample6_postcode" name="maddress1" value="${member.maddress1}"  style="width:400px;" readonly = "readonly">      
-			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="우편번호 찾기" style="width:140px; float:right; text-align:center" ><br>
-					<label>주소</label>
+			    	<input type="button" onclick="sample6_execDaumPostcode()" class="dup" value="郵便番号検索" style="width:140px; float:right; text-align:center" ><br>
+					<label>住所</label>
 					<br>
 					<input type="text" class="dup" id="sample6_address"  size="50" name="maddress2" value="${member.maddress2}" readonly><br><br>
-					<label>상세주소</label>
+					<label>住所の詳細</label>
 					<br>
 					<input type="text" class="dup" id="sample6_detailAddress"  name="maddress3" value="${member.maddress3}" size="50"><br>
 					<input type="hidden" class="dup" id="sample6_extraAddress">
 					<br>				
-					<label>이메일(변경불가)</label>
+					<label>メール(変更は不可)</label>
 					<br>
 					<input type="text" name="memail" class="dup" value = "${member.memail }" readonly = "readonly">
 					<br>
@@ -150,9 +150,9 @@
 		<br><br>
 		<div class="join_buttons">
 			<div class="join_buttons_text">
-			    <input type="submit" value="정보수정" class="join_submit" onclick="return modifyChk()"> 
-			    <input type="reset" value="취소" class="join_cancel">
-			    <input type="button" value="회원탈퇴" class="withdrawal_button join_cancel">
+			    <input type="submit" value="修正" class="join_submit" onclick="return modifyChk()"> 
+			    <input type="reset" value="初期化" class="join_cancel">
+			    <input type="button" value="会員脱退" class="withdrawal_button join_cancel">
 			</div>
 		</div>
 	</form>

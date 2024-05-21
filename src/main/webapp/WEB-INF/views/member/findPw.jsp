@@ -59,43 +59,43 @@ const autoHyphen = (target) => {
 </c:if>
 <div id="find_div">
 	<div class="find_border">
-   		<h2 class="findId_title" style = "text-align:center;">비밀번호 찾기</h2>
-   		<h5 style="text-align:center; margin-right:7px;">회원가입시 입력한 회원정보를 입력해주세요. </h5>
+   		<h2 class="findId_title" style = "text-align:center;">PWを探す</h2>
+   		<h5 style="text-align:center; margin-right:7px;">IDに登録している情報を入力して、PWを変更できます。</h5>
    		<form action= "${conPath }/member/findPw.do" method = "post" >      
       		<table class="find-id">
          		<tr>
          			<th>
-         				&nbsp;&nbsp;&nbsp;아이디&nbsp;&nbsp;&nbsp;&nbsp;
+         				&nbsp;&nbsp;&nbsp;ID&nbsp;&nbsp;&nbsp;&nbsp;
          			</th>
          			<td>
-         				<input type="text" name="mid" class="input-text" maxlength="20" placeholder = "아이디입력"/>
+         				<input type="text" name="mid" class="input-text" maxlength="20" placeholder = "IDを入力"/>
        				</td>
          		</tr>
       		</table>
       		<table class="find-id">
       	 		<tr>
             		<th>
-            			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;
+            			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名前&nbsp;&nbsp;&nbsp;
             		</th>
             		<td>
-            			<input type="text" name="mname" class="input-text" maxlength="20" placeholder = "이름입력" />
+            			<input type="text" name="mname" class="input-text" maxlength="20" placeholder = "名前を入力" />
             		</td>			
       	 		</tr>
       		</table>
       		<table class="find-id">
          		<tr>
 	         		<th>
-	         	    	전화번호&nbsp;&nbsp;
+	         	    	電話番号&nbsp;&nbsp;
 	         		</th>
 	         		<td>
-	         			<input type="text" name="mphone" class="input-text" maxlength="13" placeholder = "전화번호입력" oninput="autoHyphen(this)"/>
+	         			<input type="text" name="mphone" class="input-text" maxlength="13" placeholder = "電話番号を入力" oninput="autoHyphen(this)"/>
 	         		</td>
          		</tr>
       		</table>
 	        <br>
 	        <div class="findId-button">
-      			<input type="submit" value="찾기" class="button" onclick="return findPwChk()" />
-      			<input type = "button" value = "닫기" class = "button" style = "margin-left: 10px; "onclick = "window.close()"/>
+      			<input type="submit" value="確認" class="button" onclick="return findPwChk()" />
+      			<input type = "button" value = "閉じる" class = "button" style = "margin-left: 10px; "onclick = "window.close()"/>
       		</div>
 	   </form>
    </div>   
