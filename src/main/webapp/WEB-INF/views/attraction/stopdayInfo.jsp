@@ -28,26 +28,26 @@
 <jsp:include page="../main/header.jsp"/>
 	<div class="operation_box">
 		<div class="operation_box_title">
-			<h2 style="text-align:center;">이번 주 운휴 어트랙션 시설 안내</h2>
+			<h2 style="text-align:center;">今週の運休施設情報のご案内</h2>
 		</div>
 		<div class="operation_date_box">
 			<c:set var="now" value="<%=new java.util.Date() %>"></c:set>
-			<h5 style = "text-align:center;"> 오늘의 날짜</h5>
+			<h5 style = "text-align:center;"> 今日は：</h5>
 			<h3 style="text-align:center;">
 				<fmt:formatDate value="${now}"></fmt:formatDate>
 			</h3>
 		</div>		
 		<div class="operation_time_box">
 			<div class="time_box_title" style = "background-color: ">
-				운영 시간
+				運営時間
 			</div>
 			<div class="time_box_time"> 
-				오전 10시 ~ 밤 10시 
+				午前10時 ～ 午後 10時 
 			</div>
 		</div>		
 		<br><br>
-		<h2 style="font-size:30px; text-align:center; line-height:100px;">이번 주 운휴시설</h2>
-		<h3 style = "text-align:center;">운휴 기간 : ${weekSchedule }</h3>		 
+		<h2 style="font-size:30px; text-align:center; line-height:100px;">今週の運休施設</h2>
+		<h3 style = "text-align:center;">運休期間 : ${weekSchedule }</h3>		 
 		<div id="rest_box">
 			<c:forEach var="stopAttractions" items="${stopdayAttractionList}">
 				<a href="${conPath }/attraction/attractionDetail.do?aid=${stopAttractions.aid}">

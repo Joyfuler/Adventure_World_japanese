@@ -30,45 +30,19 @@ background-color:#6317ed; color: white;}
 <jsp:include page="../main/header.jsp"/>
 <div class="page-title" style = "text-align: center; font-weight: bold;">
 	<div class="container" style = "background-color: #5c10e6; color: white;">
-		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">Adventure World 오시는 길</h3>		
+		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">Adventure World アクセスガイド</h3>		
 	</div>
 	<br><br>
 	<span>
-	주소: 서울 서대문구 신촌로 141 위고인빌딩 2층 <br>
-	(지번) 대현동 104-48 <br>
-	연락처: 02-393-4321
-	</span>	
+	住所： 〒649-2201 和歌山県西牟婁郡白浜町堅田2399番地 <br>
+	連絡先： 0570-06-4481（代表）
+	</span><br><br>	
+	<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d3320.5804628712604!2d135.376294!3d33.668031!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzPCsDQwJzA0LjIiTiAxMzXCsDIyJzMzLjYiRQ!5e0!3m2!1sko!2sus!4v1717388692311!5m2!1sko!2sus" width="900" height="600" style="border:0; text-align:center; margin: 0 auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+	</iframe>
 </div>
-
-<div id="daumRoughmapContainer1700551576844" 
-class="root_daum_roughmap root_daum_roughmap_landing"
-style = "margin: 0 auto;"></div>
-
-<script charset="UTF-8" 
-class="daum_roughmap_loader_script" 
-src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-<!-- * 카카오맵 - 지도퍼가기 -->
-<!-- 1. 지도 노드 -->
-<div id="daumRoughmapContainer1700551576844" class="root_daum_roughmap root_daum_roughmap_landing"></div>
-
-<!--
-	2. 설치 스크립트
-	* 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
--->
-<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
-
-<!-- 3. 실행 스크립트 -->
-<script charset="UTF-8">
-	new daum.roughmap.Lander({
-		"timestamp" : "1700551576844",
-		"key" : "2gws2",
-		"mapWidth" : "900",
-		"mapHeight" : "600"
-	}).render();
-</script>
 <br><br>
   <div class="button-box">
-    <input type="button" value="네이버 지도로 확인" class="submit" onClick="goToNaverMap()" style = "cursor:pointer;">
+    <input type="button" value="NaverMapで確認" class="submit" onClick="goToNaverMap()" style = "cursor:pointer;">
   </div><br><br><br>
         <div class="container">
             <table class="board-table" style="font-size:20px"> 
@@ -76,7 +50,7 @@ src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
         			<td>
           				<div class="location">
             				<img src="images/loca.png">            					
-            					<h4>이젠아카데미 Adventure World (서울 서대문구 신촌로 141)</h4><br><br>      
+            					<h4>Adventure World（和歌山県西牟婁郡白浜町堅田2399番地）</h4><br><br>      
           				</div>
         			</td>
       			</tr>	
