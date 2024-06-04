@@ -120,9 +120,9 @@
 </c:if>
 <jsp:include page="../main/header.jsp"/>
 <div class="event01">
-	<div class="event02">공지사항</div>
-    <div class="event03">
-		<div class="event04">공지</div>
+	<div class="event02">お知らせ</div>
+    <div class="event03" style = "height:100px;">
+		<div class="event04">お知らせ</div>
 		<div class="event05">${notice.ntitle}</div>
 		<div class="event06"><fmt:formatDate value="${notice.nrdate}" type="date"/></div>
 	</div>
@@ -130,19 +130,19 @@
 		<img src="${conPath }/images/notice_images/${notice.ncontent}" width="1150px"/>
 	</div>
 	<div class="replyContainer">
-	<h2>댓글</h2>
+	<h2>コメント</h2>
 	<form action="${conPath }/noticeComment/write.do">
 		<input type="hidden" name="nid" value="${param.nid }">
 		<input type="hidden" name="pageNum" value="${param.pageNum }">
 	<c:if test="${member.mname == null}">
-		<input type="hidden" name="cname" value="비회원" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이">
+		<input type="hidden" name="cname" value="ログインしていません" style="width:100px; height:50px; float:left; margin: 5px;">
 	</c:if>
 		<input type="hidden" name="cname" value="${member.mname }" style="width:100px; height:50px; float:left; margin: 5px;" placeholder="글쓴이">
 		<textarea rows="2" cols="5" name="cmemo" style="width:50%; height:50px; float:left; margin: 5px;"></textarea>
-		<input type="submit" value="댓글저장" class="btn" style="height:50px; float:left; margin: 5px;">
+		<input type="submit" value="コメント作成" class="btn" style="height:50px; float:left; margin: 5px;">
 	</form>
 	<p style="clear:both;"></p>
-	<c:if test="${empty commentList }">등록된 댓글이 없습니다</c:if>
+	<c:if test="${empty commentList }">コメントがありません</c:if>
 	<c:forEach items="${commentList }" var="comment">
 		<div class="reply${comment.cnum }">
 			<div>
@@ -158,9 +158,9 @@
 				<span class="commentContent"">${comment.cmemo }</span> 
 				<i class="commentInfo">from ${comment.cname} - at ${comment.cdate }</i>
 			<c:if test="${comment.cname eq member.mname}">
-                <span onclick="location='${conPath}/noticeComment/delete.do?cnum=${comment.cnum }&nid=${param.nid }&pageNum=${param.pageNum }&comPageNum=${comPaging.currentPage }'" class="btn">[ 삭제 ]</span>
+                <span onclick="location='${conPath}/noticeComment/delete.do?cnum=${comment.cnum }&nid=${param.nid }&pageNum=${param.pageNum }&comPageNum=${comPaging.currentPage }'" class="btn">[ 削除 ]</span>
             </c:if>
-				<span id="${comment.cnum }" class="replyView" class="btn" class="replyBtn" style="cursor: pointer;">[ 답변 ]</span>
+				<span id="${comment.cnum }" class="replyView" class="btn" class="replyBtn" style="cursor: pointer;">[ リプライ ]</span>
 			</div>
 			<div class="replySpace${comment.cnum }"></div>
 		</div>
@@ -168,7 +168,7 @@
 	</c:forEach>
 	<div class="paging">
 		<c:if test="${comPaging.startPage > comPaging.blockSize }">
-			[ <a href="${conPath }/notice/detail.do?nid=${param.nid}&pageNum=${param.pageNum }&commentPageNum=${comPaging.startPage-1}">이전</a> ]
+			[ <a href="${conPath }/notice/detail.do?nid=${param.nid}&pageNum=${param.pageNum }&commentPageNum=${comPaging.startPage-1}">前へ</a> ]
 		</c:if>
 		<c:forEach var="i" begin="${comPaging.startPage }" end="${comPaging.endPage }">
 			<c:if test="${i eq comPaging.currentPage }">
@@ -179,12 +179,12 @@
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/notice/detail.do?nid=${param.nid}&pageNum=${param.pageNum }&commentPageNum=${comPaging.endPage+1}">다음</a> ]
+			[ <a href="${conPath }/notice/detail.do?nid=${param.nid}&pageNum=${param.pageNum }&commentPageNum=${comPaging.endPage+1}">次へ</a> ]
 		</c:if>
 	</div>
 	<div class="event09">
 		<div class="event10">
-	   		<input type="button" value="목 록" class="btn" onclick="location.href='${conPath }/notice/list.do'">
+	   		<input type="button" value="リスト" class="btn" onclick="location.href='${conPath }/notice/list.do'">
 		</div>
 	</div>
 <jsp:include page="../main/footer.jsp"/>
