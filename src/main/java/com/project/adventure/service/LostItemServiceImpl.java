@@ -24,7 +24,7 @@ public class LostItemServiceImpl implements LostItemService {
 	private LostItemDao lostitemDao;
 	@Override
 	public List<LostItem> lostitemList(String pageNum,LostItem lostItem) {
-		Paging paging = new Paging(lostitemDao.itemTotCnt(lostItem), pageNum, 5, 5);
+		Paging paging = new Paging(lostitemDao.itemTotCnt(lostItem), pageNum, 5, 4);
 		lostItem.setStartRow(paging.getStartRow());
 		lostItem.setEndRow(paging.getEndRow());
 		return lostitemDao.lostitemList(lostItem);

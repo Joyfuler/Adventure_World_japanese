@@ -142,13 +142,13 @@ $(function(){
 		</script>
 	</c:if>
 	<c:if test="${not empty deleteItemReult }">
-		<script >	
+		<script>	
 		alert("삭제가 완료되었습니다");
 		</script>
 	</c:if>
 	<div class="page-title">
 		<div class="container">
-			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">분실물 검색</h3>
+			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">紛失物リスト</h3>
 		</div>
 	</div>
 	    <div class="board-searchh">
@@ -162,10 +162,10 @@ $(function(){
 	                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
 	                        </label>
 	                        <input type="text" id="datepicker" name="schDate" value="${param.schDate}" 
-	                        	autocomplete="off" placeholder="분실 날짜" >
-	                        <input id="search" type="text" name="schWord" placeholder="분실한 소지품을 입력해주세요." value="${param.schWord}" size="50">
-	                        <input type="button" class="btn btn-dark lostItemSch" value="검색" style="margin-left: 20px; ">
-	                 		<input type="button"  class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/lostItemList.do'">
+	                        	autocomplete="off" placeholder="紛失日付" >
+	                        <input id="search" type="text" name="schWord" placeholder="所持品の名前を入力" value="${param.schWord}" size="50">
+	                        <input type="button" class="btn btn-dark lostItemSch" value="検索" style="margin-left: 20px; ">
+	                 		<input type="button"  class="btn btn-dark" value="全体一覧" onclick="location.href='${conPath}/lostItemList.do'">
                 </div>
             </div>
         </div>
@@ -175,12 +175,12 @@ $(function(){
 	            <table class="board-table">
 	                <thead>
 	                <tr>
-	                    <th scope="col" class="th-num">분류</th>
-	                    <th scope="col" class="th-title">습득물</th>
-	                    <th scope="col" class="th-date">습득장소</th>
-	                     <th scope="col" class="th-num">습득물 사진</th>
-	                    <th scope="col" class="th-num">습득일</th>
-	                    <th scope="col" class="th-title">처리결과</th>
+	                    <th scope="col" class="th-num">分類</th>
+	                    <th scope="col" class="th-title">拾得物</th>
+	                    <th scope="col" class="th-date">拾得場所</th>
+	                     <th scope="col" class="th-num">写真</th>
+	                    <th scope="col" class="th-num">登録日付</th>
+	                    <th scope="col" class="th-title">処理結果</th>
 	                    <c:if test="${not empty worker }">
 	                    <th scope="col" class="th-title"></th>
 	                    </c:if>
