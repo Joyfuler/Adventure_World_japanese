@@ -13,9 +13,9 @@
 <style>
 .order_box2{margin-bottom: 110px;}
 .check_wrapp {position:relative; width:100%; height:300px; overflow:auto; padding:0 53px; font-weight:bold; font-size:14px; border-bottom:1px solid lightgray;}
-#att_list2{position:relative; width:140px; height:70px; float:left; margin:10px; text-align:center; 
+#att_list2{position:relative; width:170px; height:100px; float:left; margin:10px; text-align:center; 
 	border:1px solid lightgray; background-color:white; transition:0.2s;}
-#att_list2 img {position:relative; width:150px; height:150px; object-fit:cover;}
+#att_list2 img {position:relative; width:150px; height:120px; object-fit:cover;}
 #att_list2 h3 {width:px; height:50px; padding:5px; }
 #att_list2:hover{background-color:#5c10e6; box-shadow:3px 3px 15px gray; border:none; color:white;}
 </style>
@@ -89,9 +89,9 @@ function go_cart(num){
 				<input type="hidden" id="calendar" name="visitdate2">
 			</div>
 			<div class="order_box_select2">
-				<div class="order_box_title">패스트패스 예매</div>
+				<div class="order_box_title">ファストパス予約</div>
 				<div class="order_box_date">
-					<div class="order_box_date_text">방문일자/인원 선택</div>
+					<div class="order_box_date_text">日付・人数を選択</div>
 					<div class="order_box_date_select" onclick="showCalendar()">
 						<img src="${conPath }/images/ticket_images/calendar.png" style="width:40px; height:40px;">
 					</div>
@@ -104,8 +104,8 @@ function go_cart(num){
 				<!-- 수량 표시 -->
 				<div class="order_quantity">
 					<div class="order_quantity_text">
-						<p style="font-weight:bold">어른</p>
-						<p style="font-size:14px; color:gray;">만19세이상</p>
+						<p style="font-weight:bold">大人</p>
+						<p style="font-size:14px; color:gray;">19歳以上</p>
 					</div>
 					<div class="order_quantity_box">	
 						<input type="text" name="p1" id="result" value="0" class="order_quantity_count">
@@ -116,8 +116,8 @@ function go_cart(num){
 					</div>
 					<div class="quantityArg"></div>
 					<div class="order_quantity_text">
-						<p style="font-weight:bold">청소년</p>
-						<p style="font-size:14px; color:gray;">만13세~만18세</p>
+						<p style="font-weight:bold">青少年</p>
+						<p style="font-size:14px; color:gray;">13歳~18歳</p>
 					</div>
 					<div class="order_quantity_box">	
 						<input type="text" name="p2" id="result2" value="0" class="order_quantity_count">
@@ -128,28 +128,28 @@ function go_cart(num){
 					</div>	
 				</div>
 				<!--  어트랙션 선택 -->
-					<div class="order_box_date_text">어트렉션 선택</div>
+					<div class="order_box_date_text">アトラクション一を選択</div>
 				<div class="check_wrapp">
 					<c:forEach var="attractions" items="${attractionList}">
 						<div id="att_list2">
 							<a href="${conPath }/attraction/attractionDetail.do?aid=${attractions.aid }">
 								<h3>${attractions.aname}</h3>					
 								<input type="checkbox" value="${attractions.aname}" name="attraction" 
-									class="check_btnbtn" style="width: 15px; height: 15px;"/>
+									class="check_btnbtn" style="margin-bottom: 0px; width: 15px; height: 15px;"/>
 							</a>
 						</div>
 					</c:forEach>
 				</div>
 				<div id="reserve_buttons" class="order_box_button">
 		       	<!-- 	<input type="button" value="구매하기" onClick="location.href='world.do?command=cartList'">  -->
-		        	<input type="submit" value="장바구니" class="purpleButton" onclick="return go_cart(1)">
+		        	<input type="submit" value="カートに入れる" class="purpleButton" onclick="return go_cart(1)">
 		       	</div>
 				<!-- 안내 -->
 				<div id="board">
 			        <div class="container">
 			            <table class="board-table" style="font-size:20px">  
 			                <tr>
-			                    <th><a href="#!" onclick="toggleAnswer('answer1')">취소/환불</a></th>      
+			                    <th><a href="#!" onclick="toggleAnswer('answer1')">キャンセル</a></th>      
 			                </tr>   
 			                <tr id="answer1" style="display:none">
 			               		 
@@ -166,7 +166,7 @@ function go_cart(num){
 									</th>
 			               	</tr>
 			               	 <tr>
-			                    <th><a href="#!" onclick="toggleAnswer('answer2')">이용안내</a></th>             
+			                    <th><a href="#!" onclick="toggleAnswer('answer2')">利用のご案内</a></th>             
 			                </tr>
 			                <tr id="answer2" style="display:none">
 			               		 

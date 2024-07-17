@@ -61,9 +61,9 @@ function go_cart(num){
 				<input type="hidden" id="calendar" name="visitdate2">
 			</div>
 			<div class="order_box_select2">
-				<div class="order_box_title">자유이용권 예매</div>
+				<div class="order_box_title">フリーパスの予約</div>
 				<div class="order_box_date">
-					<div class="order_box_date_text">방문일자/인원 선택</div>
+					<div class="order_box_date_text">日付・人数の選択</div>
 					<div class="order_box_date_select" onclick="showCalendar()">
 						<img src="${conPath }/images/ticket_images/calendar.png" style="width:40px; height:40px;">
 					</div>
@@ -76,8 +76,8 @@ function go_cart(num){
 				<!-- 수량 표시 -->
 				<div class="order_quantity">
 					<div class="order_quantity_text">
-						<p style="font-weight:bold">어른</p>
-						<p style="font-size:14px; color:gray;">만19세이상</p>
+						<p style="font-weight:bold">大人</p>
+						<p style="font-size:14px; color:gray;">19歳以上</p>
 					</div>
 					<div class="order_quantity_box">	
 						<input type="text" name="p1" id="result" value="0" class="order_quantity_count">
@@ -88,8 +88,8 @@ function go_cart(num){
 					</div>
 					<div class="quantityArg"></div>
 					<div class="order_quantity_text">
-						<p style="font-weight:bold">청소년</p>
-						<p style="font-size:14px; color:gray;">만13세~만18세</p>
+						<p style="font-weight:bold">青少年</p>
+						<p style="font-size:14px; color:gray;">13歳~18歳</p>
 					</div>
 					<div class="order_quantity_box">	
 						<input type="text" name="p2" id="result2" value="0" class="order_quantity_count">
@@ -100,21 +100,21 @@ function go_cart(num){
 					</div>	
 				</div>
 				<div id="reserve_buttons" class="order_box_button">
-		        	<input type="submit" value="장바구니" class="purpleButton" onclick="return go_cart(0)">
+		        	<input type="submit" value="カートに入れる" class="purpleButton" onclick="return go_cart(0)">
 		       	</div>
 				<div id="board-list">
 			        <div class="container">
 			            <table class="board-table" style="font-size:20px">  
 			                <tr>
-			                    <th><a href="#!" onclick="toggleAnswer('answer1')">취소/환불</a></th>      
+			                    <th><a href="#!" onclick="toggleAnswer('answer1')">キャンセル</a></th>      
 			                </tr>   
 			                <tr id="answer1" style="display:none">
 			               		 
 			                	<th style="font-size:15px; font-weight:normal;background:#F7F7F7;">
-									<b>예매취소 안내</b> <br>
-									<b>온라인 예매 시 선택한 날짜에만 방문 및 이용이 가능하며, 미사용시에 해당날짜가 지나면 자동 취소 됩니다.</b><br>
-									(사용 후에는 취소가 불가능합니다.)<br>
-									 - 본인+동반인 티켓 구매 후 동반인 티켓만 사용 시 본인 티켓 취소는 불가합니다. <br>
+									<b>予約キャンセルのご案内</b> <br>
+									<b>ウェブでの予約の場合、選択した日付のみ利用が可能です。<br>									
+									使用していない場合、該当の日付が過ぎると自動的にキャンセルされます。</b><br>
+									(但し、使用した場合、キャンセルは出来ません)<br>								 - 본인+동반인 티켓 구매 후 동반인 티켓만 사용 시 본인 티켓 취소는 불가합니다. <br>
 									 - 본인+동반인 티켓 구매 후 취소하실 경우 동반인 티켓을 먼저 취소하셔야합니다.<br>
 									 - 시스템 자동 취소가 될 경우 제휴카드 실적은 은행영업일 기준 2~3일 후에 복구됩니다. <br> 
 									 - 별도의 취소 수수료는 없으나 구매 후 환불요청 시 각 카드사에 따라 수수료를 차감합니다. <br>
@@ -123,7 +123,7 @@ function go_cart(num){
 									</th>
 			               	</tr>
 			               	 <tr>
-			                    <th><a href="#!" onclick="toggleAnswer('answer2')">이용안내</a></th>             
+			                    <th><a href="#!" onclick="toggleAnswer('answer2')">利用のご案内</a></th>             
 			                </tr>
 			                <tr id="answer2" style="display:none">
 			               		 
