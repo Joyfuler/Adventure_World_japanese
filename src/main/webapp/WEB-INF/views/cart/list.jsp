@@ -90,18 +90,18 @@
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
-	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">장바구니</h3>
-	            <br><h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 장바구니 목록입니다</h1>
+	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">カートリスト</h3>
+	            <br><h1 style="font-size: 15px; text-align:center;">${member.mname} さんのカートリスト一覧</h1>
 	        </div>
 	    </div>  
 	     <div class="board-list">
 	        <div class="container" style="width:1000px; ">
 		        <div class="mypage-btn-dede-wrap">
-		        	<input type = "button" value = "모두선택" class = "selectAll dede" style = "float: left; margin-top: 25px;">
+		        	<input type = "button" value = "全部選択" class = "selectAll dede" style = "float: left; margin-top: 25px;">
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold; color:#5c10e6;">
 						<li>
-							<input type = "button" class = "dede" onclick = "location.href='${conPath }/order/orderList.do?mid=${member.mid}'" value = "주문내역 이동">
+							<input type = "button" class = "dede" onclick = "location.href='${conPath }/order/orderList.do?mid=${member.mid}'" value = "オーダーに移動">
 						</li>
 					</ul>
 					</nav>
@@ -109,23 +109,23 @@
 				<table class="board-table">
 	               	<thead>
 		                <tr>
-		                	<th scope="col" class="th-num">주문일자</th>
-		                    <th scope="col" class="th-num">주문번호</th>
-		                    <th scope="col" class="th-num">티켓유형</th>
-		                    <th scope="col" class="th-date">인원수</th>
-		                    <th scope="col" class="th-num">가격</th>
-		                    <th scope="col" class="th-date">어트랙션</th>
-		                    <th scope="col" class="th-num">방문일자</th>
-		                    <th scope="col" class="th-num">총액</th>
-		                    <th scope="col" class="th-num">처리 상태</th>
-		                    <th scope="col" class="th-date">선택</th>
+		                	<th scope="col" class="th-num">注文日付</th>
+		                    <th scope="col" class="th-num">注文番号</th>
+		                    <th scope="col" class="th-num">チケット分類</th>
+		                    <th scope="col" class="th-date">人数</th>
+		                    <th scope="col" class="th-num">価格</th>
+		                    <th scope="col" class="th-date">アトラクション一</th>
+		                    <th scope="col" class="th-num">訪問日付</th>
+		                    <th scope="col" class="th-num">総額</th>
+		                    <th scope="col" class="th-num">処理状況</th>
+		                    <th scope="col" class="th-date">選択</th>
 		                </tr>
 	             	  </thead>
                		<tbody>
 	               	<c:if test = "${empty cartList }">
 	               		<tr>
 	               			<td colspan = "10">
-	               		<strong> 장바구니에 추가한 목록이 없습니다.</strong>	
+	               		<strong> カートには何もありません</strong>	
 	               			</td>
 	               		</tr>
 	               	</c:if>
@@ -143,15 +143,15 @@
 			                     <td>
 		                          <c:choose>
 		                             <c:when test = "${dto.type==0}">
-		                            	    자유이용권 
+		                            	    フリーパス 
 		                             </c:when>
 		                             <c:otherwise>
-		                               	 패스트패스   
+		                               	 ファストパス  
 		                             </c:otherwise>
 		                          </c:choose>
 		                       	</td>
-			                    <th>어른 : ${dto.p1}<br> 
-			                    	청소년 : ${dto.p2}
+			                    <th>大人 : ${dto.p1}<br> 
+			                    	小人 : ${dto.p2}
 			                    </th>
 			                    <th> 
 			                    	<fmt:formatNumber type="currency" value="${dto.price1}" /><br> 
@@ -164,8 +164,8 @@
 			                	<td><fmt:formatNumber type="currency" value="${dto.price1+dto.price2}" /></td>
 			                	<td>
 		                         	<c:choose>
-			                        	<c:when test='${dto.result == 0}'>결제 대기</c:when>                  
-			                         	<c:otherwise><b style="color:red;">결제 완료</b></c:otherwise>
+			                        	<c:when test='${dto.result == 0}'>決済待機</c:when>                  
+			                         	<c:otherwise><b style="color:red;">決済完了</b></c:otherwise>
 		                     		</c:choose>
 		                  		</td>
 			                	<td>
@@ -198,8 +198,8 @@
 					</c:if>
 				</div>
 	        	<div class="mypage-btn-dede-wrap">
-	        		<input type="button" onclick="cartDelete()" value="삭제하기" class="dede" style="float:right;">
-	   				<input type="submit" value="결제하기" class="dede" style="float:right;" onclick = "return submitChk()">			   
+	        		<input type="button" onclick="cartDelete()" value="削除" class="dede" style="float:right;">
+	   				<input type="submit" value="決済" class="dede" style="float:right;" onclick = "return submitChk()">			   
 	     		</div>
 	    		</div>
     		</div>
