@@ -42,7 +42,7 @@ const autoHyphen = (target) => {
 				$('#visitUserPhone').val(chargeUserPhone);
 				$('#visitUserPhone_check').prop("disabled", true);
 				$('#visitUserPhone_check').val(chargeUserPhone);
-				$('.input_wrap_visitor').hide('slow');				
+				$('.input_wrap_visitor').hide('fast');				
 			} else {
 				// 체크 해제시, 원상복구
 				$('#visitUserName').val('');
@@ -57,7 +57,7 @@ const autoHyphen = (target) => {
 				$('#visitUserPhone').prop("disabled", true);
 				$('#visitUserPhone_check').val('');
 				$('#visitUserPhone_check').prop("disabled",false);				
-				$('.input_wrap_visitor').show('slow');
+				$('.input_wrap_visitor').show('fast');
 			}	
 		});
 		// 포인트 사용 선택시
@@ -182,7 +182,7 @@ const autoHyphen = (target) => {
 	<div class="page-title" style="text-align: center; font-weight: bold;">
 		<div class="container"
 			style="background-color: #5c10e6; color: white;">
-			<h3	style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align: center;">이용권 결제 페이지</h3>
+			<h3	style="font-family: 'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align: center;">チケット決済ページ</h3>
 		</div>
 		<br><br>		
 	</div>
@@ -192,19 +192,19 @@ const autoHyphen = (target) => {
 				<button class="accordion-button collapsed bg-light bg-gradient text-center" type="button"					
 				data-bs-toggle="collapse" data-bs-target="#collapseOne"
 					aria-expanded="false" aria-controls="collapseOne">
-					구매자정보 <span style = "color: purple;">&nbsp;&nbsp;&nbsp;${member.mname }</span> &nbsp; &nbsp; 님
+					顧客情報 <span style = "color: purple;">&nbsp;&nbsp;&nbsp;${member.mname }</span> &nbsp; &nbsp; 様
 				</button>
 			</h2>
 			<div id="collapseOne" class="accordion-collapse collapse collapsed"
 				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 				<div class="accordion-body">			
 					<div class="input_wrap clfix">
-						<label for="name" style="font-weight: bold;">이름</label>
+						<label for="name" style="font-weight: bold;">お名前</label>
 						<div id="name-data">${member.mname }</div>
 							<input type="hidden" id="mname" value="${member.mname }">
 						</div>
 						<div class="input_wrap clfix">
-							<label for="str_email01" style="font-weight: bold;">이메일</label>
+							<label for="str_email01" style="font-weight: bold;">Eーメル</label>
 							<div id="email-data">
 								${member.memail }
 							</div>
@@ -212,7 +212,7 @@ const autoHyphen = (target) => {
 						</div>
 						<div class="input_wrap">
 							<div class="clfix">
-								<label for="phone" style="font-weight: bold;">휴대폰</label>
+								<label for="phone" style="font-weight: bold;">携帯番号</label>
 								<div class="number txtColorType05 fl" id="mobile-data">
 								${member.mphone }
 								</div>
@@ -228,20 +228,20 @@ const autoHyphen = (target) => {
 			<h2 class="accordion-header" id="headingTwo">
 				<button class="accordion-button bg-light bg-gradient" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-					aria-expanded="true" aria-controls="collapseTwo">방문자정보</button>
+					aria-expanded="true" aria-controls="collapseTwo">来場者情報</button>
 			</h2>
 			<div id="collapseTwo" class="accordion-collapse collapse show"
 			aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 				<div class="accordion-body">
 					<input type="checkbox" id="afterMid" tabindex="1">
-					<label for="chkChgUsr">구매자 정보와 동일</label>
+					<label for="afterMid">会員情報と同じ</label>
 				</div>
 				<div class="input_wrap_visitor">
-					&nbsp; &nbsp; <label>이름 &nbsp; <sup style = "color: red;">*</sup></label> 
+					&nbsp; &nbsp; <label>名前 &nbsp; <sup style = "color: red;">*</sup></label> 
 					<input type="hidden" id="visitUserName" name="oname" tabindex="2" value="${member.mname }" style="color: red;"> 
 					<input type="text" id="visitUserName_check" name="oname" tabindex="2"> 
 					<div class="input_wrap_visitor">
-						&nbsp; &nbsp; <label for="str_email01">이메일 <sup style = "color: red;">*</sup></label>				
+						&nbsp; &nbsp; <label for="str_email01">E-メル <sup style = "color: red;">*</sup></label>				
 						<input type="hidden" id="visitUserEmail" name = "omail" value = '${member.memail }'
 						placeholder="email 계정" tabindex="3"> 
 						<input type="text" id="visitUserEmail_check" name = "omail"
@@ -249,11 +249,11 @@ const autoHyphen = (target) => {
 					</div>
 					<div class="input_wrap_visitor">
 						<div class="cellPhone">
-							&nbsp; &nbsp; <label for="phone">휴대폰 <sup style = "color: red;">*</sup></label>					
-							<input type="hidden" id = "visitUserPhone" name = "ophone" placeholder="휴대폰 번호를 입력하세요" tabindex="7"
+							&nbsp; &nbsp; <label for="phone">携帯番号 <sup style = "color: red;">*</sup></label>					
+							<input type="hidden" id = "visitUserPhone" name = "ophone" placeholder="携帯番号を入力してください" 　tabindex="7"
 							value = "${member.mphone }"> 
 							<input type="text" id="visitUserPhone_check"
-							placeholder = "전화번호 입력" tabindex="7" name = "ophone"
+							placeholder = "番号を入力" tabindex="7" name = "ophone"
 							oninput="autoHyphen(this)" maxlength="13s">
 						</div>
 					</div>	
@@ -269,20 +269,20 @@ const autoHyphen = (target) => {
 			<button class="accordion-button collapsed bg-light bg-gradient" type="button"
 			data-bs-toggle="collapse" data-bs-target="#collapseThree"
 			aria-expanded="false" aria-controls="collapseThree">
-				포인트 할인
+				ポイント割引
 			</button>
 			</h2>
 			<div id="collapseThree" class="accordion-collapse collapse"
 			aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				<br><br>			
 				&nbsp; &nbsp;<input type="checkbox" name="pntChk" id="pntChk" tabindex="9">
-				<label>멤버십 포인트로 할인받기 </label>
+				<label>メンバポイントを使って割引</label>
 				<br><br>
 				<div class = "memberPoint">					
-					&nbsp; &nbsp; <span>(가용 멤버십 포인트: <em id="memberPoint">0</em> P)</span>
+					&nbsp; &nbsp; <span>(使えるポイント: <em id="memberPoint">0</em> P)</span>
 					<input type = "hidden" id = "realPoint" value = "${member.mpoint }">							
 					<input type="text" id="pointInput" name = "ompoint" disabled="disabled" value = "0">
-					<input type="button" value = "포인트사용" class = "payForMemberPoint" disabled="disabled">
+					<input type="button" value = "ポイントを使用" class = "payForMemberPoint" disabled="disabled">
 					<br><br>
 				</div>					
 			</div>
@@ -292,43 +292,41 @@ const autoHyphen = (target) => {
 			<button class="accordion-button collapsed bg-light bg-gradient" type="button"
 				data-bs-toggle="collapse" data-bs-target="#collapseFour"
 				aria-expanded="false" aria-controls="collapseFour">
-				결제방식 선택
+				決済手段を選択
 			</button>
 		</h2>
 		<div id="collapseFour" class="accordion-collapse collapse show"
 			aria-labelledby="headingFour" data-bs-parent="#accordionExample">
 			<br>						
 			<div class="itemTit" style = "padding-left: 10px;">
-				<strong>결제수단</strong>
+				<strong>決済手段</strong>
 			<br><br>
 			</div>			
 			<div class="pay-check-list" style = "padding-left: 10px;">
 				<p class="checks">
 					<input type="radio" name="payment" value="kakaoPay" id="payment1" checked = "checked" data-id="kakaopay.TC0ONETIME">
 					<label for="payment1">
-						<img src = "${conPath }/images/kakaopay.png" style = "height:25px;">카카오페이
+						<img src = "${conPath }/images/kakaopay.png" style = "height:25px;">KAKAOPAY
 					</label>	
 					<label for = "payment2">
-						&nbsp; &nbsp; <input type = "radio" name = "payment" value = "cardPay" id = "payment2" data-id = "kcp.AO09C"> 카드결제				
+						&nbsp; &nbsp; <input type = "radio" name = "payment" value = "cardPay" id = "payment2" data-id = "kcp.AO09C"> クレジットカード決済				
 					</label>
 					<label for="payment3">
 						&nbsp; &nbsp; <input type="radio" name="payment" value="naverPay" id="payment3" data-id = "naverco" disabled = "disabled">					
-						<img src = "${conPath }/images/naverpay.png" style = "height:25px;">네이버페이
+						<img src = "${conPath }/images/naverpay.png" style = "height:25px;">NAVERPAY
 					</label>
 				</p>
 				<div class="methodWrap" id="pay_tab07">
 					<div>
-							· 네이버페이는 네이버ID로 신용카드 또는 은행계좌 정보를 등록하여 결제할 수 있는 간편결제 서비스입니다.<br>
-							· 주문 변경 시 카드사 혜택 및 할부 적용 여부는 해당 카드사 정책에 따라 변경될 수 있습니다.<br>
-							· 지원 가능 결제수단 : 네이버페이 결제창 내 노출되는 모든 카드/계좌<br>
+							· NAVERPAYはNAVERのIDにクレジットカードもしくは銀行口座情報を登録して決済できる簡単決済サービスです。<br>							
+							· 対応している決済手段 : NAVERPAY決済ページで選択できるクレジットカード・口座全部<br>
 					</div>
 				</div>
 				<div class="methodWrap" id="pay_tab08">
 					<div>
-							· 카카오페이는 카카오톡에 개인 신용/체크 카드를 등록하여 간단하게 비밀번호 만으로 결제할 수 있는 모바일
-							결제 서비스 입니다. 등록 시 휴대폰과 카드 명의자가 동일해야 합니다.<br> · 무이자 할부 서비스
-							및 신용카드 전용쿠폰 서비스는 이용이 제한 됩니다.<br> · 카카오머니로 결제 시, 현금영수증
-							발급은 (주)카카오페이에서 발급 가능합니다.							
+							· KAKAOPAYはカカオトークに個人のクレジットカードを登録し、PWで簡単に決済できる
+							モバイル決済サービスです。携帯名義とカードの名義を一致させる事で使用できます。<br> 
+							· KAKAOPAYで決済する場合、レシートは （株）KAKAOPAYにて発行できます。
 					</div>
 					<br><br>
 				</div>
