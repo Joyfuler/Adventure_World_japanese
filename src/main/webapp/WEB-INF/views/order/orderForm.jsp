@@ -153,7 +153,7 @@ const autoHyphen = (target) => {
 		var disCountmemberPoint = parseInt($('#disCountmemberPoint').text()) || 0;
 		var newTotOrderAmt = payPreAmt - disCountmemberPoint;
 		$('#payPreAmt').text(newTotOrderAmt);
-		alert('총 금액에서 ' + disCountmemberPoint + '원 만큼 할인이 적용되었습니다.');	}		
+		alert('総額から' + disCountmemberPoint + 'ポイントを使用した割引を適用しました');	}		
 	</script>	
 </head>
 <link href="${conPath }/css/order.css" rel="stylesheet">
