@@ -42,7 +42,7 @@ const autoHyphen = (target) => {
 				$('#visitUserPhone').val(chargeUserPhone);
 				$('#visitUserPhone_check').prop("disabled", true);
 				$('#visitUserPhone_check').val(chargeUserPhone);
-				$('.input_wrap_visitor').hide('fast');				
+				$('.input_wrap_visitor').hide('slow');				
 			} else {
 				// 체크 해제시, 원상복구
 				$('#visitUserName').val('');
@@ -133,7 +133,7 @@ const autoHyphen = (target) => {
 		});		
 	});
 	</script>
-	<script>
+	<script>	
 	function updateMemberPoint(){
 		var realPointValue = parseInt($('#realPoint').val()) || 0;
 		var enteredValue = parseInt($('#pointInput').val()) || 0;
@@ -276,7 +276,7 @@ const autoHyphen = (target) => {
 			aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 				<br><br>			
 				&nbsp; &nbsp;<input type="checkbox" name="pntChk" id="pntChk" tabindex="9">
-				<label>メンバポイントを使って割引</label>
+				<label for ="pntChk">メンバーシップポイントを使って割引</label>
 				<br><br>
 				<div class = "memberPoint">					
 					&nbsp; &nbsp; <span>(使えるポイント: <em id="memberPoint">0</em> P)</span>
@@ -331,76 +331,76 @@ const autoHyphen = (target) => {
 					<br><br>
 				</div>
 				<div class="payWrap">
-					<strong>구매예정 내역</strong>
+					<strong>決済予定額</strong>
 					<div class="amountWrap">
 						<div class="totalOrder">							
 								<ul>								
 									<c:if test = "${amountInfo.type0sum != 0 }">
-										<li> 자유이용권 ( 어른 : ${amountInfo.type0adult } 매 / 청소년 : ${amountInfo.type0youth } 매)
+										<li> フリーパス ( 大人 : ${amountInfo.type0adult } 枚 / 青少年 : ${amountInfo.type0youth } 枚)
 										<span> 
-											합 계 ( ${amountInfo.type0sum } )원			
+											合計 ( ${amountInfo.type0sum } )円			
 										</span>
 										</li>
 									</c:if>
 									<c:if test = "${amountInfo.type1sum != 0 }">
-										<li> 패스트티켓  (어른 : ${amountInfo.type1adult } 매 / 청소년 : ${amountInfo.type1youth } 매)
+										<li> ファーストパス  (大人 : ${amountInfo.type1adult } 枚 / 青少年 : ${amountInfo.type1youth } 枚)
 										<span> 
-										합 계 ( ${amountInfo.type1sum } )원
+										合計 ( ${amountInfo.type1sum } )円
 										</span>
 										</li>
 									</c:if>
-									<li class="total">총 주문금액 
+									<li class="total">総額 
 										<span class="price">
-											<b id="totOrderAmt">${amountInfo.type0sum + amountInfo.type1sum }</b> 원
+											<b id="totOrderAmt">${amountInfo.type0sum + amountInfo.type1sum }</b> 円
 										</span>
 									</li>
 								</ul>
 							</div>
 							<div class="totalDiscount">
 								<ul>									
-									<li id="discntDpPnt">포인트사용
-										<span class="price"><b id="disCountmemberPoint">0</b> 원</span>
+									<li id="discntDpPnt">ポイントの使用
+										<span class="price"><b id="disCountmemberPoint">0</b> ポイント</span>
 									</li>
 								</ul>
 							</div>
 							<div class="scheduledPay">
 								<div class="total">
-									결제예정금액									
+									決済予定額									
 									<span class="price"> <b id="payPreAmt">
-									${amountInfo.type0sum + amountInfo.type1sum }</b> 원</span>
+									${amountInfo.type0sum + amountInfo.type1sum }</b> 円</span>
 								</div>
 							</div>
 						</div>				
 					<div class="termsAgree">
-						<span style = "font-size: 12px; font-weight: bold;"> &nbsp; ※결제하신 금액의 10%만큼 멤버십 포인트가 적립됩니다.</span><br>				
+						<span style = "font-size: 12px; font-weight: bold;"> &nbsp; ※決済額の10%はメンバーシップポイントとして自動的に還元されます！</span><br>				
 						<h3 class="tit">
-							약관 동의
+							利用約款の同意要請
 						</h3>
 					</div>	
 					<div class="termsArea">
 						<div class="checks">
 							<div class="group">
 								<input type="checkbox" name="chkAgr1" id="chkAgr1" tabindex="13">
-								<label for="chkAgr1">전자상거래 이용약관 <span
-								class="txtColorType03">(필수)</span></label>
+								<label for="chkAgr1">Eコマース利用約款 <span
+								class="txtColorType03">(*必須事項)</span></label>
 						</div>
 						<div class="group">
 							<input type="checkbox" name="chkAgr2" id="chkAgr2" tabindex="15">
-							<label for="chkAgr2">개인정보 수집·이용 <span
-								class="txtColorType03">(필수)</span></label>				
+							<label for="chkAgr2">個人情報の取集・利用<span
+								class="txtColorType03">(*必須事項)</span></label>				
 						</div>
 						<div class="group">
 							<input type="checkbox" name="chkAgr4" id="chkAgr4" tabindex="15">
-							<label for="chkAgr3">개인정보 제3자 제공 동의 <span
-								id="hspanAgreePrivacyCmt" class="txtColorType03">(선택)</span></label>					
+							<label for="chkAgr3">第三者提供へ個人情報提供に同意 <span
+								id="hspanAgreePrivacyCmt" class="txtColorType03">(選択事項)</span></label>					
 						</div>
 					</div>
 					<div class="listBox">
-						<p class="dotStyle">필수 항목에 모두 동의하셔야 서비스를 이용하실 수 있습니다.</p>
+						<p class="dotStyle">必須項目に全て同意することでサービスのご利用が可能となります。</p>
 					</div>
 				</div>
 				<div class="btnArea">
-					<input type = "button" id = "paymentBtn" class = "btn btn-primary bg-dark payBtn" value = "결제하기">
+					<input type = "button" id = "paymentBtn" class = "btn btn-primary bg-dark payBtn" value = "決済">
 				</div>			
 			</div>								
 		</div>		
