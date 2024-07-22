@@ -55,20 +55,20 @@ $(document).ready(function(){
 	<section class="notice">
 	   <div class="page-title">
 	        <div class="container">
-	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">주문내역</h3>
+	            <h3 style="font-size: 28px;color: #333333;font-weight: 400;text-align: center;">注文履歴</h3>
 	            <br>
-	            <h1 style="font-size: 15px; text-align:center;">${member.mname} 님의 티켓 주문내역입니다.</h1>	            
-	            <h5 style = "font-size: 10px; text-align: center;"> (최근 결제한 순으로 페이지당 5건씩 출력됩니다)</h5>
+	            <h1 style="font-size: 15px; text-align:center;">${member.mname} さんのチケット注文履歴</h1>	            
+	            <h5 style = "font-size: 10px; text-align: center;"> (最近の順に1ページに5件まで表示されます)</h5>
 	        </div>
 	    </div>  
 	     <div class="board-list">
 	        <div class="container" style="width:1000px;">
 		        <div class="mypage-btn-dede-wrap">
-		        	<input type = "button" value = "모두선택" class = "selectAll dede" style = "float: left; margin-top: 25px;">
+		        	<input type = "button" value = "一括選択" class = "selectAll dede" style = "float: left; margin-top: 25px;">
 		 			<nav id="sub_mypage" style="float:right;">
 					<ul style= "font-weight:bold; color:#5c10e6;">
 						<li>
-							<input type = "button" class = "dede" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "장바구니 이동 ">
+							<input type = "button" class = "dede" onclick = "location.href='${conPath }/cart/list.do?mid=${member.mid}'" value = "カートに移動 ">
 						</li>
 					</ul>
 					</nav>
@@ -76,23 +76,23 @@ $(document).ready(function(){
 				 <table class="board-table">
                 	<thead>
 		                <tr>
-		                	<th scope="col" class="th-num">주문일자</th>
-		                    <th scope="col" class="th-num">주문번호</th>
-		                    <th scope="col" class="th-num">티켓유형</th>
-		                    <th scope="col" class="th-date">인원수</th>
-		                    <th scope="col" class="th-num">가격</th>
-		                    <th scope="col" class="th-date">어트랙션</th>
-		                    <th scope="col" class="th-num">방문일자</th>
-		                    <th scope="col" class="th-num">총액<br>(포인트할인액)</th>
-		                    <th scope="col" class="th-num">처리 상태</th>
-		                    <th scope="col" class="th-date">선택</th>
+		                	<th scope="col" class="th-num">注文日付</th>
+		                    <th scope="col" class="th-num">注文番号</th>
+		                    <th scope="col" class="th-num">チケット種類</th>
+		                    <th scope="col" class="th-date">人数</th>
+		                    <th scope="col" class="th-num">価格</th>
+		                    <th scope="col" class="th-date">アトラクション</th>
+		                    <th scope="col" class="th-num">来場日付</th>
+		                    <th scope="col" class="th-num">総額</th>
+		                    <th scope="col" class="th-num">決済状況</th>
+		                    <th scope="col" class="th-date">選択</th>
 		                </tr>
               	  	</thead>
                	  	<tbody>
                		<c:if test = "${empty orderList }">
                			<tr>
                				<td colspan = "10">
-               					<strong> 주문한 내역이 없습니다.</strong>	
+               					<strong> 注文履歴に何もありません</strong>	
                				</td>
                			</tr>
                		</c:if>
@@ -118,20 +118,21 @@ $(document).ready(function(){
 	        	            <td>
                           <c:choose>
                              <c:when test = "${orderLists.otype eq 0}">
-                               	자유이용권 
+                               	フリーパス 
                              </c:when>
                              <c:otherwise>
-                               	패스트패스   
+                               	ファストパス   
                              </c:otherwise>
                           </c:choose>
                        </td>
 	                    <th>
-	                    	어른 : ${orderLists.op1}매<br> 
-	                    	청소년 : ${orderLists.op2}매
+	                    	大人 : ${orderLists.op1}枚<br> 
+	                    	青少年 : ${orderLists.op2}枚
 	                    </th>
 	                    <th> 
-	                    	<fmt:formatNumber type="currency" value="${orderLists.oprice1}" /><br> 
-	                 		<fmt:formatNumber type="currency" value="${orderLists.oprice2}" />
+	                    	
+	                    	<fmt:formatNumber type="currency" currencySymbol="￥"  value="${orderLists.oprice1}" /><br> 
+	                 		<fmt:formatNumber type="currency" currencySymbol="￥"  value="${orderLists.oprice2}" />
 	                    </th>
 	                    <c:if test = "${orderLists.otype eq 0 }">
 	                    	<td> - </td>
@@ -147,18 +148,18 @@ $(document).ready(function(){
 	                    	${orderLists.ovisitdate} 
 	                    </td>
 	                	<td>	                		
-	                		<fmt:formatNumber type="currency" value="${orderLists.oprice1 + orderLists.oprice2}" />
+	                		<fmt:formatNumber type="currency" currencySymbol="￥"  value="${orderLists.oprice1 + orderLists.oprice2}" />
 	                		<br>
-	                		(<fmt:formatNumber type= "currency" value = "${orderLists.ompoint eq null? '0' : orderLists.ompoint}"/>)	                		
+	                		(<fmt:formatNumber type= "currency" currencySymbol="￥"  value = "${orderLists.ompoint eq null? '0' : orderLists.ompoint}"/>)	                		
 	                	</td>
 	                	<td>
 	                		<c:if test = "${oid != orderLists.oid }">
                          	<c:choose>
                         		<c:when test='${orderLists.oresult eq 0}'>
-                        			결제 완료
+                        			決済済み
                         		</c:when>                  
                          		<c:otherwise>
-                         			<b style="color:red;">결제 취소됨</b>
+                         			<b style="color:red;">キャンセル</b>
                          		</c:otherwise>
                      			</c:choose>
                      		</c:if>	
@@ -182,15 +183,15 @@ $(document).ready(function(){
               </tbody>
            </table>
            <div class="mypage-btn-dede-wrap">
-           		<input type="button" onclick="orderDelete()" value="삭제하기" class="dede" style="float:right;">
-				<input type="submit" value="결제 취소" class="dede" style="float:right;" onclick = "alert('결제 취소건은 Q&A 게시판을 통해 문의해주세요.')">			   
+           		<input type="button" onclick="orderDelete()" value="削除" class="dede" style="float:right;">
+				<input type="submit" value="キャンセル" class="dede" style="float:right;" onclick = "alert('결제 취소건은 Q&A 게시판을 통해 문의해주세요.')">			   
         	</div>
     	</div>
     </div>
 </section>
 <div id = "paging" style = "font-size: 15px; font-weight: 500;">
 		<c:if test="${paging.startPage>paging.blockSize}">
-			<a href="${conPath }/order/orderList.do?mid=${member.mid }&pageNum=${paging.startPage-1 }">[이전]</a>
+			<a href="${conPath }/order/orderList.do?mid=${member.mid }&pageNum=${paging.startPage-1 }">[前へ]</a>
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
@@ -201,7 +202,7 @@ $(document).ready(function(){
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage < paging.pageCnt }">
-			<a href="${conPath }/order/orderList.do?mid=${member.mid }&pageNum=${paging.endPage+1 }">[다음]</a>
+			<a href="${conPath }/order/orderList.do?mid=${member.mid }&pageNum=${paging.endPage+1 }">[次へ]</a>
 		</c:if>
 </div>
 <jsp:include page="../main/footer.jsp" />
