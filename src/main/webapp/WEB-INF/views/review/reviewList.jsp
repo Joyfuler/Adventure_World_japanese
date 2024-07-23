@@ -56,42 +56,42 @@
 <div class="attractionForm" style = "padding-bottom: 10px;">
 	<div class="page-title" style = "text-align: center; font-weight: bold;">	
 		<div class="container" style = "background-color: #7e32f8; color: white;">
-			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; text-align:center; margin-bottom: 5px;">리뷰 & 후기 게시판</h3>
-			<h4> ※리뷰 게시글을 작성해 주신 모든 유저분들께 멤버십 포인트 1000p 를 적립해 드립니다.</h4>					
+			<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 30px; text-align:center; margin-bottom: 5px;">レビュー・一覧</h3>
+			<h4> ※レビュー投稿でメンバーシップポイント1000Pを獲得できます！</h4>					
 		</div>		
 	</div>
 	<br>
 	<form id = "sortForm" class = "searchForm" action = "${conPath }/review/reviewList.do" style = "margin-left: 200px;">
-	정렬방식	
+	ソート	
 		<select name = "sort">	
 			<option value = "new"
 			<c:if test = "${param.sort eq 'new' }">
 				selected = "selected"
 			</c:if>	
-			>최신순
+			>日付順
 			</option>		
 			<option value = "highScore"
 			<c:if test = "${param.sort eq 'highScore' }">
 				selected = "selected"
 			</c:if>				
-			> 평점 높은순 정렬</option>			
+			> 評価の高い順</option>			
 			<option value = "lowScore"
 			<c:if test = "${param.sort eq 'lowScore' }">
 				selected = "selected"
 			</c:if>				
-			> 평점 낮은순 정렬</option>
+			> 評価の低い順</option>
 		</select>
-		&nbsp; &nbsp; <input type = "text" name = "searchWord" class = "searchWord" placeholder="제목·내용 검색" value="${param.searchWord }"><img src = "${conPath }/images/2866321.png" class = "searchIcon" style = "width: 20px; padding-top: 5px; margin-left: 5px;">
+		&nbsp; &nbsp; <input type = "text" name = "searchWord" class = "searchWord" placeholder="タイトル・内容で検索" value="${param.searchWord }"><img src = "${conPath }/images/2866321.png" class = "searchIcon" style = "width: 20px; padding-top: 5px; margin-left: 5px;">
 		<c:if test = "${not empty member }">
-			<input type = "button" class = "writeReview" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
+			<input type = "button" class = "writeReview" value = "レビュー投稿" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
 		<c:if test = "${empty member }">
-			<input type = "button" class = "notLogin" value = "리뷰작성" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
+			<input type = "button" class = "notLogin" value = "レビュー投稿" style = "position: absolute; right: 250px; width: 100px; color: white; background-color:#5c10e6; cursor:pointer;">
 		</c:if>
 	</form><br>
 	<div class = "reviewInfo" style = "margin-left: 200px;">
 		<fmt:formatNumber value="${reviewInfo.avg}" pattern="#,##0.00" var="formattedAvg" />			
-		<h4>총 리뷰 수: <span style = "color: orange;">${reviewInfo.reviewcount }</span> 개 / 별점 평균: <img src = "${conPath}/images/point_star_on.png"><span style = "color:orange;">${formattedAvg }</span>점</h4>
+		<h3>総レビュー件数: <span style = "color: orange;">${reviewInfo.reviewcount }</span> 件 / 評価 : <img src = "${conPath}/images/point_star_on.png"><span style = "color:orange;">${formattedAvg }</span>点</h3>
 	</div>
 	<div class="att_back">		
 		<c:forEach var="reviews" items="${reviewList }">
@@ -106,8 +106,8 @@
                 	</c:otherwise>
             	</c:choose>
 				<img src = "${conPath }/images/point_star_on.png" style = "width: 15px; height: 15px; margin-top: 5px;"><span style = "font-size: 0.8em; font-weight: bold;">${reviews.rscore }</span>&nbsp;&nbsp;<span style = "font-size: 0.8em; font-weight: bold;">${reviews.rtitle }</span><span style = "font-size: 0.7em; color: red;"> [${reviews.commentcnt }]</span>
-				<h6><fmt:formatDate value = "${reviews.rrdate }" dateStyle="long"/></h6>
-				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? '자유이용권' : '패스트패스'}</span>									
+				<h6><fmt:formatDate value = "${reviews.rrdate }" pattern = "yyyy年 MM月 dd日"/></h6>
+				<img src = "${conPath }/images/ticketavatar.png" style = "width:25px; height: 25px;"><span style = "font-size:0.66em;">${reviews.otype eq 0? 'フリ―パス' : 'ファストパス'}</span>									
 				</a>
 			</div>
 		</c:forEach>						
@@ -115,7 +115,7 @@
 </article>
 <div class = "paging" style = "text-align: center; font-weight: bold;">
 	<c:if test="${paging.startPage > paging.blockSize}">
-		<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[이전]</a>
+		<a href="${conPath }/review/reviewList.do?pageNum=${paging.startPage-1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[前へ]</a>
 	</c:if>	
 	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 		<c:if test="${paging.currentPage eq i }"> 
@@ -126,7 +126,7 @@
 		</c:if>
 	</c:forEach>
 	<c:if test="${paging.endPage < paging.pageCnt }">
-		<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[다음]</a>
+		<a href="${conPath }/review/reviewList.do?pageNum=${paging.endPage+1 }&sort=${param.sort eq null? 'new': param.sort}&searchWord=${param.searchWord}">[次へ]</a>
 	</c:if>
 </div>
 <div style = "float: left; margin-left: 180px;">							

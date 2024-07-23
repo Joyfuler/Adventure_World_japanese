@@ -143,7 +143,7 @@ public class ReviewServiceImpl implements ReviewService {
 				if(preIdx!=-1) {
 					int postIdx = rcontent.indexOf("\" style=");
 					String rcontentImgFileName = rcontent.substring(preIdx+compareStr.length(), postIdx);
-					r.setRcontentImgFileName(rcontentImgFileName);
+					r.setRcontentImgFileName(rcontentImgFileName);					
 				}
 			}
 		}
