@@ -71,7 +71,7 @@
   	<div class="page-title">
         <div class="write_title">
             <h2 style = "text-align: center;">
-            	<b>&nbsp; Adventure World 리뷰 게시글 작성</b>
+            	<b>&nbsp; アドベンチャーワールドのレビュー投稿</b>
             </h2>         
         </div>
   </div>  
@@ -104,44 +104,44 @@
 						<tr style = "padding: 10px;">									
 							<td colspan= "2" style = "cursor: pointer;">
 								<br><br> 
-								&nbsp;&nbsp;&nbsp;별점 : <img src = "${conPath }/images/point_star_on.png" starScore = "1" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "2" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "3" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="4" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="5" class = "starCheck">  / (<span class = "reviewScore">5</span>/5)점<br><br>
+								&nbsp;&nbsp;&nbsp;評価 : <img src = "${conPath }/images/point_star_on.png" starScore = "1" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "2" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore = "3" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="4" class = "starCheck"><img src = "${conPath }/images/point_star_on.png" starScore="5" class = "starCheck">  / (<span class = "reviewScore">5</span>/5)点<br><br>
 								<input type = "hidden" name ="rscore" class = "rscore" value = "5">				
 							</td>						
 						</tr>
 						<tr></tr>
 						<tr style = "text-align: left !important; padding-left: 20px;">
 							<td colspan = "2">
-								&nbsp;&nbsp;&nbsp;티켓 선택&nbsp;&nbsp;&nbsp;&nbsp;
-								<select name = "odid" id = "odidSelect">				
+								&nbsp;&nbsp;&nbsp;チケットの選択&nbsp;&nbsp;&nbsp;&nbsp;
+								<select name = "odid" id = "odidSelect" style = "margin-left: 20px;">				
 									<c:if test = "${availableList.size() eq 0 }">
-										<option value = "1"> 구매티켓 없음
+										<option value = "1"> 購買したチケットがありません
 									</c:if>
 									<c:if test = "${avaliableList.size() ne 0 }">							
 										<c:forEach var = "lists" items="${availableList }">											
 											<c:choose>
 												<c:when test = "${lists.review eq 'N' }">
-													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: blue;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 없음
+													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: blue;"> ${lists.otype eq 0? 'フリ‐パス' : 'ファストパス' } ( 来場日付 : ${lists.ovisitdate } / レビューの作成履歴: なし
 												</c:when>
 												<c:otherwise>
-													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: red;"> ${lists.otype eq 0? '자유이용권' : '패스트패스' } ( 방문일 : ${lists.ovisitdate } / 리뷰작성이력: 있음
+													<option value = "${lists.odid }" data-review = "${lists.review }" style = "color: red;"> ${lists.otype eq 0? 'フリ‐パス' : 'ファストパス' } ( 来場日付 : ${lists.ovisitdate } / レビューの作成履歴: あり
 												</c:otherwise>
 											</c:choose>					
 											<c:if test = "${lists.otype eq 1 }">
-												/ 어트랙션 - ${lists.oatname1 } / ${lists.oatname2 } / ${lists.oatname3 }
+												/ アトラクション - ${lists.oatname1 } / ${lists.oatname2 } / ${lists.oatname3 }
 											</c:if>
 											)																																
 										</c:forEach>
 									</c:if>																			
 								</select>
 								<br>
-								&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※티켓을 선택하지 않았거나, 해당 티켓의 리뷰 작성 이력이 이미 존재하는 경우 포인트가 지급되지 않습니다.</span>
+								&nbsp; &nbsp; <span style = "color:red; text-align: center; font-size: 12px;">※チケットを選択していないか、該当のチケットのレビューの作成履歴が既に存在している場合、ポイントは獲得されません。</span>
 								<input type = "hidden" id = "pointObtained" name = "pointObtained" value = "Y">
 								<br><br>
 								</td>		
 							</tr>
 							<tr>
 								<td style = "text-align: center; width: 100px;">																																																			
-									<span>&nbsp;&nbsp;제목&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									<span style = "font-size: 15px;">&nbsp;&nbsp;タイトル&nbsp;&nbsp;&nbsp;&nbsp;</span>
 								</td>
 								<td>
 									<input id="rtitle" name="rtitle" class = "writeInput" maxlength="100" tabindex="2" style = "width: 700px; height: 20px; margin-bottom: 10px;" 
@@ -150,7 +150,7 @@
 							</tr>								
 							<tr>
 								<td>
-									&nbsp; &nbsp; 내용 
+									&nbsp; &nbsp; 内容 
 								</td>
 								<td style = "padding-left: 25px; background-color: white; border-right: 1px solid gray;">
 									<textarea cols="30" rows="15" maxlength="4000" name = "rcontent" id = "rcontent"></textarea>																					
@@ -158,7 +158,7 @@
 							</tr>								
 							<tr>
 								<td style = "text-align: center;">
-									사진<br>추가<br><br>
+									写真の<br>追加<br><br>
 								</td>									
 								<td>
 									<input type="text" class="rimg" style="display: block; float: left; width:50%;"> &nbsp;
@@ -174,9 +174,9 @@
 	</div>								
 </section>
 <div class = "button-area" style = "text-align: center;">
-	<input type = "submit" value = "글작성" style = "margin-left: 50px;"> 
-	<input type = "button" value = "초기화" onclick = "location.reload(true);" style = "margin-left: 10px;"> 
-	<input type = "button" value = "글목록" onclick = "location.href='${conPath }/review/reviewList.do'" style = "margin-left: 10px;">
+	<input type = "submit" value = "レビュー投稿" style = "margin-left: 50px;"> 
+	<input type = "button" value = "初期化" onclick = "location.reload(true);" style = "margin-left: 10px;"> 
+	<input type = "button" value = "リストへ" onclick = "location.href='${conPath }/review/reviewList.do'" style = "margin-left: 10px;">
 </div>
 <br><br><br>
 </form>
