@@ -138,7 +138,7 @@
 </c:if>
 <jsp:include page="../main/header.jsp"/>
 	<div class="bg-light rounded border d-flex justify-content-center container">						
-				<h2>${reviewContent.mname } 님의 리뷰</h2>				
+				<h2>${reviewContent.mname } さんのレビュー</h2>				
 	</div>	
 	<div class="bg-light border container">		
 			<div class="clearfix">
@@ -150,17 +150,17 @@
 						<img src= "${conPath }/memberImg/${reviewContent.rphoto}" style = "height:100px !important;" onerror = "noImage(this)">
 					</c:if>				
 					<br>				
-				    <a href="${conPath }/cart/reserve.do" target="_blank"><b>${reviewContent.otype eq 0? '자유이용권' : '패스트패스' }</b></a>
-						/ [옵션] 성인 : ${reviewContent.op1 } 매  / 청소년 : ${reviewContent.op2 } 매 <br>
+				    <a href="${conPath }/cart/reserve.do" target="_blank"><b>${reviewContent.otype eq 0? 'フリ-パス' : 'ファストパス' }</b></a>
+						/ [枚數] 成人 : ${reviewContent.op1 } 枚  / 青少年 : ${reviewContent.op2 } 枚 <br>
 						<c:if test = "${reviewContent.otype eq 1 }">
-						어트랙션: ${reviewContent.oatname1 } / ${reviewContent.oatname2 } / ${reviewContent.oatname3 } <br>
+						アトラクション: ${reviewContent.oatname1 } / ${reviewContent.oatname2 } / ${reviewContent.oatname3 } <br>
 						</c:if> 
-						작성일: <fmt:formatDate value="${reviewContent.rrdate }" dateStyle="long"/> <br>
+						作成日付: <fmt:formatDate value="${reviewContent.rrdate }" dateStyle="long" pattern="yy年 MM月 dd日 hh:mm:ss"/> <br>
 						
-						평점 : 
+						評価 : 
 						<c:forEach var="i" begin="1" end="5">
     						<img src="${conPath}/images/point_star_${i <= reviewContent.rscore ? 'on' : 'out'}.png" style="width: 15px; padding-top: 5px;">
-						</c:forEach>&nbsp; ${reviewContent.rscore } 점<br>
+						</c:forEach>&nbsp; ${reviewContent.rscore } 点<br>
 				</div>
 				<div class="text-center">
 					<br>
@@ -179,7 +179,7 @@
                		<div class="btn-gruop-wrap clearfix">
                   		<div class="btn-gruop btn-group-comment">
                      		<img src = "${conPath }/images/comment_icon.png" style = "width: 25px;">
-                      		댓글 <span id="comment_count" style = "font-weight: bold;">${reviewContent.commentcnt }</span> 건  &nbsp; &nbsp; <a href = "#rccontent" style = "color:blue;">[댓글작성]</a>
+                      		コメント <span id="comment_count" style = "font-weight: bold;">${reviewContent.commentcnt }</span> 件  &nbsp; &nbsp; <a href = "#rccontent" style = "color:blue;">[コメント作成]</a>
                   		</div>         
                		</div>
             	</div>            
@@ -195,7 +195,7 @@
 									&nbsp; &nbsp; &nbsp; 
 								</c:if>
 							</c:forEach>    
-            				<b>${comments.mname }</b> &nbsp; &nbsp; <span> 작성일: <fmt:formatDate value="${comments.rcrdate }" pattern="yy년 MM월 dd일 hh:mm:ss"/></span>&nbsp; &nbsp;
+            				<b>${comments.mname }</b> &nbsp; &nbsp; <span> 作成日付: <fmt:formatDate value="${comments.rcrdate }" pattern="yy年 MM月 dd日 hh:mm:ss"/></span>&nbsp; &nbsp;
             	 			<br><br>           	 
 							<div class="comment_area _comment_area">
 								<c:forEach var="i" begin="1" end="${comments.rcindent }">									 
@@ -203,11 +203,11 @@
 								</c:forEach>	
 								<span>${comments.rccontent }</span><br>
 								<c:if test = "${comments.rcindent <4 }">
-									<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[답글]</a>					
+									<a style = "color: blue; cursor:pointer;" class = "replyComment" data-id = "${comments.rcid }">[リプライ]</a>					
 								</c:if>
 								<c:if test = "${comments.mid eq member.mid or not empty worker}">
-									<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[삭제]</a>
-									<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[수정]</a>
+									<a style = "color: blue; cursor:pointer;" class = "deleteComment" data-id = "${comments.rcid }">[削除]</a>
+									<a style = "color: blue; cursor:pointer;" class = "btnModify" data-rcid="${comments.rcid}" data-pageNum= "${param.pageNum}" data-replyPageNum="${paging.currentPage}">[修正]</a>
 								</c:if>
 								<hr>		
 								<table>
@@ -222,7 +222,7 @@
 					<br>
 					<div class = "paging" style = "text-align: center; font-weight: bold;">
 					<c:if test="${paging.startPage > paging.blockSize}">
-						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.startPage-1 }&pageNum=${empty param.pageNum? '1': param.pageNum }">[이전]</a>
+						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.startPage-1 }&pageNum=${empty param.pageNum? '1': param.pageNum }">[前へ]</a>
 					</c:if>
 					<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 						<c:if test="${paging.currentPage eq i }"> 
@@ -233,7 +233,7 @@
 						</c:if>
 					</c:forEach>
 					<c:if test="${paging.endPage < paging.pageCnt }">
-						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.endPage+1 }&pageNum=${empty param.pageNum? '1': param.pageNum}">[다음]</a>
+						<a href="${conPath }/review/reviewContent.do?rid=${reviewContent.rid }&replyPageNum=${paging.endPage+1 }&pageNum=${empty param.pageNum? '1': param.pageNum}">[次へ]</a>
 					</c:if>
 				</div>
 				<form action = "${conPath }/review/commentWrite.do" id = "replyForm">
@@ -241,7 +241,7 @@
 					<input type = "hidden" name = "mid" value = "${member.mid }">					
 					<table style = "margin-left: 10px;">
 						<tr>
-							<td> <b>댓글 작성</b> </td>
+							<td> <b>コメント作成</b> </td>
     	        	</tr>
             		<tr>	
             			<td>
@@ -249,10 +249,10 @@
             			</td>
             			<td>
             				<c:if test = "${empty member }">
-            					&nbsp;<input type = "button" value = "댓글작성" class = "notMemberSubmit">
+            					&nbsp;<input type = "button" value = "コメント作成" class = "notMemberSubmit">
             				</c:if>            				
             				<c:if test = "${not empty member }">
-            					&nbsp;<input type = "submit" value = "댓글작성">
+            					&nbsp;<input type = "submit" value = "リプライ作成">
             				</c:if>
             			</td>
             		</tr>		
@@ -264,13 +264,13 @@
 	</div>		
 	<div id = "buttons" style = "margin: 10px 0 10px 20px; text-align: center;">
 	<br>
-		<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewList.do?pageNum=${param.pageNum eq null? '1': param.pageNum}'">리뷰목록</button>						
+		<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewList.do?pageNum=${param.pageNum eq null? '1': param.pageNum}'">一覧</button>						
 		<c:if test = "${reviewContent.mid eq member.mid or not empty worker}">
-			<button class = "bg-light" onclick = "deleteConfirm()"> 리뷰삭제</button>
-			<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewModify.do?pageNum=${param.pageNum eq null? '1': param.pageNum }&rid=${param.rid }'"> 리뷰 수정 </button>
+			<button class = "bg-light" onclick = "deleteConfirm()"> レビュー削除</button>
+			<button class = "bg-light" onclick = "location.href='${conPath}/review/reviewModify.do?pageNum=${param.pageNum eq null? '1': param.pageNum }&rid=${param.rid }'"> レビュー修正 </button>
 		</c:if>
 		<c:if test = "${reviewContent.mid != member.mid }">		
-        	<button class=" bg-light reportButton">게시글신고</button>
+        	<button class=" bg-light reportButton">通報</button>
         	</c:if>
 	</div>	
 	  <div class = "reportForm" style = "display: none; margin: 0 0 10px 800px;">
@@ -279,35 +279,35 @@
          	<input type = "hidden" name = "mid" value = "${empty member ? 'nonmember' : member.mid }">       
         	<table style = "border : 1px solid gray;">        	
         		<tr>
-	        		<td> 신고 사유를 선택해주세요. </td>
+	        		<td> 通報の理由は？ </td>
     	    	</tr>
         		<tr>	 
         			<td>
         				<input type = "radio" value = "1" class = "reason1" name = "rreason" id = "reason1">
-        				<label for = "reason1">욕설</label>
+        				<label for = "reason1">罵倒</label>
         			</td>
         		</tr>
         		<tr>
 	        		<td>		
         				<input type = "radio" value = "2" class = "reason2" name = "rreason" id = "reason2">
-        				<label for = "reason2">도배</label>
+        				<label for = "reason2">荒らし</label>
         			</td>
         		</tr>
         		<tr>		
 	        		<td>
         				<input type = "radio" value = "3" class = "reason3" name = "rreason" id = "reason3">
-        				<label for = "reason3">포인트파밍</label>
+        				<label for = "reason3">ファーミング</label>
         			</td>
         		</tr>
         		<tr>
 	        		<td>		
         				<input type = "radio" value = "4" class = "reason4" name = "rreason" id = "reason4">
-        				<label for = "reason4">기타</label>
+        				<label for = "reason4">その他</label>
         			</td>
         		</tr> 	   		
  	   			<tr>
 	 	   			<td>
- 	   					<input type = "button" class = "reportSubmit" value = "신고"> 	   				
+ 	   					<input type = "button" class = "reportSubmit" value = "通報"> 	   				
  	   				</td>	
  	   			</tr>	
  	   		</table>

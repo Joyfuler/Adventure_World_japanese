@@ -49,18 +49,18 @@
 			</tr>
 			<tr>
 				<td>					
-					대댓글 달기<br>
+					リプライ作成<br>
 					<b>${member.mname }</b>
 				</td>
 				<td>				
-					<textarea rows="3" cols="30" name="rccontent" style="width:500px; height:80px; float:left; margin: 5px; margin-left: 20px;" placeholder="댓글내용"></textarea>
+					<textarea rows="3" cols="30" name="rccontent" style="width:500px; height:80px; float:left; margin: 5px; margin-left: 20px;" placeholder="リプライ内容"></textarea>
 				</td>
 				<td>	
 					<c:if test = "${not empty member }">
-						<input type="button" value="작성하기" class = "submitChk">
+						<input type="button" value="作成" class = "submitChk">
 					</c:if>					
 					<c:if test = "${empty member }">
-						<input type = "button" value = "작성하기" class = "notMemberSubmit">
+						<input type = "button" value = "作成" class = "notMemberSubmit">
 					</c:if>								
 				</td>
 			</tr>		
