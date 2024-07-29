@@ -97,7 +97,7 @@
 		
 		$('.reportSubmit').click(function(){			
 			var rtitle = '${reviewContent.rtitle}';
-			alert("[제목] " + rtitle + " 리뷰 게시글을 신고하였습니다.");
+			alert("[タイトル]  " + rtitle + " のレビューを通報しました");
 			$('.report').submit();
 		});
 		
@@ -277,37 +277,37 @@
         	<form action = "${conPath }/review/report.do" class = "report">
         	<input type = "hidden" name = "rid" value = "${reviewContent.rid }">        	        	
          	<input type = "hidden" name = "mid" value = "${empty member ? 'nonmember' : member.mid }">       
-        	<table style = "border : 1px solid gray;">        	
+        	<table style = "border : 1px solid gray;　margin: 5px;">        	
         		<tr>
-	        		<td> 通報の理由は？ </td>
+	        		<td> 通報の理由をお選びください </td>
     	    	</tr>
         		<tr>	 
         			<td>
         				<input type = "radio" value = "1" class = "reason1" name = "rreason" id = "reason1">
-        				<label for = "reason1">罵倒</label>
+        				<label for = "reason1"> 罵倒・荒し</label>
         			</td>
         		</tr>
         		<tr>
 	        		<td>		
         				<input type = "radio" value = "2" class = "reason2" name = "rreason" id = "reason2">
-        				<label for = "reason2">荒らし</label>
+        				<label for = "reason2"> 広告・宣伝</label>
         			</td>
         		</tr>
         		<tr>		
 	        		<td>
         				<input type = "radio" value = "3" class = "reason3" name = "rreason" id = "reason3">
-        				<label for = "reason3">ファーミング</label>
+        				<label for = "reason3"> ポイント稼ぎ</label>
         			</td>
         		</tr>
         		<tr>
 	        		<td>		
         				<input type = "radio" value = "4" class = "reason4" name = "rreason" id = "reason4">
-        				<label for = "reason4">その他</label>
+        				<label for = "reason4"> その他</label>
         			</td>
         		</tr> 	   		
  	   			<tr>
 	 	   			<td>
- 	   					<input type = "button" class = "reportSubmit" value = "通報"> 	   				
+ 	   					<input type = "button" class = "reportSubmit" value = "通報する" style = "margin: 0 5px;"> 	   				
  	   				</td>	
  	   			</tr>	
  	   		</table>

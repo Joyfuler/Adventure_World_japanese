@@ -61,7 +61,7 @@
 <jsp:include page="workerHeader.jsp"/>
   <div class="page-titlee" style="margin-top:-100 " >
         <div class="containerr">
-            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 신고내역 </h3>
+            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 通報履歴 </h3>
         </div>
     </div>
 
@@ -69,9 +69,9 @@
         <div class="containerr">
             <div class="search-window">                            
                     <div class="search-wrap" >                        
-                        <input id="search" type="search" name="schWord" placeholder="신고자 아이디 / 리뷰아이디를 검색" value="${param.searchWord}">
-                        <input type="button" id="searchReport" class="btn btn-dark" value="검색">                        
-                        <input type="button" class="btn btn-dark" value="초기화" onclick="location.href='${conPath}/worker/workerReportList.do'">                          
+                        <input id="search" type="search" name="schWord" placeholder="通報したID / レビュー投稿者のIDを検索" value="${param.searchWord}">
+                        <input type="button" id="searchReport" class="btn btn-dark" value="検索">                        
+                        <input type="button" class="btn btn-dark" value="初期化" onclick="location.href='${conPath}/worker/workerReportList.do'">                          
                     </div>               
             </div>
         </div>
@@ -81,21 +81,21 @@
             <table class="board-tablee">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">신고번호</th>
-                    <th scope="col" class="th-thum">게시글제목</th> 
-     	            <th scope="col" class="th-id">게시글내용</th>              
-     	            <th scope="col" class="th-handle">작성일</th>
-                    <th scope="col" class="th-title">작성자</th>
-                    <th scope="col" class="th-context">신고자</th>
-                    <th scope="col" class="th-score">신고자명</th>                    
-                    <th scope="col" class="th-date">사유</th>
-                    <th scope="col" class="th-on">신고일</th>
+                    <th scope="col" class="th-num">通報番号</th>
+                    <th scope="col" class="th-thum">タイトル</th> 
+     	            <th scope="col" class="th-id">内容</th>              
+     	            <th scope="col" class="th-handle">作成日付</th>
+                    <th scope="col" class="th-title">投稿者</th>
+                    <th scope="col" class="th-context">通報者ID</th>
+                    <th scope="col" class="th-score">通報者HN</th>                    
+                    <th scope="col" class="th-date">通報理由</th>
+                    <th scope="col" class="th-on">通報日付</th>
                 </tr>                
                 </thead>
             <c:if test = "${reportList.size() eq 0 }">
             	<tr>
             		<td colspan="9">
-            			신고 내역이 없습니다.
+            			通報履歴が存在しませんでした
             		</td>
             	</tr>
             </c:if>
@@ -104,13 +104,13 @@
 				<tr>
 					<td>		        	
 						<input type = "checkbox" data-id ="${reports.rno }" class = "removeCheck"> ${reports.rno }<br>
-						<input type = "button" value = "글보기" onclick="goReviewPage(${reports.rid})">
+						<input type = "button" value = "投稿を見る" onclick="goReviewPage(${reports.rid})">
 					</td>
 		    		<td>
 		    			${reports.rtitle }
 		    		</td>
 		    		<td style = "width: 300px;">
-		    			<c:out value="${empty reports.rcontent? '내용없음' : reports.rcontent }" escapeXml="true"/>		    			
+		    			<c:out value="${empty reports.rcontent? '空白' : reports.rcontent }" escapeXml="true"/>		    			
 		    		</td>
 			    	<td>
 				    	${reports.rrdate }
@@ -125,7 +125,7 @@
 		    			${reports.mname }
 		    		</td>
 		    		<td>
-		    			${reports.rreason eq 1? '욕설': (reports.rreason eq 2? '도배' : (reports.rreason eq 3? '포인트파밍' : '기타'))}		    									
+		    			${reports.rreason eq 1? '罵倒・荒し': (reports.rreason eq 2? '広告・宣伝' : (reports.rreason eq 3? 'ポイント稼ぎ' : 'その他'))}		    									
 		    		</td>
 			    	<td>
 				    	<fmt:formatDate value="${reports.reportdate}" pattern="yyyy-MM-dd" var="formattedDate" />
@@ -138,12 +138,12 @@
             </table>            
         </div>
         <br>
-        <input type = "button" value = "전체선택" class = "selectAll" style = "margin-left:18%; margin-right: 10px;">
-        <input type = "button" value = "삭제하기" class = "deleteReport">
+        <input type = "button" value = "全部選択" class = "selectAll" style = "margin-left:18%; margin-right: 10px;">
+        <input type = "button" value = "削除" class = "deleteReport">
     </div>
 	<div id ="paging">	
 		<c:if test="${paging.startPage>paging.blockSize}">
-			<a href="${conPath }/worker/workerReportList.do?pageNum=${paging.startPage-1 }&searchWord=${param.searchWord}">[이전]</a> 
+			<a href="${conPath }/worker/workerReportList.do?pageNum=${paging.startPage-1 }&searchWord=${param.searchWord}">[前へ]</a> 
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
@@ -154,7 +154,7 @@
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.pageCnt }">
-			<a href="${conPath }/worekr/workerReportList.do?pageNum=${paging.endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+			<a href="${conPath }/worekr/workerReportList.do?pageNum=${paging.endPage+1 }&searchWord=${param.searchWord}">[次へ]</a>
 		</c:if>
 	</div>	
 </section>
