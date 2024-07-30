@@ -64,7 +64,7 @@
 </c:if>
 <c:if test = "${not empty workerReviewDeleteResult }">
 	<script>
-		alert('${workerReviewDeleteResult}개의 리뷰 및 해당 리뷰의 댓글이 삭제되었습니다.');
+		alert('${workerReviewDeleteResult}件のレビュー、及びコメントが削除されました');
 	</script>
 </c:if>
 <section class="notice">
@@ -72,7 +72,7 @@
 <jsp:include page="workerHeader.jsp"/>
   <div class="page-titlee" style="margin-top:-100 " >
         <div class="containerr">
-            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 리뷰게시글 리스트 </h3>
+            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> レビュー投稿の一覧 </h3>
         </div>
     </div>
 
@@ -80,10 +80,10 @@
         <div class="containerr">
             <div class="search-window">                            
                     <div class="search-wrap" >
-                        <label for="search" class="blind"> 리뷰게시글 검색 </label>
-                        <input id="search" type="search" name="schWord" placeholder="게시글 제목 & 내용 검색" value="${param.searchWord}">
-                        <input type="button" id="searchReview" class="btn btn-dark" value="검색">                        
-                        <input type="button" class="btn btn-dark" value="초기화" onclick="location.href='${conPath}/worker/workerReviewList.do'">                          
+                        <label for="search" class="blind"> レビューの検索 </label>
+                        <input id="search" type="search" name="schWord" placeholder="タイトル＆内容で検索" value="${param.searchWord}">
+                        <input type="button" id="searchReview" class="btn btn-dark" value="検索">                        
+                        <input type="button" class="btn btn-dark" value="初期化" onclick="location.href='${conPath}/worker/workerReviewList.do'">                          
                     </div>               
             </div>
         </div>
@@ -93,21 +93,21 @@
             <table class="board-tablee">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">게시글번호</th>
-                    <th scope="col" class="th-thum">썸네일</th> 
-     	            <th scope="col" class="th-id">회원아이디</th>              
-     	            <th scope="col" class="th-handle">닉네임</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-context">내용</th>
-                    <th scope="col" class="th-score">평점</th>                    
-                    <th scope="col" class="th-date">작성일</th>
-                    <th scope="col" class="th-on">주문번호</th>                    
+                    <th scope="col" class="th-num">投稿番号</th>
+                    <th scope="col" class="th-thum">サムネ</th> 
+     	            <th scope="col" class="th-id">会員ID</th>              
+     	            <th scope="col" class="th-handle">会員HN</th>
+                    <th scope="col" class="th-title">タイトル</th>
+                    <th scope="col" class="th-context">内容</th>
+                    <th scope="col" class="th-score">評価</th>                    
+                    <th scope="col" class="th-date">作成日付</th>
+                    <th scope="col" class="th-on">注文番号</th>                    
                 </tr>                
                 </thead>
             <c:if test = "${reviewList.size() eq 0 }">
             	<tr>
             		<td colspan="9">
-            			등록된 리뷰가 없습니다.
+            			まだレビューがありません
             		</td>
             	</tr>
             </c:if>
@@ -116,7 +116,7 @@
 				<tr>
 					<td>		        	
 						<input type = "checkbox" data-id ="${reviews.rid }" class = "removeCheck"> ${reviews.rid }<br>
-						<input type = "button" value = "글보기" onclick="goReviewPage(${reviews.rid})">
+						<input type = "button" value = "確認" onclick="goReviewPage(${reviews.rid})">
 					</td>
 		    		<td>
 		    			<c:choose>
@@ -141,7 +141,7 @@
 				    	<c:out value="${reviews.rcontent }" escapeXml="true"/>
 				    </td>
 		    		<td>
-		    			<img src = "${conPath}/images/point_star_on.png" style = "width: 20px;">${reviews.rscore }점
+		    			<img src = "${conPath}/images/point_star_on.png" style = "width: 20px;">${reviews.rscore }点
 		    		</td>
 		    		<td>
 		    			<fmt:formatDate value="${reviews.rrdate}" pattern="yyyy-MM-dd" var="formattedDate" />
@@ -157,14 +157,14 @@
             </table>            
         </div>
         <br>
-        <input type = "button" value = "전체선택" class = "selectAll" style = "margin-left:18%; margin-right: 10px;">
-        <input type = "button" value = "삭제하기" class = "deleteReview">        
+        <input type = "button" value = "全部選択" class = "selectAll" style = "margin-left:18%; margin-right: 10px;">
+        <input type = "button" value = "削除" class = "deleteReview">        
 <br><br><br>
 <br><br><br>
 </div>
 	<div id ="paging">
 		<c:if test="${paging.startPage>paging.blockSize}">
-			<a href="${conPath }/worker/workerReviewList.do?pageNum=${paging.startPage-1 }&searchWord=${param.searchWord}">[이전]</a> 
+			<a href="${conPath }/worker/workerReviewList.do?pageNum=${paging.startPage-1 }&searchWord=${param.searchWord}">[前へ]</a> 
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
@@ -175,7 +175,7 @@
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.pageCnt }">
-			<a href="${conPath }/worekr/workerReviewList.do?pageNum=${paging.endPage+1 }&searchWord=${param.searchWord}">[다음]</a>
+			<a href="${conPath }/worekr/workerReviewList.do?pageNum=${paging.endPage+1 }&searchWord=${param.searchWord}">[次へ]</a>
 		</c:if>
 	</div>
 </section>
