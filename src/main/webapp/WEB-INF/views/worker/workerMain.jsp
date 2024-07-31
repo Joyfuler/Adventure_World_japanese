@@ -18,45 +18,51 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
 </style>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<c:if test = "${empty worker}">
+<script>
+	alert('管理者アカウントからログアウトされました。もう一度ログインしてください');
+	location.href = '${conPath }/main.do';
+</script>
+</c:if>  
 </head>
 <jsp:include page="../main/header.jsp"/>
 <body>
 <div id="adminmain">
    <div id="login">
-   <h1>관리자로 로그인 되었습니다</h1>
+   <h1>管理者 ${worker.wid}としてログイン完了</h1>
    <hr>
    </div>
-   <h1>하실일을 선택하세요</h1>
+   <h1>メニューを選んでください</h1>
    <div id="main2" style = "margin-bottom: 100px;">
    	<div class="buttons">
-      	<input type="button" value="어트랙션 관리" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer">
+      	<input type="button" value="アトラクション管理" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer">
    	</div>
     <div class="buttons">
-		<input type="button" value="공지사항 관리" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer">
+		<input type="button" value="お知らせ管理" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer">
 	</div>
     <div class="buttons">
-		<input type="button" value="회원 관리" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer">
+		<input type="button" value="会員管理" onclick="location.href='${conPath}/memberList.do'" style="cursor:pointer">
    	</div>
 	<div class="buttons">
-		<input type="button" value="Q & A 관리" onclick="location.href='${conPath}/worker/workerQnaList.do'" style="cursor:pointer">
+		<input type="button" value="Q & A 管理" onclick="location.href='${conPath}/worker/workerQnaList.do'" style="cursor:pointer">
 	</div>
 	<div class="buttons">
-		<input type="button" value="FAQ 관리" onclick="location.href='${conPath}/workerFaqList.do'" style="cursor:pointer">
+		<input type="button" value="FAQ 管理" onclick="location.href='${conPath}/workerFaqList.do'" style="cursor:pointer">
 	</div>
 	<div class="buttons">
-		<input type="button" value="배너 관리" onclick="location.href='${conPath}/workerBanner/list.do?from=admin'" style="cursor:pointer">
+		<input type="button" value="バナー管理" onclick="location.href='${conPath}/workerBanner/list.do?from=admin'" style="cursor:pointer">
 	</div>
 	<div class = "buttons">
-		<input type="button" value="리뷰글 관리" onclick="location.href='${conPath}/worker/workerReviewList.do'" style="cursor:pointer">
+		<input type="button" value="レビュー管理" onclick="location.href='${conPath}/worker/workerReviewList.do'" style="cursor:pointer">
 	</div>
 	<div class = "buttons">
-		<input type = "button" value = "유저주문내역" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer;">
+		<input type = "button" value = "ユーザ注文履歴" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer;">
 	</div>
 	<div class = "buttons">
-		<input type = "button" value = "분실물 센터" onclick = "location.href='${conPath}/workerlostItemList.do'" style = "cursor:pointer;">
+		<input type = "button" value = "紛失物センター" onclick = "location.href='${conPath}/workerlostItemList.do'" style = "cursor:pointer;">
   </div>
   <div>
-		<input type = "button" value = "신고관리" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer;">
+		<input type = "button" value = "通報管理" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer;">
 	</div>
 </div>
 </div>

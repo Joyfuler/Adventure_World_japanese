@@ -38,26 +38,25 @@
 <body>
 <div id=logina>
 	<div class="login">
-   <div class="join_title">관리자 로그인</div>
+   <div class="join_title">管理者ログインページ</div>
    </div>
-   <h2 style="color:gray; font-weight:400">관리자 아이디와 비밀번호로 로그인 하세요.</h2>
+   <h2 style="color:gray; font-weight:400">管理者IDとPWを入力してログインできます。</h2>
    <br><br>
    <form action = "${conPath }/worker/workerLoginForm.do" method="post">
    <input type="hidden" name="after" value="${after}">
    <!-- <input type="hidden" name="command" value="login">  action="world.do"-->
    <div id=input>
-      <input name="wid" placeholder="&nbsp;아이디" size="40" type="text" style="width:500px ;background:white;"><br>
+      <input name="wid" placeholder="&nbsp;ID入力" size="40" type="text" style="width:500px ;background:white;"><br>
    </div>
    <br>
    <div id=input>
-      <input name="wpw" placeholder="&nbsp;비밀번호" size="40" type="password" style="width:500px"><br>
+      <input name="wpw" placeholder="&nbsp;PW入力" size="40" type="password" style="width:500px"><br>
    </div>
    <div class="ar">&nbsp;&nbsp;&nbsp;${message}</div>
    <div id="buttons">
-      <input type="submit" value="로그인" class="submit" onclick="return loginCheck()">
-   </div><br><br>
-   <div id=content> 문의사항이 있으시면 고객만족센터에 연락하세요.<br>
-   고객만족센터 : 1899-0000</div>
+      <input type="submit" value="ログイン" class="submit" onclick="return loginCheck()">
+      <br><br>
+   </div>   
    </form>
 </div>
 </body>

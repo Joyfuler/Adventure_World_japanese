@@ -39,8 +39,9 @@ public class WorkerMainController {
 	@RequestMapping(value="workerLoginForm", method = RequestMethod.POST)
 	public String workerLogin(@ModelAttribute("wDto") Worker wDto, HttpSession session, Model model, String after) {
 		String loginResult = workerService.loginCheck(wDto, session);
-		if(loginResult.equals("로그인 성공")) {
+		if(loginResult.equals("로그인 성공")) {			
 			return "redirect:../" + after;
+		
 		}else {
 			model.addAttribute("loginResult", "로그인에 실패했습니다.");
 			model.addAttribute("wid", wDto.getWid());
