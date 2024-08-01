@@ -35,7 +35,7 @@ border-radius: 10px; box-shadow: 3px 3px 2px #ccc; font-size:150%; float:left; b
    <h1>メニューを選んでください</h1>
    <div id="main2" style = "margin-bottom: 100px;">
    	<div class="buttons">
-      	<input type="button" value="アトラクション管理" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer">
+      	<input type="button" value="アトラクション" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'" style="cursor:pointer">
    	</div>
     <div class="buttons">
 		<input type="button" value="お知らせ管理" onclick="location.href='${conPath }/worker/list.do'" style="cursor:pointer">

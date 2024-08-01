@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>어드벤처 월드</title>	
+<title>アドベンチャーワールド</title>	
 <script src = "${conPath }/js/order.js"></script>
 <script src="${conPath }/script/script.js"></script>
 <script src="${conPath }/script/event02.js"></script>  
