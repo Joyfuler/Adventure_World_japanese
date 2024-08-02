@@ -210,12 +210,12 @@ margin: 0 auto;   border-bottom: 2px solid #e1e1e1; font-size:150%;}
 
 /* attractionDetail */
 .att_Detail_title {position:relative; width:100%; height:300px; display:inline-box; text-align:center; margin:0 auto; font-family:'IBM Plex Sans KR', sans-serif;}
-#att_Detail_text {position:relative; text-align:center; font-weight:bold; font-size:60px; padding: 10px 0 0 0;}
+#att_Detail_text {position:relative; text-align:center; font-weight:bold; font-size:30px; padding: 10px 0 0 0;}
 #att_Detail_exp{position:relative; text-align:center; font-weight:normal; font-size:20px; padding: 20px 0;}
 
 #att_Detail_tag{position:relative; width:100%; height:80px; display:flex; justify-content:center; align-items:center;}
 #att_Detail_tag ul{width:720px; height:54px; margin:0 auto; list-style:none; display:flex; justify-content:center; align-items:center; text-align:center;}
-#att_Detail_tag ul li{width:110px; height:40px; border-radius:40px 40px 40px 40px; border:1px solid lightgray; float:left; color: white;
+#att_Detail_tag ul li{height:40px; min-width: 200px; border-radius:40px 40px 40px 40px; border:1px solid lightgray; float:left; color: white;
 	margin:20px; font-size:16px; line-height:40px; background-color:#5c10e6;}
 #att_Detail_tag ul li:hover{color: yellow; background-color: #7e31f8;}	
 	

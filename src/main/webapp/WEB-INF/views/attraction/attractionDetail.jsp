@@ -18,8 +18,8 @@
    	<div id="att_Detail_exp">${attractionDetail.acontent}</div>
    	<div id="att_Detail_tag">
    		<ul>
-   			<li>${attractionDetail.tag1}</li>
-   			<li>${attractionDetail.tag2}</li>
+   			<li style = "white-space: pre-wrap;">${attractionDetail.tag1}</li>
+   			<li style = "white-space: pre-wrap;">${attractionDetail.tag2}</li>
    		</ul>
    	</div>
 </div>
@@ -81,15 +81,15 @@
 		</p>
 	</div>
 	<p class="txt">
-		<span style="color:#550adf;"> ※ 이번 주 월요일부터 일요일까지의 운휴정보입니다.</span>
+		<span style="color:#550adf;"> ※ 今週の運休情報を表示しています</span>
 		<br>
-		※ 기상 변화 및 파크 상황에 따라 운휴 일정은 다소 변경될 수 있습니다.
+		※ 気象の変化及び遊園地の運営状況により運休の日程は変更する恐れがあります。
 	</p>
 	<p class="link">
-		<a href="${conPath }/attraction/stopdayInfo.do" class="grayBtn">이번 달 운휴 달력 보러가기</a>
+		<a href="${conPath }/attraction/stopdayInfo.do" class="grayBtn">今月の運休カレンダーを見る</a>
 	</p>
 	<div class="btnArea">
-		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">목록</a>
+		<a href="${conPath }/attraction/attractionList.do" class="purpleBtn">リスト</a>
 	</div>
 </div>
 </article>

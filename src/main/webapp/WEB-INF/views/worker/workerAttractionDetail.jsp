@@ -13,7 +13,7 @@
 <script>
 function go_deleteAttraction(aid){
 		if(confirm('정말 삭제하시겠습니까?')){
-			var url="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }; 
+			var url='${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum}';
 			location.href=url;
 			}
 		}
@@ -39,68 +39,68 @@ function go_deleteAttraction(aid){
 	<div id="att_Info_box_tool">
 		<div class="att_Info_box">
 			<div class="att_Info_icon"><img src="${conPath }/images/icons/rideInfo_card_icon3.png"/></div>
-			<div class="att_Info_text">탑승인원</div>
-			<div id="att_Info_pnum">${attractionDetail.headcount}명</div>
+			<div class="att_Info_text">人数制限</div>
+			<div id="att_Info_pnum">${attractionDetail.headcount}人</div>
 		</div>
 		<div class="att_Info_box">
 			<div class="att_Info_icon"><img src="${conPath }/images/icons/rideInfo_card_icon4.png"/></div>
-			<div class="att_Info_text">이용정보</div>
+			<div class="att_Info_text">利用情報</div>
 			<div id="att_Info_limit">
 				${attractionDetail.height }<br>
 				${attractionDetail.age}
 			</div>
 		</div>
 	</div>
-	<p id="att_Info_text2">아래와 같은 분들은 탑승이 제한됩니다.</p>
+	<p id="att_Info_text2">下記のような方はご利用になれません。</p>
 	<div id="att_Info_bottom"><br>
 		<div id="att_Info_bottom_tool">	
 			<div id="att_Info_icon_tool">
 				<div id="att_Info_icon2"><img src="${conPath }/images/icons/rideInfo_rest_icon1.png"></div>
-				<div id="att_Info_icon_text2">음주 후 2시간 이내 이용자</div>
+				<div id="att_Info_icon_text2">飲酒後2時間以内の方</div>
 			</div>
 			<div id="att_Info_icon_tool">
 				<div id="att_Info_icon2"><img src="${conPath }/images/icons/rideInfo_rest_icon2.png"></div>
-				<div id="att_Info_icon_text2">임산부</div>
+				<div id="att_Info_icon_text2">妊娠中の方</div>
 			</div>
 			<div id="att_Info_icon_tool">
 				<div id="att_Info_icon2"><img src="${conPath }/images/icons/rideInfo_rest_icon3.png"></div>
-				<div id="att_Info_icon_text2">심/혈관계 질환자</div>
+				<div id="att_Info_icon_text2">心血管疾患の方</div>
 			</div>
 			<div id="att_Info_icon_tool">
 				<div id="att_Info_icon2"><img src="${conPath }/images/icons/rideInfo_rest_icon4.png"></div>
-				<div id="att_Info_icon_text2">디스크 환자</div>
+				<div id="att_Info_icon_text2">車椅子の方等</div>
 			</div>
 		</div>
 	</div>
 </div><br>
-<p id="att_Info_text2">운휴일정</p>
+<p id="att_Info_text2">運休日程</p>
 <div class="closeInfo">
 	<div class="att_holiday_tool">
 		<p class="att_holiday_txt">			
 			<c:if test = "${attractionDetail.stopday eq 'Y'}">
 			<span style = "font-size: 1.5em; color: red;">
-				이 어트랙션은 ${weekSchedule } 까지 운휴 중입니다.
+				このアトラクションは ${weekSchedule } まで運休しています。
 			</span>	  
 			</c:if>
 			<c:if test = "${attractionDetail.stopday eq 'N'}">
 			<span style = "font-size: 1.5em;">
-				이 어트랙션은 ${weekSchedule } 까지 휴일 없이 운영됩니다.
+				このアトラクションは ${weekSchedule } まで運営しています。
 			</span>	
 			</c:if>
 		</p>
 	</div>
 	<p class="txt">
-		<span style="color:#550adf;"> ※ 이번 주 일요일부터 토요일까지의 운휴정보입니다.</span>
+		<span style="color:#550adf;"> ※ 今週の運休情報を表示しています</span>
 		<br>
-		※ 기상 변화 및 파크 상황에 따라 운휴 일정은 다소 변경될 수 있습니다.
+		※ 気象の変化及び遊園地の運営状況により運休の日程は変更する恐れがあります。
 	</p>
 	<p class="link">
-		<a href="${conPath }/attraction/stopdayInfo.do" class="grayBtn">이번 달 운휴 달력 보러가기</a>
+		<a href="${conPath }/attraction/stopdayInfo.do" class="grayBtn">今月の運休カレンダーを見る</a>
 	</p>
 	<div class="btnArea">
-		<a href="${conPath }/workerAttraction/attractionListP.do" class="purpleBtn">목록</a>
-		<a href="${conPath }/workerAttraction/update.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">수정</a>
-		<a href="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn" onclick="go_deleteAttraction('${attractionDetail.aid}')">삭제</a>
+		<a href="${conPath }/workerAttraction/attractionListP.do" class="purpleBtn">リスト</a>
+		<a href="${conPath }/workerAttraction/update.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn">修正</a>
+		<a href="${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum }" class="purpleBtn" onclick="go_deleteAttraction('${attractionDetail.aid}')">削除</a>
 	</div>
 </div>
 </article>
