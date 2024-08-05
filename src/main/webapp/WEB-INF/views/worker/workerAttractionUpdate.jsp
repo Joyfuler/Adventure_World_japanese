@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>アトラクションの修正</title>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -140,71 +140,71 @@
 <article>
     <div class="findfindd">
         <div class="id_foundd">
-            <h1>어트랙션 수정</h1>
+            <h1>アトラクションの修正</h1>
             <br><hr><br>  
             <form action="${conPath }/workerAttraction/update.do" method="post"enctype="multipart/form-data">
             	<input type = "hidden" name = "aid" value = "${attraction.aid }">
                 <table class="baba">
 			        <tr>
-						<th>어트랙션 이름</th>
+						<th>アトラクション名</th>
 						<td><input type="text" name="aname" size="47" value="${attraction.aname }"></td>
 					</tr>
 					<tr>
-						<th>어트랙션 설명</th>
+						<th>説明</th>
 						<td><input type="text" name="acontent" size="47" value="${attraction.acontent}"></td>
 					</tr>
 					<tr>
-						<th>태그1</th>
+						<th>タグ1</th>
 						<td><input type="text" name="tag1" size="47" value="${attraction.tag1 }"></td>
 					</tr>
 					<tr>
-						<th>태그2</th>
+						<th>タグ2</th>
 						<td><input type="text" name="tag2" size="47" value="${attraction.tag2 }"></td>
 					</tr>
 					<tr>
-						<th>탑승인원(숫자)</th>
+						<th>人数制限</th>
 						<td><input type="text" name="headcount" size="47" value="${attraction.headcount }"></td>
 					</tr>
 					<tr>
-						<th>제한사항1(키)</th>
+						<th>身長制限</th>
 						<td><input type="text" name="height" size="47" value="${attraction.height }"></td>
 					</tr>
 					<tr>
-						<th>제한사항2(나이)</th> 
+						<th>年齢制限</th> 
 						<td><input type="text" name="age" size="47" value="${attraction.age }"></td>
 					</tr>
 					<tr>
-						<th>베스트 어트랙션<br>(Y/N)</th>
+						<th>おすすめアトラクション<br>(Y/N)</th>
 						<td>
 							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="Y"
 							<c:if test = "${attraction.best eq 'Y' }">
 								checked = "checked"
 							</c:if>
-							>사용
+							>登録
 							<input type="radio" style="width:17px;height:17px;border:1px;" name="best" value="N"
 							<c:if test = "${attraction.best eq 'N' }">
 								checked = "checked"
 							</c:if>
-							>미사용	
+							>解除	
 						</td>
 					</tr>
 					<tr>
-						<th>운휴정보<br>(Y/N)</th> 
+						<th>運休情報<br>(Y/N)</th> 
 						<td>
 							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="Y"
 							<c:if test = "${attraction.stopday eq 'Y' }">
 								checked = "checked"
 							</c:if>	
-							>사용
+							>使用
 							<input type="radio" style="width:17px;height:17px;border:1px;" name="stopday" value="N"
 							<c:if test = "${attraction.stopday eq 'N' }">
 								checked = "checked"
 							</c:if>	
-							>미사용
+							>未使用
 						</td>	
 					</tr>
                     <tr>
-                        <th>어트랙션 이미지</th>
+                        <th>画像</th>
                         <td>
 						    <div class="sbimage" style="width: 90%; overflow: hidden;">
 						        <label for="attractionImage" style="float: left; margin-right: 10px;">
@@ -218,9 +218,9 @@
                     </tr>
                 </table>
                 <div class="update_buttons">
-                    <input type="submit" value="기구수정">
-                    <input type="button" value="목록으로" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'">
-                    <input type="reset" value="재설정">
+                    <input type="submit" value="修正">
+                    <input type="button" value="目録" onclick="location.href='${conPath }/workerAttraction/attractionListP.do'">
+                    <input type="reset" value="初期化">
                 </div>
             </form>
         </div>
