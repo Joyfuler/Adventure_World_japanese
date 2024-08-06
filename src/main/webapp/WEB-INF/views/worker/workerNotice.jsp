@@ -18,7 +18,7 @@
 <script>
 function go_search(){
 	 if($('input[name="key"]').val() == "" ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
+		alert("検索ワードを入力してください");
 	 	return false;
 	} 
 }
@@ -31,18 +31,18 @@ function go_search(){
 <section class="notice">
 <div class="page-title">
 	<div class="container">
-		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">공지사항</h3>
+		<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">お知らせ一覧</h3>
 	</div>
 </div>
     <div class="board-searchh">
         <div class="container">
             <div class="search-window">
                 <div class="search-wrap">
-                    <label for="search" class="blind"> 공지사항검색</label>
-                    <input id="search" type="text" name="schTitle" placeholder="검색어를 입력해주세요." value="${param.schTitle}">
-                    <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-             		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/worker/list.do'">
-             		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/worker/insert.do'">   
+                    <label for="search" class="blind"> お知らせを検索</label>
+                    <input id="search" type="text" name="schTitle" placeholder="検索ワードを入力" value="${param.schTitle}">
+                    <input type="submit" class="btn btn-dark" value="検索" onClick="return go_search()">
+             		<input type="button" class="btn btn-darkkk" value="一覧" onClick="location.href='${conPath }/worker/list.do'">
+             		<input type="button" class="btn btn-dark" value="追加" onClick="location.href='${conPath }/worker/insert.do'">   
                 </div>
             </div>
         </div>
@@ -52,9 +52,9 @@ function go_search(){
             <table class="board-table">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
+                    <th scope="col" class="th-num">番号</th>
+                    <th scope="col" class="th-title">タイトル</th>
+                    <th scope="col" class="th-date">登録日付</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -72,7 +72,7 @@ function go_search(){
 </section>
 <div style="text-align: center; margin-top: 20px;">
 	<c:if test="${paging.startPage>paging.blockSize}">
-		[ <a href="${conPath }/worker/list.do?pageNum=${paging.startPage-1 }&schTitle=${param.schWord}">이전</a> ]
+		[ <a href="${conPath }/worker/list.do?pageNum=${paging.startPage-1 }&schTitle=${param.schWord}">前へ</a> ]
 	</c:if>	
 	<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 		<c:if test="${paging.currentPage==i }"> 
@@ -83,7 +83,7 @@ function go_search(){
 		</c:if>
 	</c:forEach>
 	<c:if test="${paging.endPage<paging.pageCnt }">
-		[ <a href="${conPath }/worker/list.do?pageNum=${paging.endPage+1 }&schTitle=${param.schWord}">다음</a> ]
+		[ <a href="${conPath }/worker/list.do?pageNum=${paging.endPage+1 }&schTitle=${param.schWord}">次へ</a> ]
 	</c:if>
 </div>
 </form>
