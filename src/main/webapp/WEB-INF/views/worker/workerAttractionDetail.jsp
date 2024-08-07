@@ -12,7 +12,7 @@
 </head>
 <script>
 function go_deleteAttraction(aid){
-		if(confirm('정말 삭제하시겠습니까?')){
+		if(confirm('本当に削除しますか？')){
 			var url='${conPath }/workerAttraction/delete.do?aid=${attractionDetail.aid }&pageNum=${param.pageNum}';
 			location.href=url;
 			}
