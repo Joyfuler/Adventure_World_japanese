@@ -182,14 +182,14 @@ h1{
 <c:set var="SUCCESS" value="1"/>
 	<c:if test="${insertResult == SUCCESS }">
 		<script>
-			alert('공지사항 수정 완료');
+			alert('お知らせが修正されました');
 		</script>
 	</c:if>
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
 <article>
 <div class="findfindd">
-<h1>공지사항 수정</h1>
+<h1>お知らせ修正</h1>
 <br><hr><br>
 <!-- include summernote css/js-->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -213,11 +213,11 @@ h1{
 <form action= "${conPath }/worker/update.do" method="post" enctype="multipart/form-data">
 	<table class="baba">
 		<tr>
-			<th>제목</th> 
+			<th>タイトル</th> 
 			<td><input type="text" name="ntitle" size="47" value="${notice.ntitle }" required="required"></td>
 		</tr>
 		<tr>
-			<th>파일</th>
+			<th>ファイル</th>
 	    	<td>
 	    		<div class = "sbimage"style="width: 90%; overflow: hidden;">
 			        <label for="mymy" style="float: left; margin-right: 10px;">
@@ -231,14 +231,14 @@ h1{
 	   		</td>
 	   	</tr>
 	   	<tr>
-			<th>내용</th> 
+			<th>内容</th> 
 			<td><textarea name="ntext" id="summernote" size="47" >${notice.ntext }</textarea></td>
 		</tr>
 	   	<tr>
 	   		<td class="button" colspan="2" style="text-align: center;">
-	   			<input type="submit" value="공지수정" >
-				<input type="button" value="목록으로" onClick="location.href='${conPath }/worker/list.do'" >
-				<input type="RESET" value="재설정"  >
+	   			<input type="submit" value="修正" >
+				<input type="button" value="一覧へ" onClick="location.href='${conPath }/worker/list.do'" >
+				<input type="RESET" value="初期化"  >
 	   		</td>
 	   	</tr>
 	</table>

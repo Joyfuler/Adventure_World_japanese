@@ -13,7 +13,7 @@
 <script>
  function title(){
 	if($('input[name="ntitle"]').val()==""){
-		   	alert("제목을 입력하세요.");
+		   	alert("タイトルを入力してください。");
 		  	return false;
 	}
  }
@@ -179,14 +179,14 @@ input, button, select, textarea{
 <c:set var="SUCCESS" value="1"/>
 	<c:if test="${insertResult == SUCCESS }">
 		<script>
-			alert('공지사항 등록 완료');
+			alert('お知らせが登録しました');
 		</script>
 	</c:if>
 <jsp:include page="../main/header.jsp"/>
 <jsp:include page="workerHeader.jsp"/>
 <article>
 	<div class="findfindd">
-	<h1>공지사항 추가</h1>
+	<h1>お知らせ登録</h1>
 	<br><hr><br>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
@@ -208,19 +208,19 @@ input, button, select, textarea{
 <form action= "${conPath }/worker/insert.do" method="post" enctype="multipart/form-data" onsubmit="return title();">
 	<table class="baba">
 		<tr>
-			<th>제목</th> 
+			<th>タイトル</th> 
 			<td><input type="text" name="ntitle" size="47" value="" required="required"></td>
 		</tr>
 		<tr>
-			<th>파일</th>
+			<th>ファイル</th>
 	    	<td>
-	   			<div id="filename";>
-	   			<input type="file" name="temp_ncontent" id="mymy" style = "width:90%; ">
+	   			<div id="filename">
+	   			<input type="file" name="temp_ncontent" id="mymy" style = "width:90%; padding: 10px 0 0 7px;">
 	   			</div>
 	   		</td>
 	   	</tr>
 	   	<tr>
-			<th>내용</th> 
+			<th>内容</th> 
 			<td>
 			<!-- include summernote css/js-->
 				<textarea name="ntext" id="summernote" ></textarea>
@@ -229,9 +229,9 @@ input, button, select, textarea{
 	   	<tr>
 	   		<td class="button" colspan="2" style="text-align: center;" >
 	   		<!-- <div class="update_buttons"> -->
-	   			<input type="submit" value="공지등록" >
-				<input type="button" value="목록으로" onClick="location.href='${conPath }/worker/list.do'" >
-				<input type="reset" value="재설정"  >
+	   			<input type="submit" value="登録" >
+				<input type="button" value="一覧" onClick="location.href='${conPath }/worker/list.do'">
+				<input type="reset" value="初期化">
 			<!-- </div> -->
 	   		</td>
 	   	</tr>

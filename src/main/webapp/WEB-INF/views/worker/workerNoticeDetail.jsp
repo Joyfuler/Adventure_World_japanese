@@ -163,7 +163,7 @@ function go_deleteNotice(nid){
 			  		</c:if>
 				</c:forEach>
 				${comment.cnum }.
-				<span class="commentContent"">${comment.cmemo }</span> 
+				<span class="commentContent">${comment.cmemo }</span> 
 				<i class="commentInfo">from ${comment.cname} - at ${comment.cdate }</i>
 				<span onclick="location='${conPath}/noticeComment/delete.do?cnum=${comment.cnum }&nid=${param.nid }&pageNum=${param.pageNum }&comPageNum=${comPaging.currentPage }'" class="btn">[ 削除 ]</span>
 				<span id="${comment.cnum }" class="replyView" class="btn" class="replyBtn" style="cursor: pointer; color:blue;">[リプライ]</span>
