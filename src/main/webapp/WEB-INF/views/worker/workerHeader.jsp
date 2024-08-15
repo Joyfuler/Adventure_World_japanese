@@ -46,7 +46,7 @@
 		<input type = "button" value = "注文履歴" onclick = "location.href='${conPath}/worker/workerOrderList.do'" style = "cursor:pointer; width: 80px;">
 	</div>
 	<div class = "buttons">
-		<input type = "button" value = "紛失物センター" onclick = "location.href='${conPath}/lostItemList.do'" style = "cursor:pointer; width: 80px;">
+		<input type = "button" value = "遺失物" onclick = "location.href='${conPath}/lostItemList.do'" style = "cursor:pointer; width: 80px;">
   </div>
 	<div class = "buttons">
 		<input type = "button" value = "通報管理" onclick = "location.href='${conPath}/worker/reportList.do'" style = "cursor:pointer; width: 80px;">
