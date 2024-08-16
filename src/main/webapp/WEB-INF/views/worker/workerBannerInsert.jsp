@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>バナー登録</title>
 <script
   src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
@@ -132,8 +132,8 @@
 <script>
 	var cntBanner = ${cntBanner+2};
 	$(document).ready(function(){
-		$('select[name="order_seq"]').change(function(){ //<select name="order_seq" class="pl"> 이게바뀌면
-			$('input[name="border"]').val($(this).val());//바뀐값을 input[name="border"] 여따 넣어라
+		$('select[name="order_seq"]').change(function(){ //<select name="order_seq" class="pl">　変更時に
+			$('input[name="border"]').val($(this).val());//바뀐값을 input[name="border"] この値に代入する
 			var selectVal = $('select[name="order_seq"]').val();
 			if (cntBanner == selectVal){
 				$('input[name="usage"]').val('N');
@@ -149,29 +149,29 @@
 <article>
     <div class="findfindd">
         <div class="id_foundd">
-            <h1>배너 등록</h1>
+            <h1>バナー登録</h1>
             <br><hr><br>
             <form action="${conPath }/workerBanner/insert.do" method="post" enctype="multipart/form-data" >
             	<input type="hidden" name="border">
             	<input type="hidden" name="usage">
                 <table class="baba">
                     <tr>
-                        <th>제목</th>
+                        <th>タイトル</th>
                         <td><input type="text" name="btitle" size="47"></td>
                     </tr>
                     <tr>
-                        <th>순위</th> 
+                        <th>表示順序</th> 
                         <td>
                             <select name="order_seq" class="pl">
                             <c:forEach var="cnt" begin="1" end="${cntBanner+1}">
                             	<option value="${cnt}">${cnt}</option>
                             </c:forEach>
-                            <option value="${cntBanner +2}">사용안함</option>
+                            <option value="${cntBanner +2}">未使用</option>
                             </select>
                         </td>
                     </tr>
                     <tr style="height:250px">
-                        <th>배너 이미지</th>
+                        <th>バナーイメージ</th>
                         <td>
                             <input type="hidden" name="image" id="image">
                             <div id="filename"></div>
@@ -180,8 +180,8 @@
                     </tr>
                 </table>
                 <div class="update_buttons">
-                    <input type="submit" value="등록">
-                    <input type="button" value="목록으로" onclick="location.href='${conPath }/workerBanner/list.do'">
+                    <input type="submit" value="登録">
+                    <input type="button" value="一覧へ" onclick="location.href='${conPath }/workerBanner/list.do'">
                 </div>
             </form>
         </div>
