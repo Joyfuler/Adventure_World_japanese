@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 FAQ 리스트</title>
+<title>よくあるご質問</title>
 <style>
 .btt{width: 50px; height: 25px; border-radius:13px; background-color: #8b00ff ; color: white; border-color: #9400D3; }
 .answer {display: none;}
@@ -16,13 +16,13 @@
 </style>
 <script>
 function go_search(){
-	 if($('input[name="schWord"]').val() == "" ){
-		alert("검색버튼 사용시에는 검색어 입력이 필수입니다");
+	 if($('input[name="schWord"]').val() == ""){
+		alert("検索ワードを入力してください");
 	 	return false;
 	} 
 }
 </script>
-<script>
+<script> // 답변 클릭 시 해당 답변 내용이 표시. 만일 표시된 상태라면 닫음.
 function Answer(answerId) {
     var answer = document.getElementById(answerId);
     var answercontent = document.getElementsByTagName("answercontent")
@@ -42,12 +42,12 @@ function Answer(answerId) {
 <jsp:include page="workerHeader.jsp"/>
 <c:if test="${not empty faqDeleteResult }">
 	<script>
-		alert('삭제가 완료되었습니다.');
+		alert('削除完了');
 	</script>
 </c:if>
 <c:if test="${not empty faqInsertResult }">
 	<script>
-		alert('작성이 완료되었습니다.');
+		alert('投稿完了');
 	</script>
 </c:if>
 <article>
@@ -62,11 +62,11 @@ function Answer(answerId) {
         <div class="container">
             <div class="search-window">
                       <div class="search-wrap">
-                        <label for="search" class="blind">FAQ 검색</label>
-                        <input id="search" type="text" name="schWord" placeholder="FAQ 제목 및 내용을 입력하세요" value="${param.schWord}">
-                        <input type="submit" class="btn btn-dark" value="검색" onClick="return go_search()">
-                 		<input type="button" class="btn btn-darkkk" value="전체보기" onClick="location.href='${conPath }/workerFaqList.do'">
-                 		<input type="button" class="btn btn-dark" value="추가" onClick="location.href='${conPath }/faqInsert.do'">   
+                        <label for="search" class="blind">FAQ検索</label>
+                        <input id="search" type="text" name="schWord" placeholder="タイトルや内容を入力" value="${param.schWord}">
+                        <input type="submit" class="btn btn-dark" value="検索" onClick="return go_search()">
+                 		<input type="button" class="btn btn-darkkk" value="一覧" onClick="location.href='${conPath }/workerFaqList.do'">
+                 		<input type="button" class="btn btn-dark" value="追加" onClick="location.href='${conPath }/faqInsert.do'">   
                     </div>
                 
             </div>
@@ -79,12 +79,12 @@ function Answer(answerId) {
             <c:set var="i" value="1"/>
             <c:forEach items="${faqList }" var="faq">
                <tr>
-					<th>${faq.fno}</th>
+					<th style = "cursor:pointer;">${faq.fno}</th>
 					<th><span onclick="Answer('answerId${i}')" name="answercontent">${faq.ftitle}
 					</span></th>
 					<th> 
-						<button class="btt" onclick="location.href='${conPath}/faqdelete.do?fno=${faq.fno}'">삭제</button>
-						<input class="btt" type="button" onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'"  value="수정">
+						<button class="btt" onclick="location.href='${conPath}/faqdelete.do?fno=${faq.fno}'">削除</button>
+						<input class="btt" type="button" onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'"  value="修正">
 					</th>
 				</tr>
 				<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->
