@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 작성</title>
+<title>QNAを作成</title>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
@@ -18,16 +18,16 @@ $(document).ready(function(){
       var chkBox = $('input[name="check"]');
       var qpw = $('input[name="qpw"]');
       if(!qtitle.val()){
-         alert('제목을 입력하세요');
+         alert('タイトルを入力してください');
          qtitle.focus();
          return false;
       }else if(!qcontent.val()){
-         alert('문의 내용을 입력하세요');
+         alert('内容は必須項目です');
          qcontent.focus();
          return false;
       }else if(chkBox.prop("checked")){
          if(!qpw.val()){
-            alert("비밀번호를 입력해주세요");
+            alert("パスワードを入力してください");
             qpw.focus();
             return false;
          }
@@ -52,15 +52,15 @@ function enabled1() {
 <article>
 <c:if test="${empty member }"> 
 	<script>
-	   alert('로그인 후 문의글 작성이 가능합니다');
+	   alert('ログイン後、QNAを投稿できます');
 	   location.href = '${conPath}/member/loginMember.do?next=qna/qnaWriteForm.do';
 	</script>
 </c:if>
 	<div class="qna">
 	      <div class="qnaimg" style="background-image:url('${conPath}/images/qnaaa.png');"></div>
 	  	  <div class="qnaBox">
-		      <h2> 1:1 고객 게시판 </h2>
-		      <h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+		      <h2> お問い合わせ </h2>
+		      <h3>お客様のお問い合わせに何でもお答えします</h3>
 		      <form action="${conPath }/qna/qnaWrite.do" class="fix02" name="qna"  method="post">
 		         <input type="hidden" name="command" value="qnaWrite">
 		         <input type="hidden" name="mid" value="${member.mid }">
@@ -72,19 +72,19 @@ function enabled1() {
 		                <th>Secret mode</th>
 		                <td>   
 		                   <input type="checkbox" name="check" value="secret" onchange="enabled1()">
-		                      &nbsp;비밀글로 하기&nbsp;&nbsp;
+		                      &nbsp;パスワードを設定&nbsp;&nbsp;
 		                   <input type="password" name="qpw" id="pass" size="15" 
-		                    style= "background: lightgray;" disabled="disabled" >
+		                    style= "background: lightgray;" disabled="disabled">
 		               </td>
 		             </tr>
 		            <tr>
-		               <th>제목</th>
+		               <th>タイトル</th>
 		               <td width="500" style="text-align:left;">
-		                  <input type="text" name="qtitle" size="50" autofocus="autofocus" >
+		                  <input type="text" name="qtitle" size="50" autofocus="autofocus">
 		               </td>
 		            </tr>
 		            <tr>
-		               <th>내용</th>
+		               <th>内容</th>
 		               <td align="left" style="text-align:left;font-size:115%;">
 		               
 		               <textarea id="summernote" name="qcontent"></textarea>
@@ -93,8 +93,8 @@ function enabled1() {
 		          </table>
 				<br>
 			      <div class="buttons">
-			         <input type="submit" value="글쓰기" class="purpleBtn" style="border:none;" > 
-			         <input type="reset" value="취소" class="purpleBtn" style="border:none;"  
+			         <input type="submit" value="投稿" class="purpleBtn" style="border:none;" > 
+			         <input type="reset" value="キャンセル" class="purpleBtn" style="border:none;"  
 			            onclick="location.href='${conPath}/qna/qnaList.do'">
 			      </div>
 		      	<br>

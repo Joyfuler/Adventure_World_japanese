@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 리스트</title>
+<title>QNA一覧</title>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 <script>
+// qna 작성시 입력했던 비밀번호가 일치했는지를 체크함.
 function qpwChk(qno){
 	var url = '${conPath}/qna/passCheck.do?qno=' + qno +'&pageNum=${paging.currentPage}&schWord=${param.schWord}&wid=${worker.wid}';
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
@@ -29,17 +30,17 @@ function qpwChk(qno){
 <body>
 <c:if test="${not empty writeResult}">
 	<script>
-		alert('글작성 성공');
+		alert('QNA投稿完了');
 	</script>
 </c:if>
 <c:if test="${not empty replyResult}">
 	<script>
-		alert('답변작성 성공');
+		alert('リプライ投稿完了');
 	</script>
 </c:if>
 <c:if test = "${not empty deleteResult }">
 	<script>
-		alert('${deleteResult eq 1? "질문글 삭제가 완료되었습니다." : "삭제실패"}');
+		alert('${deleteResult eq 1? "削除しました" : "削除失敗"}');
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
@@ -56,10 +57,10 @@ function qpwChk(qno){
         <div class="container">
             <div class="search-window">
                 <div class="search-wrap">
-                    <label for="search" class="blind">QnA 내용 검색</label>
-                    <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}" >
-                    <input type="submit" class="btn btn-dark" value="검색"  >
-                 	<input type="button" class="btn btn-darkkk" value="전체보기" onclick="location.href='${conPath}/qna/qnaList.do'" >
+                    <label for="search" class="blind">QnA内容で検索</label>
+                    <input id="search" type="search" name="schWord" placeholder="検索ワードを入力" value="${param.schWord}" >
+                    <input type="submit" class="btn btn-dark" value="検索">
+                 	<input type="button" class="btn btn-darkkk" value="一覧" onclick="location.href='${conPath}/qna/qnaList.do'" >
                 </div>
             </div>
         </div>
@@ -69,20 +70,20 @@ function qpwChk(qno){
             <table class="board-table">
                 <thead>
 	                <tr>
-	                    <th scope="col" class="th-num">번호</th>
-	                    <th scope="col" class="th-title">제목</th>
-	                    <th scope="col" class="th-date">등록일</th>
-	                    <th scope="col" class="th-answer">답변여부</th>
+	                    <th scope="col" class="th-num">番号</th>
+	                    <th scope="col" class="th-title">タイトル</th>
+	                    <th scope="col" class="th-date">登録日付</th>
+	                    <th scope="col" class="th-answer">リプライ</th>
 	                </tr>
                 </thead>
       			<c:forEach items="${qnaList}"  var="qna">
 		     	<c:if test="${qna.isreply=='N' }"> 
 					<tr ><td> ${qna.qno}</td>    
 			    		<td>
-			    		<c:if test="${ empty worker }">
-			    			<c:choose>
+			    		<c:if test="${ empty worker }"><!-- 관리자 로그인 아닌 경우 -->
+			    			<c:choose> 
 								<c:when test="${qna.qpwchk=='Y'}" >
-									 <span onClick="qpwChk(${qna.qno})">${qna.qtitle}</span> 
+								 　<span onClick="qpwChk(${qna.qno})">${qna.qtitle}</span> 
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">									
 								</c:when>
 								<c:otherwise>
@@ -119,15 +120,13 @@ function qpwChk(qno){
 			    		<c:if test="${ empty worker }">
 			    			<c:choose>
 								<c:when test="${qna.qpwchk=='Y'}">
-									 <span onClick="qpwChk(${qna.qno})">
-											<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+									 <span onClick="qpwChk(${qna.qno})">											
 											${qna.qtitle}
 											</span> 
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 								</c:when>
 								<c:otherwise>
-									<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-										<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+									<a href="${conPath }/qna/qnaView.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">										
 										${qna.qtitle} 
 										</a>
 								</c:otherwise>
@@ -136,15 +135,13 @@ function qpwChk(qno){
 			    			<c:if test="${not empty worker }">
 			    				<c:choose>
 								<c:when test="${qna.qpwchk=='Y'}">
-									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
-										<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">										
 										${qna.qtitle}
 										</a>
 										&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 								</c:when>
 								<c:otherwise>
-									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-									<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+									<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">									
 									 ${qna.qtitle}
 									 </a>
 								</c:otherwise>
@@ -170,7 +167,7 @@ function qpwChk(qno){
 	<div  class="clear"></div><br>
 	<div id ="paging" style="margin-top: -50px;">
 			<c:if test="${paging.startPage > paging.blockSize}">
-				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">前へ</a> ]
 			</c:if>	
 			<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 				<c:if test="${paging.currentPage eq i }"> 
@@ -181,11 +178,11 @@ function qpwChk(qno){
 				</c:if>
 			</c:forEach>
 			<c:if test="${paging.endPage<paging.pageCnt }">
-				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">다음</a> ]
+				[ <a href="${conPath }/qna/qnaList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">次へ</a> ]
 			</c:if>
 		</div>
 	<div id="buttons" style="margin-bottom: 30px;">
-		   <input type="button"  value="등록하기"  class="submit" 
+		   <input type="button"  value="登録"  class="submit" 
 		      onClick="location.href='${conPath}/qna/qnaWriteForm.do?mid=admin'"> 
 	</div>
 <jsp:include page="../main/footer.jsp"/>

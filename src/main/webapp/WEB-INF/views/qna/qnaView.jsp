@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QNA 상세보기</title>
+<title>QNAの詳細</title>
 <style>
 .qnaBox{margin-bottom: 300px;}
 .qnaimg{
@@ -26,7 +26,7 @@ color: #000;
 </style>
 <script>
 	function deleteConfirm(){
-		var answer = confirm('정말 삭제하시겠습니까?');
+		var answer = confirm('本当に削除しますか?');
 		var qno = ${Qna.qno};
 		if (answer){
 			location.href = "${conPath}/qna/deleteQna.do?qno="+qno;
@@ -39,7 +39,7 @@ color: #000;
 <body>
 <c:if test = "${not empty modifyResult}">
 	<script>
-		alert('${modifyResult eq 1? "글 수정이 완료되었습니다." : "글수정 실패"}');
+		alert('${modifyResult eq 1? "投稿の修正が完了しました" : "修正エラー"}');
 	</script>
 </c:if>
 <article>
@@ -47,28 +47,28 @@ color: #000;
 <div class="qna">
 	<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 	<div class="qnaBox">
-		<h2>QnA 게시판</h2>
-		<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+		<h2>よくあるご質問</h2>
+		<h3>お客様の質問に誠心誠意お答えします</h3>
 		<form class="fix02">
 			<input type="hidden" name ="pageNum" value="${param.pageNum }">
 	    	<table class="fix03">
 				<tr>
-					<th>제목</th>
+					<th>タイトル</th>
 					<td width="500" style="text-align:left;">${Qna.qtitle}</td>
 				</tr>
 				<tr>
-					<th>등록일</th>
+					<th>登録日付</th>
 					<td align="left" style="text-align:left;">
 					<fmt:formatDate value="${Qna.qrdate}" type="date"/>
 					</td>
 				</tr>
 				<tr>
-					<th>질문내용</th>
+					<th>内容</th>
 					<td align="left" style="text-align:left;">${Qna.qcontent}</td>
 				</tr>
 				<tr>
 				<c:if test="${Qna. isreply =='Y' }">
-					<th>답변내용</th>
+					<th>リプライ</th>
 					<td align="left" style="text-align:left;">${Qna.reply}</td>
 				</c:if>
 				</tr>						
@@ -76,14 +76,14 @@ color: #000;
 		</form>
 		<br>
 		<div class="buttons">
-			<input type="button"  value="목록보기" class="purpleBtn" style = "width: 100px; padding: 0;" 
+			<input type="button"  value="一覧" class="purpleBtn" style = "width: 100px; padding: 0;" 
 				onclick="location.href='${conPath}/qna/qnaList.do?pageNum=${param.pageNum}'">
-			<input type="button"  value="돌아가기"  class="purpleBtn" style = "width: 100px; padding: 0;"
+			<input type="button"  value="戻る"  class="purpleBtn" style = "width: 100px; padding: 0;"
 				onclick="history.back()">
 			<c:if test = "${member.mid eq Qna.mid }">
-				<input type="button"  value="수정하기" class="purpleBtn" style = "width: 100px; padding: 0;"
+				<input type="button"  value="修正" class="purpleBtn" style = "width: 100px; padding: 0;"
 				onclick = "location.href='${conPath}/qna/qnaModify.do?pageNum=${empty param.pageNum? '1': param.pageNum}&qno=${Qna.qno }'">
-				<input type="button"  value="삭제하기" class="purpleBtn" style = "width: 100px; padding: 0;"
+				<input type="button"  value="削除" class="purpleBtn" style = "width: 100px; padding: 0;"
 				onclick = "deleteConfirm()">
 			</c:if>
 		</div>
