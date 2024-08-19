@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 분실물 센터</title>
+<title>遺失物検索</title>
  <script src="https://code.jquery.com/jquery-3.6.0.js"></script> 
 <link href="${conPath }/css/order.css" rel="stylesheet">  
 <style>
@@ -40,8 +40,7 @@ input[name=schWord] {
 </head>
 <script>
 $(function(){
-	$('.lostItemSch').click(function(){
-		
+	$('.lostItemSch').click(function(){		
 		var schDate = $('input[name="schDate"]').val();
 		var schWord = $('input[name="schWord"]').val();
 		if (schDate == null || schDate == ''){
@@ -63,7 +62,7 @@ $(function(){
 				var url = '${conPath}/modifyItem.do?lno='+selectedCids;
 				location. href = url;	
 		    } else {
-		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		        alert('まだ項目を選択していません');  // 선택된 항목이 없을 때 경고 메시지 추가
 		    }
 		});
 	});
@@ -79,7 +78,7 @@ $(function(){
 				var url = '${conPath}/updateItem.do?lno='+selectedCids;
 				location. href = url;	
 		    } else {
-		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		        alert('まだ項目を選択していません');  // 선택된 항목이 없을 때 경고 메시지 추가
 		    }
 		});
 	});
@@ -95,7 +94,7 @@ $(function(){
 				var url = '${conPath}/deleteItem.do?lno='+selectedCids;
 				location. href = url;	
 		    } else {
-		        alert('선택된 항목이 없습니다.');  // 선택된 항목이 없을 때 경고 메시지 추가
+		        alert('まだ項目を選択していません');  // 선택된 항목이 없을 때 경고 메시지 추가
 		    }
 		});
 	});	
@@ -110,8 +109,8 @@ $(function(){
 					chkCnt++; // 1증가
 				}	
 			}
-			if (chkCnt > 1){ // 3개 
-				alert("1개까지만 선택 가능합니다."); // 경고문
+			if (chkCnt > 1){  
+				alert("選択は1個まで可能です"); // 경고문
 				$(this).prop('checked',false);
 			}
 		});
@@ -125,22 +124,22 @@ $(function(){
 		<section class="notice">
 		<c:if test="${not empty ItemModyfyReult }">
 			<script>
-				alert("수정이 완료되었습니다");
+				alert("修正しました");
 			</script>
 		</c:if>
 		<c:if test="${not empty updateItemReult }">
 			<script >
-			alert("처리결과 수정이 완료되었습니다");
+			alert("処理状況が反映されました");
 			</script>
 		</c:if>
 		<c:if test="${not empty deleteItemReult }">
 			<script >	
-			alert("삭제가 완료되었습니다");
+			alert("削除されました");
 			</script>
 		</c:if>
 		<div class="page-title">
 			<div class="container">
-				<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">분실물 검색</h3>
+				<h3 style="font-family:'IBM Plex Sans KR', sans-serif; font-size: 50px; text-align:center;">遺失物検索</h3>
 			</div>
 		</div>
 		    <div class="board-searchh">
@@ -154,10 +153,10 @@ $(function(){
 	                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
 	                        </label>
 	                        <input type="text" id="datepicker" name="schDate" value="${param.schDate}" 
-	                        	autocomplete="off" placeholder="분실 날짜" >
-	                        <input id="search" type="text" name="schWord" placeholder="분실한 소지품을 입력해주세요." value="${param.schWord}" size="50">
-	                        <input type="button" class="btn btn-dark lostItemSch" value="검색" style="margin-left: 20px;">
-	                 		<input type="button" name="list" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/workerlostItemList.do'">
+	                        	autocomplete="off" placeholder="遺失日付" >
+	                        <input id="search" type="text" name="schWord" placeholder="遺失物の名前を入力" value="${param.schWord}" size="50">
+	                        <input type="button" class="btn btn-dark lostItemSch" value="検索" style="margin-left: 20px;">
+	                 		<input type="button" name="list" class="btn btn-dark" value="一覧" onclick="location.href='${conPath}/workerlostItemList.do'">
 		                </div>      
 		            </div>
 		        </div>
@@ -167,12 +166,12 @@ $(function(){
 		            <table class="board-table">
 		                <thead>
 			                <tr>
-			                    <th scope="col" class="th-num">분류</th>
-			                    <th scope="col" class="th-title">습득물</th>
-			                    <th scope="col" class="th-date">습득장소</th>
-			                    <th scope="col" class="th-num">습득물 사진</th>
-			                    <th scope="col" class="th-num">습득일</th>
-			                    <th scope="col" class="th-title">처리결과</th>
+			                    <th scope="col" class="th-num">分類</th>
+			                    <th scope="col" class="th-title">アイテム</th>
+			                    <th scope="col" class="th-date">拾得場所</th>
+			                    <th scope="col" class="th-num">イメージ</th>
+			                    <th scope="col" class="th-num">拾得日付</th>
+			                    <th scope="col" class="th-title">処理状況</th>
 			                    <c:if test="${not empty worker }">
 			                    	<th scope="col" class="th-title"></th>
 			                    </c:if>
@@ -199,17 +198,17 @@ $(function(){
 		                </tbody>
 		            </table>
 		            <div class="buts">
-						<input type="button" class="btn btn-dark" value="수정" id="modifyItem" >
-	           			<input type="button" class="btn btn-dark" value="수령" id="updateItem" >
-	           			<input type="button" class="btn btn-dark" value="삭제" id="deleteItem" >
-	           			<input type="button"  class="btn btn-dark" value="추가" onclick="location.href='${conPath}/insertItem.do'">
+						<input type="button" class="btn btn-dark" value="修正" id="modifyItem" >
+	           			<input type="button" class="btn btn-dark" value="受け取り処理" id="updateItem" >
+	           			<input type="button" class="btn btn-dark" value="削除" id="deleteItem" >
+	           			<input type="button"  class="btn btn-dark" value="追加" onclick="location.href='${conPath}/insertItem.do'">
 					</div>
 		        </div>
 		    </div>
 		</section>
 	<div style="text-align: center; margin-top: 20px;">
 		<c:if test="${paging.startPage>paging.blockSize}">
-			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}&schDate=${param.schDate}">이전</a> ]
+			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}&schDate=${param.schDate}">前へ</a> ]
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
@@ -220,7 +219,7 @@ $(function(){
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.pageCnt }">
-			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}&schDate=${param.schDate}">다음</a> ]
+			[ <a href="${conPath }/workerlostItemList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}&schDate=${param.schDate}">次へ</a> ]
 		</c:if>
 	</div>
 </form>

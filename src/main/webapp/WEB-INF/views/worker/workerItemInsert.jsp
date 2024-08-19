@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 분실물 추가</title>
+<title>管理者モード・遺失物の追加</title>
 <style>
 table {
     border-collapse: collapse;
@@ -122,31 +122,31 @@ table {
 <article>
     <div class="findfindd">
         <div class="id_foundd">
-            <h1>분실물 추가</h1>
+            <h1>遺失物の追加</h1>
             <br><hr><br>  
             <form action="${conPath }/insertItem.do" method="post" enctype="multipart/form-data">
                 <table class="baba">
                     <tr>
-						<th>분실물 분류</th>
+						<th>分類</th>
 						<td><input type="text" name="litem" size="47"></td>
 					</tr>
 					<tr>
-						<th>분실물 이름</th>
+						<th>遺失物名</th>
 						<td><input type="text" name="lname" size="47"></td>
 					</tr>
 					 <tr>
-			            <th>분실물 이미지</th>
+			            <th>イメージ</th>
 			            <td>
 			                <div id="filename"></div>
 			                <input type="file" name="tempimg" id="lphoto">
 			            </td>
 			        </tr>
 					<tr>
-						<th>분실 장소</th>
+						<th>遺失の場所</th>
 						<td><input type="text" name="location" size="47"></td>
 					</tr>
 					<tr>
-						<th>분실일
+						<th>遺失日時
 							 <label for="datepicker" style="margin-left: -80px;">
 		                        	<img src="${conPath }/images/themepark/calendar3.png" style="width:34px; height:34px; margin-left: 100px; margin-top: 6px;">
 	                        </label>
@@ -156,13 +156,13 @@ table {
 						</td>
 					</tr>
 					<tr>
-						<th>처리결과</th>
+						<th>処理状況</th>
 						<td><input type="text" name="lresult" size="47"></td>
 					</tr>
      			</table>
 			     <div class="update_buttons">
-			         <input type="submit" value="분실물 등록">
-			         <input type="reset" value="돌아가기" onclick="history.go(-1)">
+			         <input type="submit" value="遺失物を登録">
+			         <input type="reset" value="戻る" onclick="history.go(-1)">
 			     </div>
    			</form>
 	    </div>
