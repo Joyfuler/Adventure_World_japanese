@@ -112,7 +112,7 @@ Adventure World（アドベンチャーワールド）
 ![스크린샷 2024-08-16 223928](https://github.com/user-attachments/assets/c6012a31-f6ea-4e7b-a3d2-d30ddfc08517)
 ![스크린샷 2024-08-18 005144](https://github.com/user-attachments/assets/146b6434-d066-4e5f-b547-3920f7b23f39)
 ![스크린샷 2024-08-19 005517](https://github.com/user-attachments/assets/2e35925e-d9a2-41ca-b591-63ff3f2377f7)
-![스크린샷 2024-08-20 000437](https://github.com/user-attachments/assets/51233cfa-e0e1-41b3-82fa-47c01572634d)
+![스크린샷 2024-08-20 000638](https://github.com/user-attachments/assets/a222f621-f1c5-4152-b250-81da46534942)
 ![슬라이드58](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/d1616cfd-94f1-4b3c-9035-f5d8b731f4b6)
 ![슬라이드59](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/43682084-d26a-44df-98e5-807158cc213b)
 ![슬라이드60](https://github.com/Joyfuler/2ndTeamProject/assets/137759165/f2a2542e-a78f-4179-acb0-15fe47526681)
