@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 QNA 수정</title>
+<title>QNAのリプライ修正</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
 	input, button, select, textarea{
@@ -30,35 +30,35 @@
 		<div class="qna">
 			<div class="qnaimg" style="background-image:url('${conPath}/images/qna1.png');"></div>
 			<div class="qnaBox">
-				<h2> QnA 게시판 </h2>
-				<h3>고객님의 질문에 대해서 운영자가 1:1 답변을 드립니다.</h3>
+				<h2> よくあるご質問 </h2>
+				<h5 style = "font-weight: bold; text-align: center;">アドベンチャーワールドに関するお問い合わせに誠心誠意お答えいたします</h5>
 				<div class="fix02">
 					<table class="fix03">
 						<tr>
-							<th>제목</th>
+							<th>タイトル</th>
 							<td>${Qna.qtitle}</td>
 						</tr>
 						<tr>
-							<th>등록일</th>
+							<th>登録日時</th>
 							<td><fmt:formatDate value="${Qna.qrdate}" type="date"/></td>
 						</tr>
 						<tr>
-							<th>질문내용</th>
+							<th>内容</th>
 							<td>${Qna.qcontent}</td>
 						</tr>
 						<tr>		
-			    			<th>답변내용</th>
+			    			<th>リプライ</th>
 			    			<td colspan="2"><textarea id="summernote" name="reply" rows="2" cols="45">${Qna.reply }</textarea>
 						</tr>	
 					</table>
 				</div>
 				<br>
-				<div class="buttons" style="height:70px;" >ㄴ
-				<input type="submit" style="padding :0;" class="purpleBtn" value="저장">
-				<input type="button" style="padding :0;" value="목록" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnaList.do?pageNum=${param.pageNum }'">
-				<input type="button" style="padding :0;" value="삭제" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnadelete.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
+				<div class="buttons" style="height:70px;" >
+				<input type="submit" style="padding :0;" class="purpleBtn" value="セーブ">
+				<input type="button" style="padding :0;" value="一覧へ" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnaList.do?pageNum=${param.pageNum }'">
+				<input type="button" style="padding :0;" value="削除" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnadelete.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
 				<c:if test="${Qna.isreply =='Y'}">
-					<input type="button" style="padding :0;" value="수정" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnaDetail.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
+					<input type="button" style="padding :0;" value="修正" class="purpleBtn" onclick="location.href='${conPath}/worker/workerQnaDetail.do?pageNum=${param.pageNum }&qno=${Qna.qno}'">
 				</c:if>
 				</div>
 				<br>

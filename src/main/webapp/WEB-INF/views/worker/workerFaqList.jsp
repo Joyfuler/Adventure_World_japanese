@@ -42,12 +42,12 @@ function Answer(answerId) {
 <jsp:include page="workerHeader.jsp"/>
 <c:if test="${not empty faqDeleteResult }">
 	<script>
-		alert('削除完了');
+		alert('削除が完了しました');
 	</script>
 </c:if>
 <c:if test="${not empty faqInsertResult }">
 	<script>
-		alert('投稿完了');
+		alert('投稿が完了しました');
 	</script>
 </c:if>
 <article>
@@ -75,7 +75,12 @@ function Answer(answerId) {
 <br>
 <div id="board-list">
         <div class="container">
-            <table class="board-table" style="font-size:20px; width:960px; margin:0 auto;">  
+            <table class="board-table" style="font-size:20px; width:960px; margin:0 auto;">
+            	<tr>
+            		<th>番号</th>
+            		<th>タイトル</th>
+            		<th>編集</th>
+            	</tr>	  
             <c:set var="i" value="1"/>
             <c:forEach items="${faqList }" var="faq">
                <tr>
@@ -84,7 +89,7 @@ function Answer(answerId) {
 					</span></th>
 					<th> 
 						<button class="btt" onclick="location.href='${conPath}/faqdelete.do?fno=${faq.fno}'">削除</button>
-						<input class="btt" type="button" onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'"  value="修正">
+						<input class="btt" type="button" onclick="location.href='${conPath}/faqModify.do?fno=${faq.fno}'" value="修正">
 					</th>
 				</tr>
 				<tr id="answerId${i}" class="answercontent" style="display: none;"> <!-- Hidden by default -->

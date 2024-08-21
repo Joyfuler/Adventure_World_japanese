@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 QNA</title>
+<title>管理者 QNAページ</title>
 <link href="${conPath }/css/world.css" rel="stylesheet">
 <script>
 function qpwChk(qno){
@@ -29,13 +29,13 @@ function qpwChk(qno){
 <body>
 <c:if test="${not empty wirteResult}">
 	<script>
-		alert('글작성 성공');
+		alert('投稿完了');
 	</script>
 </c:if>
 
 <c:if test="${not empty replyResult}">
 	<script>
-		alert('답변작성 성공');
+		alert('リプライ作成完了');
 	</script>
 </c:if>
 <jsp:include page="../main/header.jsp"/>
@@ -53,10 +53,10 @@ function qpwChk(qno){
 		    <div class="container">
 		        <div class="search-window">
 	                <div class="search-wrap">
-	                    <label for="search" class="blind">QnA 내용 검색</label>
-	                    <input id="search" type="search" name="schWord" placeholder="검색어를 입력해주세요." value="${param.schWord}" >
-			          	<input type="submit" class="btn btn-dark" value="검색"  >
-			        	<input type="button" class="btn btn-darkkk" value="전체보기" onclick="location.href='${conPath}/qna/qnaList.do'" >
+	                    <label for="search" class="blind">QnA 内容で検索</label>
+	                    <input id="search" type="search" name="schWord" placeholder="検索ワードを入力" value="${param.schWord}" >
+			          	<input type="submit" class="btn btn-dark" value="検索">
+			        	<input type="button" class="btn btn-darkkk" value="一覧" onclick="location.href='${conPath}/qna/qnaList.do'" >
 			         </div>
 		        </div>
 		    </div>
@@ -66,10 +66,10 @@ function qpwChk(qno){
             <table class="board-table">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                    <th scope="col" class="th-answer">답변여부</th>
+                    <th scope="col" class="th-num">番号</th>
+                    <th scope="col" class="th-title">タイトル</th>
+                    <th scope="col" class="th-date">登録日時</th>
+                    <th scope="col" class="th-answer">リプライ作成</th>
                 </tr>
                 </thead>
       			<c:forEach items="${qnaList}"  var="qna">
@@ -124,8 +124,7 @@ function qpwChk(qno){
 									&nbsp;<img src="${conPath }/images/key.png" style="width:20px; vertical-align: middle">
 							</c:when>
 							<c:otherwise>
-								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-									<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">									
 									${qna.qtitle} 
 									</a>
 							</c:otherwise>
@@ -134,15 +133,13 @@ function qpwChk(qno){
 	    			<c:if test="${not empty worker }">
 	    				<c:choose>
 							<c:when test="${qna.qpwchk=='Y'}">
-								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">
-									<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}mid=${qna.mid }">									
 									${qna.qtitle}
 									</a>
 									&nbsp;<img src="${conPath }/images/key.png" style="width:20px;vertical-align: middle">
 							</c:when>
 							<c:otherwise>
-								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">
-								<%-- <img src="${conPath }/images/ic1.png" style="width:20px;vertical-align: middle"> --%>
+								<a href="${conPath }/worker/workerQnaDetail.do?qno=${qna.qno}&pageNum=${paging.currentPage}&schWord=${param.schWord}">								
 								 ${qna.qtitle}
 								 </a>
 							</c:otherwise>
@@ -181,7 +178,7 @@ function qpwChk(qno){
 			</c:if>
 		</div>
 	<div id="buttons"  style="margin-bottom: 30px; margin-top: 20px;">
-	   <input type="button"  value="등록하기"  class="submit" 
+	   <input type="button"  value="登録"  class="submit" 
 	      onClick="location.href='${conPath}/qna/qnaWriteForm.do?mid=admin'"> 
 	</div>
 <jsp:include page="../main/footer.jsp"/>
