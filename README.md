@@ -116,4 +116,4 @@ Adventure World（アドベンチャーワールド）
 ![스크린샷 2024-08-21 234937](https://github.com/user-attachments/assets/d7a23b6b-3de2-476b-bde1-bbbd9ee4881f)
 ![스크린샷 2024-08-25 005021](https://github.com/user-attachments/assets/5800e827-6ba2-4714-8f11-f87cd8907da8)
 ![스크린샷 2024-08-21 000844](https://github.com/user-attachments/assets/d3d76554-4d07-4ae5-b462-b796769679ef)
-![스크린샷 2024-08-20 000539](https://github.com/user-attachments/assets/6a014674-2cc8-4d0c-8482-b2d50e644b34)
+![스크린샷 2024-08-25 005801](https://github.com/user-attachments/assets/26bc768c-6f76-4ab0-849d-c64c1dca0a7b)
