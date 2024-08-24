@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 회원정보</title>
+<title>管理者モード：会員管理ページ</title>
 <link href="${conPath }/css/admincss.css" rel="stylesheet">
 <style>
 .notice{height: auto;}
@@ -27,7 +27,7 @@
 			$('input[name="mid"]:checked').each(function(){
 				checkedMids.push($(this).val());
 			if (checkedMids.length == 0){
-				alert('등급을 조정할 회원이 선택되지 않았습니다.');	
+				alert('選択された会員がありません');	
 			}else {
 				var url = '${conPath}/workerRestoreLevel.do?mid='+checkedMids.join('&mid=');
 				location.href = url;
@@ -48,7 +48,7 @@
 			}
 		}
 		if (cnt == 0){
-			alert('적어도 1개 이상의 항목을 선택한 후 변경해주세요.');
+			alert('最小一件以上選択してください');
 			return false;
 		} else {		
 			return true;
@@ -59,12 +59,12 @@
 <body>
 <c:if test = "${not empty deleteResult }">
 	<script>
-		alert('${deleteResult eq 1? "회원등급 강등 완료": "회원등급 강등 실패"}');
+		alert('${deleteResult eq 1? "会員レベル調整完了": "会員レベル調整失敗"}');
 	</script>
 </c:if>
 <c:if test = "${not empty adjustResult }">
 	<script>
-		alert('${adjustResult}명 일반 회원으로 조정됨');
+		alert('${adjustResult}件の会員のレベル調整完了');
 	</script>
 </c:if>
 <form action="${conPath }/workermodify.do" method="get">
@@ -73,17 +73,17 @@
 <jsp:include page="workerHeader.jsp"/>
   <div class="page-titlee" style="margin-top:-100 " >
         <div class="containerr">
-            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 회원 리스트 </h3>
+            <h3 style=" margin-right:70px; font-size: 60px;color: #333333;font-weight: 400;text-align: center;"> 会員リスト </h3>
         </div>
     </div>
     <div class="board-searchh">
         <div class="containerr">
             <div class="search-window">
                 <div class="search-wrap" >
-                    <label for="search" class="blind"> 회원 이름 검색 </label>
-                    <input id="search" type="search" name="schWord" placeholder="회원 아이디로 검색" value="${param.schWord}">
-                    <input type="button" id="schmid" class="btn btn-dark" value="검색"   >
-                    <input type="button" class="btn btn-dark" value="전체보기" onclick="location.href='${conPath}/memberList.do'">
+                    <label for="search" class="blind"> 名前で検索 </label>
+                    <input id="search" type="search" name="schWord" placeholder="IDで検索" value="${param.schWord}">
+                    <input type="button" id="schmid" class="btn btn-dark" value="検索"   >
+                    <input type="button" class="btn btn-dark" value="一覧へ" onclick="location.href='${conPath}/memberList.do'">
                 </div>
             </div>
         </div>
@@ -93,15 +93,15 @@
             <table class="board-tablee">
                 <thead>
                 <tr>
-                    <th scope="col" class="th-num">아이디<br>(탈퇴여부)</th>           
-                    <th scope="col" class="th-title">이름</th>
-                    <th scope="col" class="th-date">이메일</th>
-                    <th scope="col" class="th-answer">우편번호</th>
-                    <th scope="col" class="th-address">주소</th>
-                    <th scope="col" class="th-address">상세주소</th>
-                    <th scope="col" class="th-phone">전화</th>
-                    <th scope="col" class="th-mpoint">포인트</th>
-                    <th scope="col" class="th-day">가입일</th>
+                    <th scope="col" class="th-num">ID(退会可否)<br></th>           
+                    <th scope="col" class="th-title">名前</th>
+                    <th scope="col" class="th-date">メール</th>
+                    <th scope="col" class="th-answer">郵便番号</th>
+                    <th scope="col" class="th-address">住所</th>
+                    <th scope="col" class="th-address">住所詳細</th>
+                    <th scope="col" class="th-phone">電話番号</th>
+                    <th scope="col" class="th-mpoint">保有ポイント</th>
+                    <th scope="col" class="th-day">登録日時</th>
                 </tr>                
                 </thead>
      		<c:forEach items="${memberList}" var="member">
@@ -109,7 +109,7 @@
 					<td>					
 			        	<input type="checkbox" name="mid" value="${member.mid }" style="width: 10px; height: 10px;">		        	
 						<br>${member.mid}
-						<br><span style = "font-size: 0.8em;">(${member.mlevel eq 0? "탈퇴회원" : "일반회원" })</span>			      	
+						<br><span style = "font-size: 0.8em;">(${member.mlevel eq 0? "脱会" : "一般会員" })</span>			      	
 	    			</td>
 		    		<td>
 		    			<a style="color:blue;">		    	
@@ -140,8 +140,8 @@
 	  	</c:forEach>
             </table>
             <div>
-            	<input type="submit" value="회원강등" class="btn btn-dark" onclick = "return submitChk()">
-            	<input type = "button" value = "일반회원 복원" class = "btn btn-dark restoreLevel" >
+            	<input type="submit" value="レベル下げ" class="btn btn-dark" onclick = "return submitChk()">
+            	<input type = "button" value = "レベル復元" class = "btn btn-dark restoreLevel" >
             </div>
         </div>
         <br>
@@ -149,7 +149,7 @@
 </div>
 	<div id ="paging">
 		<c:if test="${paging.startPage>paging.blockSize}">
-			[ <a href="${conPath }/memberList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">이전</a> ]
+			[ <a href="${conPath }/memberList.do?pageNum=${paging.startPage-1 }&schWord=${param.schWord}">前へ</a> ]
 		</c:if>	
 		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage }">
 			<c:if test="${paging.currentPage==i }"> 
@@ -160,7 +160,7 @@
 			</c:if>
 		</c:forEach>
 		<c:if test="${paging.endPage<paging.pageCnt }">
-			[ <a href="${conPath }/memberList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">다음</a> ]
+			[ <a href="${conPath }/memberList.do?pageNum=${paging.endPage+1 }&schWord=${param.schWord}">次へ</a> ]
 		</c:if>
 	</div>
 </section>
